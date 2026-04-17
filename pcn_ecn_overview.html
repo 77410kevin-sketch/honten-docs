@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — PCN / ECN 變更通知系統流程</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+
+  .sys-header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #6610f2 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #6610f2; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+
+  /* Role badges */
+  .rb { display:inline-block; padding:.15rem .5rem; border-radius:20px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .rb-engineer   { background:#198754; color:white; }
+  .rb-qc         { background:#e91e8c; color:white; }
+  .rb-production { background:#fd7e14; color:white; }
+  .rb-warehouse  { background:#20c997; color:#000; }
+  .rb-bu         { background:#6610f2; color:white; }
+  .rb-admin      { background:#212529; color:white; }
+  .rb-all        { background:#0d6efd; color:white; }
+  .rb-sys        { background:#6c757d; color:white; }
+
+  /* Notification pills */
+  .notif-row { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.45rem; }
+  .n-line { display:inline-flex; align-items:center; gap:.25rem; background:#d1f5e0; color:#155724;
+            border:1px solid #a3d9b1; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-warn { display:inline-flex; align-items:center; gap:.25rem; background:#f8d7da; color:#721c24;
+            border:1px solid #f5c2c7; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-info { display:inline-flex; align-items:center; gap:.25rem; background:#e8f0fe; color:#0d47a1;
+            border:1px solid #90caf9; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-mail { display:inline-flex; align-items:center; gap:.25rem; background:#fff3cd; color:#664d03;
+            border:1px solid #ffc107; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+
+  /* Flow */
+  .flow-step { display:flex; align-items:stretch; margin-bottom:.45rem; }
+  .step-connector { display:flex; flex-direction:column; align-items:center; width:36px; flex-shrink:0; }
+  .step-num {
+    width:36px; height:36px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:.82rem; color:white; flex-shrink:0; margin-top:.2rem;
+  }
+  .step-line { width:2px; background:#dee2e6; flex:1; min-height:16px; }
+  .step-body {
+    flex:1; background:white; border-radius:10px;
+    padding:.6rem 1rem; margin-left:.7rem;
+    box-shadow:0 1px 4px rgba(0,0,0,.07);
+    border-left:4px solid #dee2e6;
+  }
+  .step-label { font-weight:600; font-size:.88rem; }
+  .step-sub   { font-size:.76rem; color:#6c757d; margin-top:.15rem; line-height:1.5; }
+
+  .color-purple { border-left-color:#6610f2; }
+  .color-green  { border-left-color:#198754; }
+  .color-pink   { border-left-color:#e91e8c; }
+  .color-orange { border-left-color:#fd7e14; }
+  .color-teal   { border-left-color:#20c997; }
+  .color-blue   { border-left-color:#0d6efd; }
+  .color-dark   { border-left-color:#212529; }
+  .color-warn   { border-left-color:#ffc107; }
+  .color-red    { border-left-color:#dc3545; }
+
+  /* Sub-step indent */
+  .flow-sub-step { margin-left:calc(36px + .7rem); margin-bottom:.45rem; }
+  .sub-body {
+    background:#f8f9fa; border-radius:8px;
+    padding:.5rem .85rem; border-left:3px solid #dee2e6;
+    font-size:.78rem;
+  }
+
+  /* Branch */
+  .branch-wrap { display:flex; gap:.75rem; margin-left:calc(36px + .7rem); margin-bottom:.5rem; flex-wrap:wrap; }
+  .branch-card { flex:1; min-width:180px; background:white; border-radius:10px; padding:.65rem 1rem; box-shadow:0 1px 4px rgba(0,0,0,.07); }
+  .branch-title { font-size:.72rem; font-weight:700; text-transform:uppercase; letter-spacing:.04em; margin-bottom:.3rem; }
+
+  /* Route cards */
+  .route-card { border-radius:12px; padding:1.1rem 1.25rem; margin-bottom:1rem; }
+  .route-label { font-size:.72rem; font-weight:700; letter-spacing:.05em; text-transform:uppercase; margin-bottom:.4rem; }
+
+  /* Tech badge */
+  .tech-badge {
+    display:inline-block; background:#212529; color:#f8f9fa;
+    border-radius:6px; padding:.3rem .7rem; font-size:.78rem;
+    font-family:'Consolas',monospace; margin:.2rem;
+  }
+
+  .nav-tabs .nav-link { color:#495057; }
+  .nav-tabs .nav-link.active { font-weight:600; color:#6610f2; }
+
+  /* Legend */
+  .legend-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.2rem; }
+
+  /* Status badge */
+  .status-pill {
+    display:inline-block; border-radius:6px; padding:.2rem .6rem;
+    font-size:.72rem; font-weight:600; white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="sys-header">
+  <div class="container">
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-arrow-repeat fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold">鴻騰電子 PCN / ECN 變更通知系統</h3>
+        <div class="subtitle">Product Change Notification / Engineering Change Notification</div>
+      </div>
+      <div class="ms-auto text-end d-none d-md-block">
+        <div class="subtitle">系統流程說明文件</div>
+        <div style="font-size:.85rem">2026年4月</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <!-- Stats -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-purple" style="color:#6610f2">2</div>
+        <div class="small text-muted">表單類型（PCN / ECN）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-success">4</div>
+        <div class="small text-muted">PCN 審核步驟</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-warning">3</div>
+        <div class="small text-muted">ECN 流程路線</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-info" style="font-size:1.2rem !important">LINE+Mail</div>
+        <div class="small text-muted">即時通知</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 兩表單對比說明 -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" style="border-left:5px solid #198754 !important; border-radius:12px;">
+        <div class="card-body p-3">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge rounded-pill px-3 py-2" style="background:#198754;font-size:.85rem">PCN</span>
+            <span class="fw-bold">開發轉量產通知</span>
+            <span class="rb rb-engineer ms-auto">工程師 限定建立</span>
+          </div>
+          <div class="small text-muted">
+            新產品從樣品/開發階段正式轉入量產前的標準化變更通知，需品保製作 SIP、產線製作作業SOP、倉管製作包裝SOP，最後由 BU Head 核准。
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" style="border-left:5px solid #6610f2 !important; border-radius:12px;">
+        <div class="card-body p-3">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge rounded-pill px-3 py-2" style="background:#6610f2;font-size:.85rem">ECN</span>
+            <span class="fw-bold">工程變更通知</span>
+            <span class="rb rb-all ms-auto">所有角色皆可建立</span>
+          </div>
+          <div class="small text-muted">
+            量產中產品發生製程、設計、供應商、售價、成本等變更時提出。依變更類型走不同審核路線，技術類需工程+品保確認，商業類直接送 BU Head。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-4" id="mainTab">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-pcn">PCN 流程</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-ecn">ECN 流程</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-return">退回邏輯</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-roles">角色與權限</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-status">狀態總覽</button></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- ══════════════════════════════════════
+         Tab 1: PCN 流程
+    ══════════════════════════════════════ -->
+    <div class="tab-pane fade show active" id="tab-pcn">
+
+      <div class="legend-row">
+        <span class="n-line"><i class="bi bi-chat-dots"></i>LINE 通知</span>
+        <span class="n-mail"><i class="bi bi-envelope-fill"></i>Email 通知（結案時）</span>
+        <span class="n-warn"><i class="bi bi-exclamation-triangle"></i>系統驗證（必要附件）</span>
+        <span class="n-info"><i class="bi bi-info-circle"></i>條件判斷</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-7">
+          <div class="section-title"><i class="bi bi-arrow-right-circle me-2 text-success"></i>PCN（開發轉量產）— 完整流程</div>
+
+          <div class="flow-wrap">
+
+            <!-- ① 工程師建單 -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#198754">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-green">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">建立 PCN 表單</span>
+                  <span class="rb rb-engineer">工程師</span>
+                  <span class="badge bg-secondary" style="font-size:.65rem">工程師 / Admin 限定</span>
+                </div>
+                <div class="step-sub">
+                  填寫提出部門、產品名稱、型號、變更說明、生效日期；上傳相關附件<br>
+                  表單編號格式：<code>PCN-YYYYMMDD-001</code>（系統自動產生）<br>
+                  📎 <strong>必須上傳附件：</strong>
+                  <ul class="mb-0 mt-1" style="font-size:12px">
+                    <li><strong>圖面（工程圖檔）</strong>：產品圖面 / 工程圖（必填，送審前系統驗證）</li>
+                    <li>其他輔助文件（選填）</li>
+                  </ul>
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>必要附件驗證</strong>：送審前須上傳【圖面】，否則系統阻擋
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>送審後通知：<strong>品保（QC）</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ② 品保 SIP -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#e91e8c">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-pink">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">品保製作 SIP 檢表</span>
+                  <span class="rb rb-qc">品保</span>
+                </div>
+                <div class="step-sub">
+                  品保確認產品規格與變更內容，製作並上傳 SIP 檢表（進貨/製程/出貨檢驗規格書）<br>
+                  完成後推進至產線，若需要補件可退回工程師修改
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>必要附件驗證</strong>：完成前須上傳【SIP檢表】，否則系統阻擋
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>產線主管</strong></span>
+                  <span class="n-warn"><i class="bi bi-arrow-return-left"></i>可退回工程師補件 → RETURNED (reject_to=工程師_QC)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- 退回工程師 sub -->
+            <div class="flow-sub-step">
+              <div class="sub-body border-start border-3" style="border-color:#e91e8c !important">
+                <div class="d-flex align-items-center gap-2 flex-wrap mb-1">
+                  <i class="bi bi-arrow-return-right text-secondary"></i>
+                  <span class="fw-semibold">品保退回工程師（補件）</span>
+                  <small class="text-muted">reject_to = 工程師_QC</small>
+                </div>
+                <div class="text-muted" style="font-size:.74rem">
+                  工程師收到退回通知後，補充修改並重送 → 重送後回到【品保 SIP】階段（不重走建單）
+                </div>
+              </div>
+            </div>
+
+            <!-- ③ 產線 SOP -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#fd7e14">3</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-orange">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">產線製作作業 SOP</span>
+                  <span class="rb rb-production">產線主管</span>
+                </div>
+                <div class="step-sub">
+                  依據 SIP 檢表及變更說明，製作產線作業標準程序（作業SOP），上傳後完成
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>必要附件驗證</strong>：完成前須上傳【作業SOP】，否則系統阻擋
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>倉管</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ④ 倉管包裝SOP -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#20c997; color:#000">4</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-teal">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">倉管製作包裝 SOP</span>
+                  <span class="rb rb-warehouse">倉管</span>
+                </div>
+                <div class="step-sub">
+                  依據變更內容制定包裝規格與標準，製作包裝SOP並上傳，完成後送 BU Head 審核
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>必要附件驗證</strong>：完成前須上傳【包裝SOP】，否則系統阻擋
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ⑤ BU 審核 -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#6610f2">5</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-purple">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">BU Head 審核核准</span>
+                  <span class="rb rb-bu">BU Head</span>
+                </div>
+                <div class="step-sub">
+                  核閱所有附件（SIP檢表 / 作業SOP / 包裝SOP），確認變更合規後核准；如有疑慮可退回指定角色補件
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>核准後通知：<strong>建單工程師、品保、產線主管、倉管</strong></span>
+                  <span class="n-warn"><i class="bi bi-arrow-return-left"></i>退回可指定：提案單位 / 品保 / 產線主管 / 倉管</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- ⑥ 結案 -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#198754">6</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-green">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">工程師結案</span>
+                  <span class="rb rb-engineer">工程師</span>
+                </div>
+                <div class="step-sub">BU Head 核准後，工程師確認所有文件齊全，執行結案封存</div>
+              </div>
+            </div>
+
+            <!-- ⑦ CLOSED -->
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#212529">7</div>
+              </div>
+              <div class="step-body color-dark">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">結案封存</span>
+                  <span class="rb rb-sys">系統</span>
+                </div>
+                <div class="step-sub">所有附件（圖面 / SIP / 作業SOP / 包裝SOP）及審核記錄完整封存，可下載 CC Package PDF</div>
+                <div class="notif-row">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>結案 Email 推送：</strong>
+                    工程師（建單者）、品保、<strong>資材部</strong>（採購＋生管＋倉管）、產線主管、BU Head
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-hdd-network-fill"></i>
+                    <strong>NAS 存檔：</strong>系統自動將結案文件封存至 NAS 固定資料夾，檔名以<strong>料號</strong>命名
+                  </span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: PCN 各階段記錄 -->
+        <div class="col-lg-5">
+          <div class="section-title"><i class="bi bi-paperclip me-2 text-success"></i>各階段必要附件</div>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-dark">
+                <tr><th>階段</th><th>負責角色</th><th>必要附件</th></tr>
+              </thead>
+              <tbody>
+                <tr class="table-warning">
+                  <td><strong>建立表單</strong></td>
+                  <td><span class="rb rb-engineer">工程師</span></td>
+                  <td><strong>⚠ 圖面（工程圖檔，必填）</strong><br><small class="text-muted">其他輔助文件（選填）</small></td>
+                </tr>
+                <tr class="table-light">
+                  <td><strong>品保 SIP</strong></td>
+                  <td><span class="rb rb-qc">品保</span></td>
+                  <td><strong>⚠ SIP 檢表（必填）</strong></td>
+                </tr>
+                <tr>
+                  <td><strong>產線 SOP</strong></td>
+                  <td><span class="rb rb-production">產線主管</span></td>
+                  <td><strong>⚠ 作業SOP（必填）</strong></td>
+                </tr>
+                <tr class="table-light">
+                  <td><strong>包裝 SOP</strong></td>
+                  <td><span class="rb rb-warehouse">倉管</span></td>
+                  <td><strong>⚠ 包裝SOP（必填）</strong></td>
+                </tr>
+                <tr>
+                  <td>BU 審核</td>
+                  <td><span class="rb rb-bu">BU Head</span></td>
+                  <td>—（審核前述所有文件）</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="section-title"><i class="bi bi-bell-fill me-2 text-primary"></i>PCN 通知規則</div>
+          <div class="table-responsive mb-4">
+            <table class="table table-sm table-bordered small">
+              <thead class="table-light">
+                <tr><th>事件</th><th>LINE 通知</th><th>Email 通知</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>工程師送審</td><td>品保</td><td>—</td></tr>
+                <tr><td>品保完成 SIP</td><td>產線主管</td><td>—</td></tr>
+                <tr><td>品保退回工程師</td><td>工程師（建單者）</td><td>—</td></tr>
+                <tr><td>產線完成 SOP</td><td>倉管</td><td>—</td></tr>
+                <tr><td>倉管完成包裝SOP</td><td>BU Head</td><td>—</td></tr>
+                <tr><td>BU 核准</td><td>工程師、品保、產線主管、倉管</td><td>—</td></tr>
+                <tr><td>BU 退回</td><td>退回對象（＋建單工程師 CC）</td><td>—</td></tr>
+                <tr class="table-warning fw-semibold">
+                  <td>⭐ <strong>結案封存</strong></td>
+                  <td>—</td>
+                  <td><strong>工程師、品保、資材部（採購＋生管＋倉管）、產線主管、BU Head</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="p-3 rounded" style="background:#e8f5e9;border:1px solid #a5d6a7">
+            <div class="fw-semibold small mb-1"><i class="bi bi-file-earmark-pdf-fill text-success me-1"></i>CC Package PDF</div>
+            <div class="small text-muted">BU 核准後可即時下載 CC Package PDF，包含：表單資訊、審核軌跡、庫存盤點資料（ECN 設計變更時）</div>
+          </div>
+
+          <div class="p-3 rounded mt-3" style="background:#e3f2fd;border:1px solid #90caf9">
+            <div class="fw-semibold small mb-2"><i class="bi bi-hdd-network-fill text-primary me-1"></i>NAS 結案自動存檔規則</div>
+            <div class="small text-muted mb-2">工程師執行結案後，系統自動將所有文件封存至 NAS 固定資料夾：</div>
+            <table class="table table-sm table-bordered small mb-2">
+              <thead class="table-light">
+                <tr><th>項目</th><th>規則</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>存放路徑</td>
+                  <td><code>NAS:\PCN\{料號}\</code></td>
+                </tr>
+                <tr>
+                  <td>資料夾命名</td>
+                  <td>以<strong>產品料號</strong>為資料夾名稱</td>
+                </tr>
+                <tr>
+                  <td>封存內容</td>
+                  <td>圖面、SIP 檢表、作業SOP、包裝SOP、CC Package PDF</td>
+                </tr>
+                <tr>
+                  <td>檔名規則</td>
+                  <td><code>{料號}_{文件類型}_{PCN單號}.pdf</code><br>
+                    <small class="text-muted">例：A12345_SIP_PCN-20260417-001.pdf</small>
+                  </td>
+                </tr>
+                <tr>
+                  <td>觸發時機</td>
+                  <td>工程師按下「結案」後系統自動執行</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="small text-muted"><i class="bi bi-info-circle me-1 text-primary"></i>若同一料號已有舊版資料夾，新版文件以單號區分，不覆蓋舊版</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         Tab 2: ECN 流程
+    ══════════════════════════════════════ -->
+    <div class="tab-pane fade" id="tab-ecn">
+
+      <div class="legend-row">
+        <span class="n-line"><i class="bi bi-chat-dots"></i>LINE 通知</span>
+        <span class="n-info"><i class="bi bi-info-circle"></i>條件分支</span>
+        <span class="n-warn"><i class="bi bi-exclamation-triangle"></i>系統警示</span>
+      </div>
+
+      <!-- 變更類型說明 -->
+      <div class="section-title"><i class="bi bi-tags me-2 text-purple" style="color:#6610f2"></i>ECN 變更類型 — 決定流程路線</div>
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="card border-0 h-100" style="background:#f3e5f5;border-left:4px solid #6610f2 !important;border-radius:10px;">
+            <div class="card-body p-3">
+              <div class="fw-bold mb-1" style="color:#6610f2"><i class="bi bi-gear me-1"></i>技術類（走工程+品保）</div>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="badge" style="background:#6610f2">製程變更</span>
+                <span class="badge" style="background:#6610f2">設計變更</span>
+                <span class="badge" style="background:#6610f2">供應商變更</span>
+              </div>
+              <div class="small text-muted mt-2">需工程師確認技術可行性 + 品保確認品質影響</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 h-100" style="background:#fff3e0;border-left:4px solid #fd7e14 !important;border-radius:10px;">
+            <div class="card-body p-3">
+              <div class="fw-bold mb-1" style="color:#fd7e14"><i class="bi bi-boxes me-1"></i>設計變更 + 庫存盤點</div>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="badge bg-warning text-dark">設計變更</span>
+                <span class="badge bg-warning text-dark">＋庫存盤點資料</span>
+              </div>
+              <div class="small text-muted mt-2">設計變更且填寫庫存盤點資料時，先走倉管盤點，再接工程+品保確認</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card border-0 h-100" style="background:#e8f4fd;border-left:4px solid #0d6efd !important;border-radius:10px;">
+            <div class="card-body p-3">
+              <div class="fw-bold mb-1" style="color:#0d6efd"><i class="bi bi-currency-dollar me-1"></i>商業類（直送 BU）</div>
+              <div class="d-flex flex-wrap gap-1">
+                <span class="badge bg-primary">售價變更</span>
+                <span class="badge bg-primary">成本變更</span>
+                <span class="badge bg-primary">其他非技術類</span>
+              </div>
+              <div class="small text-muted mt-2">不涉及技術審查，直接送 BU Head 核准</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 條路線 -->
+      <div class="section-title"><i class="bi bi-diagram-2 me-2" style="color:#6610f2"></i>ECN 三條審核路線</div>
+
+      <div class="row g-4">
+
+        <!-- 路線 A -->
+        <div class="col-lg-4">
+          <div class="p-2 mb-2 rounded" style="background:#f3e5f5;">
+            <span class="fw-bold" style="color:#6610f2"><i class="bi bi-a-circle me-1"></i>路線 A：技術類（無庫存盤點）</span><br>
+            <small class="text-muted">製程變更 / 供應商變更 / 設計變更（未填庫存）</small>
+          </div>
+          <div class="flow-wrap">
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#0d6efd">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-blue">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">建立 ECN</span>
+                  <span class="rb rb-all">所有角色</span>
+                </div>
+                <div class="step-sub">選擇技術類變更類型，送審後進入工程確認</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>通知：<strong>工程師</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#198754">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-green">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">工程確認</span>
+                  <span class="rb rb-engineer">工程師</span>
+                </div>
+                <div class="step-sub">確認技術可行性，可補充說明與附件，完成後推送品保</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>品保</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#e91e8c">3</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-pink">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">品保確認</span>
+                  <span class="rb rb-qc">品保</span>
+                </div>
+                <div class="step-sub">確認品質影響評估，完成後送 BU 審核</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#6610f2">4</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-purple">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">BU Head 核准</span>
+                  <span class="rb rb-bu">BU Head</span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>核准通知：<strong>建單者、工程師、品保</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#212529">5</div>
+              </div>
+              <div class="step-body color-dark">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">結案封存</span>
+                  <span class="rb rb-sys">系統</span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>結案 Email：</strong>提案者、工程師、品保、<strong>資材部</strong>（採購＋生管）、產線主管、BU Head
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-hdd-network-fill"></i>
+                    <strong>NAS：</strong><code>NAS:\ECN\{料號}\{料號}_{類型}_ECN單號.pdf</code>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 路線 B -->
+        <div class="col-lg-4">
+          <div class="p-2 mb-2 rounded" style="background:#fff3e0;">
+            <span class="fw-bold" style="color:#fd7e14"><i class="bi bi-b-circle me-1"></i>路線 B：設計變更 ＋ 庫存盤點</span><br>
+            <small class="text-muted">設計變更且建單時填寫庫存盤點資料</small>
+          </div>
+          <div class="flow-wrap">
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#0d6efd">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-blue">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">建立 ECN</span>
+                  <span class="rb rb-all">所有角色</span>
+                </div>
+                <div class="step-sub">選擇「設計變更」並填寫庫存盤點資料（品號/庫存量/處理方式）</div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#20c997; color:#000">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-teal">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">倉管庫存盤點</span>
+                  <span class="rb rb-warehouse">倉管</span>
+                </div>
+                <div class="step-sub">清點現有庫存，確認實際數量，更新盤點表格後完成，推送工程師</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>工程師</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#198754">3</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-green">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">工程確認</span>
+                  <span class="rb rb-engineer">工程師</span>
+                </div>
+                <div class="step-sub">依盤點結果確認設計變更方案（舊料消耗 / 報廢 / 退供應商）</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>品保</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#e91e8c">4</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-pink">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">品保確認</span>
+                  <span class="rb rb-qc">品保</span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>完成後通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#6610f2">5</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-purple">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">BU Head 核准</span>
+                  <span class="rb rb-bu">BU Head</span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#212529">6</div>
+              </div>
+              <div class="step-body color-dark">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">結案封存</span>
+                  <span class="rb rb-sys">系統</span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>結案 Email：</strong>提案者、工程師、品保、<strong>資材部</strong>（採購＋生管＋倉管）、產線主管、BU Head
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-hdd-network-fill"></i>
+                    <strong>NAS：</strong><code>NAS:\ECN\{料號}\{料號}_{類型}_ECN單號.pdf</code>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 路線 C -->
+        <div class="col-lg-4">
+          <div class="p-2 mb-2 rounded" style="background:#e8f4fd;">
+            <span class="fw-bold" style="color:#0d6efd"><i class="bi bi-c-circle me-1"></i>路線 C：商業類（直送 BU）</span><br>
+            <small class="text-muted">售價變更 / 成本變更 / 其他非技術類</small>
+          </div>
+          <div class="flow-wrap">
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#0d6efd">1</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-blue">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">建立 ECN</span>
+                  <span class="rb rb-all">所有角色</span>
+                </div>
+                <div class="step-sub">選擇商業類變更類型（售價/成本/非技術類），送審後直接進入 BU 審核</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>送審後通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#6610f2">2</div>
+                <div class="step-line"></div>
+              </div>
+              <div class="step-body color-purple">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">BU Head 核准</span>
+                  <span class="rb rb-bu">BU Head</span>
+                </div>
+                <div class="step-sub">直接審核，無需技術確認流程</div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>核准通知：<strong>建單者</strong></span>
+                </div>
+              </div>
+            </div>
+            <div class="flow-step">
+              <div class="step-connector">
+                <div class="step-num" style="background:#212529">3</div>
+              </div>
+              <div class="step-body color-dark">
+                <div class="d-flex gap-2 flex-wrap align-items-center">
+                  <span class="step-label">結案封存</span>
+                  <span class="rb rb-sys">系統</span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>成本變更：</strong>提案者、人事、採購、業務、BU Head
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>售價變更：</strong>提案者、人事、業務、BU Head
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-hdd-network-fill"></i>
+                    <strong>NAS：</strong><code>NAS:\ECN\{料號}\{料號}_{類型}_ECN單號.pdf</code>
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-3 p-3 rounded" style="background:#fff8e1;border:1px solid #ffe082;">
+            <div class="fw-semibold small mb-2"><i class="bi bi-database-fill me-1 text-warning"></i>庫存盤點資料欄位（路線 B）</div>
+            <table class="table table-sm table-bordered small mb-0">
+              <thead class="table-light"><tr><th>欄位</th><th>說明</th></tr></thead>
+              <tbody>
+                <tr><td>品號</td><td>舊設計料號</td></tr>
+                <tr><td>品名</td><td>品項描述</td></tr>
+                <tr><td>庫存數量</td><td>建單時填寫預估</td></tr>
+                <tr><td>實際盤點數</td><td>倉管盤點後更新</td></tr>
+                <tr><td>處理方式</td><td>消耗 / 報廢 / 退供應商</td></tr>
+                <tr><td>工程備註</td><td>工程師確認時補充</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         Tab 3: 退回邏輯
+    ══════════════════════════════════════ -->
+    <div class="tab-pane fade" id="tab-return">
+      <div class="section-title"><i class="bi bi-arrow-return-left me-2 text-danger"></i>退回機制完整說明</div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="fw-bold mb-3" style="color:#198754"><i class="bi bi-arrow-right-circle me-1"></i>PCN 退回邏輯</div>
+          <div class="table-responsive mb-3">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-dark">
+                <tr><th>退回來源</th><th>reject_to 值</th><th>退回對象收到</th><th>重新送審後去哪</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>品保 → 工程師</td>
+                  <td><code>工程師_QC</code></td>
+                  <td>工程師</td>
+                  <td>回 <strong>PENDING_QC</strong>（品保重新確認）</td>
+                </tr>
+                <tr>
+                  <td>BU → 提案單位</td>
+                  <td><code>提案單位</code></td>
+                  <td>建單工程師</td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+                <tr>
+                  <td>BU → 品保</td>
+                  <td><code>品保</code></td>
+                  <td>品保</td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+                <tr>
+                  <td>BU → 產線主管</td>
+                  <td><code>產線主管</code></td>
+                  <td>產線主管</td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+                <tr>
+                  <td>BU → 倉管</td>
+                  <td><code>倉管</code></td>
+                  <td>倉管</td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-info small py-2">
+            <i class="bi bi-info-circle me-1"></i>
+            <strong>BU 退回後重新送審</strong>：各角色修改/補件後直接回到 BU 審核，不重走品保/產線/倉管流程
+          </div>
+
+          <div class="fw-bold mb-2 mt-3"><i class="bi bi-diagram-3 me-1 text-warning"></i>PCN 退回流程圖</div>
+          <div class="p-3 rounded border small" style="background:#fff">
+            <div class="d-flex align-items-center gap-2 mb-1">
+              <span class="badge" style="background:#e91e8c">品保</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span>退回工程師（補件）</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span class="badge" style="background:#198754">工程師重送</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span class="badge" style="background:#e91e8c">回品保</span>
+            </div>
+            <div class="d-flex align-items-center gap-2">
+              <span class="badge" style="background:#6610f2">BU Head</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span>退回任一角色</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span>補件後重送</span>
+              <i class="bi bi-arrow-right text-muted"></i>
+              <span class="badge" style="background:#6610f2">直回 BU</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="fw-bold mb-3" style="color:#6610f2"><i class="bi bi-arrow-right-circle me-1"></i>ECN 退回邏輯</div>
+          <div class="table-responsive mb-3">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-dark">
+                <tr><th>退回來源</th><th>reject_to 值</th><th>重新送審後去哪</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>BU → 提案單位</td>
+                  <td><code>提案單位</code></td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+                <tr>
+                  <td>BU → 工程師</td>
+                  <td><code>工程師</code></td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+                <tr>
+                  <td>BU → 品保</td>
+                  <td><code>品保</code></td>
+                  <td>直接回 <strong>PENDING_BU_APPROVAL</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="alert alert-warning small py-2">
+            <i class="bi bi-lightbulb me-1"></i>
+            <strong>退回原則</strong>：無論哪個階段被 BU 退回，修改後統一直送 BU 重審，不重走前段流程（工程/品保），節省時間
+          </div>
+
+          <div class="section-title mt-3"><i class="bi bi-list-check me-2"></i>退回狀態下各角色可做的事</div>
+          <div class="table-responsive">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-light">
+                <tr><th>reject_to</th><th>可編輯</th><th>可上傳附件類別</th></tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>提案單位（建單者）</td>
+                  <td>可修改所有欄位</td>
+                  <td>全部類別</td>
+                </tr>
+                <tr>
+                  <td>品保</td>
+                  <td>僅補充說明欄</td>
+                  <td>SIP檢表、其它</td>
+                </tr>
+                <tr>
+                  <td>產線主管</td>
+                  <td>僅補充說明欄</td>
+                  <td>作業SOP、其它</td>
+                </tr>
+                <tr>
+                  <td>倉管</td>
+                  <td>僅補充說明欄</td>
+                  <td>包裝SOP、其它</td>
+                </tr>
+                <tr>
+                  <td>工程師（QC退回）</td>
+                  <td>可修改所有欄位</td>
+                  <td>全部類別</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         Tab 4: 角色與權限
+    ══════════════════════════════════════ -->
+    <div class="tab-pane fade" id="tab-roles">
+      <div class="section-title"><i class="bi bi-people me-2 text-primary"></i>PCN/ECN 系統角色與職責</div>
+      <div class="row g-3">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#198754"><i class="bi bi-gear me-2"></i>工程師 (Engineer)</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li><strong>PCN</strong>：唯一可建立 PCN 的角色（Admin 除外）</li>
+                <li><strong>ECN 技術類</strong>：執行工程確認步驟（確認技術可行性）</li>
+                <li>BU 退回工程師時：修改後重送 BU</li>
+                <li>品保退回工程師時：修改後重送品保</li>
+                <li>PCN 核准後：執行結案封存</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#e91e8c"><i class="bi bi-shield-check me-2"></i>品保 (QC)</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li><strong>PCN</strong>：製作並上傳 SIP 檢表，完成後推進產線</li>
+                <li><strong>ECN 技術類</strong>：執行品保確認步驟（確認品質影響）</li>
+                <li>PCN 可退回工程師要求補件（reject_to = 工程師_QC）</li>
+                <li>BU 退回品保時：補件後直送 BU 重審</li>
+                <li>完成前必須上傳【SIP 檢表】，否則系統阻擋</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#fd7e14"><i class="bi bi-clipboard2-check me-2"></i>產線主管 (Prod Mgr)</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li><strong>PCN 專屬步驟</strong>：製作並上傳作業SOP</li>
+                <li>完成前必須上傳【作業SOP】，否則系統阻擋</li>
+                <li>完成後通知倉管</li>
+                <li>BU 退回產線主管時：修改補件後直送 BU 重審</li>
+                <li>ECN 流程中無直接角色</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header" style="background:#20c997"><i class="bi bi-boxes me-2"></i>倉管 (Warehouse)</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li><strong>PCN</strong>：製作並上傳包裝SOP，完成後送 BU</li>
+                <li><strong>ECN 設計變更（路線B）</strong>：執行庫存盤點，確認實際庫存數量與處理方式</li>
+                <li>完成前必須上傳【包裝SOP】（PCN），否則系統阻擋</li>
+                <li>BU 退回倉管時：修改補件後直送 BU 重審</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#6610f2"><i class="bi bi-person-badge me-2"></i>BU Head（事業部主管）</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li>PCN / ECN 最終核准者</li>
+                <li>核准後觸發結案通知（依變更類型發送不同對象）</li>
+                <li>退回時可指定退回對象（提案單位/品保/產線主管/倉管/工程師）</li>
+                <li>退回必須填寫退回原因</li>
+                <li>ECN 技術類核准：CC 通知工程師、品保</li>
+                <li>ECN 售價變更核准：CC 通知業務相關人員</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#0d6efd"><i class="bi bi-people me-2"></i>所有角色（ECN 建立者）</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li><strong>ECN 建立</strong>：所有已登入使用者皆可建立 ECN（PCN 限工程師）</li>
+                <li>選擇正確的變更類型決定流程走向</li>
+                <li>技術類→工程+品保確認；商業類→直送 BU</li>
+                <li>建立後可查看自己提出的 ECN 進度</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card border-0 shadow-sm h-100">
+            <div class="card-header text-white" style="background:#212529"><i class="bi bi-shield-fill me-2"></i>管理員 (Admin)</div>
+            <div class="card-body small">
+              <ul class="mb-0">
+                <li>可建立 PCN 與 ECN</li>
+                <li>可執行所有角色的步驟（代理操作）</li>
+                <li>查看全部表單</li>
+                <li>系統設定與使用者管理</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════════════════════════════
+         Tab 5: 狀態總覽
+    ══════════════════════════════════════ -->
+    <div class="tab-pane fade" id="tab-status">
+      <div class="section-title"><i class="bi bi-diagram-3 me-2"></i>所有系統狀態一覽</div>
+
+      <div class="row g-4">
+        <div class="col-lg-6">
+          <div class="fw-bold mb-3 text-success"><i class="bi bi-arrow-right-circle me-1"></i>PCN 狀態流轉</div>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-dark">
+                <tr><th>狀態值</th><th>中文說明</th><th>動作角色</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>DRAFT</code></td><td>草稿</td><td>工程師（建立/編輯）</td></tr>
+                <tr class="table-light"><td><code>PENDING_QC</code></td><td>待品保製作 SIP 檢表</td><td>品保</td></tr>
+                <tr><td><code>PENDING_PRODUCTION</code></td><td>待產線製作作業 SOP</td><td>產線主管</td></tr>
+                <tr class="table-light"><td><code>PENDING_WAREHOUSE_SOP</code></td><td>待倉管製作包裝 SOP</td><td>倉管</td></tr>
+                <tr><td><code>PENDING_BU_APPROVAL</code></td><td>待 BU Head 審核</td><td>BU Head</td></tr>
+                <tr class="table-light"><td><code>RETURNED</code></td><td>退回（附 reject_to 對象）</td><td>各退回角色重送</td></tr>
+                <tr><td><code>APPROVED</code></td><td>BU 核准</td><td>工程師（結案）</td></tr>
+                <tr class="table-light"><td><code>CLOSED</code></td><td>結案封存</td><td>系統</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="col-lg-6">
+          <div class="fw-bold mb-3" style="color:#6610f2"><i class="bi bi-arrow-right-circle me-1"></i>ECN 專屬狀態</div>
+          <div class="table-responsive mb-4">
+            <table class="table table-bordered table-sm small">
+              <thead class="table-dark">
+                <tr><th>狀態值</th><th>中文說明</th><th>動作角色</th><th>路線</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><code>ECN_PENDING_WAREHOUSE</code></td><td>待倉管庫存盤點</td><td>倉管</td><td>B</td></tr>
+                <tr class="table-light"><td><code>ECN_PENDING_ENG</code></td><td>待工程確認</td><td>工程師</td><td>A / B</td></tr>
+                <tr><td><code>ECN_PENDING_QC</code></td><td>待品保確認</td><td>品保</td><td>A / B</td></tr>
+                <tr class="table-light"><td><code>PENDING_BU_APPROVAL</code></td><td>待 BU 審核</td><td>BU Head</td><td>全部</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="alert alert-info small py-2">
+            <i class="bi bi-info-circle me-1"></i>ECN 商業類（路線C）直接從 <code>DRAFT</code> 跳到 <code>PENDING_BU_APPROVAL</code>，不經過 ECN 專屬狀態
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title mt-2"><i class="bi bi-arrow-left-right me-2"></i>PCN vs ECN 完整比較</div>
+      <div class="table-responsive">
+        <table class="table table-bordered small">
+          <thead class="table-dark">
+            <tr>
+              <th>比較項目</th>
+              <th><span class="badge" style="background:#198754">PCN 開發轉量產</span></th>
+              <th><span class="badge" style="background:#6610f2">ECN 工程變更</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>建立權限</td>
+              <td>工程師 / Admin</td>
+              <td>所有角色</td>
+            </tr>
+            <tr class="table-light">
+              <td>流程路線數</td>
+              <td>固定 1 條</td>
+              <td>依變更類型 3 條</td>
+            </tr>
+            <tr>
+              <td>品保介入</td>
+              <td>必須（製作 SIP 檢表）</td>
+              <td>技術類才介入</td>
+            </tr>
+            <tr class="table-light">
+              <td>產線介入</td>
+              <td>必須（製作作業SOP）</td>
+              <td>無</td>
+            </tr>
+            <tr>
+              <td>倉管介入</td>
+              <td>必須（製作包裝SOP）</td>
+              <td>設計變更+庫存盤點才介入</td>
+            </tr>
+            <tr class="table-light">
+              <td>工程師確認</td>
+              <td>僅建單與結案</td>
+              <td>技術類必須確認</td>
+            </tr>
+            <tr>
+              <td>BU 最終核准</td>
+              <td>必須</td>
+              <td>必須</td>
+            </tr>
+            <tr class="table-light">
+              <td>庫存盤點</td>
+              <td>無</td>
+              <td>設計變更時選填</td>
+            </tr>
+            <tr>
+              <td>表單編號格式</td>
+              <td><code>PCN-YYYYMMDD-001</code></td>
+              <td><code>ECN-YYYYMMDD-001</code></td>
+            </tr>
+            <tr class="table-light">
+              <td>結案動作</td>
+              <td>工程師手動結案</td>
+              <td>工程師手動結案</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div><!-- end tab-content -->
+</div>
+
+<footer class="text-center text-muted small py-3 mt-2" style="border-top:1px solid #dee2e6">
+  鴻騰電子數位管理系統 &nbsp;|&nbsp; PCN / ECN 變更通知流程說明文件 &nbsp;|&nbsp; 2026年4月
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
