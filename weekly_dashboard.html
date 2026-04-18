@@ -48,7 +48,7 @@
 <div class="sys-header">
   <div class="container">
     <h2 class="mb-1"><i class="bi bi-bar-chart-fill"></i> 鴻騰電子 — 業務週報儀表板</h2>
-    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-04-18 19:28</div>
+    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-04-18 19:32</div>
   </div>
 </div>
 
@@ -91,42 +91,34 @@
         </div>
       </div>
 
-      <!-- 業務/工程分佈 bar -->
+      <!-- 階段整體分佈 bar -->
       <div class="mb-4">
-        <div class="section-title">業務 vs 工程 進度分佈（總計 23 件）</div>
+        <div class="section-title">階段分佈（總計 23 件）</div>
         <div class="stage-bar">
-          <div style="width:47.8%; background:#0d6efd;" title="業務階段 11 件">業務 11</div>
-          <div style="width:52.2%; background:#198754;" title="工程階段 12 件">工程 12</div>
-          <div style="width:0.0%; background:#fd7e14;" title="量產 0 件">量產 0</div>
+          <div style="width:30.4%; background:#0d6efd;" title="RFQ 7 件">RFQ 7</div><div style="width:21.7%; background:#198754;" title="Mockup 5 件">Mockup 5</div><div style="width:13.0%; background:#e91e8c;" title="DVT 3 件">DVT 3</div><div style="width:8.7%; background:#d63384;" title="PVT 2 件">PVT 2</div><div style="width:8.7%; background:#6c757d;" title="RFI 2 件">RFI 2</div><div style="width:8.7%; background:#adb5bd;" title="Pending 2 件">Pending 2</div><div style="width:4.3%; background:#20c997;" title="T1 1 件">T1 1</div><div style="width:4.3%; background:#6f42c1;" title="EVT 1 件">EVT 1</div>
         </div>
       </div>
 
       <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">階段分佈</div>
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
           <div class="chart-wrap"><canvas id="stage-chart-Jeffrey"></canvas></div>
         </div>
-        <div class="col-md-6">
-          <div class="section-title">業務 / 工程 / 量產</div>
-          <div class="chart-wrap"><canvas id="group-chart-Jeffrey"></canvas></div>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">客戶清單（2 家）</div>
-          <div><span class="cust-chip">順達 <span class="count">18</span></span><span class="cust-chip">電統能源 <span class="count">5</span></span></div>
-        </div>
-        <div class="col-md-6">
-          <div class="section-title">整體階段明細表</div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
           <table class="table table-sm progress-table">
             <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
-            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>7</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:30.4%; background:#0d6efd;">30%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.7%; background:#198754;">22%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> DVT</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:13.0%; background:#e91e8c;">13%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> PVT</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#d63384;">9%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> RFI</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#6c757d;">9%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#adb5bd;">9%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> T1</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#20c997;">4%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#6f42c1;">4%</div></div></td></tr></tbody>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>7</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:30.4%; background:#0d6efd;">30%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#198754;">Mockup</span></td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.7%; background:#198754;">22%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#e91e8c;">DVT</span></td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:13.0%; background:#e91e8c;">13%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#d63384;">PVT</span></td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#d63384;">9%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#6c757d;">RFI</span></td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#6c757d;">9%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#adb5bd;">Pending</span></td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#adb5bd;">9%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#20c997;">T1</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#20c997;">4%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#6f42c1;">EVT</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#6f42c1;">4%</div></div></td></tr></tbody>
           </table>
         </div>
       </div>
 
-      <div class="section-title">各客戶階段明細</div>
+      <div class="mb-4">
+        <div class="section-title">客戶清單（2 家）</div>
+        <div><span class="cust-chip">順達 <span class="count">18</span></span><span class="cust-chip">電統能源 <span class="count">5</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
       <div class="accordion" id="customer-accordion-Jeffrey">
         
         <div class="accordion-item">
@@ -298,42 +290,34 @@ Shielding</span></li></ul>
         </div>
       </div>
 
-      <!-- 業務/工程分佈 bar -->
+      <!-- 階段整體分佈 bar -->
       <div class="mb-4">
-        <div class="section-title">業務 vs 工程 進度分佈（總計 21 件）</div>
+        <div class="section-title">階段分佈（總計 21 件）</div>
         <div class="stage-bar">
-          <div style="width:61.9%; background:#0d6efd;" title="業務階段 13 件">業務 13</div>
-          <div style="width:23.8%; background:#198754;" title="工程階段 5 件">工程 5</div>
-          <div style="width:14.3%; background:#fd7e14;" title="量產 3 件">量產 3</div>
+          <div style="width:61.9%; background:#0d6efd;" title="RFQ 13 件">RFQ 13</div><div style="width:14.3%; background:#fd7e14;" title="MP 3 件">MP 3</div><div style="width:14.3%; background:#20c997;" title="TS 3 件">TS 3</div><div style="width:9.5%; background:#20c997;" title="Tool Making 2 件">Tool Making 2</div>
         </div>
       </div>
 
       <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">階段分佈</div>
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
           <div class="chart-wrap"><canvas id="stage-chart-Robin"></canvas></div>
         </div>
-        <div class="col-md-6">
-          <div class="section-title">業務 / 工程 / 量產</div>
-          <div class="chart-wrap"><canvas id="group-chart-Robin"></canvas></div>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">客戶清單（6 家）</div>
-          <div><span class="cust-chip">泰博 <span class="count">7</span></span><span class="cust-chip">圓剛 <span class="count">6</span></span><span class="cust-chip">瑞傳 <span class="count">3</span></span><span class="cust-chip">聰泰 <span class="count">2</span></span><span class="cust-chip">創見 <span class="count">2</span></span><span class="cust-chip">科賦 <span class="count">1</span></span></div>
-        </div>
-        <div class="col-md-6">
-          <div class="section-title">整體階段明細表</div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
           <table class="table table-sm progress-table">
             <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
-            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>13</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:61.9%; background:#0d6efd;">62%</div></div></td></tr><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#fd7e14;">14%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> TS</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#20c997;">14%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Tool Making</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:9.5%; background:#20c997;">10%</div></div></td></tr></tbody>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>13</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:61.9%; background:#0d6efd;">62%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#fd7e14;">MP</span></td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#fd7e14;">14%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#20c997;">TS</span></td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#20c997;">14%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#20c997;">Tool Making</span></td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:9.5%; background:#20c997;">10%</div></div></td></tr></tbody>
           </table>
         </div>
       </div>
 
-      <div class="section-title">各客戶階段明細</div>
+      <div class="mb-4">
+        <div class="section-title">客戶清單（6 家）</div>
+        <div><span class="cust-chip">泰博 <span class="count">7</span></span><span class="cust-chip">圓剛 <span class="count">6</span></span><span class="cust-chip">瑞傳 <span class="count">3</span></span><span class="cust-chip">聰泰 <span class="count">2</span></span><span class="cust-chip">創見 <span class="count">2</span></span><span class="cust-chip">科賦 <span class="count">1</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
       <div class="accordion" id="customer-accordion-Robin">
         
         <div class="accordion-item">
@@ -556,42 +540,34 @@ Shielding</span></li></ul>
         </div>
       </div>
 
-      <!-- 業務/工程分佈 bar -->
+      <!-- 階段整體分佈 bar -->
       <div class="mb-4">
-        <div class="section-title">業務 vs 工程 進度分佈（總計 57 件）</div>
+        <div class="section-title">階段分佈（總計 57 件）</div>
         <div class="stage-bar">
-          <div style="width:57.9%; background:#0d6efd;" title="業務階段 33 件">業務 33</div>
-          <div style="width:22.8%; background:#198754;" title="工程階段 13 件">工程 13</div>
-          <div style="width:19.3%; background:#fd7e14;" title="量產 11 件">量產 11</div>
+          <div style="width:56.1%; background:#0d6efd;" title="RFQ 32 件">RFQ 32</div><div style="width:21.1%; background:#198754;" title="Mockup 12 件">Mockup 12</div><div style="width:19.3%; background:#fd7e14;" title="MP 11 件">MP 11</div><div style="width:1.8%; background:#6f42c1;" title="EVT 1 件">EVT 1</div><div style="width:1.8%; background:#adb5bd;" title="Pending 1 件">Pending 1</div>
         </div>
       </div>
 
       <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">階段分佈</div>
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
           <div class="chart-wrap"><canvas id="stage-chart-Alan"></canvas></div>
         </div>
-        <div class="col-md-6">
-          <div class="section-title">業務 / 工程 / 量產</div>
-          <div class="chart-wrap"><canvas id="group-chart-Alan"></canvas></div>
-        </div>
-      </div>
-
-      <div class="row g-4 mb-4">
-        <div class="col-md-6">
-          <div class="section-title">客戶清單（3 家）</div>
-          <div><span class="cust-chip">佐茂 <span class="count">37</span></span><span class="cust-chip">晶達光電 <span class="count">17</span></span><span class="cust-chip">嘉彰 <span class="count">3</span></span></div>
-        </div>
-        <div class="col-md-6">
-          <div class="section-title">整體階段明細表</div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
           <table class="table table-sm progress-table">
             <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
-            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>32</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:56.1%; background:#0d6efd;">56%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>12</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.1%; background:#198754;">21%</div></div></td></tr><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>11</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:19.3%; background:#fd7e14;">19%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#6f42c1;">2%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#adb5bd;">2%</div></div></td></tr></tbody>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>32</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:56.1%; background:#0d6efd;">56%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#198754;">Mockup</span></td><td class="text-end"><strong>12</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.1%; background:#198754;">21%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#fd7e14;">MP</span></td><td class="text-end"><strong>11</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:19.3%; background:#fd7e14;">19%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#6f42c1;">EVT</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#6f42c1;">2%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#adb5bd;">Pending</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#adb5bd;">2%</div></div></td></tr></tbody>
           </table>
         </div>
       </div>
 
-      <div class="section-title">各客戶階段明細</div>
+      <div class="mb-4">
+        <div class="section-title">客戶清單（3 家）</div>
+        <div><span class="cust-chip">佐茂 <span class="count">37</span></span><span class="cust-chip">晶達光電 <span class="count">17</span></span><span class="cust-chip">嘉彰 <span class="count">3</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
       <div class="accordion" id="customer-accordion-Alan">
         
         <div class="accordion-item">
@@ -888,23 +864,6 @@ function drawCharts(rep) {
     }
   });
 
-  // Group chart (業務 vs 工程 vs 量產)
-  const groupLabels = ['業務', '工程', '量產'];
-  const groupData = groupLabels.map(k => d.groups[k] || 0);
-  const groupColors = ['#0d6efd', '#198754', '#fd7e14'];
-
-  new Chart(document.getElementById('group-chart-' + rep), {
-    type: 'bar',
-    data: {
-      labels: groupLabels,
-      datasets: [{ label: '專案數', data: groupData, backgroundColor: groupColors, borderRadius: 6 }]
-    },
-    options: {
-      plugins: { legend: { display: false } },
-      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
-      maintainAspectRatio: false
-    }
-  });
 }
 
 // Draw initially visible tab + on tab show
