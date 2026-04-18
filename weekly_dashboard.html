@@ -39,6 +39,8 @@
   .stage-bar { height:24px; border-radius:4px; display:flex; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(0,0,0,.05); }
   .stage-bar > div { font-size:.7rem; color:white; display:flex; align-items:center; justify-content:center; font-weight:600; }
   .footer-note { color:#6c757d; font-size:.82rem; text-align:center; padding:2rem 0; }
+  .stage-chip { display:inline-block; color:white; padding:.2rem .7rem; border-radius:12px; font-size:.8rem; font-weight:600; }
+  .accordion-button:not(.collapsed) { background:#f8f9fa; color:#212529; }
 </style>
 </head>
 <body>
@@ -46,7 +48,7 @@
 <div class="sys-header">
   <div class="container">
     <h2 class="mb-1"><i class="bi bi-bar-chart-fill"></i> 鴻騰電子 — 業務週報儀表板</h2>
-    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-04-18 19:27</div>
+    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-04-18 19:28</div>
   </div>
 </div>
 
@@ -132,20 +134,82 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c0">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">順達</strong>
-                <span class="badge bg-secondary">共 18 件</span>
-                <span class="badge group-badge-sales">業務 9</span>
-                <span class="badge group-badge-eng">工程 9</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 5 ・ 打樣 9 ・ NPI 18</span>
+                <span class="badge bg-dark">共 18 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 5</span><span class="badge me-1" style="background:#198754;">Mockup 4</span><span class="badge me-1" style="background:#e91e8c;">DVT 2</span><span class="badge me-1" style="background:#6c757d;">RFI 2</span><span class="badge me-1" style="background:#adb5bd;">Pending 2</span><span class="badge me-1" style="background:#d63384;">PVT 1</span><span class="badge me-1" style="background:#20c997;">T1 1</span><span class="badge me-1" style="background:#6f42c1;">EVT 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Jeffrey-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:27.8%; background:#0d6efd;">28%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>4</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:22.2%; background:#198754;">22%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> DVT</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:11.1%; background:#e91e8c;">11%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> RFI</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:11.1%; background:#6c757d;">11%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:11.1%; background:#adb5bd;">11%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> PVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:5.6%; background:#d63384;">6%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> T1</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:5.6%; background:#20c997;">6%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:5.6%; background:#6f42c1;">6%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">5 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>LA235</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>LA267H</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>TRI-BAND ANTENNA</strong></span><span class="badge bg-light text-dark border">車用天線</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>無人機電池包</strong></span><span class="badge bg-light text-dark border">無人機</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>Mantis Puck</strong></span><span class="badge bg-light text-dark border">眼鏡盒</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">4 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>SCS-30KW (LA300S)</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>DM258H (400V)</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>DTG0110U (UPS)
+11KW</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AIX-8000N</strong></span><span class="badge bg-light text-dark border">AI Box</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>MSFT 1KW</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AWS 8.5KW</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#6c757d;">RFI</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>HVDC 600V 66KW</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ONEBOX_REEECU</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#adb5bd;">Pending</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>BWD-6040N</strong></span><span class="badge bg-light text-dark border">眼鏡充電盒</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>紅外線攝影機</strong></span><span class="badge bg-light text-dark border">紅外線攝影機</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#d63384;">PVT</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ORV3 5.5KW</strong></span><span class="badge bg-light text-dark border">BBU</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">T1</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>TPMS天線(Antenna)</strong></span><span class="badge bg-light text-dark border">車用天線
+Shielding</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#6f42c1;">EVT</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>Falcon
+(GCS-0700)</strong></span><span class="badge bg-light text-dark border">無人機
+(民用/警用)</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -156,20 +220,47 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c1">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">電統能源</strong>
-                <span class="badge bg-secondary">共 5 件</span>
-                <span class="badge group-badge-sales">業務 2</span>
-                <span class="badge group-badge-eng">工程 3</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 2 ・ 打樣 3 ・ NPI 5</span>
+                <span class="badge bg-dark">共 5 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span><span class="badge me-1" style="background:#d63384;">PVT 1</span><span class="badge me-1" style="background:#198754;">Mockup 1</span><span class="badge me-1" style="background:#e91e8c;">DVT 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Jeffrey-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:40.0%; background:#0d6efd;">40%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> PVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:20.0%; background:#d63384;">20%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:20.0%; background:#198754;">20%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> DVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:20.0%; background:#e91e8c;">20%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>NB109</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>Iron man</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#d63384;">PVT</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>Wonder Woman
+(11KW)</strong></span><span class="badge bg-light text-dark border">BBU</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>3KW</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>Thor (7KW)</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -250,20 +341,38 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c0">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">圓剛</strong>
-                <span class="badge bg-secondary">共 6 件</span>
-                <span class="badge group-badge-sales">業務 3</span>
-                <span class="badge group-badge-eng">工程 3</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 3 ・ 打樣 3 ・ NPI 6</span>
+                <span class="badge bg-dark">共 6 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 3</span><span class="badge me-1" style="background:#20c997;">Tool Making 2</span><span class="badge me-1" style="background:#20c997;">TS 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:50.0%; background:#0d6efd;">50%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Tool Making</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:33.3%; background:#20c997;">33%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> TS</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:16.7%; background:#20c997;">17%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">3 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>GC750</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>D331 nct for ADlink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>D331 nct for ADlink</strong></span><span class="badge bg-light text-dark border">IPC</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">Tool Making</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>T2508P</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>T2508P</strong></span><span class="badge bg-light text-dark border">IPC</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">TS</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>GC750</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -274,20 +383,22 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c1">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">聰泰</strong>
-                <span class="badge bg-secondary">共 2 件</span>
-                <span class="badge group-badge-sales">業務 0</span>
-                <span class="badge group-badge-eng">工程 0</span>
-                <span class="badge group-badge-mp">量產 2</span>
-                <span class="ms-auto text-muted small">RFQ 0 ・ 打樣 0 ・ NPI 0</span>
+                <span class="badge bg-dark">共 2 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#fd7e14;">MP 2</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:100.0%; background:#fd7e14;">100%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#fd7e14;">MP</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>PD570</strong></span><span class="badge bg-light text-dark border">視訊盒</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>PD570</strong></span><span class="badge bg-light text-dark border">視訊盒</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -298,20 +409,22 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c2">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">瑞傳</strong>
-                <span class="badge bg-secondary">共 3 件</span>
-                <span class="badge group-badge-sales">業務 3</span>
-                <span class="badge group-badge-eng">工程 0</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 3 ・ 打樣 0 ・ NPI 3</span>
+                <span class="badge bg-dark">共 3 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 3</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c2" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:100.0%; background:#0d6efd;">100%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">3 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>PCOM-B709</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>MEDS-5210</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>PCOM-B709</strong></span><span class="badge bg-light text-dark border">IPC</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -322,20 +435,30 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c3">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">泰博</strong>
-                <span class="badge bg-secondary">共 7 件</span>
-                <span class="badge group-badge-sales">業務 6</span>
-                <span class="badge group-badge-eng">工程 1</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 6 ・ 打樣 1 ・ NPI 7</span>
+                <span class="badge bg-dark">共 7 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 6</span><span class="badge me-1" style="background:#20c997;">TS 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c3" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>6</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:85.7%; background:#0d6efd;">86%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> TS</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:14.3%; background:#20c997;">14%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">6 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>td4257a_ ESD彈片</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>TD4239血糖機</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>馬達固定夾</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>鋼帽</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>馬達彈性墊片</strong></span><span class="badge bg-light text-dark border">未分類</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ESD彈片</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">TS</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>TD-2555(體重計)</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -346,20 +469,22 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c4">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">科賦</strong>
-                <span class="badge bg-secondary">共 1 件</span>
-                <span class="badge group-badge-sales">業務 0</span>
-                <span class="badge group-badge-eng">工程 1</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 0 ・ 打樣 1 ・ NPI 1</span>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#20c997;">TS 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c4" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-eng">工程</span> TS</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:100.0%; background:#20c997;">100%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">TS</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>(未填機種)</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -370,20 +495,30 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c5">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">創見</strong>
-                <span class="badge bg-secondary">共 2 件</span>
-                <span class="badge group-badge-sales">業務 1</span>
-                <span class="badge group-badge-eng">工程 0</span>
-                <span class="badge group-badge-mp">量產 1</span>
-                <span class="ms-auto text-muted small">RFQ 1 ・ 打樣 0 ・ NPI 1</span>
+                <span class="badge bg-dark">共 2 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#fd7e14;">MP 1</span><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Robin-c5" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:50.0%; background:#fd7e14;">50%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:50.0%; background:#0d6efd;">50%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#fd7e14;">MP</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>(未填機種)</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>DP2X0</strong></span><span class="badge bg-light text-dark border">未分類</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -464,20 +599,155 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c0">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">佐茂</strong>
-                <span class="badge bg-secondary">共 37 件</span>
-                <span class="badge group-badge-sales">業務 27</span>
-                <span class="badge group-badge-eng">工程 10</span>
-                <span class="badge group-badge-mp">量產 0</span>
-                <span class="ms-auto text-muted small">RFQ 27 ・ 打樣 10 ・ NPI 37</span>
+                <span class="badge bg-dark">共 37 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 27</span><span class="badge me-1" style="background:#198754;">Mockup 9</span><span class="badge me-1" style="background:#6f42c1;">EVT 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Alan-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>27</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:73.0%; background:#0d6efd;">73%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>9</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:24.3%; background:#198754;">24%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:2.7%; background:#6f42c1;">3%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">27 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>1330.0</strong></span><span class="badge bg-light text-dark border">螢幕框
++
+2個上下蓋
++
+配件</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/9/8
+
+MIRAI LABO004 7S10P 鋁擠</strong></span><span class="badge bg-light text-dark border">可充電電池發電機 G-CROSS</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/9/6
+
+BDC72 BDC TH連接端子</strong></span><span class="badge bg-light text-dark border">TH連接端子</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/9
+
+RFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02
+
+MAP Nakanishi 滅菌対応 4S1P 18650</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/23
+
+Richcom Apollo Robot</strong></span><span class="badge bg-light text-dark border">機器人</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/4
+
+臻禾 13S5P_0S8P</strong></span><span class="badge bg-light text-dark border">割草機 
+or 
+搬運機器</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/4
+
+臻禾 AEBC-BA-48V-165</strong></span><span class="badge bg-light text-dark border">割草機 
+or 
+搬運機器</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/17
+
+RFQ-25085-00
+
+inMusic</strong></span><span class="badge bg-light text-dark border">音樂設備</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/19
+
+RFQ-25089-00
+
+FUTABA AiTran Lift2 BATTERY</strong></span><span class="badge bg-light text-dark border">搬送機器</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/1
+
+RFQ-25093-00
+
+系統電子 GCS-6070</strong></span><span class="badge bg-light text-dark border">電池盒</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/15
+
+RFQ-25101-00
+
+溢泰 儲電型加熱器</strong></span><span class="badge bg-light text-dark border">儲電型加熱器</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/22
+2026/2/3
+
+Retail AI SkipCart ACDC Charger _1000W_殼類(鋁)</strong></span><span class="badge bg-light text-dark border">大賣場智能推車</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/24
+
+系統電子
+Falcon external 2S3P/沖型鎳片</strong></span><span class="badge bg-light text-dark border">無人機
+(民用/警用)</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/29
+
+RFQ-25104-00
+
+新智能 8S2P</strong></span><span class="badge bg-light text-dark border">-</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/8
+
+RFQ-25103-00
+
+RICOH 相機電池(1S1P)</strong></span><span class="badge bg-light text-dark border">相機</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/13
+
+RFQ-25089-01
+
+FUTABA AiTran Lift2 BATTERY</strong></span><span class="badge bg-light text-dark border">搬送機器</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/14
+
+RFQ-25049-04
+
+MAP-INAKANISHI INC_滅菌対応_A12326650</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/16
+
+MAP-INAKANISHI INC</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/29
+
+RFQ-26002-00
+
+KARMA</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/2/10
+
+RFQ-26005-00
+
+無人機(12S3P)</strong></span><span class="badge bg-light text-dark border">無人機</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/4
+
+RFQ-260010-00
+
+Amita PS106 (10S2P)</strong></span><span class="badge bg-light text-dark border">無人機</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/9
+
+RFQ-26011-01 MAP 
+
+滅菌充電器</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/10
+
+RFQ-26011-01 
+
+滅菌Nakanishi 充電器</strong></span><span class="badge bg-light text-dark border">醫療</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/12
+
+購物車VC-705ML-充電把手</strong></span><span class="badge bg-light text-dark border">商場購物車</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/16
+
+Garmin 361-00218-00</strong></span><span class="badge bg-light text-dark border">未知</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/16
+
+RFQ-26003-01
+
+Nightingale security_NSDrone</strong></span><span class="badge bg-light text-dark border">軍用無人機</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/16
+
+RFQ-26003-01
+
+Nightingale security_NSDrone</strong></span><span class="badge bg-light text-dark border">軍用無人機</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">9 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/12
+2026/4/4
+
+購物車VC-705ML-充電把手</strong></span><span class="badge bg-light text-dark border">商場購物車</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>IPPC-2158-TGL0-WP00-1001
+
+前框+後蓋+電池蓋</strong></span><span class="badge bg-light text-dark border">螢幕框</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-MTL0 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC
+&
+edge computing</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>RS-ITRP-1045-EHL2-ZP00-1001</strong></span><span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>1902-EHL0-Front Case & AECX-EHL0-HeatSink</strong></span><span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/9/22
+
+GTS NPA9-LIP 充電五金</strong></span><span class="badge bg-light text-dark border">充電五金</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/27
+
+Richcom Apollo Robot</strong></span><span class="badge bg-light text-dark border">機器人</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/21
+
+Richcom Apollo Robot</strong></span><span class="badge bg-light text-dark border">機器人</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/2/9
+
+Busbar</strong></span><span class="badge bg-light text-dark border">匯流排</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#6f42c1;">EVT</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/8/20
+
+ ENERGY WALL
+儲能牆</strong></span><span class="badge bg-light text-dark border">儲能系列</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -488,20 +758,52 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c1">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">晶達光電</strong>
-                <span class="badge bg-secondary">共 17 件</span>
-                <span class="badge group-badge-sales">業務 4</span>
-                <span class="badge group-badge-eng">工程 3</span>
-                <span class="badge group-badge-mp">量產 10</span>
-                <span class="ms-auto text-muted small">RFQ 3 ・ 打樣 3 ・ NPI 7</span>
+                <span class="badge bg-dark">共 17 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#fd7e14;">MP 10</span><span class="badge me-1" style="background:#0d6efd;">RFQ 3</span><span class="badge me-1" style="background:#198754;">Mockup 3</span><span class="badge me-1" style="background:#adb5bd;">Pending 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Alan-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>10</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:58.8%; background:#fd7e14;">59%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:17.6%; background:#0d6efd;">18%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:17.6%; background:#198754;">18%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:5.9%; background:#adb5bd;">6%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#fd7e14;">MP</span>
+                <span class="ms-2 text-muted small">10 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ITRP-3805 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ACDF-WHL2 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>0705-RCK4_前框</strong></span><span class="badge bg-light text-dark border">螢幕框</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ITRP-2845 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>0705-RES4_前框</strong></span><span class="badge bg-light text-dark border">螢幕框</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>IBOC-ADL0 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>0705-RES4_Heat sink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>ACDF-WHL1 Heatsink with fan</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>IPPC-1562-WHL0-ZP00-3001 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>IPPC-1702-KBL5-WR00-1001 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">3 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-APL7 Heat Spreader</strong></span><span class="badge bg-light text-dark border">IPC</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>1902-EHL0-Front Case & AECX-EHL0-HeatSink</strong></span><span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>RS-ITRP-1045-EHL2-ZP00-1001</strong></span><span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">3 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)</strong></span><span class="badge bg-light text-dark border">散熱塊</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>DPD-1268 Front Case</strong></span><span class="badge bg-light text-dark border">螢幕框</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-MTL0 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC
+&
+edge computing</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#adb5bd;">Pending</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-APL7 Heatsink</strong></span><span class="badge bg-light text-dark border">IPC</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -512,20 +814,32 @@
             <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c2">
               <div class="d-flex align-items-center gap-2 flex-wrap w-100">
                 <strong class="me-2">嘉彰</strong>
-                <span class="badge bg-secondary">共 3 件</span>
-                <span class="badge group-badge-sales">業務 2</span>
-                <span class="badge group-badge-eng">工程 0</span>
-                <span class="badge group-badge-mp">量產 1</span>
-                <span class="ms-auto text-muted small">RFQ 2 ・ 打樣 0 ・ NPI 2</span>
+                <span class="badge bg-dark">共 3 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span><span class="badge me-1" style="background:#fd7e14;">MP 1</span></span>
               </div>
             </button>
           </h2>
           <div id="collapse-Alan-c2" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
             <div class="accordion-body">
-              <table class="table table-sm progress-table mb-0">
-                <thead><tr><th style="width:40%">階段</th><th class="text-end" style="width:15%">件數</th><th>佔比</th></tr></thead>
-                <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:66.7%; background:#0d6efd;">67%</div></div></td></tr><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" style="width:33.3%; background:#fd7e14;">33%</div></div></td></tr></tbody>
-              </table>
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>h_sprd_ford_10p2
+
+Ford 10.2 背板</strong></span><span class="badge bg-light text-dark border">車用</span></li><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>3483814600 拉手</strong></span><span class="badge bg-light text-dark border">-</span></li></ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#fd7e14;">MP</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded"><li class="list-group-item d-flex justify-content-between align-items-center py-2"><span><i class="bi bi-cpu text-muted me-1"></i><strong>UCS-STIR</strong></span><span class="badge bg-light text-dark border">-</span></li></ul>
+            </div>
+            
             </div>
           </div>
         </div>
@@ -542,7 +856,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-const REPS_DATA = {"Jeffrey": {"total": 23, "customers": {"順達": 18, "電統能源": 5}, "customer_count": 2, "stages": {"RFQ": 7, "Mockup": 5, "DVT": 3, "PVT": 2, "RFI": 2, "Pending": 2, "T1": 1, "EVT": 1}, "groups": {"工程": 12, "業務": 11}, "rfq": 7, "sample": 12, "npi": 23, "mp": 0, "customer_breakdown": {"順達": {"total": 18, "stages": {"RFQ": 5, "Mockup": 4, "DVT": 2, "RFI": 2, "Pending": 2, "PVT": 1, "T1": 1, "EVT": 1}, "groups": {"工程": 9, "業務": 9}, "rfq": 5, "sample": 9, "mp": 0, "npi": 18}, "電統能源": {"total": 5, "stages": {"RFQ": 2, "PVT": 1, "Mockup": 1, "DVT": 1}, "groups": {"工程": 3, "業務": 2}, "rfq": 2, "sample": 3, "mp": 0, "npi": 5}}, "projects": [{"customer": "順達", "type": "BBU", "model": "ORV3 5.5KW", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "LA235", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "LA267H", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "MSFT 1KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "SCS-30KW (LA300S)", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "HVDC 600V 66KW", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "DM258H (400V)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "DTG0110U (UPS)\n11KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "AWS 8.5KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "眼鏡充電盒", "model": "BWD-6040N", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "順達", "type": "AI Box", "model": "AIX-8000N", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "車用天線", "model": "TRI-BAND ANTENNA", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "車用天線\nShielding", "model": "TPMS天線(Antenna)", "stage_raw": "T1", "stage": "T1", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "ONEBOX_REEECU", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "無人機", "model": "無人機電池包", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "眼鏡盒", "model": "Mantis Puck", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "無人機\n(民用/警用)", "model": "Falcon\n(GCS-0700)", "stage_raw": "EVT2", "stage": "EVT", "group": "工程"}, {"customer": "順達", "type": "紅外線攝影機", "model": "紅外線攝影機", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "電統能源", "type": "BBU", "model": "Wonder Woman\n(11KW)", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "NB109", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "3KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "Iron man", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "Thor (7KW)", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}]}, "Robin": {"total": 21, "customers": {"泰博": 7, "圓剛": 6, "瑞傳": 3, "聰泰": 2, "創見": 2, "科賦": 1}, "customer_count": 6, "stages": {"RFQ": 13, "MP": 3, "TS": 3, "Tool Making": 2}, "groups": {"工程": 5, "業務": 13, "量產": 3}, "rfq": 13, "sample": 5, "npi": 18, "mp": 3, "customer_breakdown": {"圓剛": {"total": 6, "stages": {"RFQ": 3, "Tool Making": 2, "TS": 1}, "groups": {"工程": 3, "業務": 3}, "rfq": 3, "sample": 3, "mp": 0, "npi": 6}, "聰泰": {"total": 2, "stages": {"MP": 2}, "groups": {"量產": 2}, "rfq": 0, "sample": 0, "mp": 2, "npi": 0}, "瑞傳": {"total": 3, "stages": {"RFQ": 3}, "groups": {"業務": 3}, "rfq": 3, "sample": 0, "mp": 0, "npi": 3}, "泰博": {"total": 7, "stages": {"RFQ": 6, "TS": 1}, "groups": {"業務": 6, "工程": 1}, "rfq": 6, "sample": 1, "mp": 0, "npi": 7}, "科賦": {"total": 1, "stages": {"TS": 1}, "groups": {"工程": 1}, "rfq": 0, "sample": 1, "mp": 0, "npi": 1}, "創見": {"total": 2, "stages": {"MP": 1, "RFQ": 1}, "groups": {"量產": 1, "業務": 1}, "rfq": 1, "sample": 0, "mp": 1, "npi": 1}}, "projects": [{"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "瑞傳", "type": "IPC", "model": "MEDS-5210", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "td4257a_ ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "TD-2555(體重計)", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "泰博", "type": "未分類", "model": "TD4239血糖機", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達固定夾", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "鋼帽", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達彈性墊片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "科賦", "type": "未分類", "model": "", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "創見", "type": "未分類", "model": "", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "創見", "type": "未分類", "model": "DP2X0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}]}, "Alan": {"total": 57, "customers": {"佐茂": 37, "晶達光電": 17, "嘉彰": 3}, "customer_count": 3, "stages": {"RFQ": 32, "Mockup": 12, "MP": 11, "EVT": 1, "Pending": 1}, "groups": {"工程": 13, "業務": 33, "量產": 11}, "rfq": 32, "sample": 13, "npi": 46, "mp": 11, "customer_breakdown": {"佐茂": {"total": 37, "stages": {"RFQ": 27, "Mockup": 9, "EVT": 1}, "groups": {"工程": 10, "業務": 27}, "rfq": 27, "sample": 10, "mp": 0, "npi": 37}, "晶達光電": {"total": 17, "stages": {"MP": 10, "RFQ": 3, "Mockup": 3, "Pending": 1}, "groups": {"量產": 10, "業務": 4, "工程": 3}, "rfq": 3, "sample": 3, "mp": 10, "npi": 7}, "嘉彰": {"total": 3, "stages": {"RFQ": 2, "MP": 1}, "groups": {"量產": 1, "業務": 2}, "rfq": 2, "sample": 0, "mp": 1, "npi": 2}}, "projects": [{"customer": "佐茂", "type": "儲能系列", "model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "stage_raw": "EVT", "stage": "EVT", "group": "工程"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框", "model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n2個上下蓋\n+\n配件", "model": "1330.0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "可充電電池發電機 G-CROSS", "model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "TH連接端子", "model": "2025/9/6\n\nBDC72 BDC TH連接端子", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "充電五金", "model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "醫療", "model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/23\n\nRichcom Apollo Robot", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/27\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 13S5P_0S8P", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "音樂設備", "model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/11/21\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "搬送機器", "model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "電池盒", "model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "儲電型加熱器", "model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "大賣場智能推車", "model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機\n(民用/警用)", "model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "-", "model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "相機", "model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "搬送機器", "model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/16\n\nMAP-INAKANISHI INC", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "匯流排", "model": "2026/2/9\n\nBusbar", "stage_raw": "主動免費提供打樣", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "無人機", "model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機", "model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n\n購物車VC-705ML-充電把手", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "未知", "model": "2026/3/16\n\nGarmin 361-00218-00", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-3805 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL2 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RCK4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-2845 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RES4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IBOC-ADL0 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "0705-RES4_Heat sink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL1 Heatsink with fan", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heatsink", "stage_raw": "待通知開模", "stage": "Pending", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heat Spreader", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "散熱塊", "model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框", "model": "DPD-1268 Front Case", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "嘉彰", "type": "-", "model": "UCS-STIR", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "嘉彰", "type": "車用", "model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}, {"customer": "嘉彰", "type": "-", "model": "3483814600 拉手", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}]}};
+const REPS_DATA = {"Jeffrey": {"total": 23, "customers": {"順達": 18, "電統能源": 5}, "customer_count": 2, "stages": {"RFQ": 7, "Mockup": 5, "DVT": 3, "PVT": 2, "RFI": 2, "Pending": 2, "T1": 1, "EVT": 1}, "groups": {"工程": 12, "業務": 11}, "rfq": 7, "sample": 12, "npi": 23, "mp": 0, "customer_breakdown": {"順達": {"total": 18, "stages": {"RFQ": 5, "Mockup": 4, "DVT": 2, "RFI": 2, "Pending": 2, "PVT": 1, "T1": 1, "EVT": 1}, "stage_models": {"PVT": [{"model": "ORV3 5.5KW", "type": "BBU"}], "RFQ": [{"model": "LA235", "type": "未分類"}, {"model": "LA267H", "type": "未分類"}, {"model": "TRI-BAND ANTENNA", "type": "車用天線"}, {"model": "無人機電池包", "type": "無人機"}, {"model": "Mantis Puck", "type": "眼鏡盒"}], "DVT": [{"model": "MSFT 1KW", "type": "未分類"}, {"model": "AWS 8.5KW", "type": "未分類"}], "Mockup": [{"model": "SCS-30KW (LA300S)", "type": "未分類"}, {"model": "DM258H (400V)", "type": "未分類"}, {"model": "DTG0110U (UPS)\n11KW", "type": "未分類"}, {"model": "AIX-8000N", "type": "AI Box"}], "RFI": [{"model": "HVDC 600V 66KW", "type": "未分類"}, {"model": "ONEBOX_REEECU", "type": "未分類"}], "Pending": [{"model": "BWD-6040N", "type": "眼鏡充電盒"}, {"model": "紅外線攝影機", "type": "紅外線攝影機"}], "T1": [{"model": "TPMS天線(Antenna)", "type": "車用天線\nShielding"}], "EVT": [{"model": "Falcon\n(GCS-0700)", "type": "無人機\n(民用/警用)"}]}, "rfq": 5, "sample": 9, "mp": 0, "npi": 18}, "電統能源": {"total": 5, "stages": {"RFQ": 2, "PVT": 1, "Mockup": 1, "DVT": 1}, "stage_models": {"PVT": [{"model": "Wonder Woman\n(11KW)", "type": "BBU"}], "RFQ": [{"model": "NB109", "type": "未分類"}, {"model": "Iron man", "type": "未分類"}], "Mockup": [{"model": "3KW", "type": "未分類"}], "DVT": [{"model": "Thor (7KW)", "type": "未分類"}]}, "rfq": 2, "sample": 3, "mp": 0, "npi": 5}}, "projects": [{"customer": "順達", "type": "BBU", "model": "ORV3 5.5KW", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "LA235", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "LA267H", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "MSFT 1KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "SCS-30KW (LA300S)", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "HVDC 600V 66KW", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "DM258H (400V)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "DTG0110U (UPS)\n11KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "AWS 8.5KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "眼鏡充電盒", "model": "BWD-6040N", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "順達", "type": "AI Box", "model": "AIX-8000N", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "車用天線", "model": "TRI-BAND ANTENNA", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "車用天線\nShielding", "model": "TPMS天線(Antenna)", "stage_raw": "T1", "stage": "T1", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "ONEBOX_REEECU", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "無人機", "model": "無人機電池包", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "眼鏡盒", "model": "Mantis Puck", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "無人機\n(民用/警用)", "model": "Falcon\n(GCS-0700)", "stage_raw": "EVT2", "stage": "EVT", "group": "工程"}, {"customer": "順達", "type": "紅外線攝影機", "model": "紅外線攝影機", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "電統能源", "type": "BBU", "model": "Wonder Woman\n(11KW)", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "NB109", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "3KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "Iron man", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "Thor (7KW)", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}]}, "Robin": {"total": 21, "customers": {"泰博": 7, "圓剛": 6, "瑞傳": 3, "聰泰": 2, "創見": 2, "科賦": 1}, "customer_count": 6, "stages": {"RFQ": 13, "MP": 3, "TS": 3, "Tool Making": 2}, "groups": {"工程": 5, "業務": 13, "量產": 3}, "rfq": 13, "sample": 5, "npi": 18, "mp": 3, "customer_breakdown": {"圓剛": {"total": 6, "stages": {"RFQ": 3, "Tool Making": 2, "TS": 1}, "stage_models": {"Tool Making": [{"model": "T2508P", "type": "IPC"}, {"model": "T2508P", "type": "IPC"}], "RFQ": [{"model": "GC750", "type": "未分類"}, {"model": "D331 nct for ADlink", "type": "IPC"}, {"model": "D331 nct for ADlink", "type": "IPC"}], "TS": [{"model": "GC750", "type": "未分類"}]}, "rfq": 3, "sample": 3, "mp": 0, "npi": 6}, "聰泰": {"total": 2, "stages": {"MP": 2}, "stage_models": {"MP": [{"model": "PD570", "type": "視訊盒"}, {"model": "PD570", "type": "視訊盒"}]}, "rfq": 0, "sample": 0, "mp": 2, "npi": 0}, "瑞傳": {"total": 3, "stages": {"RFQ": 3}, "stage_models": {"RFQ": [{"model": "PCOM-B709", "type": "IPC"}, {"model": "MEDS-5210", "type": "IPC"}, {"model": "PCOM-B709", "type": "IPC"}]}, "rfq": 3, "sample": 0, "mp": 0, "npi": 3}, "泰博": {"total": 7, "stages": {"RFQ": 6, "TS": 1}, "stage_models": {"RFQ": [{"model": "td4257a_ ESD彈片", "type": "未分類"}, {"model": "TD4239血糖機", "type": "未分類"}, {"model": "馬達固定夾", "type": "未分類"}, {"model": "鋼帽", "type": "未分類"}, {"model": "馬達彈性墊片", "type": "未分類"}, {"model": "ESD彈片", "type": "未分類"}], "TS": [{"model": "TD-2555(體重計)", "type": "未分類"}]}, "rfq": 6, "sample": 1, "mp": 0, "npi": 7}, "科賦": {"total": 1, "stages": {"TS": 1}, "stage_models": {"TS": [{"model": "(未填機種)", "type": "未分類"}]}, "rfq": 0, "sample": 1, "mp": 0, "npi": 1}, "創見": {"total": 2, "stages": {"MP": 1, "RFQ": 1}, "stage_models": {"MP": [{"model": "(未填機種)", "type": "未分類"}], "RFQ": [{"model": "DP2X0", "type": "未分類"}]}, "rfq": 1, "sample": 0, "mp": 1, "npi": 1}}, "projects": [{"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "瑞傳", "type": "IPC", "model": "MEDS-5210", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "td4257a_ ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "TD-2555(體重計)", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "泰博", "type": "未分類", "model": "TD4239血糖機", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達固定夾", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "鋼帽", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達彈性墊片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "科賦", "type": "未分類", "model": "", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "創見", "type": "未分類", "model": "", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "創見", "type": "未分類", "model": "DP2X0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}]}, "Alan": {"total": 57, "customers": {"佐茂": 37, "晶達光電": 17, "嘉彰": 3}, "customer_count": 3, "stages": {"RFQ": 32, "Mockup": 12, "MP": 11, "EVT": 1, "Pending": 1}, "groups": {"工程": 13, "業務": 33, "量產": 11}, "rfq": 32, "sample": 13, "npi": 46, "mp": 11, "customer_breakdown": {"佐茂": {"total": 37, "stages": {"RFQ": 27, "Mockup": 9, "EVT": 1}, "stage_models": {"EVT": [{"model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "type": "儲能系列"}], "Mockup": [{"model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "type": "商場購物車"}, {"model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "type": "螢幕框"}, {"model": "AECX-MTL0 Heatsink", "type": "IPC\n&\nedge computing"}, {"model": "RS-ITRP-1045-EHL2-ZP00-1001", "type": "螢幕框\n+\n散熱塊"}, {"model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "type": "螢幕框\n+\n散熱塊"}, {"model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "type": "充電五金"}, {"model": "2025/10/27\n\nRichcom Apollo Robot", "type": "機器人"}, {"model": "2025/11/21\n\nRichcom Apollo Robot", "type": "機器人"}, {"model": "2026/2/9\n\nBusbar", "type": "匯流排"}], "RFQ": [{"model": "1330.0", "type": "螢幕框\n+\n2個上下蓋\n+\n配件"}, {"model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "type": "可充電電池發電機 G-CROSS"}, {"model": "2025/9/6\n\nBDC72 BDC TH連接端子", "type": "TH連接端子"}, {"model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "type": "醫療"}, {"model": "2025/10/23\n\nRichcom Apollo Robot", "type": "機器人"}, {"model": "2025/11/4\n\n臻禾 13S5P_0S8P", "type": "割草機 \nor \n搬運機器"}, {"model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "type": "割草機 \nor \n搬運機器"}, {"model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "type": "音樂設備"}, {"model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "type": "搬送機器"}, {"model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "type": "電池盒"}, {"model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "type": "儲電型加熱器"}, {"model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "type": "大賣場智能推車"}, {"model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "type": "無人機\n(民用/警用)"}, {"model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "type": "-"}, {"model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "type": "相機"}, {"model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "type": "搬送機器"}, {"model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "type": "醫療"}, {"model": "2026/1/16\n\nMAP-INAKANISHI INC", "type": "醫療"}, {"model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "type": "醫療"}, {"model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "type": "無人機"}, {"model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "type": "無人機"}, {"model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "type": "醫療"}, {"model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "type": "醫療"}, {"model": "2026/3/12\n\n購物車VC-705ML-充電把手", "type": "商場購物車"}, {"model": "2026/3/16\n\nGarmin 361-00218-00", "type": "未知"}, {"model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "type": "軍用無人機"}, {"model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "type": "軍用無人機"}]}, "rfq": 27, "sample": 10, "mp": 0, "npi": 37}, "晶達光電": {"total": 17, "stages": {"MP": 10, "RFQ": 3, "Mockup": 3, "Pending": 1}, "stage_models": {"MP": [{"model": "ITRP-3805 Heatsink", "type": "IPC"}, {"model": "ACDF-WHL2 Heatsink", "type": "IPC"}, {"model": "0705-RCK4_前框", "type": "螢幕框"}, {"model": "ITRP-2845 Heatsink", "type": "IPC"}, {"model": "0705-RES4_前框", "type": "螢幕框"}, {"model": "IBOC-ADL0 Heatsink", "type": "IPC"}, {"model": "0705-RES4_Heat sink", "type": "IPC"}, {"model": "ACDF-WHL1 Heatsink with fan", "type": "IPC"}, {"model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "type": "IPC"}, {"model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "type": "IPC"}], "Pending": [{"model": "AECX-APL7 Heatsink", "type": "IPC"}], "RFQ": [{"model": "AECX-APL7 Heat Spreader", "type": "IPC"}, {"model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "type": "螢幕框\n+\n散熱塊"}, {"model": "RS-ITRP-1045-EHL2-ZP00-1001", "type": "螢幕框\n+\n散熱塊"}], "Mockup": [{"model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "type": "散熱塊"}, {"model": "DPD-1268 Front Case", "type": "螢幕框"}, {"model": "AECX-MTL0 Heatsink", "type": "IPC\n&\nedge computing"}]}, "rfq": 3, "sample": 3, "mp": 10, "npi": 7}, "嘉彰": {"total": 3, "stages": {"RFQ": 2, "MP": 1}, "stage_models": {"MP": [{"model": "UCS-STIR", "type": "-"}], "RFQ": [{"model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "type": "車用"}, {"model": "3483814600 拉手", "type": "-"}]}, "rfq": 2, "sample": 0, "mp": 1, "npi": 2}}, "projects": [{"customer": "佐茂", "type": "儲能系列", "model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "stage_raw": "EVT", "stage": "EVT", "group": "工程"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框", "model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n2個上下蓋\n+\n配件", "model": "1330.0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "可充電電池發電機 G-CROSS", "model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "TH連接端子", "model": "2025/9/6\n\nBDC72 BDC TH連接端子", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "充電五金", "model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "醫療", "model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/23\n\nRichcom Apollo Robot", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/27\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 13S5P_0S8P", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "音樂設備", "model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/11/21\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "搬送機器", "model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "電池盒", "model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "儲電型加熱器", "model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "大賣場智能推車", "model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機\n(民用/警用)", "model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "-", "model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "相機", "model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "搬送機器", "model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/16\n\nMAP-INAKANISHI INC", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "匯流排", "model": "2026/2/9\n\nBusbar", "stage_raw": "主動免費提供打樣", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "無人機", "model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機", "model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n\n購物車VC-705ML-充電把手", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "未知", "model": "2026/3/16\n\nGarmin 361-00218-00", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-3805 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL2 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RCK4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-2845 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RES4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IBOC-ADL0 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "0705-RES4_Heat sink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL1 Heatsink with fan", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heatsink", "stage_raw": "待通知開模", "stage": "Pending", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heat Spreader", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "散熱塊", "model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框", "model": "DPD-1268 Front Case", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "嘉彰", "type": "-", "model": "UCS-STIR", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "嘉彰", "type": "車用", "model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}, {"customer": "嘉彰", "type": "-", "model": "3483814600 拉手", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}]}};
 
 const STAGE_COLORS = {
   'RFQ': '#0d6efd', 'RFI': '#6c757d', 'Pending': '#adb5bd',
