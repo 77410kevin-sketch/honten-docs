@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 業務週報儀表板</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+  .sys-header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #6610f2 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .stat-card .stat-value { font-size:2.2rem; font-weight:700; line-height:1; }
+  .stat-card .stat-label { font-size:.82rem; color:#6c757d; margin-top:.3rem; }
+  .stat-card .stat-icon { font-size:2rem; opacity:.25; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #6610f2; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+  .nav-tabs .nav-link { color:#495057; padding:.7rem 1.3rem; }
+  .nav-tabs .nav-link.active { font-weight:600; color:#6610f2; border-color:#dee2e6 #dee2e6 #fff; }
+  .tab-content { background:white; border-radius:0 12px 12px 12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .chart-wrap { position:relative; height:320px; }
+  .group-badge-sales { background:#0d6efd; color:white; }
+  .group-badge-eng { background:#198754; color:white; }
+  .group-badge-mp { background:#fd7e14; color:white; }
+  .group-badge-other { background:#6c757d; color:white; }
+  .cust-chip {
+    display:inline-block; background:#f8f9fa; border:1px solid #dee2e6;
+    border-radius:20px; padding:.25rem .75rem; margin:.15rem; font-size:.85rem;
+  }
+  .cust-chip .count { background:#6610f2; color:white; border-radius:10px; padding:0 .5rem; margin-left:.35rem; font-size:.75rem; }
+  table.progress-table td, table.progress-table th { vertical-align:middle; }
+  .stage-bar { height:24px; border-radius:4px; display:flex; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(0,0,0,.05); }
+  .stage-bar > div { font-size:.7rem; color:white; display:flex; align-items:center; justify-content:center; font-weight:600; }
+  .footer-note { color:#6c757d; font-size:.82rem; text-align:center; padding:2rem 0; }
+</style>
+</head>
+<body>
+
+<div class="sys-header">
+  <div class="container">
+    <h2 class="mb-1"><i class="bi bi-bar-chart-fill"></i> 鴻騰電子 — 業務週報儀表板</h2>
+    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-04-18 19:22</div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-Jeffrey" type="button"><i class="bi bi-person-badge"></i> Jeffrey <span class="badge bg-secondary ms-1">23</span></button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-Robin" type="button"><i class="bi bi-person-badge"></i> Robin <span class="badge bg-secondary ms-1">21</span></button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-Alan" type="button"><i class="bi bi-person-badge"></i> Alan <span class="badge bg-secondary ms-1">57</span></button></li>
+  </ul>
+
+  <div class="tab-content">
+    
+    <div class="tab-pane fade show active" id="tab-Jeffrey" role="tabpanel">
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">2</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">7</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">12</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">23</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 業務/工程分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">業務 vs 工程 進度分佈（總計 23 件）</div>
+        <div class="stage-bar">
+          <div style="width:47.8%; background:#0d6efd;" title="業務階段 11 件">業務 11</div>
+          <div style="width:52.2%; background:#198754;" title="工程階段 12 件">工程 12</div>
+          <div style="width:0.0%; background:#fd7e14;" title="量產 0 件">量產 0</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="section-title">階段分佈</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Jeffrey"></canvas></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">業務 / 工程 / 量產</div>
+          <div class="chart-wrap"><canvas id="group-chart-Jeffrey"></canvas></div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="section-title">客戶清單（2 家）</div>
+          <div><span class="cust-chip">順達 <span class="count">18</span></span><span class="cust-chip">電統能源 <span class="count">5</span></span></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>7</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:30.4%; background:#0d6efd;">30%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.7%; background:#198754;">22%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> DVT</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:13.0%; background:#e91e8c;">13%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> PVT</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#d63384;">9%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> RFI</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#6c757d;">9%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:8.7%; background:#adb5bd;">9%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> T1</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#20c997;">4%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:4.3%; background:#6f42c1;">4%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="tab-pane fade" id="tab-Robin" role="tabpanel">
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">6</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">13</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">5</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">18</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 業務/工程分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">業務 vs 工程 進度分佈（總計 21 件）</div>
+        <div class="stage-bar">
+          <div style="width:61.9%; background:#0d6efd;" title="業務階段 13 件">業務 13</div>
+          <div style="width:23.8%; background:#198754;" title="工程階段 5 件">工程 5</div>
+          <div style="width:14.3%; background:#fd7e14;" title="量產 3 件">量產 3</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="section-title">階段分佈</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Robin"></canvas></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">業務 / 工程 / 量產</div>
+          <div class="chart-wrap"><canvas id="group-chart-Robin"></canvas></div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="section-title">客戶清單（6 家）</div>
+          <div><span class="cust-chip">泰博 <span class="count">7</span></span><span class="cust-chip">圓剛 <span class="count">6</span></span><span class="cust-chip">瑞傳 <span class="count">3</span></span><span class="cust-chip">聰泰 <span class="count">2</span></span><span class="cust-chip">創見 <span class="count">2</span></span><span class="cust-chip">科賦 <span class="count">1</span></span></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>13</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:61.9%; background:#0d6efd;">62%</div></div></td></tr><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#fd7e14;">14%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> TS</td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:14.3%; background:#20c997;">14%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Tool Making</td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:9.5%; background:#20c997;">10%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+
+    <div class="tab-pane fade" id="tab-Alan" role="tabpanel">
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">3</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">32</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">13</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">46</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 業務/工程分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">業務 vs 工程 進度分佈（總計 57 件）</div>
+        <div class="stage-bar">
+          <div style="width:57.9%; background:#0d6efd;" title="業務階段 33 件">業務 33</div>
+          <div style="width:22.8%; background:#198754;" title="工程階段 13 件">工程 13</div>
+          <div style="width:19.3%; background:#fd7e14;" title="量產 11 件">量產 11</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="section-title">階段分佈</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Alan"></canvas></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">業務 / 工程 / 量產</div>
+          <div class="chart-wrap"><canvas id="group-chart-Alan"></canvas></div>
+        </div>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-md-6">
+          <div class="section-title">客戶清單（3 家）</div>
+          <div><span class="cust-chip">佐茂 <span class="count">37</span></span><span class="cust-chip">晶達光電 <span class="count">17</span></span><span class="cust-chip">嘉彰 <span class="count">3</span></span></div>
+        </div>
+        <div class="col-md-6">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="badge group-badge-sales">業務</span> RFQ</td><td class="text-end"><strong>32</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:56.1%; background:#0d6efd;">56%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> Mockup</td><td class="text-end"><strong>12</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.1%; background:#198754;">21%</div></div></td></tr><tr><td><span class="badge group-badge-mp">量產</span> MP</td><td class="text-end"><strong>11</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:19.3%; background:#fd7e14;">19%</div></div></td></tr><tr><td><span class="badge group-badge-eng">工程</span> EVT</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#6f42c1;">2%</div></div></td></tr><tr><td><span class="badge group-badge-sales">業務</span> Pending</td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.8%; background:#adb5bd;">2%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="footer-note">
+    資料來源：BBU Projects schedule（Google Drive）・每週五 09:00 自動更新
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const REPS_DATA = {"Jeffrey": {"total": 23, "customers": {"順達": 18, "電統能源": 5}, "customer_count": 2, "stages": {"RFQ": 7, "Mockup": 5, "DVT": 3, "PVT": 2, "RFI": 2, "Pending": 2, "T1": 1, "EVT": 1}, "groups": {"工程": 12, "業務": 11}, "rfq": 7, "sample": 12, "npi": 23, "mp": 0, "projects": [{"customer": "順達", "type": "BBU", "model": "ORV3 5.5KW", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "LA235", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "LA267H", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "MSFT 1KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "SCS-30KW (LA300S)", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "HVDC 600V 66KW", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "未分類", "model": "DM258H (400V)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "DTG0110U (UPS)\n11KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "AWS 8.5KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}, {"customer": "順達", "type": "眼鏡充電盒", "model": "BWD-6040N", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "順達", "type": "AI Box", "model": "AIX-8000N", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "順達", "type": "車用天線", "model": "TRI-BAND ANTENNA", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "車用天線\nShielding", "model": "TPMS天線(Antenna)", "stage_raw": "T1", "stage": "T1", "group": "工程"}, {"customer": "順達", "type": "未分類", "model": "ONEBOX_REEECU", "stage_raw": "RFI", "stage": "RFI", "group": "業務"}, {"customer": "順達", "type": "無人機", "model": "無人機電池包", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "眼鏡盒", "model": "Mantis Puck", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "順達", "type": "無人機\n(民用/警用)", "model": "Falcon\n(GCS-0700)", "stage_raw": "EVT2", "stage": "EVT", "group": "工程"}, {"customer": "順達", "type": "紅外線攝影機", "model": "紅外線攝影機", "stage_raw": "Pending", "stage": "Pending", "group": "業務"}, {"customer": "電統能源", "type": "BBU", "model": "Wonder Woman\n(11KW)", "stage_raw": "PVT", "stage": "PVT", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "NB109", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "3KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "電統能源", "type": "未分類", "model": "Iron man", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "電統能源", "type": "未分類", "model": "Thor (7KW)", "stage_raw": "DVT", "stage": "DVT", "group": "工程"}]}, "Robin": {"total": 21, "customers": {"泰博": 7, "圓剛": 6, "瑞傳": 3, "聰泰": 2, "創見": 2, "科賦": 1}, "customer_count": 6, "stages": {"RFQ": 13, "MP": 3, "TS": 3, "Tool Making": 2}, "groups": {"工程": 5, "業務": 13, "量產": 3}, "rfq": 13, "sample": 5, "npi": 18, "mp": 3, "projects": [{"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "瑞傳", "type": "IPC", "model": "MEDS-5210", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "td4257a_ ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "TD-2555(體重計)", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "泰博", "type": "未分類", "model": "TD4239血糖機", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達固定夾", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "鋼帽", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "馬達彈性墊片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "泰博", "type": "未分類", "model": "ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "科賦", "type": "未分類", "model": "", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "創見", "type": "未分類", "model": "", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "創見", "type": "未分類", "model": "DP2X0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "Tool Making", "stage": "Tool Making", "group": "工程"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "TS", "stage": "TS", "group": "工程"}, {"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}]}, "Alan": {"total": 57, "customers": {"佐茂": 37, "晶達光電": 17, "嘉彰": 3}, "customer_count": 3, "stages": {"RFQ": 32, "Mockup": 12, "MP": 11, "EVT": 1, "Pending": 1}, "groups": {"工程": 13, "業務": 33, "量產": 11}, "rfq": 32, "sample": 13, "npi": 46, "mp": 11, "projects": [{"customer": "佐茂", "type": "儲能系列", "model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "stage_raw": "EVT", "stage": "EVT", "group": "工程"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框", "model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "螢幕框\n+\n2個上下蓋\n+\n配件", "model": "1330.0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "可充電電池發電機 G-CROSS", "model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "TH連接端子", "model": "2025/9/6\n\nBDC72 BDC TH連接端子", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "充電五金", "model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "醫療", "model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/23\n\nRichcom Apollo Robot", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/27\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 13S5P_0S8P", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "音樂設備", "model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "機器人", "model": "2025/11/21\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "搬送機器", "model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "電池盒", "model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "儲電型加熱器", "model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "大賣場智能推車", "model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機\n(民用/警用)", "model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "-", "model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "相機", "model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "搬送機器", "model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/16\n\nMAP-INAKANISHI INC", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "匯流排", "model": "2026/2/9\n\nBusbar", "stage_raw": "主動免費提供打樣", "stage": "Mockup", "group": "工程"}, {"customer": "佐茂", "type": "無人機", "model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "無人機", "model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n\n購物車VC-705ML-充電把手", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "未知", "model": "2026/3/16\n\nGarmin 361-00218-00", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-3805 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL2 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RCK4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-2845 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RES4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IBOC-ADL0 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "0705-RES4_Heat sink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL1 Heatsink with fan", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heatsink", "stage_raw": "待通知開模", "stage": "Pending", "group": "業務"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heat Spreader", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "散熱塊", "model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務"}, {"customer": "晶達光電", "type": "螢幕框", "model": "DPD-1268 Front Case", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程"}, {"customer": "晶達光電", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程"}, {"customer": "嘉彰", "type": "-", "model": "UCS-STIR", "stage_raw": "MP", "stage": "MP", "group": "量產"}, {"customer": "嘉彰", "type": "車用", "model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}, {"customer": "嘉彰", "type": "-", "model": "3483814600 拉手", "stage_raw": "RQF", "stage": "RFQ", "group": "業務"}]}};
+
+const STAGE_COLORS = {
+  'RFQ': '#0d6efd', 'RFI': '#6c757d', 'Pending': '#adb5bd',
+  'Tool Making': '#20c997', 'T1': '#20c997', 'TS': '#20c997',
+  'Mockup': '#198754', 'EVT': '#6f42c1', 'DVT': '#e91e8c', 'PVT': '#d63384',
+  'MP': '#fd7e14'
+};
+
+function drawCharts(rep) {
+  const d = REPS_DATA[rep];
+
+  // Stage chart
+  const stageLabels = Object.keys(d.stages);
+  const stageData = Object.values(d.stages);
+  const stageColors = stageLabels.map(s => STAGE_COLORS[s] || '#6c757d');
+
+  new Chart(document.getElementById('stage-chart-' + rep), {
+    type: 'doughnut',
+    data: {
+      labels: stageLabels,
+      datasets: [{ data: stageData, backgroundColor: stageColors, borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'right', labels: { boxWidth: 14, font: { size: 12 } } },
+        tooltip: { callbacks: { label: c => c.label + ': ' + c.parsed + ' 件' } }
+      },
+      maintainAspectRatio: false
+    }
+  });
+
+  // Group chart (業務 vs 工程 vs 量產)
+  const groupLabels = ['業務', '工程', '量產'];
+  const groupData = groupLabels.map(k => d.groups[k] || 0);
+  const groupColors = ['#0d6efd', '#198754', '#fd7e14'];
+
+  new Chart(document.getElementById('group-chart-' + rep), {
+    type: 'bar',
+    data: {
+      labels: groupLabels,
+      datasets: [{ label: '專案數', data: groupData, backgroundColor: groupColors, borderRadius: 6 }]
+    },
+    options: {
+      plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { stepSize: 1 } } },
+      maintainAspectRatio: false
+    }
+  });
+}
+
+// Draw initially visible tab + on tab show
+document.addEventListener('DOMContentLoaded', () => {
+  drawCharts('Jeffrey');
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(btn => {
+    btn.addEventListener('shown.bs.tab', e => {
+      const rep = e.target.dataset.bsTarget.replace('#tab-', '');
+      drawCharts(rep);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
