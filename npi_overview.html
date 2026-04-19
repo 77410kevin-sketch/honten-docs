@@ -245,6 +245,11 @@
                   填寫客戶資訊、產品名稱、型號、規格摘要、目標單價、年預估量、客戶回覆期限。<br>
                   單號格式：<code>RFQ-YYYYMMDD-NNN</code>（進入 NPI 後顯示為 <code>NPI-...</code>）
                 </div>
+                <div class="notif-row mt-2">
+                  <span class="n-info"><i class="bi bi-magic"></i>
+                    <strong>智慧辨識：</strong>上傳客戶<strong>截圖 / PDF / 信件內容</strong>後，系統 AI 自動辨識填入客戶欄位與規格摘要；<strong>附件以「圖面」為主</strong>歸類。
+                  </span>
+                </div>
                 <div class="notif-row">
                   <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>送審前須上傳【客戶詢價信】+【圖面】</span>
                   <span class="n-line"><i class="bi bi-chat-dots"></i>送審通知：<strong>工程師</strong></span>
@@ -260,11 +265,21 @@
                   <span class="rb rb-engineer">工程師</span>
                 </div>
                 <div class="step-sub">
-                  針對每張圖面排製程、選擇供應商（廠內/外部）、填寫材質 / MOQ / 期望工作天；<br>
-                  可同一製程派多家比價，每家一列，信件模板自動帶入。
+                  針對每張圖面排製程、選擇供應商（廠內 / 外部）、填寫材質 / MOQ / 期望工作天；<br>
+                  可同一製程派多家比價，每家一列。
+                </div>
+                <div class="notif-row mt-2">
+                  <span class="n-mail"><i class="bi bi-envelope-fill"></i>
+                    <strong>以 Email 為主發信</strong>：模組化詢價信（供應商 / 圖面 / 材質 / MOQ / 期限 自動帶入變數）
+                  </span>
                 </div>
                 <div class="notif-row">
-                  <span class="n-line"><i class="bi bi-chat-dots"></i>派發後通知：<strong>供應商</strong>（Email/LINE）</span>
+                  <span class="n-info"><i class="bi bi-database"></i>
+                    <strong>供應商資料庫下拉選單</strong>：從主檔直接挑選（自動帶入聯絡人 / Email / 電話），無需手 key
+                  </span>
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>派發後通知：<strong>供應商</strong>（Email 為主 / LINE 輔）</span>
                 </div>
               </div>
             </div>
@@ -275,12 +290,15 @@
                 <div class="d-flex align-items-center gap-2 flex-wrap">
                   <span class="step-label">供應商回報報價</span>
                   <span class="rb rb-supplier">供應商</span>
+                  <span class="rb rb-purchase">採購主</span>
+                  <span class="rb rb-engineer">工程輔</span>
                 </div>
                 <div class="step-sub">
-                  供應商於詢價介面回填：單價、模治具費、交期天數、備註，並上傳報價單 PDF；<br>
-                  採購可直接於系統代填並勾選「已代報」。
+                  回填：單價、模治具費、交期天數、備註，並上傳報價單 PDF。<br>
+                  <strong>採購為主、工程為輔</strong>：兩者皆可代供應商填入價格與附件，共同完成報價回收；系統記錄實際回填人。
                 </div>
                 <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-people-fill"></i>採購 + 工程皆可代填價格與上傳附件</span>
                   <span class="n-line"><i class="bi bi-chat-dots"></i>每家回報時通知：<strong>採購</strong></span>
                 </div>
               </div>
@@ -290,11 +308,14 @@
               <div class="step-connector"><div class="step-num" style="background:#17a2b8">4</div><div class="step-line"></div></div>
               <div class="step-body color-cyan">
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <span class="step-label">採購宣告報價收齊</span>
+                  <span class="step-label">宣告報價收齊</span>
                   <span class="rb rb-purchase">採購</span>
+                  <span class="rb rb-engineer">工程</span>
+                  <small class="text-muted">（共同完成）</small>
                 </div>
                 <div class="step-sub">
-                  確認所有供應商均回報或已無需等待時按「收齊」→ 送業務進入成本試算。
+                  確認所有供應商均回報或已無需等待時按「收齊」→ 送業務進入成本試算。<br>
+                  <strong>採購與工程共同完成</strong>：兩者皆可觸發「收齊」動作，彼此互為備援。
                 </div>
                 <div class="notif-row">
                   <span class="n-line"><i class="bi bi-chat-dots"></i>收齊後通知：<strong>業務</strong></span>
