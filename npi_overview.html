@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — NPI 新產品導入系統流程</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+
+  .sys-header {
+    background: linear-gradient(135deg, #0d4a7c 0%, #17a2b8 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #17a2b8; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+
+  /* Role badges */
+  .rb { display:inline-block; padding:.15rem .5rem; border-radius:20px; font-size:.7rem; font-weight:700; white-space:nowrap; }
+  .rb-sales      { background:#0d6efd; color:white; }
+  .rb-engineer   { background:#198754; color:white; }
+  .rb-purchase   { background:#17a2b8; color:white; }
+  .rb-bu         { background:#6610f2; color:white; }
+  .rb-supplier   { background:#fd7e14; color:white; }
+  .rb-admin      { background:#212529; color:white; }
+  .rb-all        { background:#0dcaf0; color:#000; }
+  .rb-sys        { background:#6c757d; color:white; }
+
+  /* Notification pills */
+  .notif-row { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.45rem; }
+  .n-line { display:inline-flex; align-items:center; gap:.25rem; background:#d1f5e0; color:#155724;
+            border:1px solid #a3d9b1; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-warn { display:inline-flex; align-items:center; gap:.25rem; background:#f8d7da; color:#721c24;
+            border:1px solid #f5c2c7; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-info { display:inline-flex; align-items:center; gap:.25rem; background:#e8f0fe; color:#0d47a1;
+            border:1px solid #90caf9; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-mail { display:inline-flex; align-items:center; gap:.25rem; background:#fff3cd; color:#664d03;
+            border:1px solid #ffc107; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+  .n-pdf  { display:inline-flex; align-items:center; gap:.25rem; background:#e0cffc; color:#4d2fc7;
+            border:1px solid #b9a4f5; border-radius:4px; font-size:.68rem; padding:.15rem .45rem; }
+
+  /* Flow */
+  .flow-step { display:flex; align-items:stretch; margin-bottom:.45rem; }
+  .step-connector { display:flex; flex-direction:column; align-items:center; width:36px; flex-shrink:0; }
+  .step-num {
+    width:36px; height:36px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700; font-size:.82rem; color:white; flex-shrink:0; margin-top:.2rem;
+  }
+  .step-line { width:2px; background:#dee2e6; flex:1; min-height:16px; }
+  .step-body {
+    flex:1; background:white; border-radius:10px;
+    padding:.6rem 1rem; margin-left:.7rem;
+    box-shadow:0 1px 4px rgba(0,0,0,.07);
+    border-left:4px solid #dee2e6;
+  }
+  .step-label { font-weight:600; font-size:.88rem; }
+  .step-sub   { font-size:.76rem; color:#6c757d; margin-top:.15rem; line-height:1.5; }
+
+  .color-purple { border-left-color:#6610f2; }
+  .color-green  { border-left-color:#198754; }
+  .color-cyan   { border-left-color:#17a2b8; }
+  .color-orange { border-left-color:#fd7e14; }
+  .color-teal   { border-left-color:#20c997; }
+  .color-blue   { border-left-color:#0d6efd; }
+  .color-dark   { border-left-color:#212529; }
+  .color-warn   { border-left-color:#ffc107; }
+  .color-red    { border-left-color:#dc3545; }
+
+  /* Sub-step indent */
+  .flow-sub-step { margin-left:calc(36px + .7rem); margin-bottom:.45rem; }
+  .sub-body {
+    background:#f8f9fa; border-radius:8px;
+    padding:.5rem .85rem; border-left:3px solid #dee2e6;
+    font-size:.78rem;
+  }
+
+  /* Feature highlight */
+  .feature-card {
+    background:white; border-radius:12px; padding:1rem 1.2rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.06); margin-bottom:1rem;
+    border-left:4px solid #17a2b8;
+  }
+  .feature-card.confirm { border-left-color:#198754; }
+  .feature-card.cancel  { border-left-color:#6c757d; }
+  .feature-card.nodeal  { border-left-color:#ffc107; }
+  .feature-title { font-weight:700; font-size:.92rem; margin-bottom:.4rem; }
+
+  .ctx-menu-demo {
+    background:#fff; border:1px solid #dee2e6; border-radius:8px;
+    width:220px; padding:.35rem 0; font-size:.8rem;
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+  }
+  .ctx-menu-demo > div { padding:.4rem .8rem; }
+  .ctx-menu-demo > div:hover { background:#f8f9fa; }
+
+  /* KPI demo */
+  .kpi-demo-table { font-size:.82rem; }
+  .kpi-demo-table th { background:#e9ecef; }
+  .kpi-up   { color:#198754; font-weight:700; }
+  .kpi-down { color:#dc3545; font-weight:700; }
+
+  .tech-badge {
+    display:inline-block; background:#212529; color:#f8f9fa;
+    border-radius:6px; padding:.3rem .7rem; font-size:.78rem;
+    font-family:'Consolas',monospace; margin:.2rem;
+  }
+
+  .nav-tabs .nav-link { color:#495057; }
+  .nav-tabs .nav-link.active { font-weight:600; color:#17a2b8; }
+
+  .legend-row { display:flex; flex-wrap:wrap; gap:.5rem; margin-bottom:1.2rem; }
+  .status-pill {
+    display:inline-block; border-radius:6px; padding:.2rem .6rem;
+    font-size:.72rem; font-weight:600; white-space:nowrap;
+  }
+
+  /* Stage divider */
+  .stage-divider {
+    background:linear-gradient(135deg, #17a2b8, #0d4a7c);
+    color:white; padding:.6rem 1.2rem; border-radius:8px;
+    font-weight:700; margin:1rem 0 .8rem; display:flex; align-items:center; gap:.5rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<div class="sys-header">
+  <div class="container">
+    <div class="d-flex align-items-center gap-3">
+      <i class="bi bi-boxes fs-2"></i>
+      <div>
+        <h3 class="mb-0 fw-bold">鴻騰電子 NPI 新產品導入系統</h3>
+        <div class="subtitle">New Product Introduction — RFQ 詢價 / NPI 開發 / 採購議價 / PDF 歸檔</div>
+      </div>
+      <div class="ms-auto text-end d-none d-md-block">
+        <div class="subtitle">系統流程說明文件</div>
+        <div style="font-size:.85rem">2026年4月</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <!-- Stats -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold" style="color:#17a2b8">2</div>
+        <div class="small text-muted">階段（RFQ / NPI）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-success">5</div>
+        <div class="small text-muted">NPI 階段步驟</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold text-warning">8</div>
+        <div class="small text-muted">角色與權限</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card stat-card text-center p-3">
+        <div class="fs-2 fw-bold" style="color:#6610f2;font-size:1.2rem !important">PDF + NAS</div>
+        <div class="small text-muted">自動歸檔</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 兩階段對比 -->
+  <div class="row g-3 mb-4">
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" style="border-left:5px solid #0d6efd !important; border-radius:12px;">
+        <div class="card-body p-3">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge rounded-pill px-3 py-2" style="background:#0d6efd;font-size:.85rem">RFQ</span>
+            <span class="fw-bold">詢價評估階段</span>
+            <span class="rb rb-sales ms-auto">業務主導</span>
+          </div>
+          <div class="small text-muted">
+            客戶詢價 → 工程派發供應商 → 採購收齊報價 → 業務試算利潤成本 → BU Head 核准 → 業務發送客戶報價單 → 等待客戶決定。
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card border-0 shadow-sm h-100" style="border-left:5px solid #17a2b8 !important; border-radius:12px;">
+        <div class="card-body p-3">
+          <div class="d-flex align-items-center gap-2 mb-2">
+            <span class="badge rounded-pill px-3 py-2" style="background:#17a2b8;font-size:.85rem">NPI</span>
+            <span class="fw-bold">開發導入階段</span>
+            <span class="rb rb-purchase ms-auto">多角色協作</span>
+          </div>
+          <div class="small text-muted">
+            客戶確定開發後進入 NPI 流程：業務填 T1 計畫 → 工程填廠內料號 / 送模具請購單 → BU 審核 → 採購議價下單 → 結案歸檔售價成本分析表至 NAS。
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tabs -->
+  <ul class="nav nav-tabs mb-4" id="mainTab">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-rfq">RFQ 流程</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-npi">NPI 流程</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-bargain">採購議價</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-roles">角色與權限</button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-status">狀態總覽</button></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- ══════════════ Tab 1: RFQ 流程 ══════════════ -->
+    <div class="tab-pane fade show active" id="tab-rfq">
+      <div class="legend-row">
+        <span class="n-line"><i class="bi bi-chat-dots"></i>LINE 通知</span>
+        <span class="n-mail"><i class="bi bi-envelope-fill"></i>Email 通知</span>
+        <span class="n-warn"><i class="bi bi-exclamation-triangle"></i>必要附件 / 驗證</span>
+        <span class="n-info"><i class="bi bi-info-circle"></i>條件判斷</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="section-title"><i class="bi bi-arrow-right-circle me-2" style="color:#0d6efd"></i>RFQ — 從客戶詢價到發出報價單</div>
+          <div class="flow-wrap">
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#0d6efd">1</div><div class="step-line"></div></div>
+              <div class="step-body color-blue">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">業務建立 RFQ 詢價單</span>
+                  <span class="rb rb-sales">業務</span>
+                </div>
+                <div class="step-sub">
+                  填寫客戶資訊、產品名稱、型號、規格摘要、目標單價、年預估量、客戶回覆期限。<br>
+                  單號格式：<code>RFQ-YYYYMMDD-NNN</code>（進入 NPI 後顯示為 <code>NPI-...</code>）
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>送審前須上傳【客戶詢價信】+【圖面】</span>
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>送審通知：<strong>工程師</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#198754">2</div><div class="step-line"></div></div>
+              <div class="step-body color-green">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">工程派發供應商詢價</span>
+                  <span class="rb rb-engineer">工程師</span>
+                </div>
+                <div class="step-sub">
+                  針對每張圖面排製程、選擇供應商（廠內/外部）、填寫材質 / MOQ / 期望工作天；<br>
+                  可同一製程派多家比價，每家一列，信件模板自動帶入。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>派發後通知：<strong>供應商</strong>（Email/LINE）</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#fd7e14">3</div><div class="step-line"></div></div>
+              <div class="step-body color-orange">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">供應商回報報價</span>
+                  <span class="rb rb-supplier">供應商</span>
+                </div>
+                <div class="step-sub">
+                  供應商於詢價介面回填：單價、模治具費、交期天數、備註，並上傳報價單 PDF；<br>
+                  採購可直接於系統代填並勾選「已代報」。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>每家回報時通知：<strong>採購</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#17a2b8">4</div><div class="step-line"></div></div>
+              <div class="step-body color-cyan">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">採購宣告報價收齊</span>
+                  <span class="rb rb-purchase">採購</span>
+                </div>
+                <div class="step-sub">
+                  確認所有供應商均回報或已無需等待時按「收齊」→ 送業務進入成本試算。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>收齊後通知：<strong>業務</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#0d6efd">5</div><div class="step-line"></div></div>
+              <div class="step-body color-blue">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">業務試算成本與利潤</span>
+                  <span class="rb rb-sales">業務</span>
+                </div>
+                <div class="step-sub">
+                  以「每張圖 = 一欄」建立試算表；製程列填各家報價的採用單價；<br>
+                  預設不良率 5% / 管銷 7% / 品包運 3%；各方案獨立利潤% → 最終報價單價。<br>
+                  模治具成本與利潤獨立計算（模治具報價 = 成本 × (1+利潤%)）。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>送審通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#6610f2">6</div><div class="step-line"></div></div>
+              <div class="step-body color-purple">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">BU Head 審核報價</span>
+                  <span class="rb rb-bu">BU Head</span>
+                </div>
+                <div class="step-sub">
+                  檢視每方案的成本結構與利潤率，核准 / 退回（可退採購或業務）；<br>
+                  核准後業務可發送客戶報價單。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>核准後通知：<strong>業務 + 採購</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#198754">7</div></div>
+              <div class="step-body color-green">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">業務發送客戶報價單</span>
+                  <span class="rb rb-sales">業務</span>
+                </div>
+                <div class="step-sub">
+                  系統產出正式客戶報價單 PDF（含公司 LOGO、台幣/美金匯率切換、標準報價條款、業務與主管簽章欄）。<br>
+                  業務透過 Email 寄出，等待客戶回覆是否開發。
+                </div>
+                <div class="notif-row">
+                  <span class="n-pdf"><i class="bi bi-file-earmark-pdf"></i>PDF：客戶報價單（可切換 TWD/USD）</span>
+                  <span class="n-info"><i class="bi bi-arrow-return-right"></i>客戶確定開發 → 進入 NPI 階段</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="section-title"><i class="bi bi-gear-fill me-2" style="color:#17a2b8"></i>RFQ 關鍵欄位</div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-calculator me-1"></i>成本試算表</div>
+            <div class="small text-muted">
+              欄位=圖面/方案，列=製程；支援多方案獨立利潤 / 不良 / 管銷 / 品包運 %，模治具獨立計價。
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-truck me-1"></i>供應商派發明細</div>
+            <div class="small text-muted">
+              製程 + 供應商 + 材質 + MOQ + 期望工作天 + 對應圖面，可追溯每家時間與跟催次數。
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-envelope-paper me-1"></i>詢價信模板</div>
+            <div class="small text-muted">
+              自動帶入供應商/圖面/材質/MOQ 等變數，Email + LINE 雙通道。
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-file-earmark-pdf me-1"></i>客戶報價單 PDF</div>
+            <div class="small text-muted">
+              公司 LOGO、地址（樹林區三俊街 154 號）、電話、業務 + 業務主管簽章欄；匯率固定 1 USD = 32 TWD。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ Tab 2: NPI 流程 ══════════════ -->
+    <div class="tab-pane fade" id="tab-npi">
+      <div class="legend-row">
+        <span class="n-line"><i class="bi bi-chat-dots"></i>LINE 通知</span>
+        <span class="n-pdf"><i class="bi bi-file-earmark-pdf"></i>PDF 歸檔</span>
+        <span class="n-warn"><i class="bi bi-exclamation-triangle"></i>時間警示</span>
+        <span class="n-info"><i class="bi bi-info-circle"></i>資料回寫</span>
+      </div>
+
+      <div class="stage-divider">
+        <i class="bi bi-rocket-takeoff"></i>
+        <span>客戶確定開發 → 進入 NPI 階段（5 段流程：業務 → 工程 → BU → 採購 → 結案）</span>
+      </div>
+
+      <div class="row g-4">
+        <div class="col-lg-8">
+          <div class="section-title"><i class="bi bi-diagram-3-fill me-2" style="color:#17a2b8"></i>NPI 完整 5 段流程</div>
+
+          <div class="flow-wrap">
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#0d6efd">1</div><div class="step-line"></div></div>
+              <div class="step-body color-blue">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">NPI 啟動（業務）</span>
+                  <span class="rb rb-sales">業務</span>
+                  <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_STARTED</span>
+                </div>
+                <div class="step-sub">
+                  每張圖面獨立填寫「客戶需求 T1 與樣品提供時間」；<br>
+                  儲存後通知工程接手，同時流程推進到「料號 · 模具請購單（工程）」子階段。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>儲存後通知：<strong>工程師</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#198754">2</div><div class="step-line"></div></div>
+              <div class="step-body color-green">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">料號 · 模具請購單（工程）</span>
+                  <span class="rb rb-engineer">工程師</span>
+                  <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_ENG（虛擬階段）</span>
+                </div>
+                <div class="step-sub">
+                  在「成本表」為每站填寫【廠內料號】+ 是否走途程（SFT）+ 【模具料號】；<br>
+                  儲存前後欄位視覺有差異（綠底/虛線），確保未填不會漏。<br>
+                  接著填入 ERP 模具請購單號 + 附件（ERP 截圖 / 廠商報價單 PDF），送出進入 BU 審核。
+                </div>
+                <div class="notif-row">
+                  <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>送出前檢查所有有模治具的站別均填妥模具料號</span>
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>送出後通知：<strong>BU Head</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#6610f2">3</div><div class="step-line"></div></div>
+              <div class="step-body color-purple">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">審核（BU）</span>
+                  <span class="rb rb-bu">BU Head</span>
+                  <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_PENDING_BU</span>
+                </div>
+                <div class="step-sub">
+                  BU Head 整合檢視：客戶/產品 + T1 計畫 + 成本表（含工程填的料號）+ 模治具請購單；<br>
+                  可核准或退回；核准後進入採購議價。
+                </div>
+                <div class="notif-row">
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>核准後通知：<strong>採購</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#17a2b8">4</div><div class="step-line"></div></div>
+              <div class="step-body color-cyan">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">議價與下單（採購）</span>
+                  <span class="rb rb-purchase">採購</span>
+                  <span class="status-pill" style="background:#d1ecf1;color:#0c5460">NPI_PENDING_PURCHASE</span>
+                </div>
+                <div class="step-sub">
+                  採購直接於成本表進行議價（每格單價可改，右鍵可標記議價狀態）；<br>
+                  標記「確定議價」需同時上傳新報價單（自動歸類為【議價後報價單】並顯示於附件區）；<br>
+                  填寫 ERP 模具採購單號；可填入「實際開模 T1 時間」（晚於客戶需求自動跳紅色警示）；<br>
+                  勾選單一提醒：「所有單價皆已回 keyin 至 ERP」。
+                </div>
+                <div class="notif-row">
+                  <span class="n-info"><i class="bi bi-arrow-left-right"></i>議價資料即時回寫 BU/業務 檢視的成本試算表（顯示議價後利潤% 變化）</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flow-step">
+              <div class="step-connector"><div class="step-num" style="background:#212529">5</div></div>
+              <div class="step-body color-dark">
+                <div class="d-flex align-items-center gap-2 flex-wrap">
+                  <span class="step-label">結案</span>
+                  <span class="rb rb-purchase">採購</span>
+                  <span class="status-pill" style="background:#d4edda;color:#155724">CLOSED</span>
+                </div>
+                <div class="step-sub">
+                  採購按「結案」按鈕 → 系統自動產出「售價成本分析表 PDF」（含 T1 計畫 + 議價前後利潤 KPI 對照）；<br>
+                  PDF 落 NAS：<code>{NAS_ROOT}/{form_id}/NPI_Closure/售價成本分析表.pdf</code><br>
+                  同時通知業務 + BU。
+                </div>
+                <div class="notif-row">
+                  <span class="n-pdf"><i class="bi bi-file-earmark-pdf"></i>PDF：售價成本分析表（5 區塊）</span>
+                  <span class="n-line"><i class="bi bi-chat-dots"></i>結案通知：<strong>業務 + BU</strong></span>
+                  <span class="n-info"><i class="bi bi-hdd-network-fill"></i>NAS 自動歸檔</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="col-lg-4">
+          <div class="section-title"><i class="bi bi-calendar-check me-2" style="color:#17a2b8"></i>T1 計畫與時間管控</div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-1-circle me-1"></i>業務填「客戶需求 T1」</div>
+            <div class="small text-muted">
+              每張圖獨立填寫，例：<code>T1 4/25 / 樣品 6/21</code>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-2-circle me-1"></i>採購填「實際開模 T1」</div>
+            <div class="small text-muted">
+              儲存後綠字表示「已儲存」；若晚於客戶需求，系統自動改紅框 + ⚠ 警示字。
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-3-circle me-1"></i>BU 整合檢視</div>
+            <div class="small text-muted">
+              客戶/產品 + T1 計畫 + 成本表 + 模治具請購單 全部集中一卡，唯讀呈現。
+            </div>
+          </div>
+
+          <div class="section-title mt-4"><i class="bi bi-file-earmark-pdf me-2" style="color:#17a2b8"></i>售價成本分析表 PDF</div>
+          <div class="feature-card" style="border-left-color:#6610f2">
+            <div class="feature-title">五大區塊</div>
+            <ol class="small text-muted mb-0 ps-3">
+              <li>客戶 / 產品資訊</li>
+              <li>T1 計畫與實際開模時間（晚於需求標紅字）</li>
+              <li>議價前後利潤 % KPI 對照（每欄 ↑↓ 箭頭）</li>
+              <li>議價備註</li>
+              <li>ERP 回 keyin 狀態</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ Tab 3: 採購議價 ══════════════ -->
+    <div class="tab-pane fade" id="tab-bargain">
+      <div class="section-title"><i class="bi bi-cash-stack me-2" style="color:#17a2b8"></i>採購議價介面設計</div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-6">
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-mouse me-1"></i>右鍵選單（Context Menu）</div>
+            <div class="small text-muted mb-2">對任一可編輯價格欄位按滑鼠右鍵，彈出 4 選項：</div>
+            <div class="ctx-menu-demo">
+              <div>清除標記</div>
+              <div><span class="badge bg-secondary">不議價</span>&nbsp;使用原價</div>
+              <div><span class="badge bg-warning text-dark">廠商無降價空間</span>&nbsp;使用原價</div>
+              <div><span class="badge bg-success">確定議價</span>&nbsp;需上傳新報價單</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card">
+            <div class="feature-title"><i class="bi bi-table me-1"></i>成本表即時重算</div>
+            <div class="small text-muted">
+              每格價格修改時即時更新：<br>
+              • 製程成本小計（議價後）<br>
+              • 不良率 / 管銷 / 品包運（原 %）<br>
+              • 成本合計（不含模治具）<br>
+              無原價的欄位自動反灰 disabled 無法輸入。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title"><i class="bi bi-bar-chart-line me-2" style="color:#17a2b8"></i>利潤 KPI 計算邏輯</div>
+      <div class="feature-card" style="border-left-color:#6610f2">
+        <div class="feature-title">議價後利潤% 公式（售價鎖定）</div>
+        <div class="small text-muted mb-2">
+          業務給客戶的售價（<code>quote</code>）在 BU 核准後鎖定；採購議價讓成本下降 → 公司實得利潤上升，差值即是 KPI 績效。
+        </div>
+        <div class="tech-badge">
+          議價後利潤% = (原 quote − 議價後 cost_total) ÷ 議價後 cost_total × 100
+        </div>
+      </div>
+
+      <div class="section-title mt-4"><i class="bi bi-graph-up me-2" style="color:#17a2b8"></i>範例（業務 / BU 成本試算表回寫）</div>
+      <div class="card p-3 mb-3">
+        <table class="table kpi-demo-table mb-0">
+          <thead>
+            <tr>
+              <th>項目 / 製程</th>
+              <th class="text-end">方案 A（鋁擠/NCT）</th>
+              <th class="text-end">方案 B（沖壓/烤漆）</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>製程成本小計</td><td class="text-end">511.00</td><td class="text-end">55.00</td></tr>
+            <tr class="table-info"><td>議價後製程成本小計</td><td class="text-end">498.00</td><td class="text-end">53.00</td></tr>
+            <tr><td>成本合計（不含模治具）</td><td class="text-end">587.65</td><td class="text-end">63.25</td></tr>
+            <tr class="table-info"><td>議價後成本合計</td><td class="text-end">572.70</td><td class="text-end">60.95</td></tr>
+            <tr><td>利潤（原報價）</td><td class="text-end">15.0%</td><td class="text-end">15.0%</td></tr>
+            <tr class="table-info"><td><strong>議價後利潤%（鎖定原報價）</strong></td>
+                <td class="text-end"><span class="kpi-up">18.2% ↑</span></td>
+                <td class="text-end"><span class="kpi-up">19.4% ↑</span></td>
+            </tr>
+            <tr><td class="fw-bold">最終客戶報價單價（鎖定）</td><td class="text-end fw-bold">675.80</td><td class="text-end fw-bold">72.74</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title"><i class="bi bi-file-earmark-arrow-up me-2" style="color:#17a2b8"></i>議價後報價單取代原檔</div>
+      <div class="feature-card confirm">
+        <div class="feature-title"><span class="badge bg-success me-1">確定議價</span> 項目</div>
+        <div class="small text-muted">
+          採購為每個「確定議價」項目上傳新報價單 PDF；系統依 (row.製程, col.供應商) 綁定對應 invite；<br>
+          儲存時新檔案以 category=<code>議價後報價單</code> 寫入附件區，與原「供應商報價」並列檢視。
+        </div>
+      </div>
+    </div>
+
+    <!-- ══════════════ Tab 4: 角色與權限 ══════════════ -->
+    <div class="tab-pane fade" id="tab-roles">
+      <div class="section-title"><i class="bi bi-people-fill me-2" style="color:#17a2b8"></i>NPI 系統 8 個角色</div>
+      <div class="row g-3">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-sales">業務</span><span class="fw-bold">SALES</span></div>
+            <div class="small text-muted">
+              • 建立 RFQ 詢價單<br>
+              • 試算成本送 BU 審核<br>
+              • 發送客戶報價 PDF<br>
+              • NPI 階段填 T1 計畫
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-engineer">工程師</span><span class="fw-bold">ENGINEER</span></div>
+            <div class="small text-muted">
+              • 派發供應商詢價<br>
+              • NPI 填廠內料號 / 模具料號<br>
+              • 送出 ERP 模具請購單
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-purchase">採購</span><span class="fw-bold">PURCHASE</span></div>
+            <div class="small text-muted">
+              • 宣告報價收齊<br>
+              • NPI 階段議價<br>
+              • 上傳議價後報價單 / 填 ERP 採購單號<br>
+              • 按「結案」產出 PDF 歸檔
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-bu">BU Head</span><span class="fw-bold">BU</span></div>
+            <div class="small text-muted">
+              • 核准 RFQ 成本試算<br>
+              • 核准 NPI 模治具請購單<br>
+              • 退回業務 / 採購（可指定對象）
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-supplier">供應商</span><span class="fw-bold">SUPPLIER</span></div>
+            <div class="small text-muted">
+              • 於詢價介面回填單價 / 模治具費 / 交期<br>
+              • 上傳報價單 PDF<br>
+              • 類型：廠內（機加工課 / 模具課）/ 外部
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-sales">業務主管</span><span class="fw-bold">SALES_SENIOR</span></div>
+            <div class="small text-muted">
+              • 各 BU 的資深業務<br>
+              • BU 核准後 C.C. 知悉<br>
+              • 客戶報價單簽章（業務主管欄）
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-engineer">工程主管</span><span class="fw-bold">ENG_MGR</span></div>
+            <div class="small text-muted">
+              • BU 核准 / 退回製程單 C.C.
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="feature-card">
+            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-admin">管理員</span><span class="fw-bold">ADMIN</span></div>
+            <div class="small text-muted">
+              • 全權限<br>
+              • 可執行任意角色的動作（測試/除錯）
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══════════════ Tab 5: 狀態總覽 ══════════════ -->
+    <div class="tab-pane fade" id="tab-status">
+      <div class="section-title"><i class="bi bi-list-check me-2" style="color:#17a2b8"></i>NPIFormStatus 狀態機</div>
+
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="card p-3">
+            <div class="fw-bold mb-2" style="color:#0d6efd">RFQ 階段</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="status-pill" style="background:#e2e3e5;color:#383d41">DRAFT 草稿</span>
+              <span class="status-pill" style="background:#cfe2ff;color:#084298">ENG_DISPATCH 待工程派發</span>
+              <span class="status-pill" style="background:#fff3cd;color:#664d03">QUOTING 供應商報價中</span>
+              <span class="status-pill" style="background:#d1c4e9;color:#311b92">QUOTES_COLLECTED 採購收齊</span>
+              <span class="status-pill" style="background:#ffe8b2;color:#7a4d00">PENDING_QUOTE_BU 待 BU 審核</span>
+              <span class="status-pill" style="background:#d0f5ea;color:#0a5a3a">QUOTE_APPROVED 報價核准</span>
+              <span class="status-pill" style="background:#d4edda;color:#155724">RFQ_DONE 已發客戶</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3">
+            <div class="fw-bold mb-2" style="color:#17a2b8">NPI 階段</div>
+            <div class="d-flex flex-wrap gap-2">
+              <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_STARTED 業務 T1 計畫</span>
+              <span class="status-pill" style="background:#e7f1d4;color:#2d4a00">NPI_ENG 工程料號（虛擬）</span>
+              <span class="status-pill" style="background:#ede7f6;color:#4a148c">NPI_PENDING_BU 待 BU 核准</span>
+              <span class="status-pill" style="background:#d1ecf1;color:#0c5460">NPI_PENDING_PURCHASE 待採購議價</span>
+              <span class="status-pill" style="background:#212529;color:#fff">CLOSED 結案</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="card p-3">
+            <div class="fw-bold mb-2" style="color:#dc3545">通用</div>
+            <span class="status-pill" style="background:#f8d7da;color:#721c24">RETURNED 退回（含 reject_to 對象）</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-title mt-4"><i class="bi bi-folder-fill me-2" style="color:#17a2b8"></i>NAS 歸檔結構</div>
+      <div class="card p-3">
+        <pre class="mb-0 small"><code>{NAS_ROOT}/
+ └── {form_id}/                      ← 例：RFQ-20260418-013
+      ├── RFQ_Archive/
+      │    └── REF-{機種}.pdf        ← RFQ 結案歸檔（客戶報價 + 成本試算）
+      └── NPI_Closure/
+           └── 售價成本分析表.pdf     ← NPI 結案 KPI 報告（議價前後利潤對照）</code></pre>
+      </div>
+
+      <div class="section-title mt-4"><i class="bi bi-database-fill me-2" style="color:#17a2b8"></i>核心資料欄位</div>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <div class="card p-3">
+            <div class="fw-bold small mb-2">NPIForm（主檔）</div>
+            <ul class="small text-muted mb-0 ps-3">
+              <li><code>quote_cost_data</code>：業務成本試算 JSON（columns/rows/rates）</li>
+              <li><code>bargain_data</code>：採購議價覆寫 JSON（prices/tooling/flags/erp_po_no/erp_keyin_all）</li>
+              <li><code>t1_plan_data</code>：每張圖 T1 計畫 JSON（t1_date/actual_t1_date）</li>
+              <li><code>eng_process_data</code>：工程填 JSON（part_no/tool_part_no/need_routing）</li>
+              <li><code>erp_req_no</code>：ERP 模具請購單號（工程填）</li>
+              <li><code>nas_folder</code>：結案 NAS 路徑</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="card p-3">
+            <div class="fw-bold small mb-2">NPISupplierInvite（派發明細）</div>
+            <ul class="small text-muted mb-0 ps-3">
+              <li><code>process_name</code> / <code>material</code> / <code>qty</code> / <code>expected_lead_days</code></li>
+              <li><code>drawing_doc_id</code>：對應圖面</li>
+              <li><code>quote_amount</code> / <code>tooling_cost</code> / <code>lead_time_days</code></li>
+              <li><code>is_selected</code>：NPI 最終採用</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<footer class="text-center py-4 small text-muted">
+  鴻騰電子 NPI 系統 — 開發中版本 ｜ 最後更新：2026-04-19
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
