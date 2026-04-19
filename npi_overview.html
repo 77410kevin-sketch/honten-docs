@@ -30,6 +30,16 @@
   .rb-admin      { background:#212529; color:white; }
   .rb-all        { background:#0dcaf0; color:#000; }
   .rb-sys        { background:#6c757d; color:white; }
+  .rb-alice      { background:linear-gradient(135deg,#e91e63,#ff6b9d); color:white; }
+
+  .alice-tag {
+    display:inline-flex; align-items:center; gap:.25rem;
+    background:#fce4ec; color:#880e4f;
+    border:1px dashed #e91e63; border-radius:6px;
+    font-size:.72rem; font-weight:600;
+    padding:.2rem .55rem; margin-top:.35rem;
+  }
+  .alice-tag i { color:#e91e63; }
 
   /* Notification pills */
   .notif-row { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.45rem; }
@@ -422,6 +432,15 @@
         <span>客戶確定開發 → 進入 NPI 階段（5 段流程：業務 → 工程 → BU → 採購 → 結案）</span>
       </div>
 
+      <div class="alert mb-3" style="background:#fce4ec;border-left:4px solid #e91e63;color:#880e4f">
+        <div class="fw-bold mb-2"><i class="bi bi-person-heart me-1"></i>ERP 整合 — 需 Alice 協助項目（共 3 項）</div>
+        <div class="small">
+          <div class="mb-1"><span class="badge" style="background:#e91e63">流程 1</span> NPI 與 RFQ 資訊鏈接（同 form_id 沿用）＋ ERP 模具訂單主檔匯入</div>
+          <div class="mb-1"><span class="badge" style="background:#e91e63">流程 2</span> 模具請購單 ERP 匯入（單號 → 明細）＋ ERP 既有料號自動帶入成本表</div>
+          <div class="mb-0"><span class="badge" style="background:#e91e63">流程 4</span> 議價後最終單價自動寫入 ERP 採購單明細（免人工 keyin）</div>
+        </div>
+      </div>
+
       <div class="row g-4">
         <div class="col-lg-8">
           <div class="section-title"><i class="bi bi-diagram-3-fill me-2" style="color:#17a2b8"></i>NPI 完整 5 段流程</div>
@@ -439,6 +458,10 @@
                 <div class="step-sub">
                   每張圖面獨立填寫「客戶需求 T1 與樣品提供時間」；<br>
                   儲存後通知工程接手，同時流程推進到「料號 · 模具請購單（工程）」子階段。
+                </div>
+                <div class="alice-tag">
+                  <i class="bi bi-person-heart"></i>
+                  <strong>需 Alice 協助：</strong>NPI 與 RFQ 資訊鏈接（沿用同一 <code>form_id</code>）+ ERP 模具訂單主檔匯入（建立 ERP → NPI 雙向對照）
                 </div>
                 <div class="notif-row">
                   <span class="n-line"><i class="bi bi-chat-dots"></i>儲存後通知：<strong>工程師</strong></span>
@@ -458,6 +481,10 @@
                   在「成本表」為每站填寫【廠內料號】+ 是否走途程（SFT）+ 【模具料號】；<br>
                   儲存前後欄位視覺有差異（綠底/虛線），確保未填不會漏。<br>
                   接著填入 <strong>ERP 模具請購單號（真實單號，非虛擬）</strong> + 附件（ERP 截圖 / 廠商報價單 PDF），送出進入 BU 審核。
+                </div>
+                <div class="alice-tag">
+                  <i class="bi bi-person-heart"></i>
+                  <strong>需 Alice 協助：</strong>模具請購單由 <strong>ERP 直接匯入</strong>（輸入單號 → 自動帶入所有明細）；ERP 已建立的廠內料號 / 模具料號<strong>自動帶入成本表</strong>，工程師僅補填尚未建檔項
                 </div>
                 <div class="notif-row">
                   <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>送出前檢查所有有模治具的站別均填妥模具料號</span>
@@ -497,6 +524,10 @@
                   標記「確定議價」需同時上傳新報價單（自動歸類為【議價後報價單】並顯示於附件區）；<br>
                   填寫 ERP 模具採購單號；可填入「實際開模 T1 時間」（晚於客戶需求自動跳紅色警示）；<br>
                   勾選單一提醒：「所有單價皆已回 keyin 至 ERP」。
+                </div>
+                <div class="alice-tag">
+                  <i class="bi bi-person-heart"></i>
+                  <strong>需 Alice 協助：</strong>議價完成後的<strong>最終單價自動寫入 ERP</strong>（採購單明細單價欄位），免除人工 keyin；ERP 回寫成功後自動勾銷「回 keyin 提醒」
                 </div>
                 <div class="notif-row">
                   <span class="n-info"><i class="bi bi-arrow-left-right"></i>議價資料即時回寫 BU/業務 檢視的成本試算表（顯示議價後利潤% 變化）</span>
