@@ -165,7 +165,7 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="card stat-card text-center p-3">
-        <div class="fs-2 fw-bold text-warning">8</div>
+        <div class="fs-2 fw-bold text-warning">5</div>
         <div class="small text-muted">角色與權限</div>
       </div>
     </div>
@@ -288,14 +288,13 @@
               <div class="step-connector"><div class="step-num" style="background:#fd7e14">3</div><div class="step-line"></div></div>
               <div class="step-body color-orange">
                 <div class="d-flex align-items-center gap-2 flex-wrap">
-                  <span class="step-label">供應商回報報價</span>
-                  <span class="rb rb-supplier">供應商</span>
+                  <span class="step-label">回報報價（代供應商填入）</span>
                   <span class="rb rb-purchase">採購主</span>
                   <span class="rb rb-engineer">工程輔</span>
                 </div>
                 <div class="step-sub">
-                  回填：單價、模治具費、交期天數、備註，並上傳報價單 PDF。<br>
-                  <strong>採購為主、工程為輔</strong>：兩者皆可代供應商填入價格與附件，共同完成報價回收；系統記錄實際回填人。
+                  供應商 Email 回傳報價後，由「採購為主、工程為輔」代供應商於系統回填：<br>
+                  單價、模治具費、交期天數、備註 + 上傳報價單 PDF。系統記錄實際回填人。
                 </div>
                 <div class="notif-row">
                   <span class="n-info"><i class="bi bi-people-fill"></i>採購 + 工程皆可代填價格與上傳附件</span>
@@ -402,7 +401,7 @@
           <div class="feature-card">
             <div class="feature-title"><i class="bi bi-file-earmark-pdf me-1"></i>客戶報價單 PDF</div>
             <div class="small text-muted">
-              公司 LOGO、地址（樹林區三俊街 154 號）、電話、業務 + 業務主管簽章欄；匯率固定 1 USD = 32 TWD。
+              公司 LOGO、地址（樹林區三俊街 154 號）、電話、業務 + BU Head 簽章欄；匯率固定 1 USD = 32 TWD。
             </div>
           </div>
         </div>
@@ -453,12 +452,12 @@
                 <div class="d-flex align-items-center gap-2 flex-wrap">
                   <span class="step-label">料號 · 模具請購單（工程）</span>
                   <span class="rb rb-engineer">工程師</span>
-                  <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_ENG（虛擬階段）</span>
+                  <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_ENG（工程子階段）</span>
                 </div>
                 <div class="step-sub">
                   在「成本表」為每站填寫【廠內料號】+ 是否走途程（SFT）+ 【模具料號】；<br>
                   儲存前後欄位視覺有差異（綠底/虛線），確保未填不會漏。<br>
-                  接著填入 ERP 模具請購單號 + 附件（ERP 截圖 / 廠商報價單 PDF），送出進入 BU 審核。
+                  接著填入 <strong>ERP 模具請購單號（真實單號，非虛擬）</strong> + 附件（ERP 截圖 / 廠商報價單 PDF），送出進入 BU 審核。
                 </div>
                 <div class="notif-row">
                   <span class="n-warn"><i class="bi bi-exclamation-triangle-fill"></i>送出前檢查所有有模治具的站別均填妥模具料號</span>
@@ -644,17 +643,23 @@
 
     <!-- ══════════════ Tab 4: 角色與權限 ══════════════ -->
     <div class="tab-pane fade" id="tab-roles">
-      <div class="section-title"><i class="bi bi-people-fill me-2" style="color:#17a2b8"></i>NPI 系統 8 個角色</div>
+      <div class="section-title"><i class="bi bi-people-fill me-2" style="color:#17a2b8"></i>NPI 系統 5 個角色（精簡）</div>
+      <div class="alert alert-info small py-2 mb-3">
+        <i class="bi bi-info-circle-fill me-1"></i>
+        NPI 不設「供應商」獨立帳號 — 詢價回填由<strong>採購（主）/ 工程（輔）</strong>代供應商於系統完成。<br>
+        <i class="bi bi-info-circle-fill me-1"></i>
+        NPI 亦不設「業務主管 / 工程主管」— <strong>BU Head</strong> 一人主理各 BU 全流程審核與 C.C.。
+      </div>
       <div class="row g-3">
 
         <div class="col-md-6 col-lg-4">
           <div class="feature-card">
             <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-sales">業務</span><span class="fw-bold">SALES</span></div>
             <div class="small text-muted">
-              • 建立 RFQ 詢價單<br>
+              • 建立 RFQ 詢價單（AI 智慧辨識客戶附件）<br>
               • 試算成本送 BU 審核<br>
               • 發送客戶報價 PDF<br>
-              • NPI 階段填 T1 計畫
+              • NPI 階段填客戶需求 T1 計畫
             </div>
           </div>
         </div>
@@ -663,9 +668,11 @@
           <div class="feature-card">
             <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-engineer">工程師</span><span class="fw-bold">ENGINEER</span></div>
             <div class="small text-muted">
-              • 派發供應商詢價<br>
+              • 派發供應商詢價（Email 模組 + 供應商資料庫下拉）<br>
+              • <strong>代供應商回填報價 / 上傳報價單</strong>（輔助採購）<br>
+              • 宣告報價收齊（與採購共同）<br>
               • NPI 填廠內料號 / 模具料號<br>
-              • 送出 ERP 模具請購單
+              • 送出 <strong>真實</strong> ERP 模具請購單
             </div>
           </div>
         </div>
@@ -674,10 +681,12 @@
           <div class="feature-card">
             <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-purchase">採購</span><span class="fw-bold">PURCHASE</span></div>
             <div class="small text-muted">
-              • 宣告報價收齊<br>
-              • NPI 階段議價<br>
-              • 上傳議價後報價單 / 填 ERP 採購單號<br>
-              • 按「結案」產出 PDF 歸檔
+              • <strong>代供應商回填報價 / 上傳報價單（主責）</strong><br>
+              • 宣告報價收齊（與工程共同）<br>
+              • 管理供應商資料庫（廠內 / 外部）<br>
+              • NPI 階段議價、上傳議價後報價單<br>
+              • 填 <strong>真實</strong> ERP 採購單號、勾選 ERP 回 keyin 提醒<br>
+              • 按「結案」產出售價成本分析表 PDF
             </div>
           </div>
         </div>
@@ -686,40 +695,10 @@
           <div class="feature-card">
             <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-bu">BU Head</span><span class="fw-bold">BU</span></div>
             <div class="small text-muted">
-              • 核准 RFQ 成本試算<br>
-              • 核准 NPI 模治具請購單<br>
-              • 退回業務 / 採購（可指定對象）
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-supplier">供應商</span><span class="fw-bold">SUPPLIER</span></div>
-            <div class="small text-muted">
-              • 於詢價介面回填單價 / 模治具費 / 交期<br>
-              • 上傳報價單 PDF<br>
-              • 類型：廠內（機加工課 / 模具課）/ 外部
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-sales">業務主管</span><span class="fw-bold">SALES_SENIOR</span></div>
-            <div class="small text-muted">
-              • 各 BU 的資深業務<br>
-              • BU 核准後 C.C. 知悉<br>
-              • 客戶報價單簽章（業務主管欄）
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="feature-card">
-            <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-engineer">工程主管</span><span class="fw-bold">ENG_MGR</span></div>
-            <div class="small text-muted">
-              • BU 核准 / 退回製程單 C.C.
+              • 核准 RFQ 成本試算（原業務主管簽章併入）<br>
+              • 核准 NPI 模治具請購單（原工程主管 C.C. 併入）<br>
+              • 退回業務 / 採購（可指定對象）<br>
+              • 結案後 C.C. 知悉
             </div>
           </div>
         </div>
@@ -729,7 +708,8 @@
             <div class="d-flex align-items-center gap-2 mb-2"><span class="rb rb-admin">管理員</span><span class="fw-bold">ADMIN</span></div>
             <div class="small text-muted">
               • 全權限<br>
-              • 可執行任意角色的動作（測試/除錯）
+              • 可執行任意角色的動作（測試/除錯）<br>
+              • 使用者主檔 / 供應商主檔維護
             </div>
           </div>
         </div>
@@ -761,7 +741,7 @@
             <div class="fw-bold mb-2" style="color:#17a2b8">NPI 階段</div>
             <div class="d-flex flex-wrap gap-2">
               <span class="status-pill" style="background:#fff3cd;color:#664d03">NPI_STARTED 業務 T1 計畫</span>
-              <span class="status-pill" style="background:#e7f1d4;color:#2d4a00">NPI_ENG 工程料號（虛擬）</span>
+              <span class="status-pill" style="background:#e7f1d4;color:#2d4a00">NPI_ENG 工程料號 · 真實 ERP 單號</span>
               <span class="status-pill" style="background:#ede7f6;color:#4a148c">NPI_PENDING_BU 待 BU 核准</span>
               <span class="status-pill" style="background:#d1ecf1;color:#0c5460">NPI_PENDING_PURCHASE 待採購議價</span>
               <span class="status-pill" style="background:#212529;color:#fff">CLOSED 結案</span>
@@ -776,14 +756,52 @@
         </div>
       </div>
 
-      <div class="section-title mt-4"><i class="bi bi-folder-fill me-2" style="color:#17a2b8"></i>NAS 歸檔結構</div>
+      <div class="section-title mt-4"><i class="bi bi-folder-fill me-2" style="color:#17a2b8"></i>NAS 歸檔結構（完整 RFQ + NPI 全資料入 NAS）</div>
+      <div class="alert alert-warning small py-2 mb-3">
+        <i class="bi bi-hdd-network-fill me-1"></i>
+        <strong>完整 RFQ 相關資料入 NAS</strong>：RFQ 階段產生的所有附件（客戶詢價信、圖面、供應商報價、議價後報價、客戶報價 PDF、成本試算快照）皆於業務發送客戶報價單當下自動打包歸檔至 <code>RFQ_Archive/</code>；NPI 結案時再將議價結果與售價成本分析表同步落於 <code>NPI_Closure/</code>。單一 <code>{form_id}</code> 資料夾保存完整軌跡供稽核。
+      </div>
       <div class="card p-3">
         <pre class="mb-0 small"><code>{NAS_ROOT}/
- └── {form_id}/                      ← 例：RFQ-20260418-013
-      ├── RFQ_Archive/
-      │    └── REF-{機種}.pdf        ← RFQ 結案歸檔（客戶報價 + 成本試算）
-      └── NPI_Closure/
-           └── 售價成本分析表.pdf     ← NPI 結案 KPI 報告（議價前後利潤對照）</code></pre>
+ └── {form_id}/                           ← 例：RFQ-20260418-013（RFQ→NPI 沿用同一單號）
+      ├── RFQ_Archive/                    ← 【RFQ 階段完整歸檔】
+      │    ├── 01_客戶詢價信/             ← 客戶原始詢價 Email / PDF / 圖面截圖
+      │    │    └── *.pdf, *.eml, *.png
+      │    ├── 02_圖面/                   ← 客戶提供圖面（AI 辨識後分類）
+      │    │    └── DWG-*.pdf
+      │    ├── 03_詢價派發/               ← 工程派發的詢價信副本（Email 模組產出）
+      │    │    └── INQ-{supplier}-{process}.pdf
+      │    ├── 04_供應商報價/             ← 各家原始報價 PDF（採購/工程代填時上傳）
+      │    │    └── QUOTE-{supplier}-{drawing}.pdf
+      │    ├── 05_成本試算快照.xlsx       ← 業務試算表 JSON 轉 Excel 備份
+      │    ├── 06_BU_核准記錄.pdf         ← 核准簽章 / 退回紀錄匯出
+      │    └── 07_客戶報價單_REF-{機種}.pdf ← 正式發送客戶的報價 PDF（TWD/USD）
+      │
+      └── NPI_Closure/                    ← 【NPI 結案歸檔】
+           ├── T1_計畫表.pdf              ← 客戶需求 vs 實際開模 T1 對照
+           ├── 議價後報價單/              ← 採購議價階段所有新報價 PDF
+           │    └── BARG-{supplier}-{drawing}.pdf
+           ├── ERP_單號清單.txt           ← 模具請購單號 / 模具採購單號
+           └── 售價成本分析表.pdf         ← 議價前後利潤 KPI 報告（結案主檔）</code></pre>
+      </div>
+      <div class="row g-3 mt-2">
+        <div class="col-md-6">
+          <div class="feature-card" style="border-left-color:#0d6efd">
+            <div class="feature-title"><i class="bi bi-upload me-1"></i>觸發時機 — RFQ_Archive</div>
+            <div class="small text-muted">
+              業務於 Step 7「發送客戶報價單」按下送出時，後台自動收集全部 RFQ 階段附件與試算快照打包落 NAS；<br>
+              後續 NPI 階段若有補件（如客戶補圖），同步 append 至對應子資料夾。
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="feature-card" style="border-left-color:#17a2b8">
+            <div class="feature-title"><i class="bi bi-upload me-1"></i>觸發時機 — NPI_Closure</div>
+            <div class="small text-muted">
+              採購按下「結案」時，後台產出「售價成本分析表 PDF」並將議價階段的新報價 / ERP 單號 / T1 對照同步寫入 <code>NPI_Closure/</code>。
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="section-title mt-4"><i class="bi bi-database-fill me-2" style="color:#17a2b8"></i>核心資料欄位</div>
@@ -819,7 +837,7 @@
 </div>
 
 <footer class="text-center py-4 small text-muted">
-  鴻騰電子 NPI 系統 — 開發中版本 ｜ 最後更新：2026-04-19
+  鴻騰電子 NPI 系統 — 開發中版本 ｜ 最後更新：2026-04-19（角色精簡 · ERP 真實單號 · 完整 NAS 歸檔）
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
