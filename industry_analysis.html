@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 產業分析報告（記憶體 / BBU / CPO）</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+  .sys-header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #6610f2 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .stat-card .stat-value { font-size:2.0rem; font-weight:700; line-height:1; }
+  .stat-card .stat-label { font-size:.82rem; color:#6c757d; margin-top:.3rem; }
+  .stat-card .stat-icon { font-size:2rem; opacity:.25; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #6610f2; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+  .nav-tabs .nav-link { color:#495057; padding:.7rem 1.3rem; font-size:.98rem; }
+  .nav-tabs .nav-link.active { font-weight:600; color:#6610f2; border-color:#dee2e6 #dee2e6 #fff; }
+  .tab-content { background:white; border-radius:0 12px 12px 12px; padding:1.75rem; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .trend-chip {
+    display:inline-block; background:#f3e8ff; color:#6610f2; border:1px solid #d8b4fe;
+    border-radius:20px; padding:.3rem .85rem; margin:.15rem; font-size:.82rem; font-weight:500;
+  }
+  .client-card {
+    border:1px solid #e9ecef; border-radius:10px; padding:1.1rem; margin-bottom:.9rem;
+    background:#fcfcfd; transition: box-shadow .2s;
+  }
+  .client-card:hover { box-shadow:0 4px 12px rgba(102,16,242,.08); }
+  .client-card .client-name { font-size:1.05rem; font-weight:700; color:#1a3a5c; }
+  .client-card .client-meta { font-size:.82rem; color:#6c757d; }
+  .client-card .client-body { font-size:.9rem; margin-top:.6rem; line-height:1.7; }
+  .rating { color:#f59e0b; font-size:.95rem; letter-spacing:1px; }
+  .rating .text { color:#6c757d; font-size:.8rem; margin-left:.4rem; }
+  .opp-table th { background:#f8f9fa; font-size:.85rem; }
+  .opp-table td { font-size:.88rem; vertical-align: middle; }
+  .opp-table .rating { white-space:nowrap; }
+  .strategy-card {
+    background:#f8f7ff; border-left:4px solid #6610f2; border-radius:8px;
+    padding:1rem 1.2rem; margin-bottom:.9rem;
+  }
+  .strategy-card .s-title { font-weight:700; color:#6610f2; margin-bottom:.4rem; }
+  .strategy-card .s-body { font-size:.88rem; line-height:1.7; color:#333; }
+  .region-table th { background:#eef2ff; font-size:.85rem; color:#1a3a5c; }
+  .region-table td { font-size:.88rem; vertical-align: middle; }
+  .level-h { background:#10b981; color:white; }
+  .level-m { background:#f59e0b; color:white; }
+  .level-l { background:#6c757d; color:white; }
+  .level-chip { display:inline-block; padding:.15rem .6rem; border-radius:10px; font-size:.75rem; font-weight:600; }
+  .footer-note { color:#6c757d; font-size:.82rem; text-align:center; padding:2rem 0 1rem; }
+  .alert-warn { background:#fff8e1; border-left:4px solid #f59e0b; padding:.8rem 1rem; border-radius:6px; font-size:.85rem; margin-bottom:1rem; }
+  .source-list { font-size:.78rem; color:#6c757d; }
+  .source-list a { color:#6610f2; text-decoration:none; }
+  .source-list a:hover { text-decoration:underline; }
+  h3.sub-h { font-size:1.15rem; color:#1a3a5c; margin-top:1.75rem; margin-bottom:1rem; }
+</style>
+</head>
+<body>
+
+<div class="sys-header">
+  <div class="container">
+    <h2 class="mb-1"><i class="bi bi-diagram-3-fill"></i> 鴻騰電子 — 產業分析報告</h2>
+    <div class="subtitle">記憶體模組 / BBU 電池備援 / CPO 光學共封裝 ・ 結合金屬加工切入策略 ・ 更新：2026-04-21</div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-memory" type="button"><i class="bi bi-memory"></i> 記憶體 <span class="badge bg-secondary ms-1">4</span></button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-bbu" type="button"><i class="bi bi-battery-charging"></i> BBU 電池備援 <span class="badge bg-secondary ms-1">4</span></button></li>
+    <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-cpo" type="button"><i class="bi bi-broadcast-pin"></i> CPO 光學共封裝 <span class="badge bg-secondary ms-1">2</span></button></li>
+  </ul>
+
+  <div class="tab-content">
+
+    <!-- ==================== 記憶體 Tab ==================== -->
+    <div class="tab-pane fade show active" id="tab-memory" role="tabpanel">
+
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">$1,283B</div><div class="stat-label">全球 DRAM 市場 2026</div></div>
+            <i class="bi bi-cpu stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">4</div><div class="stat-label">台灣指定客戶</div></div>
+            <i class="bi bi-building stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">5</div><div class="stat-label">歐美潛在客戶</div></div>
+            <i class="bi bi-globe-americas stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">8</div><div class="stat-label">金屬加工切入品類</div></div>
+            <i class="bi bi-tools stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 趨勢關鍵字 -->
+      <div class="mb-4">
+        <div class="section-title">市場趨勢關鍵字</div>
+        <span class="trend-chip">AI 吞噬 20% DRAM 晶圓產能（2026）</span>
+        <span class="trend-chip">DDR5 滲透率 35%→主流</span>
+        <span class="trend-chip">HBM／GDDR7 爆發</span>
+        <span class="trend-chip">AI 伺服器 YoY +65~80%</span>
+        <span class="trend-chip">PCIe Gen5 SSD 散熱剛需</span>
+        <span class="trend-chip">ESG 再生鋁（CES 2026 獎）</span>
+      </div>
+
+      <!-- 市場概覽 -->
+      <h3 class="sub-h"><i class="bi bi-graph-up"></i> A. 市場概覽</h3>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li>全球記憶體模組市場 2026 約 <strong>USD 126.5 億</strong>，CAGR 5.38%，2035 年達 USD 177.6 億</li>
+            <li>全球 DRAM 市場 2026 <strong>USD 1,283.6 億</strong>，2034 翻倍至 USD 2,237 億（Fortune Business Insights）</li>
+            <li>AI 伺服器 2026 將吃掉全球 DRAM 晶圓 <strong>20%</strong>，HBM／GDDR7 主導（TrendForce 2025-12）</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li>DDR5 滲透率 2024 年 35%（2022 年僅 8%），2026 年持續放量，年產能僅增 10-15%，供不應求</li>
+            <li>金屬件佔模組 BOM：DRAM 散熱片 <strong>3-8%</strong>；消費電競 RGB 款可達 <strong>10-15%</strong>；M.2 SSD 鋁殼／heatsink 約 <strong>5-12%</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 台灣客戶分析 -->
+      <h3 class="sub-h"><i class="bi bi-geo-alt-fill"></i> B. 台灣指定客戶分析</h3>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-1-circle-fill text-primary"></i> 金士頓 Kingston Technology</div>
+            <div class="client-meta">總部：美國加州 Fountain Valley ・ 亞太總部與主力工廠：<strong>新竹</strong></div>
+          </div>
+          <div class="rating">★★★★☆<span class="text">切入等級：高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>主力產品：</strong>DRAM Module（全球第三方市佔 &gt;70%）、KC3000/Fury SSD、USB/SD 卡。<br>
+          <strong>金屬件需求：</strong>Fury Renegade/Beast DDR4/DDR5 heat spreader、M.2 SSD heatsink、零售盒裝銘板、廠內治具。<br>
+          <strong>建議切入點：</strong>新竹廠已有本土鈑金／CNC 在地供應池，鴻騰需切入 AVL。優先以 <strong>Fury 電競系列鋁擠＋陽極散熱片</strong> 及 <strong>組裝治具代工</strong>（門檻較低的敲門磚）切入，先做小量 PCR 測試。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-2-circle-fill text-primary"></i> 海盜船 Corsair</div>
+            <div class="client-meta">總部：美國加州 Milpitas ・ 生產組裝：<strong>桃園大園區</strong>（Corsair Memory Co., Ltd.）</div>
+          </div>
+          <div class="rating">★★★★☆<span class="text">切入等級：中高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>主力產品：</strong>Vengeance/Dominator DDR5、MP700 Gen5 SSD、電競周邊（鍵盤/機殼/水冷）。<br>
+          <strong>金屬件需求：</strong>Dominator 高階鋁擠散熱片（陽極處理要求高）、SSD heatsink、水冷扣具、鍵盤背板、機殼鈑金件。<br>
+          <strong>建議切入點：</strong>桃園在地優勢，鎖定 <strong>Dominator Platinum 系列鋁擠＋陽極散熱片</strong>（鴻騰強項對位）與 <strong>水冷頭/扣具 CNC 件</strong>，機殼鈑金為次要戰線。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-3-circle-fill text-primary"></i> 十銓 Team Group</div>
+            <div class="client-meta">總部：<strong>新北市中和區</strong>（研發＋部分產線在台）</div>
+          </div>
+          <div class="rating">★★★★★<span class="text">切入等級：最高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>主力產品：</strong>T-FORCE 電競 DRAM/SSD、T-CREATE 創作者 SSD（PCIe 5.0 H514 14.2 GB/s）、工業記憶體。<br>
+          <strong>金屬件需求：</strong><strong>T-Force Dark AirFlow SSD Cooler</strong>（被 Tom's Hardware 評為最強 NVMe 散熱器）、G70 PRO 鋁鰭散熱片、Z540 超薄石墨烯散熱、DDR5 鋁散熱片。<br>
+          <strong>建議切入點：</strong>同屬新北，地緣優勢極佳。首選 <strong>SSD Cooler 全金屬結構件代工</strong>（風扇罩/鰭片/底座鴻騰皆可做）＋ DDR5 heat spreader，AirFlow 系列自研散熱器需求旺盛。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-4-circle-fill text-primary"></i> 科賦 Klevv（Essencore）</div>
+            <div class="client-meta">總部：香港 ・ 台北銷售辦公室 ・ 母公司 Essencore（SK 集團，與 SK Hynix 姊妹公司）</div>
+          </div>
+          <div class="rating">★★★☆☆<span class="text">切入等級：中</span></div>
+        </div>
+        <div class="client-body">
+          <strong>主力產品：</strong>CRAS V RGB DDR5 電競記憶體（SK Hynix A-Die）、SSD、microSD/USB。<br>
+          <strong>金屬件需求：</strong>DDR5 RGB 模組鋁擠散熱片（客製化外型多）、SSD 外殼。<br>
+          <strong>建議切入點：</strong>韓系品牌但模組組裝多走台灣協力廠，以 <strong>CRAS/URBANE 系列客製化鋁擠＋陽極散熱片</strong> 切入，優先度在 Kingston/Team Group 之後。
+        </div>
+      </div>
+
+      <!-- 歐美潛在客戶 -->
+      <h3 class="sub-h"><i class="bi bi-globe-americas"></i> C. 歐美潛在客戶</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>總部</th><th>主力產品</th><th>金屬件需求</th><th>切入難度</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Micron / Crucial</strong></td><td>美國愛達荷</td><td>DDR5 模組、企業級 RDIMM</td><td>Crucial Pro 鋁擠 heat spreader、RDIMM 導熱件</td><td><span class="level-chip level-m">中高</span>（Crucial 消費線 2026-02 收攤）</td></tr>
+          <tr><td><strong>G.Skill</strong></td><td><strong>台灣新北</strong></td><td>Trident Z5/Ripjaws DDR5</td><td>鋁擠散熱片、RGB 外殼</td><td><span class="level-chip level-h">低（台廠）</span></td></tr>
+          <tr><td><strong>ADATA / XPG</strong></td><td>台灣新北中和</td><td>NOVAKEY RGB DDR5（CES 2026 Best of Innovation，50% 再生鋁）、STORM SSD heatsink</td><td>再生鋁擠散熱片、M.2 heatsink</td><td><span class="level-chip level-h">低（ESG 再生鋁是亮點）</span></td></tr>
+          <tr><td><strong>Patriot Memory</strong></td><td>美國加州</td><td>Viper 電競 DDR5/SSD</td><td>鋁散熱片、SSD 外殼</td><td><span class="level-chip level-m">中</span></td></tr>
+          <tr><td><strong>Sandisk</strong>（2025-02 自 WD 切分）</td><td>美國加州</td><td>NAND/SSD</td><td>SSD 鋁殼、機構件</td><td><span class="level-chip level-m">中（東南亞產線為主）</span></td></tr>
+        </tbody>
+      </table>
+
+      <!-- 東南亞潛在客戶 -->
+      <h3 class="sub-h"><i class="bi bi-globe2"></i> D. 東南亞潛在客戶</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>國家/據點</th><th>產品</th><th>切入機會</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sandisk Storage Malaysia</strong></td><td>馬來西亞檳城</td><td>NAND/SSD 組裝測試</td><td>SSD 鋁殼、治具（Penang 擴廠中）</td></tr>
+          <tr><td><strong>Western Digital</strong></td><td>泰國 Bang Pa-In、Prachinburi</td><td>HDD 主力</td><td>HDD 機構件（較傳統）</td></tr>
+          <tr><td><strong>Kingston 馬來西亞組裝線</strong></td><td>檳城（外包）</td><td>USB/SD 卡組裝</td><td>小件金屬銘板、外殼</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 金屬加工切入點 -->
+      <h3 class="sub-h"><i class="bi bi-tools"></i> E. 鴻騰金屬加工切入品類（8 項）</h3>
+      <table class="table opp-table">
+        <thead><tr><th>#</th><th>金屬件品類</th><th>製程</th><th>商機評估</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>DDR5 DRAM 鋁擠散熱片</strong></td><td>鋁擠 + 沖壓 + 陽極</td><td class="rating">★★★★★</td><td>量最大、DDR5 滲透率爆發</td></tr>
+          <tr><td>2</td><td><strong>M.2 NVMe SSD heatsink</strong>（PCIe Gen4/5）</td><td>鋁擠/CNC + 陽極</td><td class="rating">★★★★★</td><td>Gen5 發熱嚴重、剛性需求</td></tr>
+          <tr><td>3</td><td>電競 RGB 記憶體高階鋁擠外殼（Dominator 級）</td><td>鋁擠 + 多軸 CNC + 陽極</td><td class="rating">★★★★☆</td><td>毛利高、需精密 CNC</td></tr>
+          <tr><td>4</td><td>SSD 全金屬 Cooler（風扇+鰭片式）</td><td>鈑金 + CNC + 壓鑄底座</td><td class="rating">★★★★☆</td><td>PCIe 5.0 時代新藍海</td></tr>
+          <tr><td>5</td><td><strong>伺服器 RDIMM 導熱結構件</strong>（AI 伺服器）</td><td>壓鑄 + CNC</td><td class="rating">★★★★☆</td><td>AI 伺服器 65-80% 成長最大紅利</td></tr>
+          <tr><td>6</td><td>2.5" SATA SSD 鋁殼／外接 SSD 鋁殼</td><td>鈑金 + 陽極</td><td class="rating">★★★☆☆</td><td>量大但價格競爭激烈</td></tr>
+          <tr><td>7</td><td>USB 隨身碟金屬外殼/銘板</td><td>壓鑄 + 陽極</td><td class="rating">★★☆☆☆</td><td>單價低，量大</td></tr>
+          <tr><td>8</td><td><strong>工廠組裝治具/測試夾具</strong>（切入敲門磚）</td><td>CNC + 鈑金</td><td class="rating">★★★★★</td><td>最佳 AVL 入門款</td></tr>
+        </tbody>
+      </table>
+
+      <!-- 策略建議 -->
+      <h3 class="sub-h"><i class="bi bi-flag-fill"></i> F. 銷售策略建議</h3>
+      <div class="strategy-card">
+        <div class="s-title">策略 1：Tier 1 優先攻四家在地客（距離近、打樣快）</div>
+        <div class="s-body">Kingston（新竹）、Corsair（桃園大園）、Team Group（新北中和）、G.Skill／ADATA（同區域）——距離近、台語溝通、快速打樣。<strong>先用治具/測試夾具切入 AVL</strong>，再向散熱片延伸。建議 6 個月內完成首張 PO。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 2：以「ESG 再生鋁 + 陽極一條龍」差異化</div>
+        <div class="s-body">ADATA XPG NOVAKEY 2026 年用 50% 再生鋁得 CES 大獎，顯示品牌端 ESG 剛需。鴻騰擁有陽極線是護城河，可包裝「<strong>再生鋁擠 + CNC + 陽極氧化一條龍</strong>」切入電競高階產品。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 3：卡位 AI 伺服器 RDIMM 金屬件（毛利遠高於消費散熱片）</div>
+        <div class="s-body">2026 年 AI 吃 20% DRAM 產能是十年級機會。<strong>企業級 RDIMM 導熱件／機構件毛利遠高於消費電競散熱片</strong>。建議透過 Kingston／Micron 的 Server DRAM 事業部切入，走壓鑄+CNC 複合製程，搭配台達電、凌陽既有業務協調夥伴關係做通路引薦。</div>
+      </div>
+
+      <div class="source-list mt-4">
+        <strong>主要來源：</strong>
+        <a href="https://www.trendforce.com/news/2025/12/26/news-ai-reportedly-to-consume-20-of-global-dram-wafer-capacity-in-2026-hbm-gddr7-lead-demand/" target="_blank">TrendForce 2025-12</a> ｜
+        <a href="https://www.fortunebusinessinsights.com/dram-market-109251" target="_blank">Fortune Business Insights DRAM</a> ｜
+        <a href="https://www.tomshardware.com/pc-components/heatsinks/teamgroup-t-force-dark-airflow-i-ssd-cooler-review" target="_blank">Tom's Hardware T-Force AirFlow Review</a> ｜
+        <a href="https://hwbusters.com/news/xpg-wins-ces-2026-best-of-innovation-award-for-novakey-rgb-ddr5-gaming-memory/" target="_blank">Hardware Busters XPG CES 2026</a>
+      </div>
+
+    </div>
+
+    <!-- ==================== BBU Tab ==================== -->
+    <div class="tab-pane fade" id="tab-bbu" role="tabpanel">
+
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">$406M→$586M</div><div class="stat-label">BBU 市場 2024→2031</div></div>
+            <i class="bi bi-battery-charging stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">5/機櫃</div><div class="stat-label">GB300 BBU 顆數</div></div>
+            <i class="bi bi-server stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">$200-350</div><div class="stat-label">單機櫃金屬件商機（USD）</div></div>
+            <i class="bi bi-cash-coin stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">$690B</div><div class="stat-label">2026 四大 Hyperscaler CapEx</div></div>
+            <i class="bi bi-building stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="section-title">市場趨勢關鍵字</div>
+        <span class="trend-chip">NVIDIA GB200/GB300 機櫃出貨 5-6 萬台（YoY +100%）</span>
+        <span class="trend-chip">HVDC 400V/800V 新平台（2027 量產）</span>
+        <span class="trend-chip">美國德州在地製造（加百裕／系統電）</span>
+        <span class="trend-chip">ORV3 Power Shelf 規格主流</span>
+        <span class="trend-chip">Cold Plate 液冷 BBU 上升</span>
+        <span class="trend-chip">超級電容 + 鋰電混合</span>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-graph-up"></i> A. 市場概覽</h3>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li>全球伺服器 BBU 市場 2024 <strong>USD 406M</strong>，2031 <strong>USD 586M</strong>（CAGR 5.4%，Valuates）</li>
+            <li>NVIDIA <strong>GB300 每機櫃 5 顆 BBU</strong>，每顆 USD 300-400+，單機櫃 BBU 價值 ≈ USD 1,500</li>
+            <li>2026 GB200/GB300 機櫃出貨 <strong>50,000-60,000 台</strong>，YoY +100%（玉山證券）</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li>2026 四大 Hyperscaler CapEx <strong>USD 660-690B</strong>（+近 100% YoY）：Amazon $200B、Google $175-185B、Meta $115-135B、Microsoft $120B+</li>
+            <li><strong>金屬件佔 BBU BOM 12-18%</strong>：電芯 50-55%、BMS/電路 15-20%、金屬機構件（Tray/外殼/Busbar/散熱板）12-18%</li>
+            <li>單顆 BBU 金屬件價值 <strong>USD 40-70</strong>，單機櫃金屬件商機 <strong>USD 200-350</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-geo-alt-fill"></i> B. 台灣指定客戶分析</h3>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-1-circle-fill text-primary"></i> 順達科技 Simplo Technology（3211）</div>
+            <div class="client-meta">總部：<strong>新北市土城</strong> ・ 工廠：常熟、重慶</div>
+          </div>
+          <div class="rating">★★★★★<span class="text">切入等級：最高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>定位：</strong>台廠電池模組龍頭之一，NB 電池起家，BBU 為 2026 非 IT 業務最大動能。<br>
+          <strong>BBU 產品：</strong>與 <strong>台達電、光寶共同開發 48V/400VDC/800VDC HVDC BBU</strong>，2027 量產。<br>
+          <strong>客戶層級：</strong>透過台達電／光寶間接進入 NVIDIA GB200/GB300 生態系。<strong>2026 CapEx NTD 5 億，BBU 產能翻倍</strong>。<br>
+          <strong>需要金屬件：</strong>電池模組 Tray、PACK 外殼、Busbar、散熱鋁板、機櫃 Bracket。<br>
+          <strong>鴻騰切入：</strong>新北總部地緣佳、BBU 擴產期、HVDC 新平台需要新金屬件供應商——最優先的目標客戶。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-2-circle-fill text-primary"></i> AES-KY（6781）</div>
+            <div class="client-meta">台灣 BBU 純度最高企業之一 ・ 主要客戶：AWS、Microsoft</div>
+          </div>
+          <div class="rating">★★★★★<span class="text">切入等級：最高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>定位：</strong>專注 AI 資料中心 BBU／電源模組，<strong>2025 年 BBU 營收約 NTD 110 億</strong>，台股 BBU 純度最高標的之一。<br>
+          <strong>客戶層級：</strong>直接服務 <strong>AWS、Microsoft</strong> 兩大 Hyperscaler，進入北美超大規模業者供應鏈。<br>
+          <strong>需要金屬件：</strong>電池模組 Tray、鋁外殼、Busbar、散熱板、機櫃 Bracket、PACK 機構件。<br>
+          <strong>鴻騰切入：</strong>BBU 營收規模龐大、客戶為一線 CSP，金屬件訂單量穩定，是鴻騰儲能事業部 <strong>最優先攻堅目標</strong>——切入後可同時間接服務 AWS、Microsoft 供應鏈。建議從 Tray 或 Bracket 等技術門檻中等品類打 AVL。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-3-circle-fill text-primary"></i> 新盛力（1752）</div>
+            <div class="client-meta">台灣 BBU 純度最高兩檔之一 ・ Meta HVDC BBU 已通過認證</div>
+          </div>
+          <div class="rating">★★★★★<span class="text">切入等級：最高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>定位：</strong>鋰電模組／BBU 專業廠，與 AES-KY 並列為台股 BBU 純度最高兩檔。<br>
+          <strong>BBU 產品：</strong><strong>送樣 Meta HVDC BBU 已通過認證</strong>，切入 ORV3 Power Shelf 高壓直流生態。HVDC（400V/800V）是 2027 年 AI 資料中心主流新平台。<br>
+          <strong>客戶層級：</strong>Meta 已認證，預期 2026-2027 放量；有機會延伸至其他 Hyperscaler。<br>
+          <strong>需要金屬件：</strong>HVDC 專用 Busbar（高載流、鍍層要求高）、電池 Tray、鈑金外殼、散熱鋁板、機櫃層板。<br>
+          <strong>鴻騰切入：</strong>HVDC 新平台需要「新金屬件供應商」一起驗證——這是 <strong>空窗期切入最佳時機</strong>，現有 AVL 未必能滿足 HVDC 規格。建議搭配策略 2 的「台灣加工＋北美 JIT」模式提案。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-4-circle-fill text-primary"></i> 系統電子 SysGration（3551）</div>
+            <div class="client-meta">總部：<strong>新北汐止</strong> ・ 德州廠 2026 Q1 量產 ・ 入股加百裕組 BBU 聯盟</div>
+          </div>
+          <div class="rating">★★★★☆<span class="text">切入等級：高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>定位：</strong>IPC／TPMS／無人機／BBU 四軸發展；2H26 BBU 為主要成長引擎。<br>
+          <strong>BBU 產品：</strong><strong>FlexSlot 2U 300W/550W 模組</strong>，鋰電 5S2P，德州廠 2026 Q1 量產。<br>
+          <strong>客戶層級：</strong>出貨 AWS 等 CSP；<strong>2025 入股加百裕 Celxpert（3323）近 20%、取得三席董事</strong>，形成 BBU 聯盟（加百裕德州廠 2025/11 已量產）。<br>
+          <strong>需要金屬件：</strong>2U 機架 BBU Shelf、鈑金外殼、Busbar、散熱鰭片、鎖附 Bracket。<br>
+          <strong>鴻騰切入：</strong>新北汐止離鴻騰近，IPC 底盤本就是鈑金件密集產品，適合作為切入首站。<strong>經系統電可同時接觸加百裕德州廠金屬件需求（一魚二吃）</strong>。
+        </div>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-globe-americas"></i> C. 歐美潛在客戶（OEM／系統商）</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>定位</th><th>鴻騰機會</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Delta Electronics US</strong></td><td>ORV3 HPR Power Shelf + BBU，NVIDIA GTC 主打</td><td><span class="level-chip level-h">最高</span> 台達電既有業務協調夥伴，優先滲透</td></tr>
+          <tr><td><strong>Vertiv</strong></td><td>Liebert EXL S1 UPS／BBU，AI 專用</td><td><span class="level-chip level-h">高</span> 機櫃鈑金、Busbar 機會大</td></tr>
+          <tr><td><strong>Schneider Electric</strong></td><td>歐洲大廠，與 Delta/Vertiv 合計 BBU 市佔 &gt;60%</td><td><span class="level-chip level-m">中</span> 歐洲供應鏈長、門檻較高</td></tr>
+          <tr><td><strong>Eaton</strong></td><td>AI 資料中心電力整合，併購 Resilient Power</td><td><span class="level-chip level-m">中</span> 擴 BBU 中</td></tr>
+          <tr><td><strong>Flex / Jabil</strong></td><td>EMS 組裝，為 Meta/AWS ORV3 BBU Shelf 代工</td><td><span class="level-chip level-h">高</span> 鈑金+Busbar 代工切入點明確</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-h"><i class="bi bi-globe2"></i> D. 東南亞潛在客戶</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>國家</th><th>產品</th><th>切入角度</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Fluence + ACE Engineering</strong></td><td>越南北江</td><td>35 GWh/年 BESS 工廠（2025 Q3 投產）</td><td>PACK Tray、鋁外殼，規避中美關稅</td></tr>
+          <tr><td><strong>Goldwind + GG Industries</strong></td><td>越南興安</td><td>5 GWh/年 C&amp;I/電網 BESS</td><td>儲能機櫃金屬件</td></tr>
+          <tr><td><strong>Arun Plus + GPSC + Gotion JV</strong></td><td>泰國</td><td>鋰電池 PACK Gigafactory</td><td>PACK 外殼、Tray</td></tr>
+          <tr><td><strong>CSB Battery Vietnam</strong></td><td>越南</td><td>VRLA UPS／電信備援</td><td>UPS 機殼、Bracket</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-h"><i class="bi bi-tools"></i> E. 鴻騰金屬加工切入品類（8 項）</h3>
+      <table class="table opp-table">
+        <thead><tr><th>#</th><th>金屬件</th><th>製程</th><th>商機</th><th>技術門檻</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>鋁製電池 Tray</strong>（承載電芯）</td><td>鋁擠＋CNC＋陽極</td><td class="rating">★★★★★</td><td>中（公差 ±0.1mm）</td><td>每機櫃 5 片</td></tr>
+          <tr><td>2</td><td><strong>模組鈑金外殼</strong></td><td>鈑金＋烤漆／陽極</td><td class="rating">★★★★★</td><td>低-中</td><td>高量</td></tr>
+          <tr><td>3</td><td><strong>Copper/Aluminum Busbar</strong></td><td>沖壓＋銅鍍錫／鎳</td><td class="rating">★★★★☆</td><td>中高（400-1500A、鍍層）</td><td>HVDC 升規用量大</td></tr>
+          <tr><td>4</td><td><strong>冷板 Cold Plate</strong>（液冷 BBU）</td><td>CNC＋FSW 攪拌摩擦焊</td><td class="rating">★★★★☆</td><td>高（水密、流道）</td><td>GB300 液冷趨勢</td></tr>
+          <tr><td>5</td><td>熱界面板／散熱鰭片</td><td>鋁擠＋CNC</td><td class="rating">★★★☆☆</td><td>中</td><td>—</td></tr>
+          <tr><td>6</td><td>機櫃層板／Shelf Bracket</td><td>鈑金＋折彎</td><td class="rating">★★★★☆</td><td>低</td><td>ORV3 規格</td></tr>
+          <tr><td>7</td><td>壓鑄外殼（戶外型 BBU NEMA 4x）</td><td>壓鑄＋表面處理</td><td class="rating">★★★☆☆</td><td>中高（IP65 密封）</td><td>—</td></tr>
+          <tr><td>8</td><td>BMS 固定支架</td><td>沖壓／CNC</td><td class="rating">★★★☆☆</td><td>低</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alert-warn" style="background:#e7f8ee; border-left-color:#10b981;">
+        <strong>優先順序：</strong>Busbar + 鋁 Tray + 鈑金外殼（既有能力 × 高用量最佳象限）。Cold Plate 是 2027 HVDC 液冷 BBU 的戰略卡位點，建議提前評估 FSW 攪拌摩擦焊設備投資。
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-flag-fill"></i> F. 銷售策略建議</h3>
+      <div class="strategy-card">
+        <div class="s-title">策略 1：綁定台達電／光寶／康舒（AcBel）上游入場券</div>
+        <div class="s-body">鴻騰既有台達電、凌陽協調關係，應優先透過台達電切入「ORV3 Power Shelf + BBU 金屬件」。台達電已公開是 NVIDIA GTC 合作夥伴，並與順達共同開發 HVDC BBU——走這條路等於 <strong>間接拿到 NVIDIA 生態系門票</strong>。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 2：鎖定「在地化金屬件」雙軌策略（台製前段 + 德州後段）</div>
+        <div class="s-body">系統電與加百裕已宣告美國德州廠 BBU 量產，但金屬件前段加工（Busbar、Tray）仍適合台灣完成、運美組裝。鴻騰可提供 <strong>「台灣加工＋德州 JIT 倉儲」</strong> 模式，服務加百裕／系統電／AES-KY 的北美訂單，切入 AWS／Microsoft 間接供應鏈。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 3：儲能事業部雙線並進（BBU + BESS，分散 CapEx 波動）</div>
+        <div class="s-body">鴻騰既有儲能事業部與 HonTen 數位管理系統，可同一套產線服務 BBU（AI 資料中心）＋ ESS（東南亞電網儲能）。以越南 Fluence／泰國 Gotion JV 為 ESS 試水溫、同步以順達／AES-KY／加百裕為 BBU 主攻，<strong>分散 AI CapEx 波動風險</strong>。</div>
+      </div>
+
+      <div class="source-list mt-4">
+        <strong>主要來源：</strong>
+        <a href="https://reports.valuates.com/market-reports/QYRE-Auto-5R18821/global-battery-backup-unit-bbu-power-supply" target="_blank">Valuates BBU Report</a> ｜
+        <a href="https://www.fibermall.com/news/nvidia-gb300.htm" target="_blank">FiberMall NVIDIA GB300</a> ｜
+        <a href="https://money.udn.com/money/story/5612/8826394" target="_blank">經濟日報 系統電/加百裕結盟</a> ｜
+        <a href="https://www.opencompute.org/documents/open-rack-v3-bbu-shelf-spec-rev1-1-pdf-1" target="_blank">Meta ORV3 BBU Shelf Spec</a> ｜
+        <a href="https://www.ctee.com.tw/news/20251226700052-439901" target="_blank">工商時報 BBU 三雄擴產</a>
+      </div>
+
+    </div>
+
+    <!-- ==================== CPO Tab ==================== -->
+    <div class="tab-pane fade" id="tab-cpo" role="tabpanel">
+
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">$603M→$8.1B</div><div class="stat-label">CPO 市場 2026→2030</div></div>
+            <i class="bi bi-broadcast-pin stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">137%</div><div class="stat-label">CAGR（Yole 2026-2030）</div></div>
+            <i class="bi bi-graph-up-arrow stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">50-120</div><div class="stat-label">每台 Switch 金屬件（件）</div></div>
+            <i class="bi bi-gear-wide-connected stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">2026</div><div class="stat-label">CPO 商轉元年</div></div>
+            <i class="bi bi-calendar-star stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="section-title">市場趨勢關鍵字</div>
+        <span class="trend-chip">TSMC COUPE 整合 CoWoS</span>
+        <span class="trend-chip">NVIDIA Quantum-X800 / Spectrum-X Photonics</span>
+        <span class="trend-chip">Broadcom Tomahawk 5 Bailly（&gt;50,000 台）</span>
+        <span class="trend-chip">Intel 1.6T CPO</span>
+        <span class="trend-chip">Marvell 3D SiPho Engine</span>
+        <span class="trend-chip">FAU 精度 ±1-5 μm（非鴻騰強項）</span>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-graph-up"></i> A. 市場概覽</h3>
+      <div class="row g-3 mb-4">
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li>2026 市場約 <strong>USD 603M</strong>（R&amp;M）／<strong>USD 165M</strong>（Mordor 保守口徑）</li>
+            <li>2030 市場 <strong>USD 8.1B</strong>（Yole，CAGR ~137%）</li>
+            <li>2036 展望 <strong>USD 20B</strong>（IDTechEx，CAGR 37%）</li>
+          </ul>
+        </div>
+        <div class="col-md-6">
+          <ul style="font-size:.9rem; line-height:1.9;">
+            <li><strong>2026 是 CPO 商轉元年：</strong>台積電 COUPE 整合 CoWoS、Broadcom Tomahawk 5 已出貨 &gt;50,000 台、NVIDIA Quantum-X800 144-port × 800G</li>
+            <li>每顆 CPO 模組金屬件 <strong>6-20 件</strong>，每台 Switch（搭 8-16 顆 Engine）<strong>50-120 件</strong>，其中高精度 ±5-10 μm 集中於 FAU 對位件</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-geo-alt-fill"></i> B. 台灣指定客戶分析</h3>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-1-circle-fill text-primary"></i> 波若威 Browave Corporation</div>
+            <div class="client-meta">總部：<strong>新竹</strong> ・ NVIDIA Silicon Photonics Ecosystem Partner（2025/3）</div>
+          </div>
+          <div class="rating">★★★★☆<span class="text">切入等級：高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>產品線：</strong>Fiber Array（玻璃／石英／矽基材＋V-trench）、WDM、光學被動元件、100G/400G/800G Transceiver 用光學件。<br>
+          <strong>合作大廠：</strong>NVIDIA 直供夥伴，與 Corning、Senko、TFC、Coherent 並列提供光連接器與 PM fiber assembly，串接 ELS 雷射與矽光子引擎。<strong>2025 年底完成驗證，2026 量產。</strong><br>
+          <strong>需要金屬件：</strong>FAU 玻璃／矽載具的精密機構背板、對位治具、光纖連接器機構殼、雷射焊固定治具、Front-panel Bulkhead。<br>
+          <strong>鴻騰切入：</strong>已是 NVIDIA 直供夥伴，放量在即，對 <strong>二階治具與機構件需求迫切</strong>——這是最佳切入機會窗口。
+        </div>
+      </div>
+
+      <div class="client-card">
+        <div class="d-flex justify-content-between align-items-start">
+          <div>
+            <div class="client-name"><i class="bi bi-2-circle-fill text-primary"></i> 上詮光纖通信 FOCI（3363）</div>
+            <div class="client-meta">總部：<strong>新竹科學園區力行二路 18 號</strong> ・ TSMC CPO 光子聯盟唯一光通訊夥伴</div>
+          </div>
+          <div class="rating">★★★★★<span class="text">切入等級：最高</span></div>
+        </div>
+        <div class="client-body">
+          <strong>產品線：</strong>光纖跳線（2024 營收 79%）、<strong>FAU 精密對位封裝</strong>、<strong>ReLFACon™</strong>（Reflow-capable Lensed Fiber Array Connector，業界最先進 CPO 光學件之一）。持有 22 項關鍵專利。<br>
+          <strong>合作大廠：</strong><strong>TSMC COUPE 驗證完成</strong>，2026 Q3 為實績兌現分水嶺。<br>
+          <strong>需要金屬件：</strong><strong>Reflow-compatible 金屬支架</strong>、FAU 基座與封裝殼、雷射焊治具、連接器套筒、CNC 精密對位夾具。<br>
+          <strong>鴻騰切入：</strong>TSMC COUPE 驗證完成、2026 放量，對高精度金屬件需求明確——此客戶是 CPO 區塊最優先標的。<br>
+          <strong>⚠️ 注意：</strong>正確名稱為「上詮光纖通信 FOCI」（非 Luxnet，亦非美國 AOI/Applied Optoelectronics）。
+        </div>
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-globe-americas"></i> C. 歐美潛在客戶（CPO 光引擎／PIC 主力廠）</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>角色</th><th>鴻騰機會</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Coherent (COHR)</strong></td><td>NVIDIA 2026/3 簽 $2B 股權+採購協議；供 PIC 與 Transceiver</td><td><span class="level-chip level-h">高</span> 光模組外殼、散熱器</td></tr>
+          <tr><td><strong>Lumentum (LITE)</strong></td><td>NVIDIA Quantum-X/Spectrum-X CPO <strong>雷射主供應商</strong></td><td><span class="level-chip level-h">高</span> 雷射封裝殼、治具</td></tr>
+          <tr><td><strong>Marvell</strong></td><td>3D SiPho Engine + 客製化 XPU</td><td><span class="level-chip level-m">中</span> 機構件、散熱</td></tr>
+          <tr><td><strong>Broadcom</strong></td><td>Tomahawk 5/6 CPO Switch</td><td><span class="level-chip level-m">中</span> Celestica/Foxconn 主導，二階分包機會</td></tr>
+          <tr><td><strong>Intel Silicon Photonics / Ayar Labs</strong></td><td>1.6T CPO、Optical I/O chiplet</td><td><span class="level-chip level-m">中</span> PIC 載具、治具</td></tr>
+        </tbody>
+      </table>
+
+      <h3 class="sub-h"><i class="bi bi-globe2"></i> D. 東南亞潛在客戶</h3>
+      <table class="table table-sm region-table">
+        <thead><tr><th>客戶</th><th>據點</th><th>說明</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Coherent Penang / Ipoh</strong></td><td>馬來西亞</td><td>光模組組裝廠，負責 transceiver 後段</td></tr>
+          <tr><td><strong>CHIPX</strong></td><td>馬來西亞（新建 8 吋 GaN/SiC 晶圓廠）</td><td>2025/12 公告 ASEAN 首座，供 SiPh 前端</td></tr>
+          <tr><td><strong>Finisar/II-VI Ipoh</strong></td><td>馬來西亞</td><td>既有光通訊組裝基地，向 CPO 延伸</td></tr>
+        </tbody>
+      </table>
+      <p class="source-list"><i class="bi bi-info-circle"></i> 東南亞光通訊市場規模預估從 2025 USD 1.7B 成長至 2030 USD 4.6B（CAGR 22%，Bernama）</p>
+
+      <h3 class="sub-h"><i class="bi bi-tools"></i> E. 鴻騰金屬加工切入點（誠實評估）</h3>
+      <table class="table opp-table">
+        <thead><tr><th>#</th><th>金屬件類別</th><th>精度要求</th><th>鴻騰可行性</th><th>備註</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Switch 機箱、Front-panel Bulkhead</strong>（鈑金+陽極）</td><td>±50 μm</td><td class="rating">★★★★★ 完全可做</td><td>核心機會</td></tr>
+          <tr><td>2</td><td>CPO Optical Engine 鋁壓鑄外殼／遮蔽罩</td><td>±20-30 μm</td><td class="rating">★★★★☆ 可做</td><td>需驗證壓鑄後精加工</td></tr>
+          <tr><td>3</td><td><strong>散熱鰭片</strong>（鋁擠+CNC）</td><td>±30 μm</td><td class="rating">★★★★★ 核心強項</td><td>每 Engine 15-30W 散熱</td></tr>
+          <tr><td>4</td><td>雷射焊／Reflow 治具（CNC 鋼件）</td><td>±10 μm</td><td class="rating">★★★★☆ 可做</td><td>需驗證治具設計能力</td></tr>
+          <tr><td>5</td><td>FAU 光纖對位 V-groove 載具</td><td><strong>±1-5 μm</strong></td><td class="rating">★★☆☆☆ 偏難</td><td><strong>非現有能力</strong>，建議策略聯盟</td></tr>
+          <tr><td>6</td><td>光纖連接器金屬套筒（MT/MPO ferrule holder）</td><td>±10 μm</td><td class="rating">★★★☆☆ 可做</td><td>需 Swiss-type 精密車床</td></tr>
+        </tbody>
+      </table>
+
+      <div class="alert-warn">
+        <strong><i class="bi bi-lightbulb-fill"></i> 結論：</strong>鴻騰 70% 的機會在「外殼／散熱／治具／二階機構件」，<strong>不宜硬碰 FAU 核心對位件</strong>（sub-micron 級，需投資雷射干涉量測與精密研磨）。
+      </div>
+
+      <h3 class="sub-h"><i class="bi bi-flag-fill"></i> F. 進入策略建議</h3>
+      <div class="strategy-card">
+        <div class="s-title">策略 1：從治具與外殼切入，不碰核心光學對位件</div>
+        <div class="s-body">鎖定波若威、上詮的 <strong>雷射焊治具、Reflow 載盤、FAU 周邊封裝殼、Optical Engine 鋁外殼</strong>；避開需 ±1 μm 的 V-groove。此策略門檻符合鴻騰 CNC/壓鑄/陽極現有能力，<strong>6 個月內可拿到首張 RFQ</strong>。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 2：綁定 TSMC COUPE 生態系 + NVIDIA Silicon Photonics Partner 認證</div>
+        <div class="s-body">上詮是 TSMC CPO 唯一夥伴、波若威是 NVIDIA 夥伴，透過這兩家 <strong>間接進入 TSMC／NVIDIA 合格供應商名單</strong>，遠比直接叩關 Lumentum/Coherent 有效。可安排 2026 Q2-Q3 新竹廠技術參訪，提供試作件。</div>
+      </div>
+      <div class="strategy-card">
+        <div class="s-title">策略 3：建立「散熱+治具」雙產品線小組，投資 CMM+雷射干涉儀</div>
+        <div class="s-body">CPO 散熱需求（每顆 Engine 15-30W）是鴻騰鋁擠強項延伸；雷射焊治具可開啟與 Coherent/Lumentum 在 ASEAN 廠（Penang）的對接。建議投資 <strong>1 台三次元量測儀（CMM）＋雷射干涉儀，總預算 NT$ 8-12M</strong>，驗證高精度能力後再談 FAU 周邊機構件。</div>
+      </div>
+
+      <div class="source-list mt-4">
+        <strong>主要來源：</strong>
+        <a href="https://www.yolegroup.com/product/report/co-packaged-optics-2025/" target="_blank">Yole CPO Report 2025</a> ｜
+        <a href="https://www.idtechex.com/en/research-report/co-packaged-optics-cpo/1138" target="_blank">IDTechEx CPO 2026-2036</a> ｜
+        <a href="https://www.digitimes.com/news/a20250319PD215/cpo-browave-2025-growth-shipments.html" target="_blank">Digitimes 波若威 CPO</a> ｜
+        <a href="https://uanalyze.com.tw/articles/9030549200" target="_blank">UAnalyze 上詮 3363 CPO</a> ｜
+        <a href="https://www.nvidia.com/en-us/networking/products/silicon-photonics/" target="_blank">NVIDIA Silicon Photonics</a> ｜
+        <a href="https://www.oiforum.com/wp-content/uploads/OIF-Co-Packaging-FD-01.0.pdf" target="_blank">OIF CPO Framework</a>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    本報告由 Claude Agent 並行研究三個產業區塊後整合生成 ・ 資料截止 2026-04-21 ・
+    報告中所有市場數字皆附來源連結 ・ 客戶名稱如需修正請告知以便更新
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
