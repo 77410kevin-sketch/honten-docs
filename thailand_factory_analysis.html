@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<title>泰國設廠 A/B 方案成本效益分析</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Microsoft JhengHei","PingFang TC","Noto Sans TC",sans-serif;background:#f4f6fa;color:#2c3e50;font-size:13.5px;line-height:1.6}
+.page{max-width:1100px;margin:0 auto;padding:24px}
+
+/* Header */
+.header{background:linear-gradient(135deg,#1B2A4A 0%,#2E5090 100%);color:#fff;padding:32px 36px 24px;border-radius:12px;margin-bottom:24px}
+.header h1{font-size:24px;font-weight:700;letter-spacing:1px;margin-bottom:8px}
+.header .sub{opacity:.75;font-size:13px;letter-spacing:.5px}
+.header .badge{display:inline-block;background:rgba(196,150,44,.85);color:#fff;padding:3px 12px;border-radius:20px;font-size:11px;margin-top:10px;font-weight:600;letter-spacing:1px}
+
+/* KPI cards */
+.kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.kpi{background:#fff;border-radius:10px;padding:16px 18px;border-top:4px solid #2E5090;box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.kpi.gold{border-color:#C4962C}
+.kpi.green{border-color:#27ae60}
+.kpi.red{border-color:#e74c3c}
+.kpi .label{font-size:11px;color:#888;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px}
+.kpi .value{font-size:22px;font-weight:700;color:#1B2A4A}
+.kpi .note{font-size:11px;color:#aaa;margin-top:4px}
+
+/* Section */
+.section{background:#fff;border-radius:10px;padding:22px 26px;margin-bottom:20px;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.section-title{font-size:15px;font-weight:700;color:#1B2A4A;border-bottom:2px solid #C4962C;padding-bottom:8px;margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.section-title .num{background:#1B2A4A;color:#fff;width:24px;height:24px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex-shrink:0}
+.sub-title{font-size:13px;font-weight:700;color:#2E5090;margin:16px 0 10px;border-left:3px solid #2E5090;padding-left:10px}
+
+/* Tables */
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{background:#1B2A4A;color:#fff;padding:9px 12px;text-align:left;font-weight:600;font-size:12px}
+th.center,td.center{text-align:center}
+th.right,td.right{text-align:right}
+td{padding:8px 12px;border-bottom:1px solid #eef0f4;vertical-align:top}
+tr:nth-child(even) td{background:#f9fafc}
+tr:hover td{background:#f0f4fa}
+td.label{font-weight:600;color:#1B2A4A;background:#eef3fa!important;width:200px}
+td.sublabel{color:#555;padding-left:22px}
+td.subtotal{font-weight:700;background:#f0f4fa!important;color:#1B2A4A}
+td.total{font-weight:700;background:#1B2A4A!important;color:#fff!important}
+td.amt{text-align:right;font-variant-numeric:tabular-nums}
+td.tbd{color:#c0392b;font-weight:700;text-align:center}
+.tag-a{display:inline-block;background:#2E5090;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600}
+.tag-b{display:inline-block;background:#C4962C;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:600}
+
+/* Info box */
+.box{border-radius:8px;padding:14px 18px;margin:12px 0;font-size:13px}
+.box.blue{background:#e8f0ff;border-left:4px solid #2E5090;color:#1B2A4A}
+.box.gold{background:#fff8e6;border-left:4px solid #C4962C;color:#7a5a00}
+.box.green{background:#f0faf4;border-left:4px solid #27ae60;color:#1a5c30}
+.box.red{background:#fff0f0;border-left:4px solid #e74c3c;color:#7a1a1a}
+.box strong{font-weight:700}
+
+/* Revenue trend */
+.trend-bar-wrap{display:flex;align-items:center;gap:8px}
+.trend-bar{height:14px;border-radius:4px;background:#2E5090;min-width:4px;transition:width .3s}
+.trend-bar.gold{background:#C4962C}
+.trend-val{font-size:12px;color:#555;white-space:nowrap}
+
+/* Gantt */
+.gantt{width:100%;overflow-x:auto}
+.gantt-table{width:100%;border-collapse:collapse;min-width:760px;table-layout:fixed}
+.gantt-table colgroup col.lc{width:22%}
+.gantt-table colgroup col.mc{width:7.8%}
+.gantt-table thead th{background:#1B2A4A;color:#fff;padding:9px 4px;font-size:12px;text-align:center;font-weight:600}
+.gantt-table thead th.lc{text-align:left;padding-left:14px}
+.gantt-table td{padding:4px 3px;border-bottom:1px solid #e8ecf3;height:36px;vertical-align:middle}
+.gantt-table td.lc{padding:6px 14px;font-size:12.5px;white-space:nowrap;background:#eef3fa}
+.gantt-table td.e{background:#f7f8fb}
+.gantt-table td.b{padding:4px 5px}
+.row-a td.lc{background:#eef3fa}
+.row-b td.lc{background:#fffbee}
+.row-a td.e{background:#f5f7fc}
+.row-b td.e{background:#fffdf5}
+.row-sep td{background:#e8ecf3!important;height:5px;padding:0;border:none}
+.ba{background:linear-gradient(90deg,#2E5090,#3d6ab5);height:22px;border-radius:5px;box-shadow:0 2px 4px rgba(46,80,144,.3)}
+.bb{background:linear-gradient(90deg,#C4962C,#d9a93a);height:22px;border-radius:5px;box-shadow:0 2px 4px rgba(196,150,44,.3)}
+.pa{display:inline-block;background:#2E5090;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:700;margin-right:6px}
+.pb{display:inline-block;background:#C4962C;color:#fff;padding:1px 8px;border-radius:10px;font-size:11px;font-weight:700;margin-right:6px}
+
+/* Compare */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:4px}
+.compare-card{border-radius:8px;padding:16px;border:2px solid #eee}
+.compare-card.a{border-color:#2E5090}
+.compare-card.b{border-color:#C4962C}
+.compare-card h4{font-size:13.5px;font-weight:700;margin-bottom:10px}
+.compare-card h4.a-title{color:#2E5090}
+.compare-card h4.b-title{color:#C4962C}
+.pros-cons li{font-size:12.5px;margin-bottom:5px;list-style:none;padding-left:18px;position:relative}
+.pros-cons li::before{position:absolute;left:0}
+.pros li::before{content:"✅"}
+.cons li::before{content:"⚠️"}
+
+/* Recommendation */
+.rec-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:12px}
+.rec-card{background:#f8faff;border-radius:8px;padding:14px;border-top:3px solid #2E5090}
+.rec-card h5{color:#2E5090;font-size:12.5px;font-weight:700;margin-bottom:6px}
+.rec-card p{font-size:12px;color:#555;line-height:1.6}
+
+/* Footer */
+.footer{text-align:center;color:#aaa;font-size:11px;margin-top:24px;padding-bottom:16px}
+
+@media print{
+  body{background:#fff}
+  .page{padding:8px}
+  .kpi-row{grid-template-columns:repeat(4,1fr)}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<!-- HEADER -->
+<div class="header">
+  <div class="sub">鴻騰電子股份有限公司　|　泰國拓展計畫</div>
+  <h1>泰國設廠 A/B 方案成本效益分析</h1>
+  <div class="badge">機密文件 — 限內部流通　2026-04-14</div>
+</div>
+
+<!-- KPI CARDS -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="label">順達2026月均訂單</div>
+    <div class="value">1,720萬</div>
+    <div class="note">NTD（Jan–May 平均）</div>
+  </div>
+  <div class="kpi gold">
+    <div class="label">方案A 總投資（含設備）</div>
+    <div class="value">~1,600萬</div>
+    <div class="note">NTD（設置302萬＋設備650萬＋資本金44萬）</div>
+  </div>
+  <div class="kpi green">
+    <div class="label">BOI 免稅最高年限</div>
+    <div class="value">13 年</div>
+    <div class="note">A2+EEC加碼；企業所得稅 0%</div>
+  </div>
+  <div class="kpi red">
+    <div class="label">方案B 啟動門檻</div>
+    <div class="value">極低</div>
+    <div class="note">試單即可啟動，2～3個月可出貨</div>
+  </div>
+</div>
+
+<!-- 執行摘要 -->
+<div class="section">
+  <div class="section-title"><span class="num">—</span>執行摘要</div>
+  <div class="box blue" style="font-size:13.5px;line-height:1.8">
+    鴻騰泰國拓展計畫以<strong>兩線並行</strong>策略推進：<br>
+    <strong>方案B（合作入股）</strong>作為快速進場路徑，2～3個月可啟動試產，以極低資本取得順達稽核資格，同時為方案A驗證市場與供應鏈可行性。<br>
+    <strong>方案A（自租廠房 + BOI）</strong>為長期根據地，申請 BOI A2 類別享 8～13 年企業所得稅免稅，機台進口全免關稅，外資100%持股，完全掌控製造與知識產權。<br><br>
+    順達2026年訂單月均 <strong>1,720萬NTD</strong>（1–5月實績），年化約 <strong>2億NTD</strong>。若65%訂單移轉泰國，方案A穩定後年收入約 <strong>1.34億NTD</strong>，年度管銷約456萬，BOI免稅期間約 <strong>3.5年可回收全部投資</strong>。收入面待進一步確認訂單週期後可精算。
+  </div>
+</div>
+
+<!-- 一、總覽比較 + 方案B分析 -->
+<div class="section">
+  <div class="section-title"><span class="num">一</span>方案總覽比較</div>
+  <table>
+    <thead><tr>
+      <th style="width:22%">比較項目</th>
+      <th style="width:39%">方案A：自租廠房 + BOI</th>
+      <th style="width:39%">方案B：入股合作沖壓廠</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="label">進入方式</td><td>自租免稅區廠房，申請BOI，獨資設立公司</td><td>尋找春武里中小型沖壓廠合作，先試單後評估入股</td></tr>
+      <tr><td class="label">初期投資</td><td>約 930～1,050 萬 NTD（設備+設置+資本金）</td><td>極低（模具/原料由鴻騰提供，入股金額談判決定）</td></tr>
+      <tr><td class="label">啟動至試產</td><td>約 6～8 個月（含設備到位）</td><td>約 2～3 個月（洽談完即可試單）</td></tr>
+      <tr><td class="label">主導權</td><td>完全自主，鴻騰獨立運營</td><td>依股比，初期受制於合作方</td></tr>
+      <tr><td class="label">BOI 免稅</td><td>✅ 可申請，8～13 年所得稅免稅</td><td>❌ 難直接適用（對方公司名義）</td></tr>
+      <tr><td class="label">機台關稅</td><td>✅ 進口設備全免關稅（節省約 65～85萬）</td><td>❌ 不適用</td></tr>
+      <tr><td class="label">智財保護</td><td>強（自有廠房，完全管控）</td><td>中（技術外流與跳單風險需防範）</td></tr>
+      <tr><td class="label">主要風險</td><td>投資額高；若訂單不足則回收期延長</td><td>合作方穩定性不確定；品質管控難；BOI優惠缺乏</td></tr>
+      <tr><td class="label">長期定位</td><td>鴻騰海外主力製造根據地</td><td>過渡方案；待A成熟後移轉主力訂單</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title" style="margin-top:20px">方案B 優勢與風險</div>
+  <div class="compare-grid">
+    <div class="compare-card a">
+      <h4 class="a-title">✅ 方案B 優勢</h4>
+      <ul class="pros-cons pros">
+        <li>2～3個月可啟動試產，快速取得稽核資格</li>
+        <li>初期資本投入極低，僅模具&amp;原料成本</li>
+        <li>失敗成本低，可彈性退出</li>
+        <li>先驗證訂單規模再決定方案A投資規模</li>
+        <li>為方案A提供市場、人脈、供應鏈熱身</li>
+      </ul>
+    </div>
+    <div class="compare-card b">
+      <h4 class="b-title">⚠️ 方案B 風險與限制</h4>
+      <ul class="pros-cons cons">
+        <li>BOI免稅優惠無法適用（他人公司名義）</li>
+        <li>技術外流 / 跳單風險（需強力合約保護）</li>
+        <li>品質管控難度高，稽核風險由鴻騰承擔</li>
+        <li>產能受制於合作廠，無法快速擴張</li>
+        <li>長期利潤受制於合作方分潤</li>
+      </ul>
+    </div>
+  </div>
+  <div class="box green" style="margin-top:12px;font-size:12.5px">
+    <strong>建議策略：B先行、A同步。</strong>方案B快速試單取得稽核資格，同步啟動方案A公司設立與BOI申請，B的實績作為A投資規模的決策依據。
+  </div>
+</div>
+
+<!-- 二、BOI效益 -->
+<div class="section">
+  <div class="section-title"><span class="num">二</span>BOI 申請效益（方案A核心優勢）</div>
+  <div class="box gold" style="font-size:13px;margin-bottom:14px">
+    AI伺服器電池模組製造 → 建議申請 <strong>A2 類別（高科技電子製造，8年免稅）</strong>，若強調 AI 算力基礎設施可爭取 <strong>A1（8年以上）</strong>。設廠春武里 EEC 區域再加碼 1～2 年，最高可達 <strong style="color:#c0392b">13年免稅</strong>。
+  </div>
+  <table>
+    <thead><tr>
+      <th style="width:22%">BOI優惠項目</th>
+      <th style="width:42%">適用情況</th>
+      <th style="width:36%">效益估算</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="label">企業所得稅免稅</td><td>A2：8年；A1+EEC 可達 13年</td><td>每年淨利200萬NTD → 8年省稅約320萬NTD</td></tr>
+      <tr><td class="label">機台進口關稅免稅</td><td>全部沖壓機、CCD、自動化設備免稅</td><td>節省 65～85 萬NTD（約設備成本10%）</td></tr>
+      <tr><td class="label">原料進口關稅免稅</td><td>出口製品用原料100%免關稅</td><td>依訂單規模，直接降低材料成本</td></tr>
+      <tr><td class="label">外資100%持股</td><td>BOI核准後移轉至100%台資，無需泰方合夥人</td><td>完全掌控經營決策與財務</td></tr>
+      <tr><td class="label">春武里 / EEC加碼</td><td>設廠EEC（春武里屬EEC範圍）</td><td>額外延長 1～2年免稅</td></tr>
+      <tr><td class="label">外籍人員簽證</td><td>外籍幹部 SMART Visa 快速通道</td><td>台灣幹部派駐無障礙</td></tr>
+      <tr><td class="label">台泰避免雙重課稅</td><td>台灣已與泰國簽署 DTA 協議</td><td>台灣母公司收取股利免雙重課稅</td></tr>
+      <tr><td class="label">申請時程</td><td>送件至批准：約 4～6 個月</td><td>建議赴泰考察後即刻啟動申請</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 3: 方案A 成本預算 -->
+<div class="section">
+  <div class="section-title"><span class="num">三</span>方案A 成本預算明細（依預算總表）</div>
+
+  <div class="box blue">
+    策略路徑：<strong>公司設立（49%外資過渡）+ BOI申請同步啟動 → IEAT Free Zone 保稅倉作業 → BOI核准後移轉100%台資 → 沖壓製造上線</strong><br>
+    匯率假設：1 THB = 0.875 NTD（1 NTD ≈ 1.143 THB）
+  </div>
+
+  <div class="sub-title">【第一階段】公司設立 + 保稅倉建置（2026年，非設備類）</div>
+  <table>
+    <thead><tr>
+      <th style="width:38%">項目</th>
+      <th class="center" style="width:22%">說明</th>
+      <th class="right" style="width:14%">低估（NTD）</th>
+      <th class="right" style="width:14%">高估（NTD）</th>
+      <th class="right" style="width:12%">中間值（NTD）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="label">A. 法律 / 顧問費用</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">泰國三線顧問委任<br><small style="color:#999">DBD + BOI + IEAT，Apr–Oct</small></td><td>含月費 retainer</td><td class="amt">157,500</td><td class="amt">315,000</td><td class="amt"><strong>236,250</strong></td></tr>
+      <tr><td class="sublabel">台灣稅務顧問（移轉訂價）</td><td>Apr–Sep，TP policy</td><td class="amt">122,500</td><td class="amt">245,000</td><td class="amt"><strong>183,750</strong></td></tr>
+      <tr><td class="sublabel">法律文件公證 / 翻譯</td><td>Apr–May</td><td class="amt">19,250</td><td class="amt">40,250</td><td class="amt"><strong>29,750</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">299,250</td><td class="amt subtotal">600,250</td><td class="amt subtotal"><strong>449,750</strong></td></tr>
+
+      <tr><td class="label">B. 公司設立費用（DBD）</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">DBD商業登記規費</td><td>May</td><td class="amt">17,500</td><td class="amt">26,250</td><td class="amt"><strong>21,875</strong></td></tr>
+      <tr><td class="sublabel">股權保護文件<br><small style="color:#999">空白轉讓書/授權書/借貸協議</small></td><td>Apr–May，委任泰籍名義股東</td><td class="amt">24,500</td><td class="amt">43,750</td><td class="amt"><strong>34,125</strong></td></tr>
+      <tr><td class="sublabel">稅務號碼 / VAT / 銀行開戶</td><td>Jun</td><td class="amt">7,000</td><td class="amt">13,125</td><td class="amt"><strong>10,063</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計（公司設立含代辦）</td><td class="amt subtotal">49,000</td><td class="amt subtotal">83,125</td><td class="amt subtotal"><strong>66,063</strong></td></tr>
+
+      <tr><td class="label">C. BOI 申請費用</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">BOI申請規費</td><td>Jun（含於顧問費）</td><td class="amt">2,625</td><td class="amt">8,750</td><td class="amt"><strong>5,688</strong></td></tr>
+      <tr><td class="sublabel">商業計劃書 / 財務預測 / 環評</td><td>Apr–Jun</td><td class="amt">26,250</td><td class="amt">61,250</td><td class="amt"><strong>43,750</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">28,875</td><td class="amt subtotal">70,000</td><td class="amt subtotal"><strong>49,438</strong></td></tr>
+
+      <tr><td class="label">D. IEAT 保稅倉申請</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">IEAT Free Zone 申請規費</td><td>Jun–Jul</td><td class="amt">4,375</td><td class="amt">10,500</td><td class="amt"><strong>7,438</strong></td></tr>
+      <tr><td class="sublabel">海關 / 進出口代碼登記</td><td>Jun–Jul</td><td class="amt">7,000</td><td class="amt">15,750</td><td class="amt"><strong>11,375</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">11,375</td><td class="amt subtotal">26,250</td><td class="amt subtotal"><strong>18,813</strong></td></tr>
+
+      <tr><td class="label">E. 保稅倉場地（Rojana IE FZ）</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">押金（3個月，400㎡×200THB）</td><td>Jun，期滿退還</td><td class="amt">210,000</td><td class="amt">315,000</td><td class="amt"><strong>262,500</strong></td></tr>
+      <tr><td class="sublabel">租金（Jul–Dec，6個月）</td><td>80,000–120,000 THB/月</td><td class="amt">420,000</td><td class="amt">630,000</td><td class="amt"><strong>525,000</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">630,000</td><td class="amt subtotal">945,000</td><td class="amt subtotal"><strong>787,500</strong></td></tr>
+
+      <tr><td class="label">F. 保稅倉裝修 / 設備</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">隔間 / 基礎裝修</td><td>Jun–Jul</td><td class="amt">131,250</td><td class="amt">350,000</td><td class="amt"><strong>240,625</strong></td></tr>
+      <tr><td class="sublabel">儲架、監控、門禁、消防</td><td>Jun–Aug</td><td class="amt">87,500</td><td class="amt">218,750</td><td class="amt"><strong>153,125</strong></td></tr>
+      <tr><td class="sublabel">裝卸設備（手推車、棧板）</td><td>Jul</td><td class="amt">26,250</td><td class="amt">61,250</td><td class="amt"><strong>43,750</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">245,000</td><td class="amt subtotal">630,000</td><td class="amt subtotal"><strong>437,500</strong></td></tr>
+
+      <tr><td class="label">G. 人員費用（Jul–Dec）</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">泰籍倉儲主管 × 1（6個月）</td><td>50,000–80,000 THB/月</td><td class="amt">262,500</td><td class="amt">420,000</td><td class="amt"><strong>341,250</strong></td></tr>
+      <tr><td class="sublabel">泰籍行政 / 會計 × 1（6個月）</td><td>25,000–45,000 THB/月</td><td class="amt">131,250</td><td class="amt">236,250</td><td class="amt"><strong>183,750</strong></td></tr>
+      <tr><td class="sublabel">雇主社保（5%）</td><td></td><td class="amt">19,688</td><td class="amt">32,813</td><td class="amt"><strong>26,250</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">413,438</td><td class="amt subtotal">689,063</td><td class="amt subtotal"><strong>551,250</strong></td></tr>
+
+      <tr><td class="label">H. 差旅費（台灣↔泰國）</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">實地探訪（4月底，2人×4天）</td><td>40,000–60,000 NTD/人</td><td class="amt">40,000</td><td class="amt">60,000</td><td class="amt"><strong>50,000</strong></td></tr>
+      <tr><td class="sublabel">BOI/IEAT簽核出差（3次）</td><td>May–Sep</td><td class="amt">60,000</td><td class="amt">90,000</td><td class="amt"><strong>75,000</strong></td></tr>
+      <tr><td class="sublabel">股權移轉出差（1次）</td><td>Oct–Nov</td><td class="amt">20,000</td><td class="amt">30,000</td><td class="amt"><strong>25,000</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">120,000</td><td class="amt subtotal">180,000</td><td class="amt subtotal"><strong>150,000</strong></td></tr>
+
+      <tr><td class="label">I. IT / 作業系統</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">WMS庫管系統（SaaS）</td><td>Jul</td><td class="amt">75,000</td><td class="amt">200,000</td><td class="amt"><strong>137,500</strong></td></tr>
+      <tr><td class="sublabel">電腦 / 網路設備</td><td>Jun–Jul</td><td class="amt">37,500</td><td class="amt">75,000</td><td class="amt"><strong>56,250</strong></td></tr>
+      <tr><td class="sublabel">通訊費（Jul–Dec）</td><td></td><td class="amt">15,000</td><td class="amt">30,000</td><td class="amt"><strong>22,500</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">127,500</td><td class="amt subtotal">305,000</td><td class="amt subtotal"><strong>216,250</strong></td></tr>
+
+      <tr><td class="label">J. BOI核准後股權移轉費</td><td></td><td></td><td></td><td></td></tr>
+      <tr><td class="sublabel">DBD股東更新 + IEAT行政費</td><td>Oct–Nov</td><td class="amt">15,750</td><td class="amt">30,625</td><td class="amt"><strong>23,188</strong></td></tr>
+      <tr><td class="subtotal" colspan="2">小計</td><td class="amt subtotal">15,750</td><td class="amt subtotal">30,625</td><td class="amt subtotal"><strong>23,188</strong></td></tr>
+
+      <tr><td class="subtotal" colspan="2">備用預算（10%）</td><td class="amt subtotal"></td><td class="amt subtotal"></td><td class="amt subtotal"><strong>274,975</strong></td></tr>
+      <tr><td class="total" colspan="2">第一階段合計（設置費，不含設備）</td><td class="total amt">~213萬</td><td class="total amt">~358萬</td><td class="total amt"><strong>~302萬 NTD</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">【第二階段】沖壓設備投資（BOI核准後啟動）</div>
+  <table>
+    <thead><tr>
+      <th style="width:42%">設備項目</th>
+      <th style="width:30%">規格</th>
+      <th class="right" style="width:28%">估算（萬NTD）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>沖壓機 45噸 × 2台 ＋ 送料機 × 2台</td><td>主要中小件生產</td><td class="amt">約 130</td></tr>
+      <tr><td>沖壓機 80噸 × 3台</td><td>主力生產機台</td><td class="amt">約 220</td></tr>
+      <tr><td>沖壓機 110噸 × 1台</td><td>大型件用</td><td class="amt">約 120</td></tr>
+      <tr><td>自動化控制設備</td><td>線端控制、安全防護</td><td class="amt">約 80</td></tr>
+      <tr><td>CCD 量測系統（1.2米床台）</td><td>含量測軟體</td><td class="amt">約 100</td></tr>
+      <tr><td class="total" colspan="2">設備小計（BOI機台進口免關稅，可省約65～85萬）</td><td class="total amt"><strong>約 650萬</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">【年度營運成本估算（量產穩定後）】</div>
+  <table>
+    <thead><tr>
+      <th style="width:30%">項目</th>
+      <th style="width:32%">說明</th>
+      <th class="right" style="width:19%">月成本（萬NTD）</th>
+      <th class="right" style="width:19%">年成本（萬NTD）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>廠房租金</td><td>免稅區 ~700㎡，含管理費</td><td class="right">約 9</td><td class="right">約 108</td></tr>
+      <tr><td>生產 / 包裝 / 檢驗 × 10人</td><td>月均薪 ~15,000 THB（沖壓技術工）</td><td class="right">約 13</td><td class="right">約 156</td></tr>
+      <tr><td>管理兼任 × 2人<br><small style="color:#888">（生管、倉管、人事、會計、業務合併）</small></td><td>月均薪 ~35,000 THB（多職兼任）</td><td class="right">約 6</td><td class="right">約 72</td></tr>
+      <tr><td>雇主社保（5%）</td><td>依泰國勞工法規</td><td class="right">約 1</td><td class="right">約 12</td></tr>
+      <tr><td>水電 / 耗材</td><td>沖壓機台用電、模具耗材</td><td class="right">約 5</td><td class="right">約 60</td></tr>
+      <tr><td>外部作帳 / BOI年度申報</td><td>會計師月記帳、報稅、BOI合規申報</td><td class="right">約 2</td><td class="right">約 24</td></tr>
+      <tr><td>IEAT年費 / 行政雜項</td><td>海關稽核配合、交通、通訊</td><td class="right">約 2</td><td class="right">約 24</td></tr>
+      <tr><td class="total" colspan="2">年度合計</td><td class="total right"><strong>約 38萬/月</strong></td><td class="total right"><strong>約 456萬NTD</strong></td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">【登記資本（資本存入，非費用）】</div>
+  <div class="box gold" style="font-size:12.5px">
+    建議最低登記資本 THB 2,000,000（≈ NTD 175萬）。初期繳入25% = THB 500,000（≈ NTD 43.75萬）；BOI核准後補足餘額。<strong>過渡期49%外資、51%泰籍名義股東</strong>，由法律保護文件保障鴻騰實質權益；BOI核准後移轉至100%台資。
+  </div>
+
+  <table style="margin-top:14px">
+    <thead><tr><th>投資項目</th><th class="right">金額（NTD）</th><th>備註</th></tr></thead>
+    <tbody>
+      <tr><td>第一階段（設置費，含備用）</td><td class="amt right">約 302萬</td><td>Apr–Dec 2026</td></tr>
+      <tr><td>第二階段（沖壓設備）</td><td class="amt right">約 650萬</td><td>BOI核准後，2026 Q4～2027 Q1</td></tr>
+      <tr><td>登記資本初期繳入（資本非費用）</td><td class="amt right">約 44萬</td><td>公司成立時存入</td></tr>
+      <tr><td class="total">方案A 總投入估計</td><td class="total amt right"><strong>約 996萬 NTD</strong></td><td class="total">（設備含BOI免稅後實際約 930萬）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 2: 月度現金流 -->
+<div class="section">
+  <div class="section-title"><span class="num">四</span>月度現金流時程（NTD 千元）</div>
+  <table>
+    <thead><tr>
+      <th style="width:22%">費用項目</th>
+      <th class="center">Apr</th><th class="center">May</th><th class="center">Jun</th>
+      <th class="center">Jul</th><th class="center">Aug</th><th class="center">Sep</th>
+      <th class="center">Oct</th><th class="center">Nov</th><th class="center">Dec</th>
+      <th class="right">年度合計<br>（千NTD）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>A. 法律/顧問費</td><td class="center">60</td><td class="center">80</td><td class="center">50</td><td class="center">20</td><td class="center">20</td><td class="center">50</td><td class="center">30</td><td class="center">20</td><td class="center">—</td><td class="right">330</td></tr>
+      <tr><td>B. 公司設立（DBD）</td><td class="center">20</td><td class="center">40</td><td class="center">5</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="right">65</td></tr>
+      <tr><td>C. BOI 申請</td><td class="center">15</td><td class="center">15</td><td class="center">20</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="right">50</td></tr>
+      <tr><td>D. IEAT 保稅倉申請</td><td class="center">—</td><td class="center">—</td><td class="center">10</td><td class="center">15</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="right">25</td></tr>
+      <tr><td>E. 倉庫押金 &amp; 租金</td><td class="center">—</td><td class="center">—</td><td class="center">230</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="right">770</td></tr>
+      <tr><td>F. 裝修 &amp; 設備</td><td class="center">—</td><td class="center">—</td><td class="center">100</td><td class="center">130</td><td class="center">50</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="right">280</td></tr>
+      <tr><td>G. 人員費用</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="center">90</td><td class="right">540</td></tr>
+      <tr><td>H. 差旅費</td><td class="center">40</td><td class="center">30</td><td class="center">20</td><td class="center">—</td><td class="center">15</td><td class="center">20</td><td class="center">20</td><td class="center">—</td><td class="center">—</td><td class="right">145</td></tr>
+      <tr><td>I. IT &amp; 系統</td><td class="center">—</td><td class="center">—</td><td class="center">30</td><td class="center">80</td><td class="center">10</td><td class="center">5</td><td class="center">5</td><td class="center">5</td><td class="center">5</td><td class="right">140</td></tr>
+      <tr><td>J. 股權移轉</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">—</td><td class="center">12</td><td class="center">10</td><td class="center">—</td><td class="right">22</td></tr>
+      <tr><td class="subtotal">月度合計（千NTD）</td><td class="center subtotal">135</td><td class="center subtotal">165</td><td class="center subtotal">465</td><td class="center subtotal">425</td><td class="center subtotal">275</td><td class="center subtotal">255</td><td class="center subtotal">247</td><td class="center subtotal">215</td><td class="center subtotal">185</td><td class="right subtotal"><strong>2,367</strong></td></tr>
+      <tr><td class="label">累積支出（千NTD）</td><td class="center">135</td><td class="center">300</td><td class="center">765</td><td class="center">1,190</td><td class="center">1,465</td><td class="center">1,720</td><td class="center">1,967</td><td class="center">2,182</td><td class="center">2,367</td><td class="right"><strong>—</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="box blue" style="margin-top:12px;font-size:12px">
+    ⚡ <strong>現金高峰在 6月（June）</strong>：倉庫押金＋首月租金＋裝修同期，需備妥約 NT$46.5 萬。設備投資（~650萬）另計，BOI核准後再啟動採購。
+  </div>
+</div>
+
+<!-- SECTION 3: 順達訂單分析 -->
+<div class="section">
+  <div class="section-title"><span class="num">五</span>順達訂單分析 &amp; 泰國移轉收入預估</div>
+
+  <div class="sub-title">實際訂單月度趨勢（NTD）</div>
+  <table>
+    <thead><tr>
+      <th style="width:12%">月份</th>
+      <th style="width:35%">訂單金額（NTD）</th>
+      <th class="center" style="width:14%">月增率</th>
+      <th style="width:39%">備註</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>2025/01</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:5%"></div><span class="trend-val">156.8萬</span></div></td>
+        <td class="center">—</td><td>開始放量</td></tr>
+      <tr><td>2025/02</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:22%"></div><span class="trend-val">663.6萬</span></div></td>
+        <td class="center">+323%</td><td>快速爬升</td></tr>
+      <tr><td>2025/03</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:60%"></div><span class="trend-val">1,793.3萬</span></div></td>
+        <td class="center">+170%</td><td></td></tr>
+      <tr><td>2025/04</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:52%"></div><span class="trend-val">1,574.6萬</span></div></td>
+        <td class="center">−12%</td><td></td></tr>
+      <tr><td>2025/05</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:52%"></div><span class="trend-val">1,569.8萬</span></div></td>
+        <td class="center">−0.3%</td><td>趨穩</td></tr>
+      <tr><td>2025/07</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:17%"></div><span class="trend-val">520.2萬</span></div></td>
+        <td class="center">−54%</td><td>季節性低谷</td></tr>
+      <tr><td>2025/12</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:52%"></div><span class="trend-val">1,575.4萬</span></div></td>
+        <td class="center">+204%</td><td>年底回升</td></tr>
+      <tr><td>2026/01</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:71%"></div><span class="trend-val">2,132.4萬</span></div></td>
+        <td class="center">+35%</td><td>2026開年強勁</td></tr>
+      <tr><td>2026/02</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:53%"></div><span class="trend-val">1,605.3萬</span></div></td>
+        <td class="center">−25%</td><td></td></tr>
+      <tr><td>2026/03</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:71%"></div><span class="trend-val">2,148.3萬</span></div></td>
+        <td class="center">+34%</td><td></td></tr>
+      <tr><td>2026/04</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:54%"></div><span class="trend-val">1,619.1萬</span></div></td>
+        <td class="center">−25%</td><td></td></tr>
+      <tr><td>2026/05</td>
+        <td><div class="trend-bar-wrap"><div class="trend-bar" style="width:36%"></div><span class="trend-val">1,086.6萬</span></div></td>
+        <td class="center">−33%</td><td>後續訂單待確認</td></tr>
+      <tr><td class="subtotal">2025 全年</td><td class="subtotal"><strong>11,898萬 NTD</strong></td><td class="center subtotal">+190% YoY</td><td>快速成長年</td></tr>
+      <tr><td class="subtotal">2026 Jan–May</td><td class="subtotal"><strong>8,592萬 NTD</strong></td><td class="center subtotal">月均 1,718萬</td><td>年化約 2.06億 NTD</td></tr>
+    </tbody>
+  </table>
+
+  <div class="sub-title">泰國移轉收入預估（基於2026月均1,720萬NTD）</div>
+  <div class="box gold" style="font-size:12.5px">
+    <strong>移轉比例假設：</strong>並非全部訂單移到泰國，台灣保留樣品開發、首批小量；泰國廠承接量產主力。方案B啟動較早，但產能受合作廠限制；方案A全面後取代B或並行。
+  </div>
+  <table style="margin-top:12px">
+    <thead><tr>
+      <th style="width:16%">階段</th>
+      <th class="center" style="width:14%">期間</th>
+      <th class="center" style="width:16%">方案B 移轉率</th>
+      <th class="right" style="width:18%">B 月收入（萬NTD）</th>
+      <th class="center" style="width:16%">方案A 移轉率</th>
+      <th class="right" style="width:20%">A 月收入（萬NTD）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td>試產期</td><td class="center">B：2026/7–8<br>A：2026/11–12</td><td class="center">15%</td><td class="right">約 258萬</td><td class="center">20%</td><td class="right">約 344萬</td></tr>
+      <tr><td>爬坡期</td><td class="center">2026/Q4<br>A：2027/Q1</td><td class="center">35%</td><td class="right">約 602萬</td><td class="center">40%</td><td class="right">約 688萬</td></tr>
+      <tr><td>穩定期</td><td class="center">2027/H1</td><td class="center">50%</td><td class="right">約 860萬</td><td class="center">60%</td><td class="right">約 1,032萬</td></tr>
+      <tr><td>成熟期</td><td class="center">2027/H2起</td><td class="center">55–60%</td><td class="right">約 946–1,032萬</td><td class="center">65–70%</td><td class="right">約 1,118–1,204萬</td></tr>
+      <tr><td class="total">2027全年估計</td><td class="total center">全年</td><td class="total center">~50%</td><td class="total right"><strong>~1億320萬/年</strong></td><td class="total center">~65%</td><td class="total right"><strong>~1億3,416萬/年</strong></td></tr>
+    </tbody>
+  </table>
+  <div class="box blue" style="font-size:12px;margin-top:10px">
+    📌 以上收入為<strong>鴻騰開立給泰國廠之轉撥訂單金額</strong>，非泰國廠直接對外報價；毛利率視移轉訂價政策而定，建議設定毛利率 15–25%（含台灣稅務顧問規劃）。
+  </div>
+</div>
+
+<!-- SECTION 4: 損益試算 -->
+<div class="section">
+  <div class="section-title"><span class="num">六</span>損益試算比較（穩定後年度）</div>
+  <table>
+    <thead><tr>
+      <th style="width:30%">項目</th>
+      <th class="right" style="width:35%">方案A（2027穩定後）</th>
+      <th class="right" style="width:35%">方案B（2027穩定後）</th>
+    </tr></thead>
+    <tbody>
+      <tr><td class="label">年度收入（移轉訂單）</td><td class="amt right"><strong>約 1.34億 NTD</strong><br><small>（65%移轉×12個月）</small></td><td class="amt right"><strong>約 1.03億 NTD</strong><br><small>（50%移轉×12個月）</small></td></tr>
+      <tr><td class="label">年度製造成本（估）</td><td class="amt right">約 75–85%（原料佔大頭）</td><td class="amt right">約 80–88%（合作廠加成）</td></tr>
+      <tr><td class="label">年度管銷費（運營）</td><td class="amt right">約 456萬 NTD<br><small>（人員12人＋租金＋作帳等，詳見三節）</small></td><td class="amt right">約 80–150萬 NTD<br><small>（管理協調成本）</small></td></tr>
+      <tr><td class="label">設備折舊（10年）</td><td class="amt right">約 65萬/年</td><td class="amt right">無（設備非鴻騰持有）</td></tr>
+      <tr><td class="label">企業所得稅</td><td class="amt right"><strong>0%（BOI免稅8–13年）</strong></td><td class="amt right">20%（泰方公司適用）</td></tr>
+      <tr><td class="label">主導權 / 利潤分配</td><td class="amt right">100% 自主</td><td class="amt right">依股比分配（40%起）</td></tr>
+      <tr><td class="label">投資回收期（估）</td><td class="amt right">約 3–4年（含BOI優惠）</td><td class="amt right">極短（初期低投入）</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- SECTION 7: GANTT -->
+<div class="section">
+  <div class="section-title"><span class="num">七</span>執行甘特圖（A / B 方案並行）</div>
+  <div class="gantt">
+  <table class="gantt-table">
+    <colgroup>
+      <col class="lc">
+      <col class="mc"><col class="mc"><col class="mc"><col class="mc"><col class="mc">
+      <col class="mc"><col class="mc"><col class="mc"><col class="mc"><col class="mc">
+    </colgroup>
+    <thead>
+      <tr>
+        <th class="lc">里程碑</th>
+        <th>4月</th><th>5月</th><th>6月</th><th>7月</th><th>8月</th>
+        <th>9月</th><th>10月</th><th>11月</th><th>12月</th><th>Q1<br>2027</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ── 方案A ── -->
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>BOI諮詢 / 公司設立啟動</td>
+        <td colspan="2" class="b"><div class="ba"></div></td>
+        <td colspan="8" class="e"></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>BOI 正式申請</td>
+        <td class="e"></td>
+        <td colspan="3" class="b"><div class="ba"></div></td>
+        <td colspan="6" class="e"></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>保稅倉簽約 / 裝修建置</td>
+        <td colspan="2" class="e"></td>
+        <td colspan="3" class="b"><div class="ba"></div></td>
+        <td colspan="5" class="e"></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>BOI核准 / 股權移轉100%</td>
+        <td colspan="6" class="e"></td>
+        <td colspan="2" class="b"><div class="ba"></div></td>
+        <td colspan="2" class="e"></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>設備採購 / 進口（免關稅）</td>
+        <td colspan="6" class="e"></td>
+        <td colspan="3" class="b"><div class="ba"></div></td>
+        <td class="e"></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>設備安裝 / 人員招募</td>
+        <td colspan="7" class="e"></td>
+        <td colspan="3" class="b"><div class="ba"></div></td>
+      </tr>
+      <tr class="row-a">
+        <td class="lc"><span class="pa">A</span>試產 / 順達稽核</td>
+        <td colspan="8" class="e"></td>
+        <td colspan="2" class="b"><div class="ba"></div></td>
+      </tr>
+      <!-- separator -->
+      <tr class="row-sep"><td colspan="11"></td></tr>
+      <!-- ── 方案B ── -->
+      <tr class="row-b">
+        <td class="lc"><span class="pb">B</span>赴泰考察 / 目標廠洽談</td>
+        <td class="e"></td>
+        <td colspan="2" class="b"><div class="bb"></div></td>
+        <td colspan="7" class="e"></td>
+      </tr>
+      <tr class="row-b">
+        <td class="lc"><span class="pb">B</span>合約簽署 / 首批試單</td>
+        <td colspan="2" class="e"></td>
+        <td colspan="2" class="b"><div class="bb"></div></td>
+        <td colspan="6" class="e"></td>
+      </tr>
+      <tr class="row-b">
+        <td class="lc"><span class="pb">B</span>小批量試產（順達零件）</td>
+        <td colspan="3" class="e"></td>
+        <td colspan="3" class="b"><div class="bb"></div></td>
+        <td colspan="4" class="e"></td>
+      </tr>
+      <tr class="row-b">
+        <td class="lc"><span class="pb">B</span>穩定生產（35–50% 移轉）</td>
+        <td colspan="5" class="e"></td>
+        <td colspan="5" class="b"><div class="bb"></div></td>
+      </tr>
+      <tr class="row-b">
+        <td class="lc"><span class="pb">B</span>評估入股 / 合資談判</td>
+        <td colspan="6" class="e"></td>
+        <td colspan="3" class="b"><div class="bb"></div></td>
+        <td class="e"></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <div style="display:flex;gap:20px;margin-top:12px;font-size:12.5px">
+    <div><span style="display:inline-block;width:18px;height:12px;background:#2E5090;border-radius:3px;vertical-align:middle;margin-right:6px"></span><strong style="color:#2E5090">方案A（深藍）</strong>　自建廠，12～18個月至正式量產，BOI免稅貫穿全程</div>
+    <div><span style="display:inline-block;width:18px;height:12px;background:#C4962C;border-radius:3px;vertical-align:middle;margin-right:6px"></span><strong style="color:#C4962C">方案B（金色）</strong>　合作入股，2～3個月可試產，Q4可穩定供貨</div>
+  </div>
+</div>
+
+<!-- SECTION 7: 建議 -->
+<div class="section">
+  <div class="section-title"><span class="num">八</span>建議 — B先行、A同步，BOI為核心優勢</div>
+  <div class="box blue" style="margin-bottom:14px">
+    <strong>核心判斷：</strong>順達2026訂單年化約2億NTD，65%移轉到方案A年收入可達1.34億。以方案A年度管銷456萬、設備折舊65萬計，<strong>若毛利率20%，年毛利約2,680萬，約3.5年回收全部投資</strong>（BOI期間所得稅0%，提前回收）。
+  </div>
+  <div class="rec-row">
+    <div class="rec-card">
+      <h5>🟢 短期（2026 Q2）</h5>
+      <p>立即啟動方案B：赴泰考察尋找合作廠，快速試單取得稽核資格。同步委任泰國顧問，啟動公司設立&amp; BOI申請文件準備，不等B穩定才動A。</p>
+    </div>
+    <div class="rec-card">
+      <h5>🔵 中期（2026 Q3–Q4）</h5>
+      <p>取得BOI核准後啟動設備採購（免關稅），完成保稅倉建置，股權移轉100%台資。方案B產線穩定後，作為方案A產能緩衝。更新損益試算，提報高層決策。</p>
+    </div>
+    <div class="rec-card">
+      <h5>🏆 長期（2027起）</h5>
+      <p>方案A自建廠量產，享BOI 8–13年免稅紅利。台灣廠轉型研發&amp;業務中心。方案B合作廠作補充產能或緩衝彈性，視合作品質決定是否入股長期化。</p>
+    </div>
+  </div>
+</div>
+
+<div class="footer">
+  分析整理：Alice　|　2026-04-14　|　機密文件 — 限內部流通<br>
+  資料來源：鴻騰泰國設立成本預算表.xlsx、順達訂單_SD01_2024-2026.xlsx、BOI_AI伺服器電池模組稅務報告
+</div>
+
+</div><!-- /page -->
+</body>
+</html>
