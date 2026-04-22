@@ -616,9 +616,56 @@ td.tbd{color:#c0392b;font-weight:700;text-align:center}
   </div>
 </div>
 
+<!-- SECTION 9: 客戶端 Audit 鎖定風險 -->
+<div class="section">
+  <div class="section-title"><span class="num">九</span>客戶端 Audit 實務風險 — 「先B後A」的鎖定陷阱</div>
+  <div class="box red" style="margin-bottom:14px">
+    <strong>核心警示：</strong>客戶端驗廠（Supplier Audit / IATF / ISO / 客戶合規 Source Approval）一旦通過，<strong>即綁定特定 legal entity（法人）＋ 廠區地址</strong>。原報告第八節建議的「B先行、A同步」在稽核制度下存在三項結構性風險，可能讓 A 方案的 BOI 紅利無法兌現，務必於決策前納入。
+  </div>
+
+  <div class="compare-grid" style="grid-template-columns:1fr;gap:12px">
+    <div class="compare-card b">
+      <h4 class="b-title">⚠️ 風險一　Audit 綁定效應：A 廠無法「另案新增」，只能「擴大延伸」</h4>
+      <ul class="pros-cons cons">
+        <li>B 方案合作廠通過客戶 Audit 後，客戶系統中的 Approved Supplier 會被定格在 <strong>「B 公司 legal entity ＋ 春武里廠址」</strong>，未來要把訂單移到 A 廠並非「再新增一個供應商」即可。</li>
+        <li>依客戶 SQA / 4M Change 規範，新法人＋新地址＝<strong>重新送 PPAP / 全套 Source Audit</strong>，時程 6–9 個月，等同 A 廠要重走一次完整認證。</li>
+        <li>實務可行路徑僅剩一條：以 B 廠為母體，A 廠做 <strong>「擴大規模的廠區延伸變更」</strong>（Plant Extension / Site Expansion Notification），意味 A 廠必須掛在 B 的合作架構底下，<strong>難以取得 100% 獨立的 Source Approval</strong>，BOI 獨資紅利打折。</li>
+      </ul>
+    </div>
+
+    <div class="compare-card b">
+      <h4 class="b-title">⚠️ 風險二　訂單分潤稀釋：客戶泰國廠 → 鴻騰泰國 B 公司，持股比例直接決定入袋</h4>
+      <ul class="pros-cons cons">
+        <li>B 方案運作邏輯是 <strong>「客戶泰國廠 PO → 鴻騰泰國 B 公司收單」</strong>，PO 開立對象、開立發票、Local VAT 都落在 B 公司。</li>
+        <li>B 公司若為入股性質（非獨資），分潤依股比切分。以報告原設想的 40% 起跳入股計算，<strong>年收 1.03 億 NTD 中，鴻騰母體實質可分配僅約 4,100 萬</strong>（未扣稅）。</li>
+        <li>一旦客戶 Audit 綁定在 B，想拉高投資比例＝觸發股權結構變更＝又要重新向客戶申報 Supplier Change，<strong>分潤結構被訂單合約「硬鎖」</strong>，談判籌碼反而在泰籍股東方。</li>
+      </ul>
+    </div>
+
+    <div class="compare-card a">
+      <h4 class="a-title">🚨 風險三　台達泰國機種擴產：需求放大 = 鎖定效應等比放大</h4>
+      <ul class="pros-cons cons">
+        <li>台達電已規劃未來大量機種遷往泰國生產，<strong>泰國 local-for-local 採購需求將顯著提升</strong>，鴻騰作為沖壓件供應商的泰國在地供應是必要條件。</li>
+        <li>若先以 B 廠承接台達泰國量，短期看似「搶到訂單」，實則隨著台達量能放大，<strong>鴻騰泰國B公司會被台達 Audit 綁定得越深</strong>，日後切換至 A 廠的成本（重新驗廠＋產線轉移＋客戶信任重建）成倍增加。</li>
+        <li>台達量越大 → 報告中順達基數（2.06億）僅是保底 → <strong>A 方案的 BOI 免稅紅利與 ROI 應該被重新上修</strong>，而非讓 B 廠先行承接最大塊蛋糕。</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="sub-title">修正建議：策略序位應重新權衡</div>
+  <div class="box gold">
+    <strong>建議調整方向（供高層決策討論）：</strong>
+    <ol style="padding-left:22px;margin-top:6px;line-height:1.9">
+      <li><strong>A 主 B 輔、而非 B 先 A 後</strong>：把客戶 Audit 的「首次認證」留給 A 廠（獨資＋BOI＋100% 主導），B 廠定位為「量產前緩衝／訂單滿載時的外包產能」，避免 Audit 綁錯法人。</li>
+      <li><strong>若仍採 B 先行，須預先設計「Audit 可移轉條款」</strong>：在客戶 Source Approval 文件中預先註記「B 為過渡產線、A 為最終量產地」，並爭取 B→A 的變更採簡化流程（Plant Extension 而非 New Source）。同時 B 公司持股談判應以 <strong>≥ 51% 主導權為底線</strong>，避免分潤被稀釋。</li>
+      <li><strong>台達泰國需求納入 A 方案 ROI 重估</strong>：以台達遷廠機種量預估追加收入，若能將 A 方案年收基數從 1.34 億上修至 2 億以上，則 A 方案回收期可縮短至 2–2.5 年，更應加速 A 的 BOI 申請與開廠時程，不應讓 B 搶先鎖單。</li>
+    </ol>
+  </div>
+</div>
+
 <div class="footer">
-  分析整理：Alice　|　2026-04-14　|　機密文件 — 限內部流通<br>
-  資料來源：鴻騰泰國設立成本預算表.xlsx、順達訂單_SD01_2024-2026.xlsx、BOI_AI伺服器電池模組稅務報告
+  分析整理：Alice　|　2026-04-23 更新（新增第九節 Audit 鎖定風險分析）　|　機密文件 — 限內部流通<br>
+  資料來源：鴻騰泰國設立成本預算表.xlsx、順達訂單_SD01_2024-2026.xlsx、BOI_AI伺服器電池模組稅務報告、客戶 Audit 實務規範（IATF 16949 / 4M Change / Supplier Change Notification）
 </div>
 
 </div><!-- /page -->
