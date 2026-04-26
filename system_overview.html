@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 數位管理系統整體流程 Overview</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10.9.0/dist/mermaid.min.js"></script>
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+
+  .sys-header {
+    background: linear-gradient(135deg, #0d4a7c 0%, #6610f2 100%);
+    color: white; padding: 2.5rem 0; margin-bottom: 2rem;
+  }
+  .sys-header h1 { font-weight: 800; letter-spacing: 1px; }
+  .sys-header .subtitle { opacity:.85; font-size:.95rem; }
+
+  .nav-pills .nav-link { color:#0d4a7c; font-weight:600; }
+  .nav-pills .nav-link.active { background:#0d4a7c; }
+
+  .module-card {
+    border:none; border-radius:12px;
+    box-shadow:0 2px 12px rgba(0,0,0,.06);
+    margin-bottom:2rem; overflow:hidden;
+  }
+  .module-card .card-header {
+    color:white; font-weight:700; font-size:1.05rem;
+    padding:1rem 1.25rem; border:none;
+  }
+  .mod-rfq      { background:linear-gradient(90deg,#17a2b8,#0d4a7c); }
+  .mod-npi      { background:linear-gradient(90deg,#0d6efd,#0d4a7c); }
+  .mod-sample   { background:linear-gradient(90deg,#fd7e14,#dc3545); }
+  .mod-pcn      { background:linear-gradient(90deg,#6610f2,#3d0a91); }
+  .mod-ecn      { background:linear-gradient(90deg,#e91e63,#6610f2); }
+  .mod-qc       { background:linear-gradient(90deg,#dc3545,#7c0a14); }
+  .mod-cost     { background:linear-gradient(90deg,#198754,#0a4a2c); }
+
+  .section-title {
+    font-size:1rem; font-weight:700;
+    border-left:4px solid currentColor; padding-left:.75rem;
+    margin:1.25rem 0 .75rem 0;
+  }
+
+  /* Role badges */
+  .rb { display:inline-block; padding:.2rem .55rem; border-radius:20px;
+        font-size:.72rem; font-weight:700; white-space:nowrap; margin:1px; color:white; }
+  .rb-sales      { background:#0d6efd; }
+  .rb-engineer   { background:#198754; }
+  .rb-engmgr     { background:#0a5c34; }
+  .rb-purchase   { background:#17a2b8; }
+  .rb-bu         { background:#6610f2; }
+  .rb-qc         { background:#e91e8c; }
+  .rb-prodmgr    { background:#fd7e14; }
+  .rb-pc         { background:#cd5b00; }
+  .rb-warehouse  { background:#20c997; color:#000; }
+  .rb-assistant  { background:#ffc107; color:#000; }
+  .rb-hr         { background:#6c757d; }
+  .rb-supplier   { background:#fd7e14; }
+  .rb-customer   { background:#0dcaf0; color:#000; }
+  .rb-admin      { background:#212529; }
+  .rb-system     { background:#999; }
+
+  /* Notification pills */
+  .notif-row { display:flex; flex-wrap:wrap; gap:.3rem; margin-top:.45rem; }
+  .n-line  { display:inline-flex; align-items:center; gap:.25rem; background:#d1f5e0; color:#155724;
+             border:1px solid #a3d9b1; border-radius:4px; font-size:.7rem; padding:.18rem .5rem; }
+  .n-mail  { display:inline-flex; align-items:center; gap:.25rem; background:#fff3cd; color:#664d03;
+             border:1px solid #ffe69c; border-radius:4px; font-size:.7rem; padding:.18rem .5rem; }
+  .n-info  { display:inline-flex; align-items:center; gap:.25rem; background:#e8f0fe; color:#0d47a1;
+             border:1px solid #b6cffd; border-radius:4px; font-size:.7rem; padding:.18rem .5rem; }
+
+  .alice-banner {
+    background: linear-gradient(135deg,#fce4ec 0%, #fff3e0 100%);
+    border:1px dashed #e91e63; border-radius:10px;
+    padding:1rem 1.25rem; margin-bottom:1.5rem;
+  }
+  .alice-banner i { color:#e91e63; }
+
+  table.spec { font-size:.85rem; }
+  table.spec th { background:#f8f9fa; }
+  .text-mono { font-family: 'Consolas','Menlo','Monaco',monospace; font-size:.85em;
+               background:#f4f5f7; padding:.05rem .35rem; border-radius:3px; }
+
+  .mermaid { background:white; border-radius:8px; padding:1rem; border:1px solid #e5e7eb;
+             text-align:center; }
+
+  .module-anchor { scroll-margin-top: 80px; }
+
+  .toc-sticky { position:sticky; top:1rem; }
+  .toc-sticky .list-group-item { font-size:.88rem; padding:.55rem .75rem; }
+  .toc-sticky .list-group-item.active { background:#0d4a7c; border-color:#0d4a7c; }
+
+  .footer-tip {
+    background:#fff; border-radius:8px; padding:1rem 1.25rem;
+    border-left:4px solid #0d4a7c; font-size:.88rem; color:#444;
+  }
+</style>
+</head>
+<body>
+
+<div class="sys-header">
+  <div class="container">
+    <h1 class="mb-1"><i class="bi bi-diagram-3 me-2"></i>鴻騰電子數位管理系統</h1>
+    <div class="subtitle">
+      整體流程 Overview｜涵蓋 RFQ／NPI／樣品需求／PCN／ECN／QC 異常／訂單成本與售價
+    </div>
+    <div class="mt-3 small">
+      <span class="badge bg-light text-dark me-1"><i class="bi bi-calendar3 me-1"></i>更新：2026-04-26</span>
+      <span class="badge bg-light text-dark me-1"><i class="bi bi-person me-1"></i>Kevin 主導 NPI 模組</span>
+      <span class="badge bg-light text-dark me-1"><i class="bi bi-person-heart me-1"></i>Alice 主導生產系統模組</span>
+      <span class="badge bg-light text-dark"><i class="bi bi-github me-1"></i>Honten-archive / HT_Production-system</span>
+    </div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <div class="row g-4">
+
+    <!-- 左側 TOC -->
+    <div class="col-lg-3">
+      <div class="toc-sticky">
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action" href="#sec-overview">
+            <i class="bi bi-grid-3x3-gap me-1"></i>系統地圖
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-roles">
+            <i class="bi bi-people me-1"></i>角色與權限矩陣
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-rfq">
+            <i class="bi bi-envelope-paper me-1"></i>1. RFQ 詢價
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-npi">
+            <i class="bi bi-gear-wide-connected me-1"></i>2. NPI 開發
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-sample">
+            <i class="bi bi-box-seam me-1"></i>3. 樣品需求單
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-pcn">
+            <i class="bi bi-arrow-repeat me-1"></i>4. PCN 變更（廠商）
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-ecn">
+            <i class="bi bi-pencil-square me-1"></i>5. ECN 變更（客戶）
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-qc">
+            <i class="bi bi-exclamation-octagon me-1"></i>6. QC 異常 (NCR)
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-cost">
+            <i class="bi bi-currency-dollar me-1"></i>7. 訂單成本與售價
+          </a>
+          <a class="list-group-item list-group-item-action" href="#sec-tech">
+            <i class="bi bi-code-slash me-1"></i>技術架構
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 右側內容 -->
+    <div class="col-lg-9">
+
+      <!-- 系統地圖 -->
+      <div id="sec-overview" class="module-anchor">
+        <h4 class="section-title text-primary">
+          <i class="bi bi-grid-3x3-gap me-1"></i>系統地圖（流程關聯）
+        </h4>
+        <div class="card module-card">
+          <div class="card-body">
+            <p class="text-muted small mb-2">
+              整體系統由 <strong>Kevin（NPI 模組）</strong>與 <strong>Alice（生產系統模組）</strong>共同打造，
+              涵蓋從接單到結案的完整商品生命週期。下圖呈現各模組間的承接關係：
+            </p>
+            <div class="mermaid">
+flowchart LR
+  RFQ[RFQ 詢價單<br/>業務] --> NPI[NPI 新產品開發<br/>工程+採購]
+  NPI --> SAMPLE[樣品需求單<br/>業務+工程+生管]
+  SAMPLE --> ORDER[正式訂單<br/>Alice 模組]
+  ORDER --> COST[訂單成本與售價<br/>Alice 模組]
+  ORDER -.量產發生問題.-> QC[QC 異常 NCR<br/>品保主導]
+  QC -.需設計變更.-> ECN[ECN 變更<br/>跨部門核准]
+  PCN[PCN 變更<br/>廠商主動] -.量產期間.-> ORDER
+  ECN -.執行.-> ORDER
+  classDef kevin fill:#e3f2fd,stroke:#0d4a7c,stroke-width:2px,color:#0d4a7c
+  classDef alice fill:#fce4ec,stroke:#e91e63,stroke-width:2px,color:#880e4f,stroke-dasharray:5 3
+  class RFQ,NPI,PCN,ECN,QC kevin
+  class SAMPLE,ORDER,COST alice
+            </div>
+            <div class="alice-banner mt-3">
+              <i class="bi bi-info-circle me-1"></i>
+              <strong>分工說明</strong>：Kevin 主導 RFQ／NPI／PCN／ECN／QC 五大流程（FastAPI 實作於
+              <span class="text-mono">Honten-archive/feature/npi-module</span>）；
+              Alice 主導樣品需求單／訂單／成本售價（<span class="text-mono">HT_Production-system</span>，目前 repo 為私有）。
+              本文件以 Kevin 模組為主完整呈現，Alice 模組以骨架與已知資訊整合，待 repo 公開後補完細節。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 角色矩陣 -->
+      <div id="sec-roles" class="module-anchor mt-4">
+        <h4 class="section-title text-primary">
+          <i class="bi bi-people me-1"></i>角色與權限矩陣
+        </h4>
+        <div class="card module-card">
+          <div class="card-body">
+            <table class="table spec table-hover align-middle">
+              <thead>
+                <tr>
+                  <th>角色（Role）</th>
+                  <th>帳號</th>
+                  <th>RFQ</th>
+                  <th>NPI</th>
+                  <th>樣品</th>
+                  <th>PCN</th>
+                  <th>ECN</th>
+                  <th>QC</th>
+                  <th>備註</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="rb rb-sales">業務 SALES</span></td><td class="text-mono">sales01</td>
+                    <td>建單、試算、客戶報價</td><td>進入 NPI</td><td>建單</td><td>—</td><td>建 ECN（售價）</td><td>—</td>
+                    <td>各事業部</td></tr>
+                <tr><td><span class="rb rb-assistant">業助 ASSISTANT</span></td><td class="text-mono">asst01</td>
+                    <td>—</td><td>—</td><td>出貨/開單沖銷</td><td>—</td><td>建 ECN（售價/成本）</td>
+                    <td>建單、橫向展開盤點(客戶端)</td><td>—</td></tr>
+                <tr><td><span class="rb rb-engineer">工程師 ENGINEER</span></td><td class="text-mono">eng01</td>
+                    <td>排製程、派發詢價</td><td>主導開發</td><td>建製程單</td><td>建 PCN</td><td>技術類確認</td>
+                    <td>改善方案咨詢</td><td>—</td></tr>
+                <tr><td><span class="rb rb-engmgr">工程主管 ENG_MGR</span></td><td class="text-mono">engmgr</td>
+                    <td>知悉</td><td>知悉</td><td>知悉</td><td>知悉</td><td>知悉</td><td>知悉</td><td>—</td></tr>
+                <tr><td><span class="rb rb-qc">品保 QC</span></td><td class="text-mono">qa01 / ipqc</td>
+                    <td>—</td><td>—</td><td>—</td><td>SIP 檢表</td><td>技術類確認</td>
+                    <td>主導全流程</td><td>含 IPQC/IQC/OQC</td></tr>
+                <tr><td><span class="rb rb-prodmgr">產線主管 PROD_MGR</span></td><td class="text-mono">pd01</td>
+                    <td>—</td><td>—</td><td>—</td><td>作業 SOP</td><td>—</td>
+                    <td>建單</td><td>產線端發現問題建單</td></tr>
+                <tr><td><span class="rb rb-pc">生管 PC</span></td><td class="text-mono">pmc01</td>
+                    <td>—</td><td>—</td><td>確認途程</td><td>—</td><td>—</td>
+                    <td>派工/Sorting/Rework 回填</td><td>2026-04-26 拆出獨立角色</td></tr>
+                <tr><td><span class="rb rb-purchase">採購 PURCHASE</span></td><td class="text-mono">pc01</td>
+                    <td>跟催供應商報價</td><td>議價</td><td>議價</td><td>—</td><td>商業 ECN(成本) CC</td>
+                    <td>退貨補貨協調</td><td>—</td></tr>
+                <tr><td><span class="rb rb-warehouse">倉管 WAREHOUSE</span></td><td class="text-mono">wh01</td>
+                    <td>—</td><td>—</td><td>—</td><td>包裝 SOP</td><td>設計 ECN 庫存盤點</td>
+                    <td>橫向展開盤點(廠內)</td><td>—</td></tr>
+                <tr><td><span class="rb rb-bu">事業部主管 BU</span></td><td class="text-mono">bh01</td>
+                    <td>核准報價</td><td>核准成案</td><td>核准</td><td>核准 + CC PDF</td><td>核准 + CC PDF</td>
+                    <td>知悉</td><td>儲能/消費性</td></tr>
+                <tr><td><span class="rb rb-hr">人事 HR</span></td><td class="text-mono">hr01</td>
+                    <td>—</td><td>—</td><td>—</td><td>—</td><td>商業 ECN CC</td>
+                    <td>—</td><td>—</td></tr>
+                <tr><td><span class="rb rb-admin">管理員 ADMIN</span></td><td class="text-mono">admin</td>
+                    <td colspan="6" class="text-center">全權限（系統管理）</td><td>—</td></tr>
+              </tbody>
+            </table>
+            <div class="small text-muted">
+              <i class="bi bi-info-circle me-1"></i>
+              所有測試帳號統一密碼 <span class="text-mono">ht1234</span>；
+              帳號不分大小寫；BU 角色綁定事業部別 (<strong>儲能</strong>／<strong>消費性</strong>)，只看自己 BU 的待審單。
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1. RFQ -->
+      <div id="sec-rfq" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-rfq">
+            <i class="bi bi-envelope-paper me-1"></i>1. RFQ 詢價流程
+            <span class="badge bg-light text-dark ms-2 small">業務 → 工程 → 採購 → BU → 客戶報價</span>
+          </div>
+          <div class="card-body">
+            <p class="small text-muted">
+              業務收到客戶詢價後，建立 RFQ 單；工程排製程並派發供應商；
+              採購跟催；業務收齊報價後試算成本；BU 核准後發送客戶報價。
+            </p>
+            <h6 class="section-title text-info">流程圖</h6>
+            <div class="mermaid">
+flowchart TD
+  A([DRAFT<br/>業務建單]) -->|業務送工程| B([ENG_DISPATCH<br/>工程排製程])
+  B -->|派發供應商<br/>Mail+圖面| C([QUOTING<br/>供應商報價中])
+  C -->|採購跟催 → 收齊| D([QUOTES_COLLECTED<br/>採購宣告收齊])
+  D -->|業務試算成本+選供應商| E{PENDING_QUOTE_BU<br/>BU 審核報價}
+  E -->|核准| F([QUOTE_APPROVED<br/>業務發送客戶報價])
+  F -->|寄出| G([RFQ_DONE<br/>等客戶決定])
+  E -->|退回業務| H([RETURNED])
+  H -->|業務修正後重送| E
+  G -.客戶決定開發.-> NPI[轉入 NPI 流程]
+  classDef done fill:#d1f5e0,stroke:#155724,color:#155724
+  classDef wait fill:#fff3cd,stroke:#664d03,color:#664d03
+  classDef done2 fill:#cfe2ff,stroke:#0d4a7c,color:#0d4a7c
+  class A,B,C,D wait
+  class F,G done
+  class NPI done2
+            </div>
+            <h6 class="section-title text-info mt-3">關鍵欄位</h6>
+            <table class="table table-sm spec">
+              <tr><td width="180"><span class="text-mono">form_id</span></td><td>RFQ-YYYYMMDD-NNN（自動生成）</td></tr>
+              <tr><td><span class="text-mono">customer_name / email</span></td><td>客戶資訊</td></tr>
+              <tr><td><span class="text-mono">spec_summary</span></td><td>規格摘要</td></tr>
+              <tr><td><span class="text-mono">eng_process_data</span></td><td>工程排製程 JSON（每站 part_no/是否走途程）</td></tr>
+              <tr><td><span class="text-mono">quote_cost_data</span></td><td>業務試算 JSON（明細/管銷/毛利/建議售價）</td></tr>
+              <tr><td><span class="text-mono">quoted_unit_price</span></td><td>業務決定客戶報價單價</td></tr>
+              <tr><td><span class="text-mono">selected_quote_supplier_id</span></td><td>最終選定供應商</td></tr>
+              <tr><td><span class="text-mono">bu_quote_note</span></td><td>BU 核准/退回評語</td></tr>
+            </table>
+            <h6 class="section-title text-info mt-3">附件分類</h6>
+            <p class="small">
+              <code>客戶詢價信</code> · <code>圖面</code> · <code>供應商報價</code> · <code>議價後報價單</code>
+              · <code>成本分析表</code> · <code>客戶報價單</code> · <code>其它</code>
+            </p>
+            <h6 class="section-title text-info mt-3">通知（LINE / Mail）</h6>
+            <div class="notif-row">
+              <span class="n-mail"><i class="bi bi-envelope"></i>派發詢價 → Mail 給供應商（含圖面）</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>供應商回覆 → LINE 工程/業務</span>
+              <span class="n-mail"><i class="bi bi-envelope"></i>BU 核准 → 客戶報價單寄客戶 + 寄 NAS 歸檔</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>BU 退回 → LINE 業務</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. NPI -->
+      <div id="sec-npi" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-npi">
+            <i class="bi bi-gear-wide-connected me-1"></i>2. NPI 新產品開發流程
+            <span class="badge bg-light text-dark ms-2 small">RFQ 客戶決定開發 → 工程 → BU 成案 → 採購議價 → 結案</span>
+          </div>
+          <div class="card-body">
+            <p class="small text-muted">
+              客戶確認開發後，業務點選機種匯入 NPI；工程選定供應商並開立 ERP 模具請購單；
+              填寫 T1 試模日期；BU 核准成案；採購議價回填實際成本後結案，匯入 NAS。
+            </p>
+            <h6 class="section-title text-info">流程圖</h6>
+            <div class="mermaid">
+flowchart TD
+  A([RFQ_DONE]) -->|業務點選機種匯入 NPI| B([NPI_STARTED<br/>工程選供應商<br/>開 ERP 請購單])
+  B -->|工程填 T1 試模 + 模具成本| C{NPI_PENDING_BU<br/>BU 核准成案}
+  C -->|核准| D([NPI_PENDING_PURCHASE<br/>採購議價])
+  C -->|退回工程| R([RETURNED])
+  R -->|工程修正| C
+  D -->|採購回填實際成本| E([CLOSED<br/>匯入 NAS 歸檔])
+  classDef wait fill:#fff3cd,stroke:#664d03,color:#664d03
+  classDef done fill:#d1f5e0,stroke:#155724,color:#155724
+  class A,B wait
+  class D wait
+  class E done
+            </div>
+            <h6 class="section-title text-info mt-3">關鍵欄位</h6>
+            <table class="table table-sm spec">
+              <tr><td width="180"><span class="text-mono">t1_plan_data</span></td>
+                  <td>JSON list — 每張圖的 T1 試模日期 + 備註</td></tr>
+              <tr><td><span class="text-mono">eng_process_data</span></td>
+                  <td>JSON — 每站廠內料號/是否走途程</td></tr>
+              <tr><td><span class="text-mono">mould_cost_est / mould_cost_final</span></td>
+                  <td>工程估模具成本 / 採購議價後實際模具成本</td></tr>
+              <tr><td><span class="text-mono">bargain_data</span></td>
+                  <td>採購議價 JSON — 每供應商價格/模治具/備註</td></tr>
+              <tr><td><span class="text-mono">npi_supplier_invites</span></td>
+                  <td>派發明細表 — 供應商/品號/數量/階梯式 MOQ 報價</td></tr>
+            </table>
+            <h6 class="section-title text-info mt-3">通知</h6>
+            <div class="notif-row">
+              <span class="n-line"><i class="bi bi-chat-dots"></i>NPI 啟動 → LINE 工程/工程主管</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>工程送 BU → LINE BU</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>BU 核准 → LINE 採購（議價）</span>
+              <span class="n-mail"><i class="bi bi-envelope"></i>結案 → Mail 全相關 + NAS 歸檔</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. 樣品需求單 -->
+      <div id="sec-sample" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-sample">
+            <i class="bi bi-box-seam me-1"></i>3. 樣品需求單流程
+            <span class="badge bg-light text-dark ms-2 small">業務 → 工程 → BU → 生管 → 採購 → 生產 → 業助 → 出貨</span>
+          </div>
+          <div class="card-body">
+            <div class="alice-banner">
+              <i class="bi bi-person-heart me-1"></i>
+              <strong>Alice 主導模組</strong>。本流程根據先前 demo 版規格整理；正式版位於
+              <span class="text-mono">HT_Production-system</span>（私有 repo），
+              細節欄位以該 repo 公開後為準。
+            </div>
+            <h6 class="section-title text-danger">流程圖</h6>
+            <div class="mermaid">
+flowchart TD
+  A([DRAFT<br/>業務填寫]) -->|送審 (驗證附件)| B([ENG_ANALYSIS<br/>工程分析中])
+  B -->|工程建製程單<br/>含 ERP 請購單| C{PENDING_BU_APPROVAL<br/>BU 審核}
+  C -->|核准 + 有途程| D([PENDING_ROUTING<br/>生管途程])
+  C -->|核准 + 無途程| E([PENDING_PURCHASE<br/>採購議價])
+  C -->|退回| R([RETURNED<br/>退業務或工程])
+  D -->|生管完成| E
+  E -->|採購完成| F([IN_PRODUCTION<br/>生產加工中])
+  F -->|生產完成| G([PENDING_ORDER_CHECK<br/>業助確認客戶訂單])
+  G -->|開單沖銷| H([PENDING_DELIVERY<br/>待出貨])
+  H -->|出貨確認| I([CLOSED<br/>結案])
+  classDef wait fill:#ffe0cc,stroke:#7c3a14,color:#7c3a14
+  classDef done fill:#d1f5e0,stroke:#155724,color:#155724
+  class A,B,C,D,E,F,G,H wait
+  class I done
+            </div>
+            <h6 class="section-title text-danger mt-3">附件規則（按客戶訂單狀態）</h6>
+            <ul class="small mb-2">
+              <li><strong>不可請款 (NO_ORDER)</strong>：客戶報價單 + 成本分析截圖（必要）+ 其它</li>
+              <li><strong>可請款 (WITH_ORDER) / 後補訂單 (PENDING_ORDER)</strong>：客戶訂單 + 成本分析截圖（必要）+ 其它</li>
+            </ul>
+            <h6 class="section-title text-danger mt-3">途程判斷</h6>
+            <p class="small">
+              <span class="text-mono">EngFormItem.has_routing</span>（Boolean）— 製程明細每行一個 toggle；
+              任一行有途程 → 整張製程單走生管；全部無途程 → 跳過生管直接到採購。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. PCN -->
+      <div id="sec-pcn" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-pcn">
+            <i class="bi bi-arrow-repeat me-1"></i>4. PCN 變更流程（廠商主動）
+            <span class="badge bg-light text-dark ms-2 small">工程建單 → 品保 SIP → 產線 SOP → BU 核准</span>
+          </div>
+          <div class="card-body">
+            <p class="small text-muted">
+              廠商主動提出之製程變更，由工程建立，依序由品保填 SIP、產線主管填作業 SOP，
+              最後 BU 核准結案並產生 CC PDF。
+            </p>
+            <h6 class="section-title text-primary">流程圖</h6>
+            <div class="mermaid">
+flowchart TD
+  A([DRAFT<br/>工程建單]) -->|送審| B([PENDING_QC<br/>品保填 SIP 檢表])
+  B -->|品保完成| C([PENDING_PRODUCTION<br/>產線主管填作業 SOP])
+  C -->|產線完成| D{PENDING_BU_APPROVAL<br/>BU 審核}
+  D -->|核准| E([APPROVED<br/>產生 CC PDF])
+  E --> F([CLOSED])
+  D -->|退回| R([RETURNED<br/>依 reject_to:<br/>工程/品保/產線])
+  R -->|對應角色修正| B
+  classDef wait fill:#e3d4ff,stroke:#3d0a91,color:#3d0a91
+  classDef done fill:#d1f5e0,stroke:#155724,color:#155724
+  class A,B,C,D,E wait
+  class F done
+            </div>
+            <h6 class="section-title text-primary mt-3">附件分類</h6>
+            <p class="small">
+              <code>圖面新版</code> · <code>SIP 檢表</code> · <code>作業 SOP</code> · <code>包裝 SOP</code> · <code>議價記錄</code> · <code>其它</code>
+              <br>
+              <span class="text-muted">退回時各角色僅可刪除自己負責類別的附件。</span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ECN -->
+      <div id="sec-ecn" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-ecn">
+            <i class="bi bi-pencil-square me-1"></i>5. ECN 變更流程（客戶主動 / 已量產設計）
+            <span class="badge bg-light text-dark ms-2 small">兩支流程：技術類 + 商業類</span>
+          </div>
+          <div class="card-body">
+            <p class="small text-muted">
+              客戶主動或已量產品設計變更。由 <strong>change_types</strong> JSON 決定走哪支：
+              「製程/設計/供應商變更」走技術類；「售價/成本變更」走商業類直送 BU。
+            </p>
+            <h6 class="section-title text-danger">技術類流程圖（含設計變更需庫存盤點）</h6>
+            <div class="mermaid">
+flowchart TD
+  A([DRAFT<br/>提案單位建單]) -->|送審| B{有勾「設計變更」?}
+  B -->|是| W([ECN_PENDING_WAREHOUSE<br/>倉管庫存盤點])
+  W --> C([ECN_PENDING_ENG<br/>工程確認])
+  B -->|否（製程/供應商）| C
+  C -->|工程確認| Q([ECN_PENDING_QC<br/>品保確認])
+  Q -->|品保確認| BU{PENDING_BU_APPROVAL}
+  BU -->|核准| AP([APPROVED<br/>CC PDF: 工程/品保/採購/倉管/提案])
+  AP --> CL([CLOSED])
+  BU -->|退回| R([RETURNED<br/>reject_to: 工程/品保/倉管/提案])
+  classDef wait fill:#fce4ec,stroke:#880e4f,color:#880e4f
+  classDef done fill:#d1f5e0,stroke:#155724,color:#155724
+  class A,W,C,Q,BU,AP wait
+  class CL done
+            </div>
+            <h6 class="section-title text-danger mt-3">商業類流程圖（售價 / 成本變更）</h6>
+            <div class="mermaid">
+flowchart LR
+  A([DRAFT<br/>業務/業助建單]) -->|直接送 BU| BU{PENDING_BU_APPROVAL}
+  BU -->|核准（售價）| AP1([APPROVED<br/>CC PDF: 提案/業助/人事])
+  BU -->|核准（成本）| AP2([APPROVED<br/>CC PDF: 提案/採購/人事/業務])
+  AP1 --> CL([CLOSED])
+  AP2 --> CL
+  BU -->|退回| R([RETURNED<br/>reject_to: 提案])
+            </div>
+            <h6 class="section-title text-danger mt-3">變更類型 (change_types) 與走向</h6>
+            <table class="table table-sm spec">
+              <tr><th width="180">類型</th><th>走向</th><th>BU 核准 CC 對象</th></tr>
+              <tr><td>製程變更</td><td>技術類</td><td>工程/品保/採購/倉管/提案</td></tr>
+              <tr><td>設計變更</td><td>技術類 + 倉管盤點</td><td>同上 + 圖面新版</td></tr>
+              <tr><td>供應商變更</td><td>技術類</td><td>同製程</td></tr>
+              <tr><td>售價變更</td><td>商業類</td><td>提案/業助/人事</td></tr>
+              <tr><td>成本變更</td><td>商業類</td><td>提案/採購/人事/業務</td></tr>
+            </table>
+            <h6 class="section-title text-danger mt-3">設計變更庫存盤點 (inventory_data)</h6>
+            <p class="small">
+              JSON list：每筆 <span class="text-mono">{part_no, customer_qty, inhouse_qty, supplier_qty, decision}</span>，
+              倉管於 <span class="text-mono">ECN_PENDING_WAREHOUSE</span> 階段填寫，
+              決定庫存品如何處理（如「停用換新」「沿用至庫存盡」）。
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. QC NCR -->
+      <div id="sec-qc" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-qc">
+            <i class="bi bi-exclamation-octagon me-1"></i>6. QC 異常管理 NCR 流程
+            <span class="badge bg-light text-dark ms-2 small">5 階段 + 三大處理路線 (A/B/C) + ECN 連結</span>
+          </div>
+          <div class="card-body">
+            <p class="small text-muted">
+              IQC/IPQC/OQC 或產線發現異常時建單；品保下處理判斷（可多選）；
+              依路線執行（退貨／特採處理／橫向展開）；需長期改善則進入改善方案，必要時綁 ECN。
+            </p>
+            <h6 class="section-title text-danger">階段流程圖</h6>
+            <div class="mermaid">
+flowchart TD
+  A([DRAFT<br/>建單者填 IPC 異常資訊<br/>來源:廠商/客戶/廠內]) -->|送審 LINE 群組| B{PENDING_DISPOSITION<br/>品保下處理判斷<br/>多選 A/B/C}
+  B --> Apath
+  B --> Bpath
+  B --> Cpath
+  Apath[A 退貨<br/>系統依 doc_type 路由通知<br/>採購/生管<br/>+ 寄信給供應商]
+  Bpath[B 處理方式<br/>B1 不需 / B2 廠內Sort / B3 廠內Rework<br/>B4 客戶端Sort / B5 客戶端Rework<br/>送生管 → 生管選執行單位<br/>→ 回填結果]
+  Cpath[C 橫向展開<br/>多列盤點單<br/>業助/倉管/採購/品保 各填各欄<br/>→ 已填顯示綠底]
+  Apath --> I([PENDING_IMPROVEMENT<br/>含 Mail 通知 + 根因分析<br/>+ 改善方案+SOP/SIP/圖面])
+  Bpath --> I
+  Cpath --> I
+  I -->|需開 ECN| L([LINKED_ECN<br/>等對應 ECN 結案])
+  I -->|無需 ECN| C2([CLOSED])
+  L --> C2
+  classDef draft fill:#e9ecef,stroke:#495057,color:#495057
+  classDef pending fill:#ffd6d6,stroke:#7c0a14,color:#7c0a14
+  classDef branch fill:#fff3cd,stroke:#664d03,color:#664d03
+  classDef closed fill:#d1f5e0,stroke:#155724,color:#155724
+  class A draft
+  class B pending
+  class Apath,Bpath,Cpath branch
+  class I pending
+  class L pending
+  class C2 closed
+            </div>
+            <h6 class="section-title text-danger mt-3">B. 處理方式（5 子類，可任意組合）</h6>
+            <table class="table table-sm spec">
+              <tr><th width="80">子類</th><th>說明</th><th>填寫人</th><th>欄位</th></tr>
+              <tr><td><span class="badge bg-secondary">B1</span></td><td>不需特殊處理（只記錄）</td>
+                  <td><span class="rb rb-qc">品保</span></td><td>—</td></tr>
+              <tr><td><span class="badge bg-warning text-dark">B2</span></td><td>廠內 Sorting（生管安排）</td>
+                  <td><span class="rb rb-qc">品保</span> <span class="rb rb-pc">生管</span></td>
+                  <td>執行站別下拉、良/不良數</td></tr>
+              <tr><td><span class="badge bg-info text-dark">B3</span></td><td>廠內 Rework + 樣品測試</td>
+                  <td><span class="rb rb-qc">品保</span> <span class="rb rb-pc">生管</span></td>
+                  <td>SOP 附件、Rework 結果回填</td></tr>
+              <tr><td><span class="badge bg-primary">B4</span></td><td>客戶端 Sorting</td>
+                  <td><span class="rb rb-qc">品保</span></td>
+                  <td>預估工時 + 需求人力 + 客戶聯絡人</td></tr>
+              <tr><td><span class="badge bg-primary">B5</span></td><td>客戶端 Rework</td>
+                  <td><span class="rb rb-qc">品保</span></td>
+                  <td>同上 + Rework SOP 附件</td></tr>
+            </table>
+            <h6 class="section-title text-danger mt-3">C. 橫向展開盤點欄位（角色分權寫入）</h6>
+            <table class="table table-sm spec">
+              <tr><th>欄位</th><th>填寫角色</th><th>已填視覺</th></tr>
+              <tr><td>客戶端 QTY</td><td><span class="rb rb-assistant">業助</span></td><td>綠底+綠框</td></tr>
+              <tr><td>廠內 QTY</td><td><span class="rb rb-warehouse">倉管</span></td><td>綠底+綠框</td></tr>
+              <tr><td>供應商 QTY</td><td><span class="rb rb-purchase">採購</span></td><td>綠底+綠框</td></tr>
+              <tr><td>處理判定</td><td><span class="rb rb-qc">品保</span></td><td>綠底+綠框</td></tr>
+            </table>
+            <h6 class="section-title text-danger mt-3">退貨自動路由（A 退貨）</h6>
+            <table class="table table-sm spec">
+              <tr><th>單號類型 (doc_type)</th><th>通知對象</th></tr>
+              <tr><td>RECEIVE 進貨單號（原物料）</td><td><span class="rb rb-purchase">採購</span></td></tr>
+              <tr><td>PROCESS 製程單號（製成品）</td><td><span class="rb rb-pc">生管</span></td></tr>
+              <tr><td>SHIP_DC 出貨 D/C</td><td><span class="rb rb-purchase">採購</span> + <span class="rb rb-pc">生管</span></td></tr>
+            </table>
+            <h6 class="section-title text-danger mt-3">通知</h6>
+            <div class="notif-row">
+              <span class="n-line"><i class="bi bi-chat-dots"></i>建單 → LINE QC 群組 + 個別角色</span>
+              <span class="n-mail"><i class="bi bi-envelope"></i>退貨 → Mail 供應商（自動帶異常照片）</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>送生管 → LINE 生管 (PC)</span>
+              <span class="n-line"><i class="bi bi-chat-dots"></i>SA 回填完成 → LINE 品保</span>
+              <span class="n-mail"><i class="bi bi-envelope"></i>根因分析 → Mail 自訂收件人</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7. 訂單成本與售價 -->
+      <div id="sec-cost" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header mod-cost">
+            <i class="bi bi-currency-dollar me-1"></i>7. 訂單成本與售價流程
+            <span class="badge bg-light text-dark ms-2 small">Alice 模組（HT_Production-system）</span>
+          </div>
+          <div class="card-body">
+            <div class="alice-banner">
+              <i class="bi bi-info-circle me-1"></i>
+              此模組由 <strong>Alice</strong> 主導，位於 <span class="text-mono">HT_Production-system</span>（目前為私有 repo）。
+              下方流程為依現有對接點推測之骨架，實際細節以 Alice repo 公開後為準。
+            </div>
+            <h6 class="section-title text-success">推測流程圖（待 Alice 補完）</h6>
+            <div class="mermaid">
+flowchart TD
+  A([RFQ 報價單價<br/>quoted_unit_price]) -->|客戶下單| O([正式訂單<br/>Alice 模組])
+  N([NPI 議價後實際成本<br/>bargain_data]) -->|對接成本| O
+  O --> COST[成本明細<br/>BOM + 工時 + 模具攤提]
+  O --> PRICE[售價維護<br/>客戶報價 + 折讓]
+  COST --> MGT([毛利分析])
+  PRICE --> MGT
+  MGT --> RPT([商業績效報告])
+  ECN[ECN 商業類<br/>售價/成本變更] -.異動.-> PRICE
+  ECN -.異動.-> COST
+  classDef alice fill:#fce4ec,stroke:#e91e63,color:#880e4f,stroke-dasharray:5 3
+  class O,COST,PRICE,MGT,RPT alice
+            </div>
+            <h6 class="section-title text-success mt-3">已知對接點（從 Kevin 模組看出去）</h6>
+            <ul class="small">
+              <li><strong>RFQ → 訂單</strong>：<span class="text-mono">quoted_unit_price</span> 為客戶報價單價，為訂單售價之來源</li>
+              <li><strong>NPI → 訂單</strong>：<span class="text-mono">mould_cost_final</span> + <span class="text-mono">bargain_data</span>
+                  為實際成本，供成本分析模組使用</li>
+              <li><strong>ECN 商業類 → 訂單</strong>：售價/成本變更核准後，需同步至訂單模組
+                  （目前以 PDF + Mail CC 通知，未直連系統）</li>
+              <li><strong>QC NCR → 訂單</strong>：客戶端 Sorting/Rework 工時人力，可能納入成本</li>
+            </ul>
+            <h6 class="section-title text-success mt-3">建議整合方向</h6>
+            <ul class="small">
+              <li>Alice 提供訂單 API → Kevin 端可在 RFQ <span class="text-mono">QUOTE_APPROVED</span> 時自動建單</li>
+              <li>Kevin ECN 商業類核准 → POST 至 Alice 訂單成本/售價維護 endpoint</li>
+              <li>QC 客戶端工時人力 → 折算成本費用 push 至 Alice</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- 技術架構 -->
+      <div id="sec-tech" class="module-anchor mt-4">
+        <div class="card module-card">
+          <div class="card-header" style="background:linear-gradient(90deg,#495057,#212529);color:white;">
+            <i class="bi bi-code-slash me-1"></i>技術架構
+          </div>
+          <div class="card-body">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <h6 class="section-title text-secondary">Kevin 模組（NPI 系統）</h6>
+                <ul class="small mb-0">
+                  <li><strong>後端</strong>：FastAPI + SQLAlchemy async (aiosqlite)</li>
+                  <li><strong>前端</strong>：Jinja2 + Bootstrap 5</li>
+                  <li><strong>DB</strong>：SQLite（dev）／可換 SQL Server（prod）</li>
+                  <li><strong>ERP 整合</strong>：pyodbc 直連 SQL Server (192.168.0.201)</li>
+                  <li><strong>通知</strong>：LINE Messaging API + SMTP（urllib stdlib）</li>
+                  <li><strong>啟動</strong>：<span class="text-mono">uvicorn app.main:app --reload --port 8000</span></li>
+                  <li><strong>Repo</strong>：
+                    <a href="https://github.com/77410kevin-sketch/Honten-archive/tree/main/feature/npi-module/app" target="_blank">
+                      Honten-archive/feature/npi-module
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col-md-6">
+                <h6 class="section-title text-secondary">Alice 模組（生產系統）</h6>
+                <ul class="small mb-0">
+                  <li><strong>Repo</strong>：
+                    <a href="https://github.com/lovespiritgrowth/HT_Production-system" target="_blank">
+                      HT_Production-system
+                    </a>（私有，待開放查閱）</li>
+                  <li><strong>範圍</strong>：樣品需求單、訂單管理、成本分析、售價維護</li>
+                  <li><strong>整合方式（建議）</strong>：REST API + 共用 SSO 帳號</li>
+                </ul>
+                <div class="alice-banner mt-3">
+                  <i class="bi bi-megaphone me-1"></i>
+                  Alice 若可開放 repo 唯讀權限給 Kevin，
+                  本文件可同步補完欄位細節、附件規則、實際路由路徑與通知對象。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- footer tip -->
+      <div class="footer-tip mt-4">
+        <i class="bi bi-lightbulb me-1 text-warning"></i>
+        本文件由 Kevin 整理並透過 <span class="text-mono">honten-docs</span> repo 發佈，所有同事可透過
+        <a href="https://htmlpreview.github.io/?https://github.com/77410kevin-sketch/honten-docs/blob/master/system_overview.html" target="_blank">
+          htmlpreview
+        </a> 開啟。
+        如需修訂任一流程細節，請通知 Kevin 或直接 PR 修改 <span class="text-mono">system_overview.html</span>。
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'default',
+    flowchart: { curve: 'basis', padding: 16 },
+    themeVariables: { fontFamily: '"Microsoft JhengHei","PingFang TC",sans-serif' }
+  });
+
+  // active TOC on scroll
+  const sections = document.querySelectorAll('.module-anchor');
+  const tocLinks = document.querySelectorAll('.toc-sticky .list-group-item');
+  function setActiveToc() {
+    let current = '';
+    sections.forEach(sec => {
+      const top = sec.getBoundingClientRect().top;
+      if (top <= 120) current = sec.id;
+    });
+    tocLinks.forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', setActiveToc);
+  setActiveToc();
+</script>
+</body>
+</html>
