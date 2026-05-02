@@ -81,9 +81,7 @@ body{font-family:"Microsoft JhengHei",Arial,sans-serif;background:#f4f6f9;}
     <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#t1"
       style="color:#1b5e20;">📦 月別×客戶</a></li>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#t2"
-      style="">👥 客戶彙總</a></li>
-    <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#t3">
-      🆕 本週新單 <span class="badge rounded-pill bg-danger ms-1">35</span></a></li>
+      style="">👥 客戶彙總 <span class="badge rounded-pill bg-danger ms-1">35</span></a></li>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#t4"
       style="">🏭 採購成本</a></li>
     <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#t5"
@@ -110,6 +108,84 @@ body{font-family:"Microsoft JhengHei",Arial,sans-serif;background:#f4f6f9;}
 
     <!-- ══ Tab 2：客戶彙總 ══ -->
     <div class="tab-pane fade" id="t2">
+      <!-- 本週新單（移至頂部）-->
+      <div class="alert alert-success mb-3" style="border-radius:10px;">
+        本週（2026-04-27 ～ 2026-05-03）共 <strong>35</strong> 筆新單，台幣合計 <strong>NT$ 1,215,045</strong>
+      </div>
+      <div class="card-box mb-3"><div class="sec sec-green">本週新單（依客戶）</div><div class="accordion" id="weekAcc"><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button " type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk0">
+            <span class="badge me-2" style="background:#1b5e20">●</span><strong>宇瞻</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">8 筆</span>
+            <span class="ms-auto fw-bold" style="color:#1b5e20">NT$ 826,800</span>
+          </button></h2>
+          <div id="wk0" class="accordion-collapse collapse show">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260427001</td><td>AP10B-5W1-01P-1</td><td>DDR5 ZADAK SPARK後板白-印刷白LOGO-薄背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">4,669</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5W1-01P-1</td><td>DDR5 ZADAK SPARK後板白-印刷白LOGO-薄背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">228,781</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5D1-01P-1</td><td>DDR5 ZADAK SPARK後板黑-印刷灰LOGO-薄背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">4,669</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5D1-01P-1</td><td>DDR5 ZADAK SPARK後板黑-印刷灰LOGO-薄背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">228,781</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5D1-01E-1</td><td>DDR5 ZADAK SPARK前板黑-印刷灰LOGO-厚背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">3,599</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5D1-01E-1</td><td>DDR5 ZADAK SPARK前板黑-印刷灰LOGO-厚背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">176,351</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5W1-01E-1</td><td>DDR5 ZADAK SPARK前板白-印刷白LOGO-厚背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">3,599</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5W1-01E-1</td><td>DDR5 ZADAK SPARK前板白-印刷白LOGO-厚背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">176,351</td><td>2026-05-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk1">
+            <span class="badge me-2" style="background:#2e7d32">●</span><strong>宜鼎</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">4 筆</span>
+            <span class="ms-auto fw-bold" style="color:#2e7d32">NT$ 280,655</span>
+          </button></h2>
+          <div id="wk1" class="accordion-collapse collapse ">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260428004</td><td>IN04A-5G2</td><td>INO HS344本體鐵灰</td><td class="text-end">15,000</td><td>NTD</td><td class="text-end">11.620</td><td class="text-end fw-bold">174,300</td><td>2026-06-22</td></tr><tr><td>260428004</td><td>IN01A-5G2</td><td>INO Cap鋁帽蓋鐵灰</td><td class="text-end">1,500</td><td>NTD</td><td class="text-end">6.670</td><td class="text-end fw-bold">10,005</td><td>2026-06-22</td></tr><tr><td>260428004</td><td>IN01A-5G2</td><td>INO Cap鋁帽蓋鐵灰</td><td class="text-end">5,000</td><td>NTD</td><td class="text-end">6.670</td><td class="text-end fw-bold">33,350</td><td>2026-08-05</td></tr><tr><td>260428004</td><td>IN02A-5G2-02</td><td>INO HS286本體鐵灰-印刷紅白LOGO</td><td class="text-end">5,000</td><td>NTD</td><td class="text-end">12.600</td><td class="text-end fw-bold">63,000</td><td>2026-08-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk2">
+            <span class="badge me-2" style="background:#388e3c">●</span><strong>圓剛</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">1 筆</span>
+            <span class="ms-auto fw-bold" style="color:#388e3c">NT$ 71,000</span>
+          </button></h2>
+          <div id="wk2" class="accordion-collapse collapse ">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260428005</td><td>AV16P-5S1-01</td><td>T2508P HOUSING銀本色(陽極)-AVerMedia</td><td class="text-end">1,000</td><td>NTD</td><td class="text-end">71.000</td><td class="text-end fw-bold">71,000</td><td>2026-05-06</td></tr></tbody></table></div></div></div><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk3">
+            <span class="badge me-2" style="background:#43a047">●</span><strong>巨博</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">4 筆</span>
+            <span class="ms-auto fw-bold" style="color:#43a047">NT$ 18,000</span>
+          </button></h2>
+          <div id="wk3" class="accordion-collapse collapse ">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260430001</td><td>JB001-01</td><td>aer-holder-connection-1</td><td class="text-end">15</td><td>NTD</td><td class="text-end">288.700</td><td class="text-end fw-bold">4,331</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-02</td><td>aer-holder-connection-2</td><td class="text-end">10</td><td>NTD</td><td class="text-end">336.900</td><td class="text-end fw-bold">3,369</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-03</td><td>aer-handle-frame-side</td><td class="text-end">5</td><td>NTD</td><td class="text-end">673.800</td><td class="text-end fw-bold">3,369</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-04</td><td>aer-handle-frame-top</td><td class="text-end">2</td><td>NTD</td><td class="text-end">3,465.500</td><td class="text-end fw-bold">6,931</td><td>2026-04-30</td></tr></tbody></table></div></div></div><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk4">
+            <span class="badge me-2" style="background:#66bb6a">●</span><strong>傑新</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">16 筆</span>
+            <span class="ms-auto fw-bold" style="color:#66bb6a">NT$ 12,490</span>
+          </button></h2>
+          <div id="wk4" class="accordion-collapse collapse ">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260428002</td><td>AL13A-5B1-06</td><td>U10本體陽極,藍_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5B1-07</td><td>U10本體陽極,藍_32G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5H1-06</td><td>U10本體陽極,金_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5H1-07</td><td>U10本體陽極,金_32G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5G1-06</td><td>U10本體陽極,灰_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL19A-5S1-06</td><td>U30本體銀色16G</td><td class="text-end">200</td><td>NTD</td><td class="text-end">5.600</td><td class="text-end fw-bold">1,120</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL19A-5S1-07</td><td>U30本體銀色32G</td><td class="text-end">200</td><td>NTD</td><td class="text-end">5.600</td><td class="text-end fw-bold">1,120</td><td>2026-04-28</td></tr><tr><td>260428003</td><td>AL01P-5Z0-06</td><td>16GB Micro SD 3.0 C10  addlink(ad16GBMSH310A)</td><td class="text-end">300</td><td>NTD</td><td class="text-end">2.500</td><td class="text-end fw-bold">750</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL01P-5Z0-07</td><td>Micro SD 3.0 C10(ad32GBMSH310A)</td><td class="text-end">300</td><td>NTD</td><td class="text-end">2.500</td><td class="text-end fw-bold">750</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5B1-06</td><td>U10陽極,藍_16G(ad16GBU10B2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5H1-06</td><td>U10陽極,金_16G(ad16GBU10C2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5G1-06</td><td>U10陽極,灰_16G(ad16GBU10G2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL19P-5S1-06</td><td>U30陽極,銀_16G(ad16GBU30S2)</td><td class="text-end">200</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">1,200</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5B1-07</td><td>U10陽極,藍_32G(ad32GBU10B2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5H1-07</td><td>U10陽極,金_32G(ad32GBU10C2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL19P-5S1-07</td><td>U30陽極,銀_32G(ad32GBU30S2)</td><td class="text-end">200</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">1,200</td><td>2026-05-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+            data-bs-toggle="collapse" data-bs-target="#wk5">
+            <span class="badge me-2" style="background:#0d47a1">●</span><strong>晶達光電</strong>
+            <span class="ms-3 text-muted" style="font-size:.85rem;">2 筆</span>
+            <span class="ms-auto fw-bold" style="color:#0d47a1">NT$ 6,100</span>
+          </button></h2>
+          <div id="wk5" class="accordion-collapse collapse ">
+            <div class="accordion-body p-2">
+              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
+                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
+                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
+                <tbody><tr><td>260430002</td><td>JD003-06</td><td>1330-Back Cover</td><td class="text-end">5</td><td>NTD</td><td class="text-end">730.000</td><td class="text-end fw-bold">3,650</td><td>2026-05-20</td></tr><tr><td>260430002</td><td>JD003-05</td><td>1330-Down BackCover</td><td class="text-end">5</td><td>NTD</td><td class="text-end">490.000</td><td class="text-end fw-bold">2,450</td><td>2026-05-20</td></tr></tbody></table></div></div></div></div></div>
+      <hr class="my-3">
       <div class="row g-3 mb-3">
         <div class="col-12 col-lg-5">
           <div class="card-box">
@@ -448,87 +524,6 @@ body{font-family:"Microsoft JhengHei",Arial,sans-serif;background:#f4f6f9;}
                 <thead class="table-dark"><tr><th>月份</th><th class="text-end">台幣金額</th></tr></thead>
                 <tbody><tr><td>2026-03</td><td class="text-end fw-bold">NT$ 31,481</td></tr></tbody></table></div></div></div></div>
       </div>
-    </div>
-
-    <!-- ══ Tab 3：本週新單 ══ -->
-    <div class="tab-pane fade" id="t3">
-      <div class="alert alert-success mb-3" style="border-radius:10px;">
-        本週（2026-04-27 ～ 2026-05-03）共 <strong>35</strong> 筆新單，
-        台幣合計 <strong>NT$ 1,215,045</strong>
-      </div>
-      <div class="accordion" id="weekAcc"><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button " type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk0">
-            <span class="badge me-2" style="background:#1b5e20">●</span><strong>宇瞻</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">8 筆</span>
-            <span class="ms-auto fw-bold" style="color:#1b5e20">NT$ 826,800</span>
-          </button></h2>
-          <div id="wk0" class="accordion-collapse collapse show">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260427001</td><td>AP10B-5W1-01P-1</td><td>DDR5 ZADAK SPARK後板白-印刷白LOGO-薄背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">4,669</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5W1-01P-1</td><td>DDR5 ZADAK SPARK後板白-印刷白LOGO-薄背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">228,781</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5D1-01P-1</td><td>DDR5 ZADAK SPARK後板黑-印刷灰LOGO-薄背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">4,669</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10B-5D1-01P-1</td><td>DDR5 ZADAK SPARK後板黑-印刷灰LOGO-薄背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">46.690</td><td class="text-end fw-bold">228,781</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5D1-01E-1</td><td>DDR5 ZADAK SPARK前板黑-印刷灰LOGO-厚背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">3,599</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5D1-01E-1</td><td>DDR5 ZADAK SPARK前板黑-印刷灰LOGO-厚背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">176,351</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5W1-01E-1</td><td>DDR5 ZADAK SPARK前板白-印刷白LOGO-厚背膠</td><td class="text-end">100</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">3,599</td><td>2026-05-05</td></tr><tr><td>260427001</td><td>AP10A-5W1-01E-1</td><td>DDR5 ZADAK SPARK前板白-印刷白LOGO-厚背膠</td><td class="text-end">4,900</td><td>NTD</td><td class="text-end">35.990</td><td class="text-end fw-bold">176,351</td><td>2026-05-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk1">
-            <span class="badge me-2" style="background:#2e7d32">●</span><strong>宜鼎</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">4 筆</span>
-            <span class="ms-auto fw-bold" style="color:#2e7d32">NT$ 280,655</span>
-          </button></h2>
-          <div id="wk1" class="accordion-collapse collapse ">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260428004</td><td>IN04A-5G2</td><td>INO HS344本體鐵灰</td><td class="text-end">15,000</td><td>NTD</td><td class="text-end">11.620</td><td class="text-end fw-bold">174,300</td><td>2026-06-22</td></tr><tr><td>260428004</td><td>IN01A-5G2</td><td>INO Cap鋁帽蓋鐵灰</td><td class="text-end">1,500</td><td>NTD</td><td class="text-end">6.670</td><td class="text-end fw-bold">10,005</td><td>2026-06-22</td></tr><tr><td>260428004</td><td>IN01A-5G2</td><td>INO Cap鋁帽蓋鐵灰</td><td class="text-end">5,000</td><td>NTD</td><td class="text-end">6.670</td><td class="text-end fw-bold">33,350</td><td>2026-08-05</td></tr><tr><td>260428004</td><td>IN02A-5G2-02</td><td>INO HS286本體鐵灰-印刷紅白LOGO</td><td class="text-end">5,000</td><td>NTD</td><td class="text-end">12.600</td><td class="text-end fw-bold">63,000</td><td>2026-08-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk2">
-            <span class="badge me-2" style="background:#388e3c">●</span><strong>圓剛</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">1 筆</span>
-            <span class="ms-auto fw-bold" style="color:#388e3c">NT$ 71,000</span>
-          </button></h2>
-          <div id="wk2" class="accordion-collapse collapse ">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260428005</td><td>AV16P-5S1-01</td><td>T2508P HOUSING銀本色(陽極)-AVerMedia</td><td class="text-end">1,000</td><td>NTD</td><td class="text-end">71.000</td><td class="text-end fw-bold">71,000</td><td>2026-05-06</td></tr></tbody></table></div></div></div><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk3">
-            <span class="badge me-2" style="background:#43a047">●</span><strong>巨博</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">4 筆</span>
-            <span class="ms-auto fw-bold" style="color:#43a047">NT$ 18,000</span>
-          </button></h2>
-          <div id="wk3" class="accordion-collapse collapse ">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260430001</td><td>JB001-01</td><td>aer-holder-connection-1</td><td class="text-end">15</td><td>NTD</td><td class="text-end">288.700</td><td class="text-end fw-bold">4,331</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-02</td><td>aer-holder-connection-2</td><td class="text-end">10</td><td>NTD</td><td class="text-end">336.900</td><td class="text-end fw-bold">3,369</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-03</td><td>aer-handle-frame-side</td><td class="text-end">5</td><td>NTD</td><td class="text-end">673.800</td><td class="text-end fw-bold">3,369</td><td>2026-04-30</td></tr><tr><td>260430001</td><td>JB001-04</td><td>aer-handle-frame-top</td><td class="text-end">2</td><td>NTD</td><td class="text-end">3,465.500</td><td class="text-end fw-bold">6,931</td><td>2026-04-30</td></tr></tbody></table></div></div></div><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk4">
-            <span class="badge me-2" style="background:#66bb6a">●</span><strong>傑新</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">16 筆</span>
-            <span class="ms-auto fw-bold" style="color:#66bb6a">NT$ 12,490</span>
-          </button></h2>
-          <div id="wk4" class="accordion-collapse collapse ">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260428002</td><td>AL13A-5B1-06</td><td>U10本體陽極,藍_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5B1-07</td><td>U10本體陽極,藍_32G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5H1-06</td><td>U10本體陽極,金_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5H1-07</td><td>U10本體陽極,金_32G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL13A-5G1-06</td><td>U10本體陽極,灰_16G</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.700</td><td class="text-end fw-bold">670</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL19A-5S1-06</td><td>U30本體銀色16G</td><td class="text-end">200</td><td>NTD</td><td class="text-end">5.600</td><td class="text-end fw-bold">1,120</td><td>2026-04-28</td></tr><tr><td>260428002</td><td>AL19A-5S1-07</td><td>U30本體銀色32G</td><td class="text-end">200</td><td>NTD</td><td class="text-end">5.600</td><td class="text-end fw-bold">1,120</td><td>2026-04-28</td></tr><tr><td>260428003</td><td>AL01P-5Z0-06</td><td>16GB Micro SD 3.0 C10  addlink(ad16GBMSH310A)</td><td class="text-end">300</td><td>NTD</td><td class="text-end">2.500</td><td class="text-end fw-bold">750</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL01P-5Z0-07</td><td>Micro SD 3.0 C10(ad32GBMSH310A)</td><td class="text-end">300</td><td>NTD</td><td class="text-end">2.500</td><td class="text-end fw-bold">750</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5B1-06</td><td>U10陽極,藍_16G(ad16GBU10B2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5H1-06</td><td>U10陽極,金_16G(ad16GBU10C2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5G1-06</td><td>U10陽極,灰_16G(ad16GBU10G2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL19P-5S1-06</td><td>U30陽極,銀_16G(ad16GBU30S2)</td><td class="text-end">200</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">1,200</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5B1-07</td><td>U10陽極,藍_32G(ad32GBU10B2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL13P-5H1-07</td><td>U10陽極,金_32G(ad32GBU10C2)</td><td class="text-end">100</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">600</td><td>2026-05-05</td></tr><tr><td>260428003</td><td>AL19P-5S1-07</td><td>U30陽極,銀_32G(ad32GBU30S2)</td><td class="text-end">200</td><td>NTD</td><td class="text-end">6.000</td><td class="text-end fw-bold">1,200</td><td>2026-05-05</td></tr></tbody></table></div></div></div><div class="accordion-item">
-          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-            data-bs-toggle="collapse" data-bs-target="#wk5">
-            <span class="badge me-2" style="background:#0d47a1">●</span><strong>晶達光電</strong>
-            <span class="ms-3 text-muted" style="font-size:.85rem;">2 筆</span>
-            <span class="ms-auto fw-bold" style="color:#0d47a1">NT$ 6,100</span>
-          </button></h2>
-          <div id="wk5" class="accordion-collapse collapse ">
-            <div class="accordion-body p-2">
-              <table class="table table-sm table-hover mb-0" style="font-size:.82rem;">
-                <thead class="table-dark"><tr><th>訂單號</th><th>品號</th><th>品名</th><th class="text-end">數量</th>
-                  <th>幣別</th><th class="text-end">單價</th><th class="text-end">台幣金額</th><th>交貨日</th></tr></thead>
-                <tbody><tr><td>260430002</td><td>JD003-06</td><td>1330-Back Cover</td><td class="text-end">5</td><td>NTD</td><td class="text-end">730.000</td><td class="text-end fw-bold">3,650</td><td>2026-05-20</td></tr><tr><td>260430002</td><td>JD003-05</td><td>1330-Down BackCover</td><td class="text-end">5</td><td>NTD</td><td class="text-end">490.000</td><td class="text-end fw-bold">2,450</td><td>2026-05-20</td></tr></tbody></table></div></div></div></div>
     </div>
 
     <!-- ══ Tab 4：採購成本 PURR16 ══ -->
