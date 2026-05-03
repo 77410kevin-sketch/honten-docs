@@ -1,0 +1,2139 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 業務週報儀表板</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+  .sys-header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #6610f2 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .stat-card .stat-value { font-size:2.2rem; font-weight:700; line-height:1; }
+  .stat-card .stat-label { font-size:.82rem; color:#6c757d; margin-top:.3rem; }
+  .stat-card .stat-icon { font-size:2rem; opacity:.25; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #6610f2; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+  .nav-tabs .nav-link { color:#495057; padding:.7rem 1.3rem; }
+  .nav-tabs .nav-link.active { font-weight:600; color:#6610f2; border-color:#dee2e6 #dee2e6 #fff; }
+  .tab-content { background:white; border-radius:0 12px 12px 12px; padding:1.5rem; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .chart-wrap { position:relative; height:320px; }
+  .group-badge-sales { background:#0d6efd; color:white; }
+  .group-badge-eng { background:#198754; color:white; }
+  .group-badge-mp { background:#fd7e14; color:white; }
+  .group-badge-other { background:#6c757d; color:white; }
+  .cust-chip {
+    display:inline-block; background:#f8f9fa; border:1px solid #dee2e6;
+    border-radius:20px; padding:.25rem .75rem; margin:.15rem; font-size:.85rem;
+  }
+  .cust-chip .count { background:#6610f2; color:white; border-radius:10px; padding:0 .5rem; margin-left:.35rem; font-size:.75rem; }
+  table.progress-table td, table.progress-table th { vertical-align:middle; }
+  .stage-bar { height:24px; border-radius:4px; display:flex; overflow:hidden; box-shadow:inset 0 0 0 1px rgba(0,0,0,.05); }
+  .stage-bar > div { font-size:.7rem; color:white; display:flex; align-items:center; justify-content:center; font-weight:600; }
+  .footer-note { color:#6c757d; font-size:.82rem; text-align:center; padding:2rem 0; }
+  .stage-chip { display:inline-block; color:white; padding:.2rem .7rem; border-radius:12px; font-size:.8rem; font-weight:600; }
+  .accordion-button:not(.collapsed) { background:#f8f9fa; color:#212529; }
+  .progress-card { border-radius:8px; padding:.6rem .85rem; height:100%; }
+  .progress-sales { background:#e7f0ff; border-left:4px solid #0d6efd; }
+  .progress-eng { background:#e7f8ee; border-left:4px solid #198754; }
+  .progress-label { font-size:.72rem; font-weight:700; color:#495057; margin-bottom:.3rem; }
+  .progress-text { font-size:.82rem; color:#212529; line-height:1.5; white-space:pre-wrap; }
+  /* 本週異動標示 */
+  .row-new { background:#d4edda !important; border-left:4px solid #28a745 !important; }
+  .row-changed { background:#fff3cd !important; border-left:4px solid #ffc107 !important; }
+</style>
+</head>
+<body>
+
+<div class="sys-header">
+  <div class="container">
+    <h2 class="mb-1"><i class="bi bi-bar-chart-fill"></i> 鴻騰電子 — 業務週報儀表板</h2>
+    <div class="subtitle">Jeffrey / Robin / Alan ・ 更新時間：2026-05-02 09:00</div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-Jeffrey" type="button"><i class="bi bi-person-badge"></i> Jeffrey <span class="badge bg-secondary ms-1">26</span></button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-Robin" type="button"><i class="bi bi-person-badge"></i> Robin <span class="badge bg-secondary ms-1">23</span></button></li>
+<li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-Alan" type="button"><i class="bi bi-person-badge"></i> Alan <span class="badge bg-secondary ms-1">65</span></button></li>
+  </ul>
+
+  <div class="tab-content">
+    
+    <div class="tab-pane fade show active" id="tab-Jeffrey" role="tabpanel">
+      
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">5</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">16</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">10</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">26</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 階段整體分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">階段分佈（總計 26 件）</div>
+        <div class="stage-bar">
+          <div style="width:61.5%; background:#0d6efd;" title="RFQ 16 件">RFQ 16</div><div style="width:19.2%; background:#e91e8c;" title="DVT 5 件">DVT 5</div><div style="width:11.5%; background:#198754;" title="Mockup 3 件">Mockup 3</div><div style="width:7.7%; background:#d63384;" title="PVT 2 件">PVT 2</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Jeffrey"></canvas></div>
+        </div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>16</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:61.5%; background:#0d6efd;">62%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#e91e8c;">DVT</span></td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:19.2%; background:#e91e8c;">19%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#198754;">Mockup</span></td><td class="text-end"><strong>3</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:11.5%; background:#198754;">12%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#d63384;">PVT</span></td><td class="text-end"><strong>2</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:7.7%; background:#d63384;">8%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="section-title">客戶清單（5 家）</div>
+        <div><span class="cust-chip">系統電子 <span class="count">10</span></span><span class="cust-chip">順達 <span class="count">9</span></span><span class="cust-chip">電統能源 <span class="count">5</span></span><span class="cust-chip">波若威 <span class="count">1</span></span><span class="cust-chip">加百裕 <span class="count">1</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
+      <div class="accordion" id="customer-accordion-Jeffrey">
+        
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c0">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">順達</strong>
+                <span class="badge bg-dark">共 9 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#198754;">Mockup 3</span><span class="badge me-1" style="background:#e91e8c;">DVT 3</span><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span><span class="badge me-1" style="background:#d63384;">PVT 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Jeffrey-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">3 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>LA235</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">5. 4/14已報價 500套(簡易模), 與RD確認可否修模(鑲件, 滑塊, 入子活動式)==>可行<br>追</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>HVDC 600V 66KW</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. 4/15已報價(20套樣品)  約Lance discuss CNC  control parts (4/21 ):無其他金屬件<br>     進度確認</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">3. 連鎖反應結果：<br>隨著板材中心的下陷，原本垂直站立的重物會隨底面角度連動。板材底部的微小彎曲會放大為重物頂端的位移，導致兩組重物向中心縫隙靠攏，最終發生頂端碰撞干涉。</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>DTG0110U (UPS)
+11KW</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 6th樣品交期: 4/1已交, 4/16測試pass, 追伸揚報價 (4/21前須報價)<br>    (待順達業務(要單)/EE(重新洗板打件)更新狀況)   追</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">done</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">3 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>MSFT 1KW</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. 4/16 RD通知上蓋需加外蓋板(鉚接) (更新成本分析)<br>     ==>模具追加工站壓鉚? 還是外部工具鉚接 須說明一下製程以及其定位方式確認</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">1.等待報價更新。</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>SCS-30KW (LA300S)</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. 新增鋁條: AL5052(伸揚:10W模具; 22/pcs(貼膠) 鴻濰已報:55/pcs 缺拓海) 4/18已報價<br>   ,模具費support   (評估鋁擠模無法 (太薄)  (開模確認＆數量）　==>pending</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">已暫停</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>AWS 8.5KW</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3th修模已通知:3/18-3/26==>3/26已交修模品 & 簽樣  待提供FAI</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">done</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>LA267H</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>DM258H (400V)</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#d63384;">PVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>ORV3 5.5KW</strong></span>
+                        <span class="badge bg-light text-dark border">BBU</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1. PVT: 4/2提供FAI/Cpk, 4/15試產完成,準備出貨光寶驗證</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">done</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c1">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">系統電子</strong>
+                <span class="badge bg-dark">共 10 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 8</span><span class="badge me-1" style="background:#e91e8c;">DVT 1</span><span class="badge me-1" style="background:#d63384;">PVT 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Jeffrey-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">8 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>AVA Robot</strong></span>
+                      <span class="badge bg-light text-dark border">送餐機器人</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>BWD-6040N</strong></span>
+                      <span class="badge bg-light text-dark border">眼鏡充電盒</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>TRI-BAND ANTENNA</strong></span>
+                      <span class="badge bg-light text-dark border">車用天線</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>ONEBOX_REEECU</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>無人機電池包</strong></span>
+                      <span class="badge bg-light text-dark border">無人機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>Mantis Puck</strong></span>
+                      <span class="badge bg-light text-dark border">眼鏡盒</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>Falcon
+(GCS-0700)</strong></span>
+                      <span class="badge bg-light text-dark border">無人機
+(民用/警用)</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>紅外線攝影機</strong></span>
+                      <span class="badge bg-light text-dark border">紅外線攝影機</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>AIX-8000N</strong></span>
+                        <span class="badge bg-light text-dark border">AI Box</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">8. 大鋁擠開模評估: 開模DFM、開模T0/T1時間、PVT備料100套的各製程時間==>待回 DFM</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">待寶森更新大鋁擠評估DFM</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#d63384;">PVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>TPMS天線(Antenna)</strong></span>
+                        <span class="badge bg-light text-dark border">車用天線
+Shielding</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">5. 客戶4/23提供GP相關承認文件製作 (Sana): 剩IMDS (4/30 搞定!)</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">1.下單30K，5/20出包裝測試結果</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c2">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">電統能源</strong>
+                <span class="badge bg-dark">共 5 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 4</span><span class="badge me-1" style="background:#e91e8c;">DVT 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Jeffrey-c2" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">4 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>Wonder Woman
+(11KW)</strong></span>
+                      <span class="badge bg-light text-dark border">BBU</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>NB109</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>Iron man</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>Thor (7KW)</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>3KW</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. DE-100S 銘板估價(3/20): 不鏽鋼銘板要雷雕, 已報價製作: 4/2已交貨</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">開模T1：5/9，出貨寄台灣時間：5/14</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c3">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">波若威</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Jeffrey-c3" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>(未填機種)</strong></span>
+                      <span class="badge bg-light text-dark border">CPO</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Jeffrey-c4">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">加百裕</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Jeffrey-c4" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Jeffrey">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>(未填機種)</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <div class="tab-pane fade" id="tab-Robin" role="tabpanel">
+      
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">9</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">14</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">5</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">19</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 階段整體分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">階段分佈（總計 23 件）</div>
+        <div class="stage-bar">
+          <div style="width:60.9%; background:#0d6efd;" title="RFQ 14 件">RFQ 14</div><div style="width:21.7%; background:#e91e8c;" title="DVT 5 件">DVT 5</div><div style="width:17.4%; background:#dc3545;" title="MP異常處理 4 件">MP異常處理 4</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Robin"></canvas></div>
+        </div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>14</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:60.9%; background:#0d6efd;">61%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#e91e8c;">DVT</span></td><td class="text-end"><strong>5</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.7%; background:#e91e8c;">22%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#dc3545;">MP異常處理</span></td><td class="text-end"><strong>4</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:17.4%; background:#dc3545;">17%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="section-title">客戶清單（9 家）</div>
+        <div><span class="cust-chip">泰博 <span class="count">9</span></span><span class="cust-chip">圓剛 <span class="count">4</span></span><span class="cust-chip">聰泰 <span class="count">2</span></span><span class="cust-chip">瑞傳 <span class="count">2</span></span><span class="cust-chip">創見 <span class="count">2</span></span><span class="cust-chip">啟鑫 <span class="count">1</span></span><span class="cust-chip">科賦 <span class="count">1</span></span><span class="cust-chip">太業 <span class="count">1</span></span><span class="cust-chip">宸曜 <span class="count">1</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
+      <div class="accordion" id="customer-accordion-Robin">
+        
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c0">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">圓剛</strong>
+                <span class="badge bg-dark">共 4 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span><span class="badge me-1" style="background:#e91e8c;">DVT 2</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>D331 nct for ADlink</strong></span>
+                      <span class="badge bg-light text-dark border">IPC</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>D115W</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">2 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>T2508P</strong></span>
+                        <span class="badge bg-light text-dark border">IPC</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1. 承認書已提供，已下1K訂單。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">客戶下單1K<br>工程確認單 更新<br>PCN>5/6</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>GC750</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 4/30 200pcs交貨圓剛。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">200PCS>4/29<br>承認書<br>PCN</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c1">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">聰泰</strong>
+                <span class="badge bg-dark">共 2 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span><span class="badge me-1" style="background:#dc3545;">MP異常處理 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>GTDL--B-154-1G2</strong></span>
+                      <span class="badge bg-light text-dark border">IPC</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#dc3545;">MP異常處理</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>PD570</strong></span>
+                        <span class="badge bg-light text-dark border">視訊盒</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. 4/29 打拋烤漆露白異常，已與聰泰品保確認，先標示分開出貨若組裝廠有發現問題在行打掉。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">OK完成</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c2">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">瑞傳</strong>
+                <span class="badge bg-dark">共 2 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c2" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>PCOM-B709</strong></span>
+                      <span class="badge bg-light text-dark border">IPC</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>MEDS-5210</strong></span>
+                      <span class="badge bg-light text-dark border">IPC</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c3">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">泰博</strong>
+                <span class="badge bg-dark">共 9 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 7</span><span class="badge me-1" style="background:#e91e8c;">DVT 2</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c3" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">7 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>td4257a_ ESD彈片</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>TD4239血糖機</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>彈片專案</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>馬達固定夾</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>鋼帽</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>馬達彈性墊片</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>ESD彈片</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">2 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>TD-2555(體重計)</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">3. 4/10 承認書已提供</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">承認書4/10 以提供</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>M3銅柱</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">以提供</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c4">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">啟鑫</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c4" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>QM-銑床件</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c5">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">科賦</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#e91e8c;">DVT 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c5" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#e91e8c;">DVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>LITE V RGB</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 4/17 回覆印刷限度已核准，需準備正式限度樣，及請我們提供50套樣品，供內部品質驗證及電腦參展使用。==>4/30 送50套成品給科賦</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">50套電腦展樣品>OK</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c6">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">創見</strong>
+                <span class="badge bg-dark">共 2 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#dc3545;">MP異常處理 1</span><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c6" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#dc3545;">MP異常處理</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>13-5370</strong></span>
+                        <span class="badge bg-light text-dark border">未分類</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 4/27已提供新參數承認樣給創見，並與採購主管確認我司既有舊參數良品630pcs可交貨，確認5K訂單餘下交期。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">5本承認樣 客戶簽核中</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>DP2X0</strong></span>
+                      <span class="badge bg-light text-dark border">未分類</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c7">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">太業</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#dc3545;">MP異常處理 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c7" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Robin-c8">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">宸曜</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#dc3545;">MP異常處理 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Robin-c8" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Robin">
+            <div class="accordion-body">
+              
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <div class="tab-pane fade" id="tab-Alan" role="tabpanel">
+      
+      <!-- 統計卡片 -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-primary">4</div><div class="stat-label">合作客戶數</div></div>
+            <i class="bi bi-building stat-icon text-primary"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#0d6efd;">37</div><div class="stat-label">RFQ 專案</div></div>
+            <i class="bi bi-file-text stat-icon" style="color:#0d6efd;"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value text-success">14</div><div class="stat-label">打樣專案</div></div>
+            <i class="bi bi-gear stat-icon text-success"></i>
+          </div></div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+            <div><div class="stat-value" style="color:#6610f2;">51</div><div class="stat-label">NPI 開案中</div></div>
+            <i class="bi bi-lightning-charge stat-icon" style="color:#6610f2;"></i>
+          </div></div>
+        </div>
+      </div>
+
+      <!-- 階段整體分佈 bar -->
+      <div class="mb-4">
+        <div class="section-title">階段分佈（總計 65 件）</div>
+        <div class="stage-bar">
+          <div style="width:56.9%; background:#0d6efd;" title="RFQ 37 件">RFQ 37</div><div style="width:21.5%; background:#fd7e14;" title="MP 14 件">MP 14</div><div style="width:18.5%; background:#198754;" title="Mockup 12 件">Mockup 12</div><div style="width:1.5%; background:#6f42c1;" title="EVT 1 件">EVT 1</div><div style="width:1.5%; background:#20c997;" title="TS 1 件">TS 1</div>
+        </div>
+      </div>
+
+      <div class="row g-4 mb-4">
+        <div class="col-md-7">
+          <div class="section-title">階段分佈圖</div>
+          <div class="chart-wrap"><canvas id="stage-chart-Alan"></canvas></div>
+        </div>
+        <div class="col-md-5">
+          <div class="section-title">階段明細表</div>
+          <table class="table table-sm progress-table">
+            <thead><tr><th>階段</th><th class="text-end">件數</th><th>佔比</th></tr></thead>
+            <tbody><tr><td><span class="stage-chip" style="background:#0d6efd;">RFQ</span></td><td class="text-end"><strong>37</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:56.9%; background:#0d6efd;">57%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#fd7e14;">MP</span></td><td class="text-end"><strong>14</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:21.5%; background:#fd7e14;">22%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#198754;">Mockup</span></td><td class="text-end"><strong>12</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:18.5%; background:#198754;">18%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#6f42c1;">EVT</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.5%; background:#6f42c1;">2%</div></div></td></tr><tr><td><span class="stage-chip" style="background:#20c997;">TS</span></td><td class="text-end"><strong>1</strong></td><td><div class="progress" style="height:18px;"><div class="progress-bar" role="progressbar" style="width:1.5%; background:#20c997;">2%</div></div></td></tr></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="mb-4">
+        <div class="section-title">客戶清單（4 家）</div>
+        <div><span class="cust-chip">佐茂 <span class="count">42</span></span><span class="cust-chip">晶達光電 <span class="count">19</span></span><span class="cust-chip">嘉彰 <span class="count">3</span></span><span class="cust-chip">興能高 <span class="count">1</span></span></div>
+      </div>
+
+      <div class="section-title">各客戶階段明細（點擊展開看機種）</div>
+      <div class="accordion" id="customer-accordion-Alan">
+        
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c0">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">佐茂</strong>
+                <span class="badge bg-dark">共 42 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 34</span><span class="badge me-1" style="background:#198754;">Mockup 6</span><span class="badge me-1" style="background:#6f42c1;">EVT 1</span><span class="badge me-1" style="background:#20c997;">TS 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Alan-c0" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">34 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/9/8
+
+MIRAI LABO004 7S10P 鋁擠</strong></span>
+                      <span class="badge bg-light text-dark border">可充電電池發電機 G-CROSS</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/9/6
+
+BDC72 BDC TH連接端子</strong></span>
+                      <span class="badge bg-light text-dark border">TH連接端子</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/9
+
+RFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02
+
+MAP Nakanishi 滅菌対応 4S1P 18650</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/23
+
+Richcom Apollo Robot</strong></span>
+                      <span class="badge bg-light text-dark border">機器人</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/4
+
+臻禾 13S5P_0S8P</strong></span>
+                      <span class="badge bg-light text-dark border">割草機 
+or 
+搬運機器</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/4
+
+臻禾 AEBC-BA-48V-165</strong></span>
+                      <span class="badge bg-light text-dark border">割草機 
+or 
+搬運機器</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/17
+
+RFQ-25085-00
+
+inMusic</strong></span>
+                      <span class="badge bg-light text-dark border">音樂設備</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/19
+
+RFQ-25089-00
+
+FUTABA AiTran Lift2 BATTERY</strong></span>
+                      <span class="badge bg-light text-dark border">搬送機器</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/1
+
+RFQ-25093-00
+
+系統電子 GCS-6070</strong></span>
+                      <span class="badge bg-light text-dark border">電池盒</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/15
+
+RFQ-25101-00
+
+溢泰 儲電型加熱器</strong></span>
+                      <span class="badge bg-light text-dark border">儲電型加熱器</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/22
+2026/2/3
+
+Retail AI SkipCart ACDC Charger _1000W_殼類(鋁)</strong></span>
+                      <span class="badge bg-light text-dark border">大賣場智能推車</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/24
+
+系統電子
+Falcon external 2S3P/沖型鎳片</strong></span>
+                      <span class="badge bg-light text-dark border">無人機
+(民用/警用)</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/12/29
+
+RFQ-25104-00
+
+新智能 8S2P</strong></span>
+                      <span class="badge bg-light text-dark border">-</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/8
+
+RFQ-25103-00
+
+RICOH 相機電池(1S1P)</strong></span>
+                      <span class="badge bg-light text-dark border">相機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/13
+
+RFQ-25089-01
+
+FUTABA AiTran Lift2 BATTERY</strong></span>
+                      <span class="badge bg-light text-dark border">搬送機器</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/14
+
+RFQ-25049-04
+
+MAP-INAKANISHI INC_滅菌対応_A12326650</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/16
+
+MAP-INAKANISHI INC</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/1/29
+
+RFQ-26002-00
+
+KARMA</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/2/10
+
+RFQ-26005-00
+
+無人機(12S3P)</strong></span>
+                      <span class="badge bg-light text-dark border">無人機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/4
+
+RFQ-260010-00
+
+Amita PS106 (10S2P)</strong></span>
+                      <span class="badge bg-light text-dark border">無人機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/9
+
+RFQ-26011-01 MAP 
+
+滅菌充電器</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/10
+
+RFQ-26011-01 
+
+滅菌Nakanishi 充電器</strong></span>
+                      <span class="badge bg-light text-dark border">醫療</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/12
+
+購物車VC-705ML-充電把手</strong></span>
+                      <span class="badge bg-light text-dark border">商場購物車</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/16
+
+RFQ-26003-01
+
+Nightingale security_NSDrone</strong></span>
+                      <span class="badge bg-light text-dark border">軍用無人機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/19
+
+RFQ-260013-00 
+
+avatarin Newme 2.0，AI行動機器人</strong></span>
+                      <span class="badge bg-light text-dark border">AI行動機器人</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/20
+
+RFQ-26002-00 
+
+KARMA</strong></span>
+                      <span class="badge bg-light text-dark border">醫療器材</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/25
+
+RFQ-260014-00 
+
+倚天一型(無人機)_10S4P</strong></span>
+                      <span class="badge bg-light text-dark border">無人機</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/26
+
+台塑生醫-儲能牆
+
+RFQ-26016-00 (儲能牆落地公版結構) 
+
+RFQ-26016-01 (儲能牆-掛牆)
+
+RFQ-26016-02(儲能牆落地專用結構)</strong></span>
+                      <span class="badge bg-light text-dark border">儲能系列</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/8
+
+RFQ-25051-04 
+
+MAP-INAKANISHI INC_滅菌対応_A12318650</strong></span>
+                      <span class="badge bg-light text-dark border">醫療器材</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/13
+
+RFQ-26015-00 
+
+上緯智聯 小狗電池-沖型NI</strong></span>
+                      <span class="badge bg-light text-dark border">機器人</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/13
+
+RFQ-26021-00
+
+台端_AF1K 電摩_14S4P</strong></span>
+                      <span class="badge bg-light text-dark border">電動機車</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/16
+
+RFQ-26015-00 
+
+上緯智聯 小狗電池</strong></span>
+                      <span class="badge bg-light text-dark border">機器人</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/16
+
+RFQ-25043-03 
+
+OEM儲能16S</strong></span>
+                      <span class="badge bg-light text-dark border">儲能系列</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/22
+
+滅菌_端子NUT(12AWG)_260422</strong></span>
+                      <span class="badge bg-light text-dark border">醫療器材</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">4 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/12
+2026/4/4
+
+購物車VC-705ML-充電把手</strong></span>
+                        <span class="badge bg-light text-dark border">商場購物車</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">5. 4/29 通知評估3D列印1套。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/10/27
+
+Richcom Apollo Robot</strong></span>
+                        <span class="badge bg-light text-dark border">機器人</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. RD需求鋁板C+D (無料號)，各7PCS，3/25 送中和</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">已給業務送樣</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/11/21
+
+Richcom Apollo Robot</strong></span>
+                        <span class="badge bg-light text-dark border">機器人</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">１. 3/20前出貨</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">已送樣</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/3/16
+
+Garmin 361-00218-00</strong></span>
+                        <span class="badge bg-light text-dark border">未知</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">已全數寄給左茂</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#6f42c1;">EVT</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>2025/8/20
+
+ ENERGY WALL
+儲能牆</strong></span>
+                        <span class="badge bg-light text-dark border">儲能系列</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 4/22 已發信詢問T1測試進度。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#20c997;">TS</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>2026/4/15
+
+Energy Wall-M 48V</strong></span>
+                      <span class="badge bg-light text-dark border">儲能系列</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c1">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">晶達光電</strong>
+                <span class="badge bg-dark">共 19 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#fd7e14;">MP 13</span><span class="badge me-1" style="background:#198754;">Mockup 5</span><span class="badge me-1" style="background:#0d6efd;">RFQ 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Alan-c1" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#fd7e14;">MP</span>
+                <span class="ms-2 text-muted small">3 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>1902-EHL0-Front Case & AECX-EHL0-HeatSink</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1. 4/15 送一套驗證，RD 組裝OK。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">4/15尺寸確認ok已送樣1pcs，已請寶森後續全數下去製作。</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>0705-RCK4_前框</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1.  2/10 口頭更新報價，烤漆廠表示表面要完美，良率只會有4成，除非找汽車烤漆或無塵烤漆。請晶達推薦烤漆廠。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>IPPC-2158-TGL0-WP00-1001
+
+前框+後蓋+電池蓋</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">5. 4/23 完成重工，4/27出貨。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">1.後蓋:出貨32pcs以液烤完回廠內(品檢有檢查到外觀不相同的)</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">4 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-MTL0 Heatsink</strong></span>
+                        <span class="badge bg-light text-dark border">IPC
+&
+edge computing</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">4. 5/20 要提供，客戶要參加電腦展。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">業務已送樣</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>RS-ITRP-1045-EHL2-ZP00-1001</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框
++
+散熱塊</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 4/20 建笠協助重工，預計4/28前回貨晶達。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>IEAP-1330-RKC3</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框
++
+2個上下蓋
++
+配件</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1. 晶達板金廠5/20 前將送貨至鴻騰，再送去又全陽極。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text"><span class="text-muted">（未填寫）</span></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>DPD-1268 Front Case</strong></span>
+                        <span class="badge bg-light text-dark border">螢幕框</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">2. 3/17 銘唯協助磨髮線+噴砂，3/18 廠內陽極可蓋過，3/19完成陽極5 PCS，3/20 雷雕+量尺寸</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">0323下午2點前給業務送樣</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">1 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>AECX-APL7 Heat Spreader</strong></span>
+                      <span class="badge bg-light text-dark border">IPC</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c2">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">興能高</strong>
+                <span class="badge bg-dark">共 1 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#198754;">Mockup 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Alan-c2" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#198754;">Mockup</span>
+                <span class="ms-2 text-muted small">1 個機種（已填進度）</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item py-3 ">
+                      <div class="d-flex justify-content-between align-items-center">
+                        <span><i class="bi bi-cpu text-muted me-1"></i><strong>3U-12KW</strong></span>
+                        <span class="badge bg-light text-dark border">3U 伺服器機櫃</span>
+                      </div>
+                      
+                    <div class="progress-block mt-2">
+                      <div class="row g-2">
+                        <div class="col-md-6">
+                          <div class="progress-card progress-sales">
+                            <div class="progress-label"><i class="bi bi-briefcase"></i> 業務進度</div>
+                            <div class="progress-text">1. 4/24 RD提供新圖面。</div>
+                          </div>
+                        </div>
+                        <div class="col-md-6">
+                          <div class="progress-card progress-eng">
+                            <div class="progress-label"><i class="bi bi-tools"></i> 工程進度</div>
+                            <div class="progress-text">4/28已請鴻濰評估</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+
+        <div class="accordion-item">
+          <h2 class="accordion-header">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse-Alan-c3">
+              <div class="d-flex align-items-center gap-2 flex-wrap w-100">
+                <strong class="me-2">嘉彰</strong>
+                <span class="badge bg-dark">共 3 件</span>
+                <span class="ms-auto"><span class="badge me-1" style="background:#0d6efd;">RFQ 2</span><span class="badge me-1" style="background:#fd7e14;">MP 1</span></span>
+              </div>
+            </button>
+          </h2>
+          <div id="collapse-Alan-c3" class="accordion-collapse collapse" data-bs-parent="#customer-accordion-Alan">
+            <div class="accordion-body">
+              
+            <div class="mb-3">
+              <div class="d-flex align-items-center mb-2">
+                <span class="stage-chip" style="background:#0d6efd;">RFQ</span>
+                <span class="ms-2 text-muted small">2 個機種</span>
+              </div>
+              <ul class="list-group list-group-flush border rounded">
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>h_sprd_ford_10p2
+
+Ford 10.2 背板</strong></span>
+                      <span class="badge bg-light text-dark border">車用</span>
+                    </li>
+                    
+                    <li class="list-group-item d-flex justify-content-between align-items-center py-2 ">
+                      <span><i class="bi bi-cpu text-muted me-1"></i><strong>3483814600 拉手</strong></span>
+                      <span class="badge bg-light text-dark border">-</span>
+                    </li>
+                    </ul>
+            </div>
+            
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="footer-note">
+    資料來源：BBU Projects schedule（Google Drive）・每週五 09:00 自動更新
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const REPS_DATA = {"Jeffrey": {"total": 26, "customers": {"系統電子": 10, "順達": 9, "電統能源": 5, "波若威": 1, "加百裕": 1}, "customer_count": 5, "stages": {"RFQ": 16, "DVT": 5, "Mockup": 3, "PVT": 2}, "groups": {"工程": 10, "業務": 16}, "rfq": 16, "sample": 10, "npi": 26, "mp": 0, "customer_breakdown": {"順達": {"total": 9, "stages": {"Mockup": 3, "DVT": 3, "RFQ": 2, "PVT": 1}, "stage_models": {"PVT": [{"model": "ORV3 5.5KW", "type": "BBU", "sales_followup": "1. PVT: 4/2提供FAI/Cpk, 4/15試產完成,準備出貨光寶驗證", "eng_followup": "done", "change_type": "unchanged"}], "Mockup": [{"model": "LA235", "type": "未分類", "sales_followup": "1. 2/25已報價,3/4已更新報價,已拿到案子  開模DFM: 3/20已提供\n2. 7th延燒:3/26 若過了會發圖開模 (TS: 3/E, T1: 4/E-5/B)  模工: Paul\n    ==>4/14  8th測試(4/10提早測NG), 下周複測\n3. 鎳片1組 Support  3/20已製作  交期確認:3/25已交\n4. 成本分析: 3/27 (伸揚/合檥) (按最新圖面成本下降)\n5. 4/14已報價 500套(簡易模), 與RD確認可否修模(鑲件, 滑塊, 入子活動式)==>可行\n追", "eng_followup": "", "change_type": "unchanged"}, {"model": "HVDC 600V 66KW", "type": "未分類", "sales_followup": "1. 評估模具費用: 33/45(伸揚), 樣品/模具費皆已報價\n2. 評估底板載重:40Kg==>實驗何時完成? 4/24已提供\n3. 4/15已報價(20套樣品)  約Lance discuss CNC  control parts (4/21 ):無其他金屬件\n     進度確認", "eng_followup": "負載搬運穩定性測試結果\n1. 穩定平衡狀態：\n當雙手抓握於重物重心下方的對稱位置時，金屬板受力均勻，能有效支撐上方載重並維持水平面平整，兩組重物之間保持預設間距，不產生傾斜。\n\n2. 動態失穩現象：\n當雙手抓握位置由中心點向兩側邊緣偏移時，金屬板的支撐結構發生變化。由於板材厚度較薄，受重力影響會產生向下的弧形下撓（類似 U 型彎曲）。\n\n3. 連鎖反應結果：\n隨著板材中心的下陷，原本垂直站立的重物會隨底面角度連動。板材底部的微小彎曲會放大為重物頂端的位移，導致兩組重物向中心縫隙靠攏，最終發生頂端碰撞干涉。", "change_type": "unchanged"}, {"model": "DTG0110U (UPS)\n11KW", "type": "未分類", "sales_followup": "1. 5th 樣品報價 (拓海):3/17已交 3/24延燒測試: pass\n2. 6th樣品交期: 4/1已交, 4/16測試pass, 追伸揚報價 (4/21前須報價)\n    (待順達業務(要單)/EE(重新洗板打件)更新狀況)   追", "eng_followup": "done", "change_type": "unchanged"}], "RFQ": [{"model": "LA267H", "type": "未分類", "sales_followup": "1. 2/25已報價, 策略性給元鐙\n2. 4/14更新樣品需求(上下鐵片 SUS301 3/4H), 4/13已報價製作,4/21交(補出貨單/發票)", "eng_followup": "done", "change_type": "unchanged"}, {"model": "DM258H (400V)", "type": "未分類", "sales_followup": "1. 3/25已與Nick討論  待其更新圖紙確認\n    4/10看延燒結果\n2. 雙金屬樣品*1: 4/23已報價", "eng_followup": "done", "change_type": "unchanged"}], "DVT": [{"model": "MSFT 1KW", "type": "未分類", "sales_followup": "1. PCN: 4/9 (已簽)\n2. 請工程更新模具開發履歷 (ng尺寸逐項檢視並安排復測&分析&對策&建議)\n3. 4/16 RD通知上蓋需加外蓋板(鉚接) (更新成本分析)\n     ==>模具追加工站壓鉚? 還是外部工具鉚接 須說明一下製程以及其定位方式確認", "eng_followup": "1.等待報價更新。", "change_type": "unchanged"}, {"model": "SCS-30KW (LA300S)", "type": "未分類", "sales_followup": "1. 3/19鋁板及銅板樣品需求 support 報價回收（拓海）==>3/25送\n2. 確認材質硬度 & 製程:  SUS304 1/2H , 簡模壓凸包，折曲是折床(鴻濰)\n3. 新增鋁條: AL5052(伸揚:10W模具; 22/pcs(貼膠) 鴻濰已報:55/pcs 缺拓海) 4/18已報價\n   ,模具費support   (評估鋁擠模無法 (太薄)  (開模確認＆數量）　==>pending", "eng_followup": "已暫停", "change_type": "unchanged"}, {"model": "AWS 8.5KW", "type": "未分類", "sales_followup": "3th修模已通知:3/18-3/26==>3/26已交修模品 & 簽樣  待提供FAI", "eng_followup": "done", "change_type": "unchanged"}]}, "rfq": 2, "sample": 7, "mp": 0, "npi": 9}, "系統電子": {"total": 10, "stages": {"RFQ": 8, "DVT": 1, "PVT": 1}, "stage_models": {"RFQ": [{"model": "AVA Robot", "type": "送餐機器人", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "BWD-6040N", "type": "眼鏡充電盒", "sales_followup": "1. 暫時pending 待系統之客人ID改圖", "eng_followup": "", "change_type": "unchanged"}, {"model": "TRI-BAND ANTENNA", "type": "車用天線", "sales_followup": "案子還在設計階段，待研發通知，持續追蹤", "eng_followup": "", "change_type": "unchanged"}, {"model": "ONEBOX_REEECU", "type": "未分類", "sales_followup": "(此案量少先觀察)", "eng_followup": "", "change_type": "unchanged"}, {"model": "無人機電池包", "type": "無人機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "Mantis Puck", "type": "眼鏡盒", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "Falcon\n(GCS-0700)", "type": "無人機\n(民用/警用)", "sales_followup": "==>AL Plate *130 pcs急件已打樣: 2/13交貨\n      ==>樣品訂單確認 (Terry Yang / 楊皓清) #2535", "eng_followup": "", "change_type": "unchanged"}, {"model": "紅外線攝影機", "type": "紅外線攝影機", "sales_followup": "1. 確認是否要接\n2. 提供DFM報價方式(condition)", "eng_followup": "", "change_type": "unchanged"}], "DVT": [{"model": "AIX-8000N", "type": "AI Box", "sales_followup": "1. 組模組須確認料件票期一致 (螺絲 & Thermal pad): 3/16確認\n2. DVT *ˇ30訂單已下: 3/6 Tedd提DVT機殼設變點 :  3/31交貨南崗\n(不影響樣品單價)\n3. 冷熱衝擊fail==>已與客人溝通說明, DVT維持原漆\n4. 請工程確認EVT時給的DVT圖面與最新DVT圖是否有出入(前蓋M3沙拉孔位置)\n5. EVT*20 追PO\n6. AIX8000大鋁擠幫泛海調整陽極色  (泛海給素材 祐鋅調,Tedd給圖紙,DFM評估)\n7. 小鋁擠有後續需求 待客戶提供明確數量&需求日\n8. 大鋁擠開模評估: 開模DFM、開模T0/T1時間、PVT備料100套的各製程時間==>待回 DFM", "eng_followup": "待寶森更新大鋁擠評估DFM", "change_type": "unchanged"}], "PVT": [{"model": "TPMS天線(Antenna)", "type": "車用天線\nShielding", "sales_followup": "1. PPAP: 按照祖孟給的訊息更新, 客人3/17更新修改處,4/2已提供\n2. 後續須評估送交美國的方式 (新報價) ==>工程包裝評估 (DAP/DDP) 已問系統&翼高\n3. PCN:3/10  通知翼高提供包裝數實驗批(AI): 3/3\n4. 追加3K: 4/17已交\n4. 包裝可靠度規範計畫確認: 4/24已提供==>客戶已要求包裝測試計畫\n5. 客戶4/23提供GP相關承認文件製作 (Sana): 剩IMDS (4/30 搞定!)", "eng_followup": "1.下單30K，5/20出包裝測試結果", "change_type": "unchanged"}]}, "rfq": 8, "sample": 2, "mp": 0, "npi": 10}, "電統能源": {"total": 5, "stages": {"RFQ": 4, "DVT": 1}, "stage_models": {"RFQ": [{"model": "Wonder Woman\n(11KW)", "type": "BBU", "sales_followup": "1. 2/B 9540已過  年後電統會再與其客戶測試一次: PASS  待確認打樣時間\n     ==>4/9 約拜訪Matthew: main source移模狀況/乙盛意願確認/台灣DAP-->Plano\n     ==>4/23等Matthew答覆\n2. 順達訊息: 11KW目前放量交貨: STL/Pana/系統電?", "eng_followup": "N/A", "change_type": "unchanged"}, {"model": "NB109", "type": "未分類", "sales_followup": "1. 10pcs 待確認拓海打樣進度(電統已下訂單) : 3/18已交", "eng_followup": "done", "change_type": "unchanged"}, {"model": "Iron man", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "Thor (7KW)", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}], "DVT": [{"model": "3KW", "type": "未分類", "sales_followup": "1. 銅導片(鍍鎳): DVT 300pcs PO 已下, 3/30交貨\n2. 量產價/模具費3/20已給Nita  待追蹤(3/27第三間報價), 已跟進目標價\n     ==>4/17開模, 5/18 T1, 第三顆料*300(模具品)\n3. DE-100S 銘板估價(3/20): 不鏽鋼銘板要雷雕, 已報價製作: 4/2已交貨", "eng_followup": "開模T1：5/9，出貨寄台灣時間：5/14", "change_type": "unchanged"}]}, "rfq": 4, "sample": 1, "mp": 0, "npi": 5}, "波若威": {"total": 1, "stages": {"RFQ": 1}, "stage_models": {"RFQ": [{"model": "(未填機種)", "type": "CPO", "sales_followup": "1. 已發RFQ(10件), 翼高/伸揚報價(4/21回收), 但須先內地(RMB報價)交中山廠 \n2. 4/23翼高已回價格  待報價:4/27  追", "eng_followup": "1.翼高報價回收", "change_type": "unchanged"}]}, "rfq": 1, "sample": 0, "mp": 0, "npi": 1}, "加百裕": {"total": 1, "stages": {"RFQ": 1}, "stage_models": {"RFQ": [{"model": "(未填機種)", "type": "未分類", "sales_followup": "1. 4/1已拜訪, 待簽NDA 後 發RFQ", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 1, "sample": 0, "mp": 0, "npi": 1}}, "projects": [{"customer": "順達", "type": "BBU", "model": "ORV3 5.5KW", "stage_raw": "PVT", "stage": "PVT", "group": "工程", "sales_followup": "1. PVT: 4/2提供FAI/Cpk, 4/15試產完成,準備出貨光寶驗證", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "LA235", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 2/25已報價,3/4已更新報價,已拿到案子  開模DFM: 3/20已提供\n2. 7th延燒:3/26 若過了會發圖開模 (TS: 3/E, T1: 4/E-5/B)  模工: Paul\n    ==>4/14  8th測試(4/10提早測NG), 下周複測\n3. 鎳片1組 Support  3/20已製作  交期確認:3/25已交\n4. 成本分析: 3/27 (伸揚/合檥) (按最新圖面成本下降)\n5. 4/14已報價 500套(簡易模), 與RD確認可否修模(鑲件, 滑塊, 入子活動式)==>可行\n追", "eng_followup": "", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "LA267H", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 2/25已報價, 策略性給元鐙\n2. 4/14更新樣品需求(上下鐵片 SUS301 3/4H), 4/13已報價製作,4/21交(補出貨單/發票)", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "MSFT 1KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. PCN: 4/9 (已簽)\n2. 請工程更新模具開發履歷 (ng尺寸逐項檢視並安排復測&分析&對策&建議)\n3. 4/16 RD通知上蓋需加外蓋板(鉚接) (更新成本分析)\n     ==>模具追加工站壓鉚? 還是外部工具鉚接 須說明一下製程以及其定位方式確認", "eng_followup": "1.等待報價更新。", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "SCS-30KW (LA300S)", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 3/19鋁板及銅板樣品需求 support 報價回收（拓海）==>3/25送\n2. 確認材質硬度 & 製程:  SUS304 1/2H , 簡模壓凸包，折曲是折床(鴻濰)\n3. 新增鋁條: AL5052(伸揚:10W模具; 22/pcs(貼膠) 鴻濰已報:55/pcs 缺拓海) 4/18已報價\n   ,模具費support   (評估鋁擠模無法 (太薄)  (開模確認＆數量）　==>pending", "eng_followup": "已暫停", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "HVDC 600V 66KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 評估模具費用: 33/45(伸揚), 樣品/模具費皆已報價\n2. 評估底板載重:40Kg==>實驗何時完成? 4/24已提供\n3. 4/15已報價(20套樣品)  約Lance discuss CNC  control parts (4/21 ):無其他金屬件\n     進度確認", "eng_followup": "負載搬運穩定性測試結果\n1. 穩定平衡狀態：\n當雙手抓握於重物重心下方的對稱位置時，金屬板受力均勻，能有效支撐上方載重並維持水平面平整，兩組重物之間保持預設間距，不產生傾斜。\n\n2. 動態失穩現象：\n當雙手抓握位置由中心點向兩側邊緣偏移時，金屬板的支撐結構發生變化。由於板材厚度較薄，受重力影響會產生向下的弧形下撓（類似 U 型彎曲）。\n\n3. 連鎖反應結果：\n隨著板材中心的下陷，原本垂直站立的重物會隨底面角度連動。板材底部的微小彎曲會放大為重物頂端的位移，導致兩組重物向中心縫隙靠攏，最終發生頂端碰撞干涉。", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "DM258H (400V)", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 3/25已與Nick討論  待其更新圖紙確認\n    4/10看延燒結果\n2. 雙金屬樣品*1: 4/23已報價", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "DTG0110U (UPS)\n11KW", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 5th 樣品報價 (拓海):3/17已交 3/24延燒測試: pass\n2. 6th樣品交期: 4/1已交, 4/16測試pass, 追伸揚報價 (4/21前須報價)\n    (待順達業務(要單)/EE(重新洗板打件)更新狀況)   追", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "順達", "type": "未分類", "model": "AWS 8.5KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "3th修模已通知:3/18-3/26==>3/26已交修模品 & 簽樣  待提供FAI", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "系統電子", "type": "送餐機器人", "model": "AVA Robot", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "眼鏡充電盒", "model": "BWD-6040N", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 暫時pending 待系統之客人ID改圖", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "AI Box", "model": "AIX-8000N", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 組模組須確認料件票期一致 (螺絲 & Thermal pad): 3/16確認\n2. DVT *ˇ30訂單已下: 3/6 Tedd提DVT機殼設變點 :  3/31交貨南崗\n(不影響樣品單價)\n3. 冷熱衝擊fail==>已與客人溝通說明, DVT維持原漆\n4. 請工程確認EVT時給的DVT圖面與最新DVT圖是否有出入(前蓋M3沙拉孔位置)\n5. EVT*20 追PO\n6. AIX8000大鋁擠幫泛海調整陽極色  (泛海給素材 祐鋅調,Tedd給圖紙,DFM評估)\n7. 小鋁擠有後續需求 待客戶提供明確數量&需求日\n8. 大鋁擠開模評估: 開模DFM、開模T0/T1時間、PVT備料100套的各製程時間==>待回 DFM", "eng_followup": "待寶森更新大鋁擠評估DFM", "change_type": "unchanged"}, {"customer": "系統電子", "type": "車用天線", "model": "TRI-BAND ANTENNA", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "案子還在設計階段，待研發通知，持續追蹤", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "車用天線\nShielding", "model": "TPMS天線(Antenna)", "stage_raw": "PVT", "stage": "PVT", "group": "工程", "sales_followup": "1. PPAP: 按照祖孟給的訊息更新, 客人3/17更新修改處,4/2已提供\n2. 後續須評估送交美國的方式 (新報價) ==>工程包裝評估 (DAP/DDP) 已問系統&翼高\n3. PCN:3/10  通知翼高提供包裝數實驗批(AI): 3/3\n4. 追加3K: 4/17已交\n4. 包裝可靠度規範計畫確認: 4/24已提供==>客戶已要求包裝測試計畫\n5. 客戶4/23提供GP相關承認文件製作 (Sana): 剩IMDS (4/30 搞定!)", "eng_followup": "1.下單30K，5/20出包裝測試結果", "change_type": "unchanged"}, {"customer": "系統電子", "type": "未分類", "model": "ONEBOX_REEECU", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "(此案量少先觀察)", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "無人機", "model": "無人機電池包", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "眼鏡盒", "model": "Mantis Puck", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "無人機\n(民用/警用)", "model": "Falcon\n(GCS-0700)", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "==>AL Plate *130 pcs急件已打樣: 2/13交貨\n      ==>樣品訂單確認 (Terry Yang / 楊皓清) #2535", "eng_followup": "", "change_type": "unchanged"}, {"customer": "系統電子", "type": "紅外線攝影機", "model": "紅外線攝影機", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 確認是否要接\n2. 提供DFM報價方式(condition)", "eng_followup": "", "change_type": "unchanged"}, {"customer": "電統能源", "type": "BBU", "model": "Wonder Woman\n(11KW)", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 2/B 9540已過  年後電統會再與其客戶測試一次: PASS  待確認打樣時間\n     ==>4/9 約拜訪Matthew: main source移模狀況/乙盛意願確認/台灣DAP-->Plano\n     ==>4/23等Matthew答覆\n2. 順達訊息: 11KW目前放量交貨: STL/Pana/系統電?", "eng_followup": "N/A", "change_type": "unchanged"}, {"customer": "電統能源", "type": "未分類", "model": "NB109", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 10pcs 待確認拓海打樣進度(電統已下訂單) : 3/18已交", "eng_followup": "done", "change_type": "unchanged"}, {"customer": "電統能源", "type": "未分類", "model": "3KW", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 銅導片(鍍鎳): DVT 300pcs PO 已下, 3/30交貨\n2. 量產價/模具費3/20已給Nita  待追蹤(3/27第三間報價), 已跟進目標價\n     ==>4/17開模, 5/18 T1, 第三顆料*300(模具品)\n3. DE-100S 銘板估價(3/20): 不鏽鋼銘板要雷雕, 已報價製作: 4/2已交貨", "eng_followup": "開模T1：5/9，出貨寄台灣時間：5/14", "change_type": "unchanged"}, {"customer": "電統能源", "type": "未分類", "model": "Iron man", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "電統能源", "type": "未分類", "model": "Thor (7KW)", "stage_raw": "DVT", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "波若威", "type": "CPO", "model": "", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 已發RFQ(10件), 翼高/伸揚報價(4/21回收), 但須先內地(RMB報價)交中山廠 \n2. 4/23翼高已回價格  待報價:4/27  追", "eng_followup": "1.翼高報價回收", "change_type": "unchanged"}, {"customer": "加百裕", "type": "未分類", "model": "", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 4/1已拜訪, 待簽NDA 後 發RFQ", "eng_followup": "", "change_type": "unchanged"}]}, "Robin": {"total": 23, "customers": {"泰博": 9, "圓剛": 4, "聰泰": 2, "瑞傳": 2, "創見": 2, "啟鑫": 1, "科賦": 1, "太業": 1, "宸曜": 1}, "customer_count": 9, "stages": {"RFQ": 14, "DVT": 5, "MP異常處理": 4}, "groups": {"業務": 14, "工程": 5, "量產": 4}, "rfq": 14, "sample": 5, "npi": 19, "mp": 0, "customer_breakdown": {"圓剛": {"total": 4, "stages": {"RFQ": 2, "DVT": 2}, "stage_models": {"RFQ": [{"model": "D331 nct for ADlink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "D115W", "type": "未分類", "sales_followup": "1. 承認書需更新，材質標示有誤，需提供新版的RoSH與HF測試報告(已超過2年了)，修改為Approval Sheet A7格式。", "eng_followup": "承認書4/10以提供", "change_type": "unchanged"}], "DVT": [{"model": "T2508P", "type": "IPC", "sales_followup": "1. 承認書已提供，已下1K訂單。", "eng_followup": "完成,孟潔幫忙做本子放入即可\n\n4/17 承認書>OK\n\n客戶下單1K\n工程確認單 更新\nPCN>5/6", "change_type": "unchanged"}, {"model": "GC750", "type": "未分類", "sales_followup": "1. 4/16圓剛通知T1樣品測試pass，故4/17通知寶森1800pcs開始同步製作，並製作承認書。\n2. 4/30 200pcs交貨圓剛。", "eng_followup": "T140/10~4/13(到台)\n寶森 FAI以提供\n4/10送樣ok\n\n200PCS>4/29\n承認書\nPCN", "change_type": "unchanged"}]}, "rfq": 2, "sample": 2, "mp": 0, "npi": 4}, "聰泰": {"total": 2, "stages": {"RFQ": 1, "MP異常處理": 1}, "stage_models": {"RFQ": [{"model": "GTDL--B-154-1G2", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}], "MP異常處理": [{"model": "PD570", "type": "視訊盒", "sales_followup": "1. 6本承認樣，3本碰撞傷退回，聰泰留兩本 我司帶回一本，烤漆廠1K依然要10個工作天==>最新交期回覆5/5\n2. 4/13 表示鋁擠素材有點撞刮傷，4/15 momo篩選回覆良品948pcs，嚴重505pcs，嚴重進打磨製程 \n3. 4/29 打拋烤漆露白異常，已與聰泰品保確認，先標示分開出貨若組裝廠有發現問題在行打掉。", "eng_followup": "藍色樣ok 安排製作封面\nOK完成", "change_type": "unchanged"}]}, "rfq": 1, "sample": 0, "mp": 0, "npi": 1}, "瑞傳": {"total": 2, "stages": {"RFQ": 2}, "stage_models": {"RFQ": [{"model": "PCOM-B709", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "MEDS-5210", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 2, "sample": 0, "mp": 0, "npi": 2}, "泰博": {"total": 9, "stages": {"RFQ": 7, "DVT": 2}, "stage_models": {"RFQ": [{"model": "td4257a_ ESD彈片", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "TD4239血糖機", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "彈片專案", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "馬達固定夾", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "鋼帽", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "馬達彈性墊片", "type": "未分類", "sales_followup": "1.03/25提供報價", "eng_followup": "以報價", "change_type": "unchanged"}, {"model": "ESD彈片", "type": "未分類", "sales_followup": "2 量產報價，年需求300k", "eng_followup": "以報價", "change_type": "unchanged"}], "DVT": [{"model": "TD-2555(體重計)", "type": "未分類", "sales_followup": "1. 3/27 已提供T1樣品10pcs給泰博 \n\n2. 3/30 採購表示工程T1樣品承認OK，需製作承認書，有與採購說明因負責工程本週請假，需待下週上班後製作提供。\n\n3. 4/10 承認書已提供", "eng_followup": "承認書4/10 以提供", "change_type": "unchanged"}, {"model": "M3銅柱", "type": "未分類", "sales_followup": "", "eng_followup": "以提供", "change_type": "unchanged"}]}, "rfq": 7, "sample": 2, "mp": 0, "npi": 9}, "啟鑫": {"total": 1, "stages": {"RFQ": 1}, "stage_models": {"RFQ": [{"model": "QM-銑床件", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 1, "sample": 0, "mp": 0, "npi": 1}, "科賦": {"total": 1, "stages": {"DVT": 1}, "stage_models": {"DVT": [{"model": "LITE V RGB", "type": "未分類", "sales_followup": "1. 4/7 科賦回覆信件，印刷顏色限度，接受中下限，上限NG，請我們在提供一版，中下限中間值當中限==>4/15已提供，有提及後續會有漲價資訊\n\n2. 4/17 回覆印刷限度已核准，需準備正式限度樣，及請我們提供50套樣品，供內部品質驗證及電腦參展使用。==>4/30 送50套成品給科賦", "eng_followup": "9C色樣,上中下\n\n上限取消 中下間做一階4/13\n\n50套電腦展樣品>OK", "change_type": "unchanged"}]}, "rfq": 0, "sample": 1, "mp": 0, "npi": 1}, "創見": {"total": 2, "stages": {"MP異常處理": 1, "RFQ": 1}, "stage_models": {"MP異常處理": [{"model": "13-5370", "type": "未分類", "sales_followup": "1. 4/10 確認樣品，伸揚重工品962pcs先試產，提供良率數據給創見==>4/22 良率數據，總檢數935pcs 良品645 不良290 尺寸NG198 佔大宗， 4/22回覆創見，首批投產700pcs 量率數據 承認樣 產品預計4/27提供。 \n\n2. 4/27已提供新參數承認樣給創見，並與採購主管確認我司既有舊參數良品630pcs可交貨，確認5K訂單餘下交期。", "eng_followup": "#80 粗糙度4,光澤度1.2\n\n4/10確認#80 ok\n\n5本承認樣 客戶簽核中", "change_type": "unchanged"}], "RFQ": [{"model": "DP2X0", "type": "未分類", "sales_followup": "1. 表示價格有差距 (不願透漏細節)。", "eng_followup": "以報價", "change_type": "unchanged"}]}, "rfq": 1, "sample": 0, "mp": 0, "npi": 1}, "太業": {"total": 1, "stages": {"MP異常處理": 1}, "stage_models": {"MP異常處理": [{"model": "EFH12089-23", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 0, "sample": 0, "mp": 0, "npi": 0}, "宸曜": {"total": 1, "stages": {"MP異常處理": 1}, "stage_models": {"MP異常處理": [{"model": "POC-766AWP", "type": "未分類", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 0, "sample": 0, "mp": 0, "npi": 0}}, "projects": [{"customer": "圓剛", "type": "IPC", "model": "D331 nct for ADlink", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "聰泰", "type": "IPC", "model": "GTDL--B-154-1G2", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "瑞傳", "type": "IPC", "model": "PCOM-B709", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "瑞傳", "type": "IPC", "model": "MEDS-5210", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "td4257a_ ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "TD-2555(體重計)", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 3/27 已提供T1樣品10pcs給泰博 \n\n2. 3/30 採購表示工程T1樣品承認OK，需製作承認書，有與採購說明因負責工程本週請假，需待下週上班後製作提供。\n\n3. 4/10 承認書已提供", "eng_followup": "承認書4/10 以提供", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "TD4239血糖機", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "彈片專案", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "馬達固定夾", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "M3銅柱", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "", "eng_followup": "以提供", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "鋼帽", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "馬達彈性墊片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1.03/25提供報價", "eng_followup": "以報價", "change_type": "unchanged"}, {"customer": "泰博", "type": "未分類", "model": "ESD彈片", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "2 量產報價，年需求300k", "eng_followup": "以報價", "change_type": "unchanged"}, {"customer": "啟鑫", "type": "未分類", "model": "QM-銑床件", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "科賦", "type": "未分類", "model": "LITE V RGB", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 4/7 科賦回覆信件，印刷顏色限度，接受中下限，上限NG，請我們在提供一版，中下限中間值當中限==>4/15已提供，有提及後續會有漲價資訊\n\n2. 4/17 回覆印刷限度已核准，需準備正式限度樣，及請我們提供50套樣品，供內部品質驗證及電腦參展使用。==>4/30 送50套成品給科賦", "eng_followup": "9C色樣,上中下\n\n上限取消 中下間做一階4/13\n\n50套電腦展樣品>OK", "change_type": "unchanged"}, {"customer": "創見", "type": "未分類", "model": "13-5370", "stage_raw": "MP異常處理", "stage": "MP異常處理", "group": "量產", "sales_followup": "1. 4/10 確認樣品，伸揚重工品962pcs先試產，提供良率數據給創見==>4/22 良率數據，總檢數935pcs 良品645 不良290 尺寸NG198 佔大宗， 4/22回覆創見，首批投產700pcs 量率數據 承認樣 產品預計4/27提供。 \n\n2. 4/27已提供新參數承認樣給創見，並與採購主管確認我司既有舊參數良品630pcs可交貨，確認5K訂單餘下交期。", "eng_followup": "#80 粗糙度4,光澤度1.2\n\n4/10確認#80 ok\n\n5本承認樣 客戶簽核中", "change_type": "unchanged"}, {"customer": "創見", "type": "未分類", "model": "DP2X0", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 表示價格有差距 (不願透漏細節)。", "eng_followup": "以報價", "change_type": "unchanged"}, {"customer": "圓剛", "type": "IPC", "model": "T2508P", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 承認書已提供，已下1K訂單。", "eng_followup": "完成,孟潔幫忙做本子放入即可\n\n4/17 承認書>OK\n\n客戶下單1K\n工程確認單 更新\nPCN>5/6", "change_type": "unchanged"}, {"customer": "圓剛", "type": "未分類", "model": "GC750", "stage_raw": "DVT", "stage": "DVT", "group": "工程", "sales_followup": "1. 4/16圓剛通知T1樣品測試pass，故4/17通知寶森1800pcs開始同步製作，並製作承認書。\n2. 4/30 200pcs交貨圓剛。", "eng_followup": "T140/10~4/13(到台)\n寶森 FAI以提供\n4/10送樣ok\n\n200PCS>4/29\n承認書\nPCN", "change_type": "unchanged"}, {"customer": "圓剛", "type": "未分類", "model": "D115W", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "1. 承認書需更新，材質標示有誤，需提供新版的RoSH與HF測試報告(已超過2年了)，修改為Approval Sheet A7格式。", "eng_followup": "承認書4/10以提供", "change_type": "unchanged"}, {"customer": "聰泰", "type": "視訊盒", "model": "PD570", "stage_raw": "MP異常處理", "stage": "MP異常處理", "group": "量產", "sales_followup": "1. 6本承認樣，3本碰撞傷退回，聰泰留兩本 我司帶回一本，烤漆廠1K依然要10個工作天==>最新交期回覆5/5\n2. 4/13 表示鋁擠素材有點撞刮傷，4/15 momo篩選回覆良品948pcs，嚴重505pcs，嚴重進打磨製程 \n3. 4/29 打拋烤漆露白異常，已與聰泰品保確認，先標示分開出貨若組裝廠有發現問題在行打掉。", "eng_followup": "藍色樣ok 安排製作封面\nOK完成", "change_type": "unchanged"}, {"customer": "太業", "type": "未分類", "model": "EFH12089-23", "stage_raw": "MP異常處理", "stage": "MP異常處理", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "宸曜", "type": "未分類", "model": "POC-766AWP", "stage_raw": "MP異常處理", "stage": "MP異常處理", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "Alan": {"total": 65, "customers": {"佐茂": 42, "晶達光電": 19, "嘉彰": 3, "興能高": 1}, "customer_count": 4, "stages": {"RFQ": 37, "MP": 14, "Mockup": 12, "EVT": 1, "TS": 1}, "groups": {"工程": 14, "量產": 14, "業務": 37}, "rfq": 37, "sample": 14, "npi": 51, "mp": 14, "customer_breakdown": {"佐茂": {"total": 42, "stages": {"RFQ": 34, "Mockup": 6, "EVT": 1, "TS": 1}, "stage_models": {"EVT": [{"model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "type": "儲能系列", "sales_followup": "1. 4/22 終端是否有訂單? 無。是否有廠商在生產? 無。鎳片會綁定在鴻騰。\n\n2. 4/22 已發信詢問T1測試進度。", "eng_followup": "", "change_type": "unchanged"}], "Mockup": [{"model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "type": "商場購物車", "sales_followup": "1. 塑膠把手+下蓋，各9 PCS，交期：待定\n4/16 RD通知改圖，暫停生產\n\n2. 2種板金，各9 PCS，交期：\n4/15 佐茂通知暫停生產，將新增符號\n\n3. 4/22 詢問RD Jamie，仍在與終端客戶溝通中。\n\n4. 4/27 A0版圖面升A1，4/29 重新報價與提供A0版費用。\n\n5. 4/29 通知評估3D列印1套。", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "type": "充電五金", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/10/27\n\nRichcom Apollo Robot", "type": "機器人", "sales_followup": "1. 鋁板A+B+A面，3種鋁板：3/26 送高雄\n\n2. RD需求鋁板C+D (無料號)，各7PCS，3/25 送中和", "eng_followup": "已給業務送樣", "change_type": "unchanged"}, {"model": "2025/11/21\n\nRichcom Apollo Robot", "type": "機器人", "sales_followup": "１. 3/20前出貨", "eng_followup": "已送樣", "change_type": "unchanged"}, {"model": "2026/2/9\n\nBusbar", "type": "匯流排", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/16\n\nGarmin 361-00218-00", "type": "未知", "sales_followup": "", "eng_followup": "已全數寄給左茂", "change_type": "unchanged"}], "TS": [{"model": "2026/4/15\n\nEnergy Wall-M 48V", "type": "儲能系列", "sales_followup": "1. 4/21 已詢問RD是否為最終版圖面，RD 4/23 將回信。\n\n2. 4/21 需提供開模甘特圖與DFM。\n\n3. 4/22 翼高已提供開模甘特圖。\n\n4. 4/23 佐茂RD通知設變，暫停開模程序與製作DFM。", "eng_followup": "", "change_type": "unchanged"}], "RFQ": [{"model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "type": "可充電電池發電機 G-CROSS", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/9/6\n\nBDC72 BDC TH連接端子", "type": "TH連接端子", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/10/23\n\nRichcom Apollo Robot", "type": "機器人", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/11/4\n\n臻禾 13S5P_0S8P", "type": "割草機 \nor \n搬運機器", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "type": "割草機 \nor \n搬運機器", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "type": "音樂設備", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "type": "搬送機器", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "type": "電池盒", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "type": "儲電型加熱器", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "type": "大賣場智能推車", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "type": "無人機\n(民用/警用)", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "type": "-", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "type": "相機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "type": "搬送機器", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/1/16\n\nMAP-INAKANISHI INC", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "type": "無人機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "type": "無人機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "type": "醫療", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/12\n\n購物車VC-705ML-充電把手", "type": "商場購物車", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "type": "軍用無人機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/19\n\nRFQ-260013-00 \n\navatarin Newme 2.0，AI行動機器人", "type": "AI行動機器人", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/20\n\nRFQ-26002-00 \n\nKARMA", "type": "醫療器材", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/25\n\nRFQ-260014-00 \n\n倚天一型(無人機)_10S4P", "type": "無人機", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/3/26\n\n台塑生醫-儲能牆\n\nRFQ-26016-00 (儲能牆落地公版結構) \n\nRFQ-26016-01 (儲能牆-掛牆)\n\nRFQ-26016-02(儲能牆落地專用結構)", "type": "儲能系列", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/8\n\nRFQ-25051-04 \n\nMAP-INAKANISHI INC_滅菌対応_A12318650", "type": "醫療器材", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/13\n\nRFQ-26015-00 \n\n上緯智聯 小狗電池-沖型NI", "type": "機器人", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/13\n\nRFQ-26021-00\n\n台端_AF1K 電摩_14S4P", "type": "電動機車", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/16\n\nRFQ-26015-00 \n\n上緯智聯 小狗電池", "type": "機器人", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/16\n\nRFQ-25043-03 \n\nOEM儲能16S", "type": "儲能系列", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "2026/4/22\n\n滅菌_端子NUT(12AWG)_260422", "type": "醫療器材", "sales_followup": "1. RD Brian請我們測試雷焊WW型式，黃銅+NB109 0.3T，使用片料，拉拔力5~8 kgf，不用量阻抗值。\n\n2. 黃銅要鍍錫或鍍鎳，待確認。\n\n3. 4/24 通知暫停測試。", "eng_followup": "廢料已拿到待通知鍍鎳還是鍍錫", "change_type": "unchanged"}]}, "rfq": 34, "sample": 8, "mp": 0, "npi": 42}, "晶達光電": {"total": 19, "stages": {"MP": 13, "Mockup": 5, "RFQ": 1}, "stage_models": {"Mockup": [{"model": "AECX-MTL0 Heatsink", "type": "IPC\n&\nedge computing", "sales_followup": "1. 3/13 (五) 提供樣品給RD。\n\n2. 3/23 (一) 詢問測試結果，RD表示還在測試。\n\n3. 4/28 通知協助加工M3攻牙與3處凸台降面。\n\n4. 5/20 要提供，客戶要參加電腦展。\n\n1. 3/13 (五) 提供樣品給RD。\n\n2. 3/23 (一) 詢問測試結果，RD表示還在測試，需要一點時間。", "eng_followup": "業務已送樣\n\n業務已送樣", "change_type": "unchanged"}, {"model": "RS-ITRP-1045-EHL2-ZP00-1001", "type": "螢幕框\n+\n散熱塊", "sales_followup": "1. 4/15 送樣，RD表示有區域須烤漆。\n\n2. 4/20 建笠協助重工，預計4/28前回貨晶達。", "eng_followup": "", "change_type": "unchanged"}, {"model": "IEAP-1330-RKC3", "type": "螢幕框\n+\n2個上下蓋\n+\n配件", "sales_followup": "1. 晶達板金廠5/20 前將送貨至鴻騰，再送去又全陽極。", "eng_followup": "", "change_type": "unchanged"}, {"model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "type": "散熱塊", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "DPD-1268 Front Case", "type": "螢幕框", "sales_followup": "1. 3/13 客戶反映明顯料痕，須重工\n\n2. 3/17 銘唯協助磨髮線+噴砂，3/18 廠內陽極可蓋過，3/19完成陽極5 PCS，3/20 雷雕+量尺寸", "eng_followup": "0323下午2點前給業務送樣", "change_type": "unchanged"}], "MP": [{"model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "type": "螢幕框\n+\n散熱塊", "sales_followup": "1. 4/15 送一套驗證，RD 組裝OK。", "eng_followup": "4/15尺寸確認ok已送樣1pcs，已請寶森後續全數下去製作。", "change_type": "unchanged"}, {"model": "ITRP-3805 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "ACDF-WHL2 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "0705-RCK4_前框", "type": "螢幕框", "sales_followup": "1.  2/10 口頭更新報價，烤漆廠表示表面要完美，良率只會有4成，除非找汽車烤漆或無塵烤漆。請晶達推薦烤漆廠。", "eng_followup": "", "change_type": "unchanged"}, {"model": "ITRP-2845 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "0705-RES4_前框", "type": "螢幕框", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "IBOC-ADL0 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "0705-RES4_Heat sink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "ACDF-WHL1 Heatsink with fan", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "AECX-APL7 Heatsink", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "type": "螢幕框", "sales_followup": "1. 4/13 送後蓋1 PCS外觀不良， 給RD與採購。\n\n2. 4/15 尋找烤漆廠商，評估重工。\n\n3. 4/16 送建笠烤漆1 PCS。\n\n4. 4/17 烤漆OK，4/20 安排 JD12B 31 PCS、JD12C 32 PCS，烤漆重工。 \n\n5. 4/23 完成重工，4/27出貨。", "eng_followup": "1.後蓋:出貨32pcs以液烤完回廠內(品檢有檢查到外觀不相同的)", "change_type": "unchanged"}], "RFQ": [{"model": "AECX-APL7 Heat Spreader", "type": "IPC", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 1, "sample": 5, "mp": 13, "npi": 6}, "興能高": {"total": 1, "stages": {"Mockup": 1}, "stage_models": {"Mockup": [{"model": "3U-12KW", "type": "3U 伺服器機櫃", "sales_followup": "1. 4/24 RD提供新圖面。", "eng_followup": "4/28已請鴻濰評估", "change_type": "unchanged"}]}, "rfq": 0, "sample": 1, "mp": 0, "npi": 1}, "嘉彰": {"total": 3, "stages": {"RFQ": 2, "MP": 1}, "stage_models": {"MP": [{"model": "UCS-STIR", "type": "-", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}], "RFQ": [{"model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "type": "車用", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"model": "3483814600 拉手", "type": "-", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}, "rfq": 2, "sample": 0, "mp": 1, "npi": 2}}, "projects": [{"customer": "佐茂", "type": "儲能系列", "model": "2025/8/20\n\n ENERGY WALL\n儲能牆", "stage_raw": "EVT", "stage": "EVT", "group": "工程", "sales_followup": "1. 4/22 終端是否有訂單? 無。是否有廠商在生產? 無。鎳片會綁定在鴻騰。\n\n2. 4/22 已發信詢問T1測試進度。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n2026/4/4\n\n購物車VC-705ML-充電把手", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 塑膠把手+下蓋，各9 PCS，交期：待定\n4/16 RD通知改圖，暫停生產\n\n2. 2種板金，各9 PCS，交期：\n4/15 佐茂通知暫停生產，將新增符號\n\n3. 4/22 詢問RD Jamie，仍在與終端客戶溝通中。\n\n4. 4/27 A0版圖面升A1，4/29 重新報價與提供A0版費用。\n\n5. 4/29 通知評估3D列印1套。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "儲能系列", "model": "2026/4/15\n\nEnergy Wall-M 48V", "stage_raw": "TS", "stage": "TS", "group": "工程", "sales_followup": "1. 4/21 已詢問RD是否為最終版圖面，RD 4/23 將回信。\n\n2. 4/21 需提供開模甘特圖與DFM。\n\n3. 4/22 翼高已提供開模甘特圖。\n\n4. 4/23 佐茂RD通知設變，暫停開模程序與製作DFM。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC\n&\nedge computing", "model": "AECX-MTL0 Heatsink", "stage_raw": "主動免費提供打樣，不含熱導管", "stage": "Mockup", "group": "工程", "sales_followup": "1. 3/13 (五) 提供樣品給RD。\n\n2. 3/23 (一) 詢問測試結果，RD表示還在測試。\n\n3. 4/28 通知協助加工M3攻牙與3處凸台降面。\n\n4. 5/20 要提供，客戶要參加電腦展。\n\n1. 3/13 (五) 提供樣品給RD。\n\n2. 3/23 (一) 詢問測試結果，RD表示還在測試，需要一點時間。", "eng_followup": "業務已送樣\n\n業務已送樣", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "RS-ITRP-1045-EHL2-ZP00-1001", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 4/15 送樣，RD表示有區域須烤漆。\n\n2. 4/20 建笠協助重工，預計4/28前回貨晶達。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框\n+\n散熱塊", "model": "1902-EHL0-Front Case & AECX-EHL0-HeatSink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "1. 4/15 送一套驗證，RD 組裝OK。", "eng_followup": "4/15尺寸確認ok已送樣1pcs，已請寶森後續全數下去製作。", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框\n+\n2個上下蓋\n+\n配件", "model": "IEAP-1330-RKC3", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 晶達板金廠5/20 前將送貨至鴻騰，再送去又全陽極。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "興能高", "type": "3U 伺服器機櫃", "model": "3U-12KW", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 4/24 RD提供新圖面。", "eng_followup": "4/28已請鴻濰評估", "change_type": "unchanged"}, {"customer": "佐茂", "type": "可充電電池發電機 G-CROSS", "model": "2025/9/8\n\nMIRAI LABO004 7S10P 鋁擠", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "TH連接端子", "model": "2025/9/6\n\nBDC72 BDC TH連接端子", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "充電五金", "model": "2025/9/22\n\nGTS NPA9-LIP 充電五金", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2025/10/9\n\nRFQ-25049-03+25049-53-02+25051-03+25052-02+25053-02\n\nMAP Nakanishi 滅菌対応 4S1P 18650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/23\n\nRichcom Apollo Robot", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "機器人", "model": "2025/10/27\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 鋁板A+B+A面，3種鋁板：3/26 送高雄\n\n2. RD需求鋁板C+D (無料號)，各7PCS，3/25 送中和", "eng_followup": "已給業務送樣", "change_type": "unchanged"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 13S5P_0S8P", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "割草機 \nor \n搬運機器", "model": "2025/11/4\n\n臻禾 AEBC-BA-48V-165", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "音樂設備", "model": "2025/11/17\n\nRFQ-25085-00\n\ninMusic", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "機器人", "model": "2025/11/21\n\nRichcom Apollo Robot", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "１. 3/20前出貨", "eng_followup": "已送樣", "change_type": "unchanged"}, {"customer": "佐茂", "type": "搬送機器", "model": "2025/11/19\n\nRFQ-25089-00\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "電池盒", "model": "2025/12/1\n\nRFQ-25093-00\n\n系統電子 GCS-6070", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "儲電型加熱器", "model": "2025/12/15\n\nRFQ-25101-00\n\n溢泰 儲電型加熱器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "大賣場智能推車", "model": "2025/12/22\n2026/2/3\n\nRetail AI SkipCart ACDC Charger _1000W_殼類(鋁)", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "無人機\n(民用/警用)", "model": "2025/12/24\n\n系統電子\nFalcon external 2S3P/沖型鎳片", "stage_raw": "RFQ\n\n有料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "-", "model": "2025/12/29\n\nRFQ-25104-00\n\n新智能 8S2P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "相機", "model": "2026/1/8\n\nRFQ-25103-00\n\nRICOH 相機電池(1S1P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "搬送機器", "model": "2026/1/13\n\nRFQ-25089-01\n\nFUTABA AiTran Lift2 BATTERY", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/14\n\nRFQ-25049-04\n\nMAP-INAKANISHI INC_滅菌対応_A12326650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/16\n\nMAP-INAKANISHI INC", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2026/1/29\n\nRFQ-26002-00\n\nKARMA", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "匯流排", "model": "2026/2/9\n\nBusbar", "stage_raw": "Mokcup", "stage": "Mockup", "group": "工程", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "無人機", "model": "2026/2/10\n\nRFQ-26005-00\n\n無人機(12S3P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "無人機", "model": "2026/3/4\n\nRFQ-260010-00\n\nAmita PS106 (10S2P)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/9\n\nRFQ-26011-01 MAP \n\n滅菌充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療", "model": "2026/3/10\n\nRFQ-26011-01 \n\n滅菌Nakanishi 充電器", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "商場購物車", "model": "2026/3/12\n\n購物車VC-705ML-充電把手", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "未知", "model": "2026/3/16\n\nGarmin 361-00218-00", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "", "eng_followup": "已全數寄給左茂", "change_type": "unchanged"}, {"customer": "佐茂", "type": "軍用無人機", "model": "2026/3/16\n\nRFQ-26003-01\n\nNightingale security_NSDrone", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "AI行動機器人", "model": "2026/3/19\n\nRFQ-260013-00 \n\navatarin Newme 2.0，AI行動機器人", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療器材", "model": "2026/3/20\n\nRFQ-26002-00 \n\nKARMA", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "無人機", "model": "2026/3/25\n\nRFQ-260014-00 \n\n倚天一型(無人機)_10S4P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "儲能系列", "model": "2026/3/26\n\n台塑生醫-儲能牆\n\nRFQ-26016-00 (儲能牆落地公版結構) \n\nRFQ-26016-01 (儲能牆-掛牆)\n\nRFQ-26016-02(儲能牆落地專用結構)", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療器材", "model": "2026/4/8\n\nRFQ-25051-04 \n\nMAP-INAKANISHI INC_滅菌対応_A12318650", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "機器人", "model": "2026/4/13\n\nRFQ-26015-00 \n\n上緯智聯 小狗電池-沖型NI", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "電動機車", "model": "2026/4/13\n\nRFQ-26021-00\n\n台端_AF1K 電摩_14S4P", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "機器人", "model": "2026/4/16\n\nRFQ-26015-00 \n\n上緯智聯 小狗電池", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "儲能系列", "model": "2026/4/16\n\nRFQ-25043-03 \n\nOEM儲能16S", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "佐茂", "type": "醫療器材", "model": "2026/4/22\n\n滅菌_端子NUT(12AWG)_260422", "stage_raw": "RFQ\n\n無料號", "stage": "RFQ", "group": "業務", "sales_followup": "1. RD Brian請我們測試雷焊WW型式，黃銅+NB109 0.3T，使用片料，拉拔力5~8 kgf，不用量阻抗值。\n\n2. 黃銅要鍍錫或鍍鎳，待確認。\n\n3. 4/24 通知暫停測試。", "eng_followup": "廢料已拿到待通知鍍鎳還是鍍錫", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-3805 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL2 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RCK4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "1.  2/10 口頭更新報價，烤漆廠表示表面要完美，良率只會有4成，除非找汽車烤漆或無塵烤漆。請晶達推薦烤漆廠。", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "ITRP-2845 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框", "model": "0705-RES4_前框", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "IBOC-ADL0 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "0705-RES4_Heat sink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "ACDF-WHL1 Heatsink with fan", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1562-WHL0-ZP00-3001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "IPPC-1702-KBL5-WR00-1001 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heatsink", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "IPC", "model": "AECX-APL7 Heat Spreader", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "散熱塊", "model": "IPPC-2155-EHL0-ZG00-2001 (LID散熱塊)", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框", "model": "DPD-1268 Front Case", "stage_raw": "Mockup", "stage": "Mockup", "group": "工程", "sales_followup": "1. 3/13 客戶反映明顯料痕，須重工\n\n2. 3/17 銘唯協助磨髮線+噴砂，3/18 廠內陽極可蓋過，3/19完成陽極5 PCS，3/20 雷雕+量尺寸", "eng_followup": "0323下午2點前給業務送樣", "change_type": "unchanged"}, {"customer": "晶達光電", "type": "螢幕框", "model": "IPPC-2158-TGL0-WP00-1001\n\n前框+後蓋+電池蓋", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "1. 4/13 送後蓋1 PCS外觀不良， 給RD與採購。\n\n2. 4/15 尋找烤漆廠商，評估重工。\n\n3. 4/16 送建笠烤漆1 PCS。\n\n4. 4/17 烤漆OK，4/20 安排 JD12B 31 PCS、JD12C 32 PCS，烤漆重工。 \n\n5. 4/23 完成重工，4/27出貨。", "eng_followup": "1.後蓋:出貨32pcs以液烤完回廠內(品檢有檢查到外觀不相同的)", "change_type": "unchanged"}, {"customer": "嘉彰", "type": "-", "model": "UCS-STIR", "stage_raw": "MP", "stage": "MP", "group": "量產", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "嘉彰", "type": "車用", "model": "h_sprd_ford_10p2\n\nFord 10.2 背板", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}, {"customer": "嘉彰", "type": "-", "model": "3483814600 拉手", "stage_raw": "RFQ", "stage": "RFQ", "group": "業務", "sales_followup": "", "eng_followup": "", "change_type": "unchanged"}]}};
+
+const STAGE_COLORS = {
+  'RFQ': '#0d6efd', 'RFI': '#6c757d', 'Pending': '#adb5bd',
+  'Tool Making': '#20c997', 'T1': '#20c997', 'TS': '#20c997',
+  'Mockup': '#198754', 'EVT': '#6f42c1', 'DVT': '#e91e8c', 'PVT': '#d63384',
+  'MP': '#fd7e14'
+};
+
+function drawCharts(rep) {
+  const d = REPS_DATA[rep];
+
+  // Stage chart
+  const stageLabels = Object.keys(d.stages);
+  const stageData = Object.values(d.stages);
+  const stageColors = stageLabels.map(s => STAGE_COLORS[s] || '#6c757d');
+
+  new Chart(document.getElementById('stage-chart-' + rep), {
+    type: 'doughnut',
+    data: {
+      labels: stageLabels,
+      datasets: [{ data: stageData, backgroundColor: stageColors, borderWidth: 2, borderColor: '#fff' }]
+    },
+    options: {
+      plugins: {
+        legend: { position: 'right', labels: { boxWidth: 14, font: { size: 12 } } },
+        tooltip: { callbacks: { label: c => c.label + ': ' + c.parsed + ' 件' } }
+      },
+      maintainAspectRatio: false
+    }
+  });
+
+}
+
+// Draw initially visible tab + on tab show
+document.addEventListener('DOMContentLoaded', () => {
+  drawCharts('Jeffrey');
+  document.querySelectorAll('[data-bs-toggle="tab"]').forEach(btn => {
+    btn.addEventListener('shown.bs.tab', e => {
+      const rep = e.target.dataset.bsTarget.replace('#tab-', '');
+      drawCharts(rep);
+    });
+  });
+});
+</script>
+
+</body>
+</html>
