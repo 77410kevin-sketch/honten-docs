@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>美伊戰爭情勢週報 2026-05-02</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>⚔️ 美伊戰爭情勢週報 2026-05-10</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Noto Sans TC', sans-serif;
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1rem;
-      background-color: #f8f9fa;
+      background: #f8f9fa;
       color: #212529;
     }
-    .report-header {
-      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    .site-header {
+      background: linear-gradient(135deg, #1a1a2e 0%, #8b0000 100%);
       color: #fff;
       border-radius: 12px;
       padding: 2rem 2.5rem;
       margin-bottom: 2rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     }
-    .report-header h1 {
+    .site-header h1 {
       font-size: 2rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
     }
-    .report-header .subtitle {
+    .site-header .subtitle {
       font-size: 0.95rem;
       opacity: 0.85;
     }
@@ -38,52 +38,42 @@
       border-left: 4px solid #dc3545;
       padding-left: 0.75rem;
       margin-top: 2.5rem;
-      font-size: 1.3rem;
+      font-size: 1.35rem;
       font-weight: 700;
+      color: #1a1a2e;
     }
     h3 {
-      font-size: 1.05rem;
-      font-weight: 700;
-      margin-top: 1.25rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
       color: #495057;
     }
     table {
       font-size: 0.92rem;
     }
-    .badge-conflict {
-      background-color: #dc3545;
-      color: #fff;
-      padding: 0.3rem 0.75rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .badge-date {
-      background-color: #0d6efd;
-      color: #fff;
-      padding: 0.3rem 0.75rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-    }
-    .section-card {
+    .card-section {
       background: #fff;
-      border-radius: 8px;
-      padding: 1.5rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      border-radius: 10px;
+      padding: 1.5rem 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     }
     footer {
-      text-align: center;
       margin-top: 3rem;
       padding: 1.5rem;
       background: #1a1a2e;
       color: #adb5bd;
-      border-radius: 8px;
-      font-size: 0.85rem;
+      border-radius: 10px;
+      text-align: center;
+      font-size: 0.88rem;
     }
-    .source-list li {
-      margin-bottom: 0.4rem;
+    .badge-day {
+      background: #dc3545;
+      color: #fff;
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
     }
     .source-list a {
       color: #0d6efd;
@@ -92,253 +82,259 @@
     .source-list a:hover {
       text-decoration: underline;
     }
+    .risk-high { color: #dc3545; font-weight: 600; }
+    .risk-mid  { color: #fd7e14; font-weight: 600; }
+    .risk-low  { color: #198754; font-weight: 600; }
   </style>
 </head>
 <body>
 
-<!-- ===== HEADER ===== -->
-<div class="report-header">
-  <h1>⚔️ 美伊戰爭情勢週報</h1>
-  <div class="subtitle mt-2">
-    <span class="badge-date">📅 報告日期：2026-05-02</span>
-    &nbsp;
-    <span class="badge-conflict">🔥 衝突第 63 天</span>
-    &nbsp;
-    <span style="opacity:0.9;">🔄 下次更新：2026-05-09</span>
+<!-- Header -->
+<div class="site-header">
+  <h1><i class="bi bi-sword"></i> 美伊戰爭情勢週報</h1>
+  <div class="subtitle">
+    <i class="bi bi-calendar3"></i> 報告日期：2026-05-10 &nbsp;・&nbsp;
+    <span class="badge-day">衝突第 71 天</span> &nbsp;・&nbsp;
+    <i class="bi bi-arrow-repeat"></i> 下次更新：2026-05-17
   </div>
 </div>
 
-<!-- ===== TOP CALLOUT ===== -->
-<div class="alert alert-info" role="alert">
-  <strong><i class="bi bi-info-circle-fill me-1"></i>本週重點</strong>
-  <ul class="mt-2 mb-0">
-    <li>伊朗向巴基斯坦調解方提交新和平方案，川普公開表示「不滿意」，核談判持續僵持</li>
-    <li>布蘭特原油收跌至 <strong>$108.17/桶</strong>（↓約2%），WTI 收 $101.94；霍爾木茲海峽仍維持封鎖</li>
-    <li>美軍60天戰爭成本達 <strong>250億美元</strong>，川普政府援引《戰爭授權法》稱「敵對行動已終止」</li>
-    <li>川普考慮對伊朗發動新一輪打擊，或擴大海上封鎖施壓談判</li>
-    <li>台灣CPI直接衝擊有限（油價漲10%→CPI+0.2pp），但能源進口成本持續上升</li>
-  </ul>
+<!-- 頂部 Callout -->
+<div class="alert alert-info d-flex align-items-start gap-2 mb-4" role="alert">
+  <i class="bi bi-megaphone-fill fs-5 mt-1"></i>
+  <div>
+    <strong>本週重點摘要</strong>
+    <ul class="mb-0 mt-2">
+      <li>美伊霍爾木茲海峽爆發海上衝突，美軍擊沉多艘伊朗快艇，伊朗報復攻擊美艦</li>
+      <li>美方提出一頁式諒解備忘錄（MOU），伊朗評估中，回應結果決定停火走向</li>
+      <li>伊朗堅持核濃縮計畫「不可談判」，核問題成談判最大障礙</li>
+      <li>布倫特原油仍高位整理，美銀上調全年均價至 77.50 美元/桶</li>
+      <li>台灣中油自開戰至 5/3 已吸收油價差額逾 132 億元，通膨仍在警戒值以下</li>
+    </ul>
+  </div>
 </div>
 
-<!-- ===== SECTION 1 ===== -->
-<div class="section-card">
-  <h2>一、戰爭背景與本週摘要</h2>
+<!-- 一、戰爭背景 -->
+<div class="card-section">
+  <h2><i class="bi bi-clock-history me-2"></i>一、戰爭背景與本週摘要</h2>
   <p>
-    2026年2月28日，美國與以色列聯合發動代號行動，對伊朗境內軍事設施、核設施及政府要員實施精準打擊，伊朗最高領袖哈梅內伊在行動中罹難。伊朗隨即進行大規模報復，封鎖霍爾木茲海峽，並對美軍中東基地發動飛彈攻擊。4月7日，雙方達成臨時停火協議，敵對行動進入相對緩和期，但停火期間談判陷入僵局，海上封鎖持續。
+    2026 年 2 月 28 日，美國聯合以色列對伊朗發動大規模空襲，目標涵蓋伊朗軍事設施、核武相關基礎建設及政府機構。
+    首輪打擊中伊朗最高領袖阿里·哈梅內伊遇襲身亡，伊朗軍事指揮體系受到重大衝擊。衝突迄今已進入第 71 天。
   </p>
   <p>
-    本週（衝突第57-63天）最核心進展：伊朗於5月1日透過巴基斯坦調解管道提交最新和平提案，但川普在公開場合直接表示「不滿意」，稱不確定是否能達成協議。白宮同步評估重啟軍事打擊或擴大海軍封鎖的選項，談判前景高度不確定。與此同時，美國參議院以程序票否決了《戰爭授權法》相關決議，給予川普政府更大的行動空間。
+    本週（5/4–5/10）情勢呈現「停火脆弱、外交緊繃、海峽衝突」三重特徵。
+    美國 5 月 4 日啟動「自由計畫（Operation Liberty）」，引導商船通過霍爾木茲海峽，卻遭伊朗砲艇攔截並開火，
+    美軍隨即反擊，擊沉 6 艘伊朗快艇。5 月 7–8 日，伊朗報復攻擊美國海軍艦艇，美方則對兩艘試圖停靠阿曼港口的
+    伊朗油輪實施打擊，局勢急劇升溫。目前，美方正等待德黑蘭對「一頁式停火備忘錄」的正式回應，
+    伊朗官媒透露方案中含「過度且不切實際的提議」，已遭決策高層強力反對。
   </p>
 </div>
 
-<!-- ===== SECTION 2 ===== -->
-<div class="section-card">
-  <h2>二、當前軍事情勢</h2>
+<!-- 二、軍事情勢 -->
+<div class="card-section">
+  <h2><i class="bi bi-shield-fill-exclamation me-2"></i>二、當前軍事情勢</h2>
   <p>
-    自4月7日停火以來，美伊雙方尚未恢復直接武裝交火，但美軍維持對伊朗港口的海上封鎖，伊朗持續拒絕開放霍爾木茲海峽。伊朗總統佩澤希齊揚稱美軍海上封鎖為「軍事行動的延伸」，構成不可接受的挑釁。CNN 調查揭示中東多處美軍基地在戰爭初期遭伊朗飛彈重創。
+    自 4 月 8 日巴基斯坦斡旋的「兩週停火」達成後，雙方已多次互相違反停火協議。
+    霍爾木茲海峽成為本週衝突焦點，海上摩擦頻繁。
+    Kharg Island（伊朗最大原油出口碼頭）附近出現衛星影像顯示的約 71 平方公里油污，
+    估計已流出約 8 萬桶原油，對波斯灣生態造成嚴重威脅。
   </p>
   <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>指標</th>
-        <th>現況</th>
-        <th>備註</th>
-      </tr>
+      <tr><th style="width:25%">指標</th><th style="width:35%">現況</th><th>備註</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>直接武裝交火</td>
-        <td><span class="badge bg-warning text-dark">暫停</span></td>
-        <td>4月7日停火後未再發生</td>
+        <td>停火狀態</td>
+        <td><span class="risk-mid">脆弱維持中</span></td>
+        <td>雙方多次局部交火，但未宣告全面開戰</td>
       </tr>
       <tr>
         <td>霍爾木茲海峽</td>
-        <td><span class="badge bg-danger">封鎖中</span></td>
-        <td>伊朗拒絕開放，每日石油減供約1200萬桶</td>
+        <td><span class="risk-high">高度緊張</span></td>
+        <td>美伊海上衝突持續，美軍擊沉 6 艘伊朗快艇（5/4）</td>
       </tr>
       <tr>
-        <td>美軍海上封鎖</td>
-        <td><span class="badge bg-danger">持續執行</span></td>
-        <td>美方考慮延長並擴大範圍</td>
+        <td>伊朗油輪遭打擊</td>
+        <td><span class="risk-high">2 艘被擊</span></td>
+        <td>5/8 美艦對試圖停靠阿曼港口的伊朗油輪開火</td>
       </tr>
       <tr>
-        <td>美伊直接談判</td>
-        <td><span class="badge bg-warning text-dark">僵局</span></td>
-        <td>透過巴基斯坦間接斡旋</td>
+        <td>Kharg Island 油污</td>
+        <td>~71 km² 油污，8 萬桶外洩</td>
+        <td>衛星影像確認，波斯灣生態嚴重受損</td>
       </tr>
       <tr>
-        <td>伊朗核設施</td>
-        <td><span class="badge bg-secondary">受損</span></td>
-        <td>戰爭初期遭打擊，現況評估不透明</td>
+        <td>以黎邊境</td>
+        <td><span class="risk-mid">持續衝突</span></td>
+        <td>以色列 5/9 在黎巴嫩打擊造成 23 死</td>
       </tr>
       <tr>
-        <td>美軍戰爭成本</td>
-        <td>250億美元</td>
-        <td>主要為消耗數萬枚炸彈與飛彈</td>
+        <td>美軍指揮架構</td>
+        <td>中央司令部持續運作</td>
+        <td>等待德黑蘭正式回應外交提案</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ===== SECTION 3 ===== -->
-<div class="section-card">
-  <h2>三、外交談判動態</h2>
+<!-- 三、外交談判 -->
+<div class="card-section">
+  <h2><i class="bi bi-people-fill me-2"></i>三、外交談判動態</h2>
   <p>
-    目前談判架構由巴基斯坦擔任主要調解方，中方亦表態願積極促和。伊朗外長阿拉格齊表示伊方願以「理性、現實」方式尋求解決方案，但核心爭議點使雙方難以快速縮短分歧。
+    美伊和談正在推進一份「一頁式 14 點諒解備忘錄（MOU）」，由川普特使史蒂夫·威特科夫（Steve Witkoff）
+    與賈里德·庫許納（Jared Kushner）透過巴基斯坦斡旋進行，部分直接接觸亦在進行中。
+    備忘錄若達成，將宣告戰爭結束並啟動 30 天詳細協議談判期。
+    川普同時警告若談判破裂將恢復「密集轟炸」。
+    以色列─黎巴嫩和平談判預計於 5/14–5/15 舉行。
   </p>
   <ul>
-    <li><strong>核計畫爭議：</strong>美方要求伊朗提供可核查的核武開發終止保證，伊朗堅持和平核電主權不可談判</li>
-    <li><strong>霍爾木茲開放條件：</strong>伊朗要求美軍先撤除海上封鎖、正式宣布結束戰爭，方考慮開放海峽</li>
-    <li><strong>制裁解除：</strong>伊朗要求全面解除制裁並獲得戰後重建資金，美方態度保留</li>
-    <li><strong>飛彈計畫與代理勢力：</strong>川普要求處理伊朗彈道飛彈計畫及中東代理組織問題，伊朗強烈反對</li>
-    <li><strong>美國國內壓力：</strong>美參議院否決戰爭授權決議，川普政府援引停火主張法律上「敵對行動已終止」，為延續行動尋求依據</li>
-    <li><strong>川普立場：</strong>5月1日公開表示「不滿意」伊朗最新提案，並表示可能重啟軍事行動</li>
+    <li><strong>核問題僵局：</strong>美方要求伊朗停止所有鈾濃縮至少 12 年，並交出約 440 公斤已濃縮至 60% 的鈾存量；伊朗官員強硬表態「核濃縮計畫不可談判」。</li>
+    <li><strong>荷爾木茲優先：</strong>伊朗希望「先解決霍爾木茲問題、再談核武」，美方態度尚未明確讓步。</li>
+    <li><strong>伊朗 14 點提案：</strong>伊朗已透過巴基斯坦向美方提出包含 14 點的和平計畫，更多細節仍待揭曉。</li>
+    <li><strong>川普最後期限壓力：</strong>白宮透露若德黑蘭不在數日內正式回覆，美軍不排除重啟空襲。</li>
+    <li><strong>國際斡旋：</strong>巴基斯坦持續扮演關鍵調停角色；英國下議院研究報告亦追蹤美伊停火與核談判進展。</li>
   </ul>
 </div>
 
-<!-- ===== SECTION 4 ===== -->
-<div class="section-card">
-  <h2>四、全球經濟衝擊</h2>
+<!-- 四、全球經濟衝擊 -->
+<div class="card-section">
+  <h2><i class="bi bi-graph-up-arrow me-2"></i>四、全球經濟衝擊</h2>
   <p>
-    霍爾木茲海峽封鎖導致全球石油每日減供約1200萬桶，能源價格持續高位震盪。雖然5月1日伊朗提案消息帶動油價短線回落，布蘭特跌至$108.17，但能源市場整體仍處高壓狀態。
+    美伊戰爭已成為 2026 年全球通膨最大外生風險。霍爾木茲海峽控制著全球約 20% 的石油運輸，
+    緊張局勢持續推高油價及運費，Fed 官員公開警告通膨可能「拖更久」。
+    全球已累計損失至少 10 億桶石油，衝擊規模超越 1990 年波灣戰爭。
   </p>
   <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>項目</th>
-        <th>數據</th>
-        <th>說明</th>
-      </tr>
+      <tr><th style="width:20%">項目</th><th style="width:30%">數據</th><th>說明</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>布蘭特原油</td>
-        <td><strong>$108.17/桶</strong></td>
-        <td>5/1 收盤，較前日跌約2%；戰前約$73</td>
+        <td>布蘭特原油（美銀預測）</td>
+        <td>$77.50/桶（全年均價）</td>
+        <td>較戰前預估 $61 大幅上調；極端情景達 $130/桶</td>
       </tr>
       <tr>
-        <td>WTI 原油</td>
-        <td><strong>$101.94/桶</strong></td>
-        <td>5/1 收盤，跌3%</td>
+        <td>全球石油損失規模</td>
+        <td>≥ 10 億桶</td>
+        <td>超越 1990 年伊拉克入侵科威特衝擊</td>
       </tr>
       <tr>
-        <td>美國零售汽油均價</td>
-        <td>$4.39/加侖</td>
-        <td>2022年7月以來最高，單週漲$0.33</td>
+        <td>波斯灣原油外洩</td>
+        <td>~8 萬桶，71 km² 油污</td>
+        <td>Kharg Island 附近，波斯灣生態危機加劇</td>
       </tr>
       <tr>
-        <td>全球石油日減供量</td>
-        <td>約1,200萬桶</td>
-        <td>波斯灣能源基礎設施受損 + 海峽封鎖</td>
+        <td>Fed 利率立場</td>
+        <td>通膨上行風險升高</td>
+        <td>Fed 官員警告：油價高漲恐致高通膨持續更久</td>
       </tr>
       <tr>
-        <td>英國 GDP 預測</td>
-        <td>0.7%–0.8%（2026）</td>
-        <td>英格蘭銀行下修，並示警通膨升息風險</td>
+        <td>全球 CPI 壓力</td>
+        <td>中東、歐洲、日本受壓最深</td>
+        <td>日歐英央行考慮升息，Fed 相對逆勢</td>
       </tr>
       <tr>
-        <td>美軍戰爭支出</td>
-        <td>至少250億美元</td>
-        <td>五角大廈披露；含重建修復恐翻倍</td>
-      </tr>
-      <tr>
-        <td>日歐英央行動向</td>
-        <td>傾向升息</td>
-        <td>油價通膨壓力迫使貨幣政策收緊</td>
-      </tr>
-      <tr>
-        <td>聯準會</td>
-        <td>逆勢降息討論</td>
-        <td>美國內部通膨與經濟衰退風險並存</td>
+        <td>航運費率</td>
+        <td>霍爾木茲繞道費用激增</td>
+        <td>保險費率暴漲，部分船公司停航波斯灣</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ===== SECTION 5 ===== -->
-<div class="section-card">
-  <h2>五、台灣受衝擊評估</h2>
+<!-- 五、台灣受衝擊評估 -->
+<div class="card-section">
+  <h2><i class="bi bi-house-flag me-2"></i>五、台灣受衝擊評估</h2>
   <p>
-    台灣能源高度依賴進口（天然氣進口占比99.7%、石油幾乎全仰賴進口），霍爾木茲封鎖直接衝擊能源供應鏈。然而半導體與AI供應鏈的全球核心地位，使台灣在資本流向上仍具相對優勢，台股在衝突初期甚至逆勢走強。
+    台灣高度依賴進口能源（石油、LNG），約 97% 能源仰賴進口，對中東衝突的傳導敏感度極高。
+    高盛集團明確將台灣列為石腦油、航空燃油與液化石油氣短缺「高風險」的四個國家之一。
   </p>
   <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>面向</th>
-        <th>現況</th>
-        <th>風險評估</th>
-      </tr>
+      <tr><th style="width:20%">面向</th><th style="width:35%">現況</th><th>風險評估</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>CPI 通膨壓力</td>
-        <td>仍低於1.5%，遠低於2%警戒線</td>
-        <td>🟡 中低風險：油價漲10%→CPI+0.2pp，衝擊可控</td>
+        <td>CPI 通膨</td>
+        <td>維持 1.5% 以下，低於 2% 警戒線</td>
+        <td><span class="risk-low">低度</span> — 目前穩定，原油破 $90 恐升溫</td>
+      </tr>
+      <tr>
+        <td>中油油價補貼</td>
+        <td>開戰至 5/3 已吸收逾 132 億元差額</td>
+        <td><span class="risk-mid">中度</span> — 財政壓力持續累積</td>
       </tr>
       <tr>
         <td>央行利率政策</td>
-        <td>預估維持「連8凍」，無急迫升息需求</td>
-        <td>🟢 低風險：通膨尚未逼近升息門檻</td>
+        <td>預計「連 8 凍」，維持現行利率</td>
+        <td><span class="risk-low">低度</span> — 通膨未達升息門檻</td>
       </tr>
       <tr>
-        <td>能源進口成本</td>
-        <td>LNG、石油採購成本顯著上升</td>
-        <td>🔴 高風險：霍爾木茲持續封鎖將推升電力/燃氣成本</td>
+        <td>科技 / 半導體</td>
+        <td>台積電等供應鏈需求維持穩健</td>
+        <td><span class="risk-low">低度</span> — AI 浪潮支撐，但能源成本上升</td>
       </tr>
       <tr>
-        <td>科技產業 / 台股</td>
-        <td>半導體與AI訂單持穩，台股逆勢抗跌</td>
-        <td>🟢 低風險：全球資本持續流入台灣科技供應鏈</td>
+        <td>航運 / 物流</td>
+        <td>波斯灣航線繞道延長，運費上漲</td>
+        <td><span class="risk-mid">中度</span> — 出口商品成本傳導壓力</td>
       </tr>
       <tr>
-        <td>航運與物流</td>
-        <td>波灣航線受阻，部分繞道好望角</td>
-        <td>🟡 中風險：航程延長→成本上升，但台灣主要貿易航線未直接中斷</td>
-      </tr>
-      <tr>
-        <td>製造業原料成本</td>
-        <td>石化原料、塑膠等上游原物料漲價</td>
-        <td>🟡 中風險：下游傳產業受壓，科技業影響相對有限</td>
+        <td>能源短缺（石腦油 / LPG）</td>
+        <td>高盛列台灣為高風險國家之一</td>
+        <td><span class="risk-high">高度</span> — 石化 / 塑膠業原料供應緊張</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- ===== SECTION 6 ===== -->
-<div class="section-card">
-  <h2>六、後市情勢研判</h2>
+<!-- 六、後市情勢研判 -->
+<div class="card-section">
+  <h2><i class="bi bi-binoculars-fill me-2"></i>六、後市情勢研判</h2>
 
-  <h3>📅 短期展望（1–3 個月）</h3>
+  <h3><i class="bi bi-calendar-week me-1"></i>短期（1–3 個月）</h3>
   <p>
-    談判仍在巴基斯坦斡旋下緩慢推進，但核計畫與海峽開放為最大障礙。川普「不滿意」最新提案的公開表態，加上美軍重啟打擊方案持續列為選項，顯示停火協議脆弱性高。短期內布蘭特原油預計維持 $100–$115 區間震盪；若談判再度破裂，油價可能再衝$120以上。台灣短期內能源供應壓力持續，但CPI影響應可控制在2%以下。美國《戰爭授權法》爭議將在國會持續發酵，對川普行動自由構成潛在制約。
+    外交談判關鍵窗口出現，但霍爾木茲海峽衝突使停火極為脆弱。
+    若伊朗正式拒絕 MOU，川普重啟空襲的威脅將付諸實行，
+    油價可能急升至 $90–100 美元/桶，台灣通膨壓力將顯著升溫。
+    反之，若伊朗接受框架性協議，霍爾木茲緊張快速緩解，油價可能回落至 $70 以下。
+    核問題分歧巨大，30 天協議談判期內不易達成最終解決。
   </p>
 
-  <h3>🔭 中期展望（6–12 個月）</h3>
+  <h3><i class="bi bi-calendar-range me-1"></i>中期（6–12 個月）</h3>
   <p>
-    中期局勢走向高度取決於核協議能否達成。若美伊達成全面和平框架（含核不擴散保證 + 制裁解除 + 海峽正式開放），國際油價將快速回落至$80以下，全球通膨壓力大幅緩解，台灣能源與製造業成本也將同步降低。反之，若談判再度失敗或川普重啟打擊，中東局勢將進入長期動盪，伊朗核開發時間線問題將重新主導市場風險定價，屆時全球油市結構性緊張將延伸至2027年。中國作為伊朗最大貿易夥伴，其調解角色的深度介入與否，也將是關鍵變數之一。
+    即便停火協議達成，核問題將是長期緊張的根本來源。
+    伊朗堅守「核濃縮不可談判」立場，美方要求 12 年停止濃縮，雙方差距難以在數月內彌合。
+    以色列─黎巴嫩關係、伊朗國內政治重組（最高領袖繼任）均增加局勢複雜度。
+    台灣能源多元化壓力將加速，電力與天然氣進口來源多元化將成政策重點。
+    油價中期展望：和平框架成立則布蘭特原油回落至 $65–75；核談判破局則維持 $80–100 區間。
   </p>
 </div>
 
-<!-- ===== SECTION 7 ===== -->
-<div class="section-card">
-  <h2>七、資料來源</h2>
-  <ul class="source-list">
-    <li><a href="https://www.cnn.com/2026/05/01/world/live-news/iran-war-news" target="_blank">CNN – Latest updates: Trump says he's dissatisfied with Iran's latest proposal（2026-05-01）</a></li>
-    <li><a href="https://www.aljazeera.com/news/2026/5/1/iran-war-whats-happening-on-day-63-as-trump-signals-possible-attacks" target="_blank">Al Jazeera – Iran war: What's happening on day 63 as Trump signals possible attacks（2026-05-01）</a></li>
-    <li><a href="https://www.cnbc.com/2026/05/01/oil-prices-today-brent-wti-us-iran-war-trump-war-powers-deadline.html" target="_blank">CNBC – Oil prices fall after Iran sends updated peace proposal to mediators（2026-05-01）</a></li>
-    <li><a href="https://udn.com/news/story/124061/9473084" target="_blank">聯合新聞網 – 美伊衝突60天 估計花250億美元（2026-04-30）</a></li>
-    <li><a href="https://www.cna.com.tw/news/aopl/202605010151.aspx" target="_blank">中央社 CNA – 5月1日 美伊戰爭對國際經濟、財經市場與民生衝擊（2026-05-01）</a></li>
-    <li><a href="https://www.thenationalnews.com/news/mena/2026/05/01/live-us-iran-war/" target="_blank">The National – Iran war latest: Tehran delivers new proposal for talks（2026-05-01）</a></li>
-    <li><a href="https://www.pbs.org/newshour/world/heres-what-to-know-about-ceasefire-negotiations-between-the-u-s-and-iran" target="_blank">PBS NewsHour – What to know about ceasefire negotiations between the U.S. and Iran（2026-05）</a></li>
-    <li><a href="https://www.bnext.com.tw/article/90305/2026-iran-war-energy" target="_blank">數位時代 – 美伊戰爭卡住能源進口，對台灣有什麼影響？（2026）</a></li>
-    <li><a href="https://www.cw.com.tw/article/5140023" target="_blank">天下雜誌 – 天下財經週報：美伊戰爭還會打多久？會如何影響經濟與市場？（2026）</a></li>
-    <li><a href="https://udn.com/news/story/124061/9475745" target="_blank">聯合新聞網 – 避免觸發國會授權？美媒：川普政府認定美伊衝突「法律上已中止」（2026-05）</a></li>
+<!-- 七、資料來源 -->
+<div class="card-section source-list">
+  <h2><i class="bi bi-link-45deg me-2"></i>七、資料來源</h2>
+  <ul>
+    <li><a href="https://zh.wikipedia.org/zh-tw/%E4%BC%8A%E6%9C%97%E6%88%B0%E7%88%AD_(2026%E5%B9%B4)" target="_blank">伊朗戰爭 (2026年) — 維基百科</a>（2026-05-10 查閱）</li>
+    <li><a href="https://www.aljazeera.com/news/liveblog/2026/5/9/iran-war-live-tehrans-reply-to-us-deal-expected-amid-clashes-in-hormuz" target="_blank">Iran war live: Tehran's reply to US deal expected — Al Jazeera</a>（2026-05-09）</li>
+    <li><a href="https://www.axios.com/2026/05/06/iran-us-deal-one-page-memo" target="_blank">US and Iran closing in on one-page memo to end war — Axios</a>（2026-05-06）</li>
+    <li><a href="https://www.aljazeera.com/news/2026/5/8/what-we-know-about-irans-response-to-the-latest-us-ceasefire-proposal" target="_blank">What we know about Iran's response to latest US ceasefire proposal — Al Jazeera</a>（2026-05-08）</li>
+    <li><a href="https://udn.com/news/story/124061/9488108" target="_blank">整理包／伊朗今將回覆美方停戰方案 — 聯合新聞網</a>（2026-05-10）</li>
+    <li><a href="https://news.cnyes.com/news/id/6445824" target="_blank">美伊戰爭真要結束？伊朗 48 小時內表態 — 鉅亨網</a>（2026-05-10）</li>
+    <li><a href="https://www.cna.com.tw/news/aopl/202605060349.aspx" target="_blank">美伊戰爭對國際經濟、財經市場與民生衝擊 — 中央社</a>（2026-05-06）</li>
+    <li><a href="https://udn.com/news/story/6811/9487397" target="_blank">Fed官員警告！美伊戰爭恐讓高通膨拖更久 — 聯合新聞網</a>（2026-05-09）</li>
+    <li><a href="https://www.capitalfutures.com.tw/zh-tw/financial/globalarticle?contentid=c26031601022&category=all" target="_blank">美銀猛抬 2026 年油價預測：極端情景布油達 130 美元 — 統一期貨</a>（2026-03-16）</li>
+    <li><a href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire" target="_blank">2026 Iran war ceasefire — Wikipedia</a>（2026-05-10 查閱）</li>
+    <li><a href="https://www.washingtonpost.com/national-security/2026/05/08/us-iran-ceasefire-hormuz-attacks/" target="_blank">U.S. strikes two Iranian-flagged ships as tensions rise — The Washington Post</a>（2026-05-08）</li>
+    <li><a href="https://www.npr.org/2026/05/08/g-s1-121061/iran-war-updates" target="_blank">The U.S. fires on Iranian tankers amid Hormuz standoff — NPR</a>（2026-05-08）</li>
   </ul>
 </div>
 
-<!-- ===== FOOTER ===== -->
 <footer>
-  🤖 自動由 Claude Agent 於 2026-05-02 生成 ・ 下次更新預計 2026-05-09（週六）
+  <i class="bi bi-robot"></i> 自動由 Claude Agent 於 2026-05-10 生成 ・ 下次更新預計 2026-05-17（週日）<br>
+  <small>資料來源：Al Jazeera、Axios、聯合新聞網、中央社、維基百科、NPR、Washington Post</small>
 </footer>
 
 </body>
