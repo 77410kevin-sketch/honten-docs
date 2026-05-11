@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>組裝線建置成本估算 — 鴻騰電子</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+<style>
+  body { font-family: "Microsoft JhengHei", Arial, sans-serif; background: #f4f6f9; }
+  .header { background: linear-gradient(135deg, #1a237e 0%, #283593 60%, #1565c0 100%);
+            color: #fff; padding: 28px 32px; border-radius: 0 0 16px 16px; margin-bottom: 28px; }
+  .header h1 { font-size: 1.5rem; font-weight: 700; margin: 0; }
+  .header .sub { font-size: .85rem; opacity: .8; margin-top: 6px; }
+  .kpi { background: #fff; border-radius: 12px; padding: 20px 24px;
+         box-shadow: 0 2px 8px rgba(0,0,0,.08); border-left: 5px solid; }
+  .kpi .val { font-size: 1.6rem; font-weight: 700; }
+  .kpi .lbl { font-size: .8rem; color: #666; margin-top: 3px; }
+  .section-title { font-size: 1rem; font-weight: 700; border-left: 4px solid #1565c0;
+                   padding-left: 10px; color: #1565c0; margin-bottom: 14px; }
+  .card-box { background: #fff; border-radius: 12px; padding: 20px;
+              box-shadow: 0 2px 8px rgba(0,0,0,.07); margin-bottom: 20px; }
+  .range-low  { color: #1565c0; font-weight: 700; }
+  .range-high { color: #c62828; font-weight: 700; }
+  thead th { background: #1565c0; color: #fff; }
+  .note { background: #e3f2fd; border-left: 4px solid #1565c0; padding: 10px 16px;
+          border-radius: 6px; font-size: .88rem; color: #0d47a1; }
+  .warn { background: #fff8e1; border-left: 4px solid #f9a825; padding: 10px 16px;
+          border-radius: 6px; font-size: .88rem; color: #7a5000; }
+  .total-row td { background: #e8eaf6; font-weight: 700; font-size: 1rem; }
+  .badge-cat { border-radius: 6px; padding: 3px 10px; font-size: .78rem; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1><i class="bi bi-calculator-fill me-2"></i>組裝線建置成本估算</h1>
+  <div class="sub">
+    規模：2 條 × 25 米組裝線 ｜ 人力：20～25 人 ｜
+    客戶：勤誠 ｜ 條件：代組裝 利潤固定 3% ｜
+    估算日：2026-05-11
+  </div>
+</div>
+
+<div class="container-fluid px-4">
+
+  <!-- KPI -->
+  <div class="row g-3 mb-4">
+    <div class="col-6 col-md-3">
+      <div class="kpi" style="border-color:#1565c0;">
+        <div class="val" style="color:#1565c0;">222～457萬</div>
+        <div class="lbl">設備一次性投資（NT$）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi" style="border-color:#1b5e20;">
+        <div class="val" style="color:#1b5e20;">70～88萬</div>
+        <div class="lbl">月度人力成本（NT$/月）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi" style="border-color:#e65100;">
+        <div class="val" style="color:#e65100;">840～1,050萬</div>
+        <div class="lbl">年度人力成本（NT$/年）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="kpi" style="border-color:#6a1b9a;">
+        <div class="val" style="color:#6a1b9a;">1,062～1,507萬</div>
+        <div class="lbl">首年總成本估算（NT$）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row g-3">
+
+    <!-- 設備成本 -->
+    <div class="col-12 col-xl-8">
+      <div class="card-box">
+        <div class="section-title">設備一次性投資明細</div>
+        <table class="table table-sm table-bordered table-hover" style="font-size:.88rem;">
+          <thead>
+            <tr>
+              <th>類別</th><th>項目</th><th>規格說明</th><th>數量</th>
+              <th class="text-end">低估（NT$）</th>
+              <th class="text-end">高估（NT$）</th>
+              <th>備註</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- 線體 -->
+            <tr>
+              <td rowspan="2"><span class="badge bg-primary badge-cat">線體</span></td>
+              <td>無動力線體</td>
+              <td>滾輪式 25m × 2 條</td>
+              <td>2 條</td>
+              <td class="text-end range-low">300,000</td>
+              <td class="text-end range-high">600,000</td>
+              <td>若選無動力，成本較低</td>
+            </tr>
+            <tr>
+              <td>有動力皮帶線</td>
+              <td>馬達驅動 25m × 2 條</td>
+              <td>2 條</td>
+              <td class="text-end range-low">800,000</td>
+              <td class="text-end range-high">2,000,000</td>
+              <td>⚠ 二擇一，建議有動力</td>
+            </tr>
+            <!-- 螺絲起子 -->
+            <tr>
+              <td><span class="badge bg-success badge-cat">手工具</span></td>
+              <td>電動螺絲起子</td>
+              <td>工業級 Kilews / 好握速</td>
+              <td>20 支</td>
+              <td class="text-end range-low">80,000</td>
+              <td class="text-end range-high">160,000</td>
+              <td>每支 4,000～8,000</td>
+            </tr>
+            <!-- 拉釘槍 -->
+            <tr>
+              <td><span class="badge bg-success badge-cat">手工具</span></td>
+              <td>氣動拉釘槍（手動）</td>
+              <td>Stanley / FAR 品牌</td>
+              <td>10 支</td>
+              <td class="text-end range-low">25,000</td>
+              <td class="text-end range-high">60,000</td>
+              <td>每支 2,500～6,000</td>
+            </tr>
+            <!-- 電鑽 -->
+            <tr>
+              <td><span class="badge bg-success badge-cat">手工具</span></td>
+              <td>電鑽（重工用）</td>
+              <td>Bosch / Makita 重工型</td>
+              <td>8 支</td>
+              <td class="text-end range-low">48,000</td>
+              <td class="text-end range-high">120,000</td>
+              <td>每支 6,000～15,000</td>
+            </tr>
+            <!-- 電腦+掃碼槍 -->
+            <tr>
+              <td><span class="badge bg-warning text-dark badge-cat">資訊</span></td>
+              <td>電腦設備 + 掃碼槍</td>
+              <td>工控電腦 + 二維條碼槍</td>
+              <td>6 套</td>
+              <td class="text-end range-low">180,000</td>
+              <td class="text-end range-high">300,000</td>
+              <td>每套 30,000～50,000</td>
+            </tr>
+            <!-- 氣壓源 -->
+            <tr>
+              <td><span class="badge bg-secondary badge-cat">氣源</span></td>
+              <td>空壓機 + 管路配置</td>
+              <td>10 HP 以上工業型</td>
+              <td>1 式</td>
+              <td class="text-end range-low">120,000</td>
+              <td class="text-end range-high">280,000</td>
+              <td>含配管、快速接頭</td>
+            </tr>
+            <!-- 自動拉釘機 -->
+            <tr>
+              <td><span class="badge bg-danger badge-cat">自動化</span></td>
+              <td>自動拉釘機</td>
+              <td>氣動自動進料式，每條線 1 台</td>
+              <td>2 台</td>
+              <td class="text-end range-low">400,000</td>
+              <td class="text-end range-high">1,000,000</td>
+              <td>國產 20萬起；進口 50萬/台</td>
+            </tr>
+            <!-- 雜項 -->
+            <tr>
+              <td><span class="badge bg-dark badge-cat">雜項</span></td>
+              <td>工具架、料架、防靜電設備</td>
+              <td>含 ESD 手環、墊、架</td>
+              <td>1 式</td>
+              <td class="text-end range-low">80,000</td>
+              <td class="text-end range-high">150,000</td>
+              <td></td>
+            </tr>
+            <!-- 合計（有動力線） -->
+            <tr class="total-row">
+              <td colspan="4">⚡ 設備合計（有動力線體）</td>
+              <td class="text-end range-low">1,733,000</td>
+              <td class="text-end range-high">4,070,000</td>
+              <td>建議預算 250～350萬</td>
+            </tr>
+            <tr style="background:#f5f5f5;">
+              <td colspan="4">📦 設備合計（無動力線體）</td>
+              <td class="text-end">1,233,000</td>
+              <td class="text-end">2,670,000</td>
+              <td>節省 50～130萬</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="note mt-3">
+          <i class="bi bi-info-circle me-1"></i>
+          <strong>建議：</strong>勤誠組裝量大（自動拉釘大量使用），建議選<strong>有動力線體 + 自動拉釘機 × 2</strong>，初期設備預算抓 <strong>250～300萬</strong>。
+        </div>
+      </div>
+    </div>
+
+    <!-- 右側：人力 + 圖表 -->
+    <div class="col-12 col-xl-4">
+
+      <!-- 人力成本 -->
+      <div class="card-box">
+        <div class="section-title">人力成本估算</div>
+        <table class="table table-sm table-bordered" style="font-size:.88rem;">
+          <thead><tr><th>項目</th><th class="text-end">20 人</th><th class="text-end">25 人</th></tr></thead>
+          <tbody>
+            <tr><td>作業員月薪（含加班）</td><td class="text-end">32,000</td><td class="text-end">32,000</td></tr>
+            <tr><td>勞健保 + 勞退（×1.15）</td><td class="text-end">36,800</td><td class="text-end">36,800</td></tr>
+            <tr><td>月小計/人</td><td class="text-end fw-bold">36,800</td><td class="text-end fw-bold">36,800</td></tr>
+            <tr style="background:#e8f5e9;">
+              <td><strong>月人力總計</strong></td>
+              <td class="text-end range-low fw-bold">736,000</td>
+              <td class="text-end range-high fw-bold">920,000</td>
+            </tr>
+            <tr style="background:#e8f5e9;">
+              <td><strong>年人力總計（×12）</strong></td>
+              <td class="text-end range-low fw-bold">8,832,000</td>
+              <td class="text-end range-high fw-bold">11,040,000</td>
+            </tr>
+            <tr>
+              <td>年終獎金（+1個月）</td>
+              <td class="text-end">736,000</td>
+              <td class="text-end">920,000</td>
+            </tr>
+            <tr class="total-row">
+              <td>年度人力含年終</td>
+              <td class="text-end range-low">9,568,000</td>
+              <td class="text-end range-high">11,960,000</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 首年總成本 -->
+      <div class="card-box">
+        <div class="section-title">首年總成本彙總</div>
+        <table class="table table-sm table-bordered" style="font-size:.88rem;">
+          <thead><tr><th>項目</th><th class="text-end">低估</th><th class="text-end">高估</th></tr></thead>
+          <tbody>
+            <tr><td>設備投資（有動力）</td><td class="text-end">1,733,000</td><td class="text-end">4,070,000</td></tr>
+            <tr><td>年度人力（20～25人）</td><td class="text-end">9,568,000</td><td class="text-end">11,960,000</td></tr>
+            <tr><td>廠房水電雜支（估）</td><td class="text-end">500,000</td><td class="text-end">1,200,000</td></tr>
+            <tr class="total-row">
+              <td>首年總計</td>
+              <td class="text-end range-low">11,801,000</td>
+              <td class="text-end range-high">17,230,000</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="warn mt-2">
+          <i class="bi bi-exclamation-triangle me-1"></i>
+          利潤固定 <strong>3%</strong>，年營收需達 <strong>1.2～1.78 億</strong> 才能回收成本。
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- 圖表列 -->
+  <div class="row g-3 mb-4">
+    <div class="col-12 col-md-6">
+      <div class="card-box">
+        <div class="section-title">設備成本組成（有動力線體，取中值）</div>
+        <canvas id="equipChart" style="max-height:280px;"></canvas>
+      </div>
+    </div>
+    <div class="col-12 col-md-6">
+      <div class="card-box">
+        <div class="section-title">首年成本結構比較（低估 vs 高估）</div>
+        <canvas id="totalChart" style="max-height:280px;"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <!-- 建議與結論 -->
+  <div class="card-box mb-4">
+    <div class="section-title">關鍵建議</div>
+    <div class="row g-3">
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#e8f5e9;border-left:4px solid #2e7d32;">
+          <div class="fw-bold mb-1" style="color:#1b5e20;">✅ 優先投資項目</div>
+          <ul class="mb-0 small">
+            <li><strong>自動拉釘機 × 2 台</strong>（客戶強烈建議）</li>
+            <li>有動力皮帶線體（效率更高）</li>
+            <li>工控電腦 + 掃碼系統（追溯用）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#fff8e1;border-left:4px solid #f9a825;">
+          <div class="fw-bold mb-1" style="color:#7a5000;">⚠ 財務風險提示</div>
+          <ul class="mb-0 small">
+            <li>3% 利潤薄，人力成本是最大風險</li>
+            <li>建議談「工時計費」而非「固定利潤」</li>
+            <li>人員流動率高需評估招募成本</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#e3f2fd;border-left:4px solid #1565c0;">
+          <div class="fw-bold mb-1" style="color:#0d47a1;">📋 建議採購順序</div>
+          <ol class="mb-0 small">
+            <li>先以無動力線體試跑（節省初期投資）</li>
+            <li>3 個月後評估升級有動力</li>
+            <li>自動拉釘機第 1 台先導入</li>
+            <li>確認量後再添第 2 台</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+const font = 'Microsoft JhengHei';
+
+// 設備成本圓餅
+new Chart(document.getElementById('equipChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['有動力線體', '自動拉釘機×2', '電腦+掃碼', '空壓機+管路', '電動螺絲起子', '電鑽重工', '拉釘槍', '雜項'],
+    datasets: [{
+      data: [1400000, 700000, 240000, 200000, 120000, 84000, 42500, 115000],
+      backgroundColor: ['#1565c0','#c62828','#f9a825','#2e7d32','#6a1b9a','#e65100','#00838f','#757575'],
+      borderWidth: 2
+    }]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { position: 'right', labels: { font: { family: font }, boxWidth: 12, padding: 8 }},
+      tooltip: { callbacks: { label: c => `${c.label}: NT$ ${c.parsed.toLocaleString()}` }}
+    }
+  }
+});
+
+// 首年成本長條
+new Chart(document.getElementById('totalChart'), {
+  type: 'bar',
+  data: {
+    labels: ['設備投資', '年度人力', '廠房水電雜支'],
+    datasets: [
+      { label: '低估', data: [1733000, 9568000, 500000],
+        backgroundColor: 'rgba(21,101,192,0.8)', borderRadius: 4 },
+      { label: '高估', data: [4070000, 11960000, 1200000],
+        backgroundColor: 'rgba(198,40,40,0.8)', borderRadius: 4 }
+    ]
+  },
+  options: {
+    responsive: true,
+    plugins: {
+      legend: { labels: { font: { family: font }}},
+      tooltip: { callbacks: { label: c => `${c.dataset.label}: NT$ ${c.parsed.y.toLocaleString()}` }}
+    },
+    scales: {
+      x: { ticks: { font: { family: font }}},
+      y: { ticks: {
+        callback: v => v>=1e6 ? '$'+(v/1e6).toFixed(1)+'M' : '$'+v.toLocaleString(),
+        font: { family: font }
+      }, grid: { color: '#f0f0f0' }}
+    }
+  }
+});
+</script>
+</body>
+</html>
