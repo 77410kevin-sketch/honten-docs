@@ -3965,15 +3965,15 @@ new Chart(document.getElementById('revLine'),{type:'bar',
   options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`NT$ ${c.parsed.y.toLocaleString()}`}}},
     scales:{x:{ticks:{font:{family:font}}},y:{ticks:{callback:fmtY,font:{family:font}},grid:{color:'#f0f0f0'}}}}});
 
-// 暫時讓所有 tab-pane 可見，讓 Chart.js 量到正確 canvas 尺寸
+// 暫時顯示所有 tab-pane → 強制 reflow → 建 Chart → 還原
 (function(){
   var hidden=[];
   document.querySelectorAll('.tab-pane:not(.active)').forEach(function(p){
     hidden.push(p);
     p.style.display='block';
     p.style.visibility='hidden';
-    p.style.position='absolute';
   });
+  void document.body.offsetHeight; // 強制 reflow，確保 canvas 有正確寬高
 
   new Chart(document.getElementById('poBar'),{type:'bar',
     data:{labels:["2025-12", "2026-01", "2026-02", "2026-03", "2026-04", "2026-05"],datasets:[{"label": "伸揚", "data": [0.0, 12085170.0, 6374445.0, 11277868.0, 7922359.0, 512338.0], "backgroundColor": "#1b5e20", "stack": "s"}, {"label": "合檥", "data": [0.0, 7480978.0, 2971740.0, 5935148.0, 8020016.0, 122169.0], "backgroundColor": "#2e7d32", "stack": "s"}, {"label": "星展", "data": [0.0, 843768.0, 484650.0, 403627.0, 435880.0, 44825.0], "backgroundColor": "#388e3c", "stack": "s"}, {"label": "奇盛", "data": [0.0, 1123352.0, 366406.0, 194097.0, 136479.0, 140580.0], "backgroundColor": "#43a047", "stack": "s"}, {"label": "康特", "data": [0.0, 448350.0, 320250.0, 320250.0, 384300.0, 320250.0], "backgroundColor": "#66bb6a", "stack": "s"}, {"label": "宥勝", "data": [0.0, 1454250.0, 0.0, 0.0, 0.0, 0.0], "backgroundColor": "#0d47a1", "stack": "s"}, {"label": "宜美", "data": [0.0, 494550.0, 453600.0, 494550.0, 0.0, 0.0], "backgroundColor": "#1565c0", "stack": "s"}, {"label": "寶森", "data": [0.0, 58233.0, 17656.0, 107833.0, 625534.0, 285369.0], "backgroundColor": "#1976d2", "stack": "s"}, {"label": "展泰興", "data": [0.0, 262535.0, 215018.0, 155414.0, 233064.0, 3150.0], "backgroundColor": "#2196f3", "stack": "s"}, {"label": "祥譽", "data": [0.0, 250731.0, 0.0, 138558.0, 142485.0, 58443.0], "backgroundColor": "#64b5f6", "stack": "s"}, {"label": "八六", "data": [0.0, 61320.0, 262731.0, 198330.0, 34440.0, 11340.0], "backgroundColor": "#f57f17", "stack": "s"}, {"label": "真讚", "data": [0.0, 87306.0, 78302.0, 122783.0, 90320.0, 30663.0], "backgroundColor": "#f9a825", "stack": "s"}, {"label": "淳億", "data": [0.0, 0.0, 0.0, 67830.0, 258518.0, 67830.0], "backgroundColor": "#fbc02d", "stack": "s"}, {"label": "嶸碩", "data": [0.0, 0.0, 0.0, 0.0, 131611.0, 204226.0], "backgroundColor": "#fdd835", "stack": "s"}, {"label": "良盟", "data": [0.0, 136958.0, 177446.0, 11130.0, 0.0, 0.0], "backgroundColor": "#b71c1c", "stack": "s"}, {"label": "皓晟", "data": [0.0, 109464.0, 62937.0, 70132.0, 75208.0, 0.0], "backgroundColor": "#c62828", "stack": "s"}, {"label": "景利", "data": [0.0, 169306.0, 10985.0, 123868.0, 0.0, 0.0], "backgroundColor": "#d32f2f", "stack": "s"}, {"label": "鴻濰", "data": [0.0, 207218.0, 51450.0, 3045.0, 14455.0, 4200.0], "backgroundColor": "#e53935", "stack": "s"}, {"label": "立群", "data": [0.0, 84538.0, 439.0, 72012.0, 77512.0, 39428.0], "backgroundColor": "#4a148c", "stack": "s"}, {"label": "福昌", "data": [0.0, 0.0, 0.0, 0.0, 204455.0, 0.0], "backgroundColor": "#6a1b9a", "stack": "s"}, {"label": "仲盛", "data": [0.0, 99750.0, 0.0, 99750.0, 0.0, 0.0], "backgroundColor": "#7b1fa2", "stack": "s"}, {"label": "三祺", "data": [0.0, 93638.0, 60769.0, 0.0, 12075.0, 0.0], "backgroundColor": "#ab47bc", "stack": "s"}, {"label": "心得科技", "data": [0.0, 0.0, 0.0, 164220.0, 0.0, 0.0], "backgroundColor": "#e65100", "stack": "s"}, {"label": "慶鴻", "data": [0.0, 25200.0, 25200.0, 25200.0, 25200.0, 25200.0], "backgroundColor": "#ef6c00", "stack": "s"}, {"label": "富得", "data": [1187.0, 0.0, 37320.0, 15396.0, 62822.0, 756.0], "backgroundColor": "#f57c00", "stack": "s"}, {"label": "銳太", "data": [9450.0, 9450.0, 0.0, 23913.0, 51897.0, 0.0], "backgroundColor": "#fb8c00", "stack": "s"}, {"label": "台灣雷德斯", "data": [0.0, 21000.0, 21000.0, 21000.0, 28350.0, 0.0], "backgroundColor": "#006064", "stack": "s"}, {"label": "幸福大門", "data": [0.0, 0.0, 80000.0, 0.0, 0.0, 0.0], "backgroundColor": "#00838f", "stack": "s"}, {"label": "精展精密", "data": [0.0, 0.0, 0.0, 79800.0, 0.0, 0.0], "backgroundColor": "#0097a7", "stack": "s"}, {"label": "達威", "data": [0.0, 9187.0, 28665.0, 256.0, 32668.0, 7654.0], "backgroundColor": "#26c6da", "stack": "s"}]},
@@ -3995,11 +3995,9 @@ new Chart(document.getElementById('revLine'),{type:'bar',
     options:{responsive:true,plugins:{legend:{display:false},tooltip:{callbacks:{label:c=>`NT$ ${c.parsed.y.toLocaleString()}`}}},
       scales:{x:{ticks:{font:{family:font}}},y:{ticks:{callback:fmtY,font:{family:font}},grid:{color:'#f0f0f0'}}}}}}}});
 
-  // 還原 tab-pane 顯示狀態
   hidden.forEach(function(p){
     p.style.display='';
     p.style.visibility='';
-    p.style.position='';
   });
 })();
 
