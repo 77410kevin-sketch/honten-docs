@@ -66,9 +66,15 @@
       </div>
     </div>
     <div class="col-6 col-md-3">
+      <div class="kpi" style="border-color:#00838f;">
+        <div class="val" style="color:#00838f;">151～182 坪</div>
+        <div class="lbl">廠房需求（最低151 / 建議182）</div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#6a1b9a;">
-        <div class="val" style="color:#6a1b9a;">1,062～1,507萬</div>
-        <div class="lbl">首年總成本估算（NT$）</div>
+        <div class="val" style="color:#6a1b9a;">1,310～1,983萬</div>
+        <div class="lbl">首年總成本（含租金，NT$）</div>
       </div>
     </div>
   </div>
@@ -277,6 +283,184 @@
     </div>
   </div>
 
+  <!-- 空間需求 -->
+  <div class="card-box mb-4">
+    <div class="section-title" style="border-color:#00838f;color:#00838f;">
+      <i class="bi bi-grid-3x3-gap me-1"></i>廠房空間需求估算
+    </div>
+
+    <!-- 換算說明 -->
+    <div class="note mb-3" style="background:#e0f7fa;border-color:#00838f;color:#006064;">
+      <i class="bi bi-info-circle me-1"></i>
+      換算基準：<strong>1 台坪 = 3.3058 m²</strong>（台灣習慣計算單位）
+    </div>
+
+    <div class="row g-3 mb-3">
+      <!-- 空間明細表 -->
+      <div class="col-12 col-lg-7">
+        <table class="table table-sm table-bordered table-hover" style="font-size:.88rem;">
+          <thead style="background:#00838f;color:#fff;">
+            <tr><th>區域</th><th>說明</th><th class="text-end">長×寬(m)</th>
+                <th class="text-end">面積(m²)</th><th class="text-end">台坪</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>組裝線作業區</strong></td>
+              <td>2條線體 + 兩側作業員空間（每側1.2m）</td>
+              <td class="text-end">25 × 9</td>
+              <td class="text-end fw-bold">225</td>
+              <td class="text-end fw-bold" style="color:#00838f;">68</td>
+            </tr>
+            <tr>
+              <td><strong>原料暫存區</strong></td>
+              <td>進料區、料架、待組裝零件</td>
+              <td class="text-end">10 × 7</td>
+              <td class="text-end">70</td>
+              <td class="text-end">21.2</td>
+            </tr>
+            <tr>
+              <td><strong>成品暫存區</strong></td>
+              <td>包裝、棧板、出貨等待</td>
+              <td class="text-end">10 × 6</td>
+              <td class="text-end">60</td>
+              <td class="text-end">18.1</td>
+            </tr>
+            <tr>
+              <td><strong>品檢 / QC 區</strong></td>
+              <td>首件確認、抽驗、返修</td>
+              <td class="text-end">8 × 5</td>
+              <td class="text-end">40</td>
+              <td class="text-end">12.1</td>
+            </tr>
+            <tr>
+              <td><strong>辦公 / 主管區</strong></td>
+              <td>工程師、線長、電腦站</td>
+              <td class="text-end">6 × 4</td>
+              <td class="text-end">24</td>
+              <td class="text-end">7.3</td>
+            </tr>
+            <tr>
+              <td><strong>設備 / 工具間</strong></td>
+              <td>空壓機、備品、充電站</td>
+              <td class="text-end">5 × 4</td>
+              <td class="text-end">20</td>
+              <td class="text-end">6.1</td>
+            </tr>
+            <tr>
+              <td><strong>通道 / 消防緩衝</strong></td>
+              <td>主通道 2m + 安全逃生動線</td>
+              <td class="text-end">— </td>
+              <td class="text-end">60</td>
+              <td class="text-end">18.1</td>
+            </tr>
+            <tr style="background:#e0f7fa;font-weight:700;">
+              <td colspan="3">✅ 最低需求合計</td>
+              <td class="text-end" style="color:#006064;">499 m²</td>
+              <td class="text-end" style="color:#006064;font-size:1.1rem;">151 坪</td>
+            </tr>
+            <tr style="background:#f5f5f5;">
+              <td colspan="3">📦 建議租用（含未來擴充緩衝 20%）</td>
+              <td class="text-end">600 m²</td>
+              <td class="text-end fw-bold">182 坪</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 空間圓餅圖 -->
+      <div class="col-12 col-lg-5">
+        <canvas id="spaceChart" style="max-height:280px;"></canvas>
+      </div>
+    </div>
+
+    <!-- 平面示意 -->
+    <div class="section-title mt-2" style="border-color:#00838f;color:#00838f;font-size:.9rem;">
+      平面配置示意（25m × 20m = 500 m²）
+    </div>
+    <div style="overflow-x:auto;">
+      <svg viewBox="0 0 800 320" style="max-width:100%;border:1px solid #ccc;border-radius:8px;background:#fafafa;" font-family="Microsoft JhengHei,Arial">
+        <!-- 邊框 -->
+        <rect x="10" y="10" width="780" height="300" fill="none" stroke="#333" stroke-width="2"/>
+        <!-- 組裝線 1 -->
+        <rect x="10" y="10" width="500" height="105" fill="#b3e5fc" stroke="#0288d1" stroke-width="1.5"/>
+        <text x="260" y="42" text-anchor="middle" font-size="14" font-weight="bold" fill="#01579b">組裝線 1（25m）</text>
+        <text x="260" y="60" text-anchor="middle" font-size="11" fill="#0277bd">線體 + 兩側作業員</text>
+        <!-- 輸送方向箭頭 -->
+        <line x1="50" y1="80" x2="460" y2="80" stroke="#0288d1" stroke-width="2" marker-end="url(#arrow)"/>
+        <!-- 組裝線 2 -->
+        <rect x="10" y="115" width="500" height="105" fill="#b2dfdb" stroke="#00796b" stroke-width="1.5"/>
+        <text x="260" y="147" text-anchor="middle" font-size="14" font-weight="bold" fill="#004d40">組裝線 2（25m）</text>
+        <text x="260" y="165" text-anchor="middle" font-size="11" fill="#00695c">線體 + 兩側作業員</text>
+        <line x1="50" y1="185" x2="460" y2="185" stroke="#00796b" stroke-width="2"/>
+        <!-- 中央走道 -->
+        <text x="260" y="112" text-anchor="middle" font-size="10" fill="#666">← 2m 走道 →</text>
+        <!-- 右側區域 -->
+        <rect x="510" y="10" width="140" height="95" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/>
+        <text x="580" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#7a5000">原料暫存</text>
+        <text x="580" y="72" text-anchor="middle" font-size="10" fill="#7a5000">21 坪</text>
+        <rect x="510" y="110" width="140" height="95" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+        <text x="580" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#4a148c">成品暫存</text>
+        <text x="580" y="172" text-anchor="middle" font-size="10" fill="#4a148c">18 坪</text>
+        <rect x="655" y="10" width="135" height="95" fill="#fce4ec" stroke="#c62828" stroke-width="1.5"/>
+        <text x="722" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#b71c1c">品檢/QC</text>
+        <text x="722" y="72" text-anchor="middle" font-size="10" fill="#b71c1c">12 坪</text>
+        <rect x="655" y="110" width="135" height="95" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/>
+        <text x="722" y="155" text-anchor="middle" font-size="12" font-weight="bold" fill="#1a237e">辦公/主管</text>
+        <text x="722" y="172" text-anchor="middle" font-size="10" fill="#1a237e">7 坪</text>
+        <!-- 下方 -->
+        <rect x="10" y="222" width="780" height="88" fill="#efebe9" stroke="#795548" stroke-width="1.5"/>
+        <text x="400" y="261" text-anchor="middle" font-size="13" font-weight="bold" fill="#4e342e">主通道 + 設備間 + 消防緩衝（走道 2m 以上）</text>
+        <text x="400" y="280" text-anchor="middle" font-size="11" fill="#6d4c41">空壓機 / 工具間 / 裝卸月台</text>
+        <!-- 箭頭 marker -->
+        <defs>
+          <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+            <path d="M0,0 L0,6 L8,3 z" fill="#0288d1"/>
+          </marker>
+        </defs>
+        <!-- 尺寸標示 -->
+        <text x="260" y="308" text-anchor="middle" font-size="10" fill="#666">← 25 m（500/2 ÷ 10 比例） →</text>
+        <text x="790" y="160" text-anchor="middle" font-size="10" fill="#666" transform="rotate(90,790,160)">20 m</text>
+      </svg>
+    </div>
+
+    <!-- 廠房建議 -->
+    <div class="row g-3 mt-3">
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#e0f7fa;border-left:4px solid #00838f;">
+          <div class="fw-bold mb-1" style="color:#006064;"><i class="bi bi-building me-1"></i>廠房規格建議</div>
+          <ul class="mb-0 small">
+            <li>面積：<strong>180～200 坪</strong>（含緩衝）</li>
+            <li>樓高：<strong>5m 以上</strong>（叉車 + 料架）</li>
+            <li>地板承重：<strong>≥ 1,000 kg/m²</strong></li>
+            <li>三相電力：<strong>100～150 kVA</strong></li>
+            <li>裝卸月台：<strong>至少 1 座</strong>（大型棧板進出）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#f1f8e9;border-left:4px solid #558b2f;">
+          <div class="fw-bold mb-1" style="color:#33691e;"><i class="bi bi-currency-dollar me-1"></i>租金估算（台南/高雄工業區）</div>
+          <ul class="mb-0 small">
+            <li>工業廠房租金：<strong>500～1,200 元/坪/月</strong></li>
+            <li>180 坪 × 800 元 = <strong>14.4 萬/月</strong></li>
+            <li>年租金：<strong>約 130～260 萬</strong></li>
+            <li>押金：通常 2～3 個月租金</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3 rounded" style="background:#fff3e0;border-left:4px solid #e65100;">
+          <div class="fw-bold mb-1" style="color:#bf360c;"><i class="bi bi-exclamation-triangle me-1"></i>空間不足風險</div>
+          <ul class="mb-0 small">
+            <li>低於 150 坪：<strong>通道不足，違反消防法規</strong></li>
+            <li>無緩衝空間：旺季原料堆積，效率下降</li>
+            <li>建議：先租 180 坪，保留擴充彈性</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <!-- 建議與結論 -->
   <div class="card-box mb-4">
     <div class="section-title">關鍵建議</div>
@@ -320,6 +504,23 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script>
 const font = 'Microsoft JhengHei';
+
+// 空間分配圓餅
+new Chart(document.getElementById('spaceChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['組裝線作業區 68坪', '原料暫存 21坪', '成品暫存 18坪', '品檢QC 12坪', '辦公主管 7坪', '設備工具 6坪', '通道緩衝 18坪'],
+    datasets: [{ data: [68, 21, 18, 12, 7, 6, 18],
+      backgroundColor: ['#0288d1','#f9a825','#7b1fa2','#c62828','#3949ab','#795548','#607d8b'],
+      borderWidth: 2 }]
+  },
+  options: { responsive: true,
+    plugins: {
+      legend: { position: 'bottom', labels: { font: { family: font }, boxWidth: 12, padding: 6 }},
+      tooltip: { callbacks: { label: c => `${c.label}（${((c.parsed/151)*100).toFixed(1)}%）` }}
+    }
+  }
+});
 
 // 設備成本圓餅
 new Chart(document.getElementById('equipChart'), {
