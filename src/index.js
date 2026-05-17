@@ -29,6 +29,14 @@ export default {
         return json({ error: "Unauthorized: no Access JWT" }, 401);
       }
 
+      // 全 API 統一檢查 token
+      if (!env.GITHUB_TOKEN) {
+        return json({
+          error: "GITHUB_TOKEN secret 未設定",
+          hint: "請到 Cloudflare Dashboard → Workers & Pages → honten-docs → Settings → Variables and Secrets，加一個 Secret 名為 GITHUB_TOKEN（值用 .env 內的 GITHUB_PAT_HONTEN_DOCS）",
+        }, 500);
+      }
+
       try {
         if (url.pathname === "/api/meta" && request.method === "GET") {
           return await handleGetMeta(env);
@@ -56,9 +64,27 @@ export default {
 // ============ Handlers ============
 
 async function handleGetMeta(env) {
-  const file = await githubGetFile(env, "meta.json");
-  if (!file) return json({ error: "meta.json not found" }, 404);
-  return json(JSON.parse(file.content));
+  const resp = await githubFetch(
+    env,
+    `https://api.github.com/repos/${GH_REPO}/contents/meta.json?ref=${GH_BRANCH}`
+  );
+  if (!resp.ok) {
+    const errText = await resp.text();
+    return json({
+      error: `GitHub API ${resp.status}`,
+      hint: resp.status === 401
+        ? "PAT 無效或過期"
+        : resp.status === 404
+        ? "可能 PAT 沒這個 repo 的讀取權限，或 meta.json 不在 master 分支"
+        : "未知錯誤",
+      details: errText.substring(0, 300),
+    }, 500);
+  }
+  const data = await resp.json();
+  const b64 = (data.content || "").replace(/\n/g, "");
+  const bytes = Uint8Array.from(atob(b64), (c) => c.charCodeAt(0));
+  const content = new TextDecoder("utf-8").decode(bytes);
+  return json(JSON.parse(content));
 }
 
 async function handleListFiles(env) {
