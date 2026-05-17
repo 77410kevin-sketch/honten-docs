@@ -4,3 +4,8 @@ compatibility_date = "2024-11-01"
 [assets]
 directory = "."
 not_found_handling = "404-page"
+
+# 自訂網域：Cloudflare 偵測後會自動建立 DNS CNAME + SSL 憑證
+[[routes]]
+pattern = "reports.kevinhung.org"
+custom_domain = true
