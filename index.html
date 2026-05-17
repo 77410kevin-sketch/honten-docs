@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Kevin Reports — 個人報告儀表板</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+  body {
+    font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+  }
+  .hero {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 0;
+    margin-bottom: 2rem;
+  }
+  .report-card {
+    transition: transform .15s ease, box-shadow .15s ease;
+    border: none;
+    height: 100%;
+  }
+  .report-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  }
+  .report-card a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 1.25rem;
+  }
+  .icon {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+  }
+  .category-label {
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    color: #6c757d;
+    font-weight: 600;
+  }
+  h5 { margin: .25rem 0; }
+  .desc { font-size: .85rem; color: #6c757d; margin-bottom: 0; }
+  footer { color: #6c757d; }
+</style>
+</head>
+<body>
+
+<div class="hero text-center">
+  <div class="container">
+    <h1 class="display-5 mb-2">📊 Kevin Reports</h1>
+    <p class="lead mb-0">自動更新的個人報告儀表板</p>
+    <p class="small opacity-75">reports.kevinhung.org</p>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <!-- 投資分析 -->
+  <h3 class="mb-3 mt-2">💰 投資分析</h3>
+  <div class="row g-3 mb-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="stock_screener.html">
+          <div class="icon">🎯</div>
+          <span class="category-label">每週一 08:00 自動更新</span>
+          <h5>全市場篩選器</h5>
+          <p class="desc">台股 500 + 美股 540，5 大條件篩 + AI 決策評級 + 新聞情緒</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="topic_cpo.html">
+          <div class="icon">🔆</div>
+          <span class="category-label">主題分析</span>
+          <h5>光通訊 / CPO</h5>
+          <p class="desc">共封裝光學 + 光收發 + 化合物半導體供應鏈</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="topic_memory.html">
+          <div class="icon">💾</div>
+          <span class="category-label">主題分析</span>
+          <h5>記憶體 / HBM</h5>
+          <p class="desc">DRAM / NAND / HBM + 控制器 + 封裝供應鏈</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="topic_bbu.html">
+          <div class="icon">🔋</div>
+          <span class="category-label">主題分析</span>
+          <h5>BBU 電池備援</h5>
+          <p class="desc">資料中心電源 + BBU + UPS + 散熱配電</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 業務管理 -->
+  <h3 class="mb-3">📈 業務管理</h3>
+  <div class="row g-3 mb-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="weekly_dashboard.html">
+          <div class="icon">📅</div>
+          <span class="category-label">每週五 09:00</span>
+          <h5>業務週報儀表板</h5>
+          <p class="desc">BBU 三業務銷售進度與目標達成</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="weekly_business_progress.html">
+          <div class="icon">📊</div>
+          <span class="category-label">每週更新</span>
+          <h5>業務進度總覽</h5>
+          <p class="desc">全域異動總覽 + 階段變化追蹤</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="erp_dashboard.html">
+          <div class="icon">📦</div>
+          <span class="category-label">ERP 整合</span>
+          <h5>ERP 儀表板</h5>
+          <p class="desc">採購單 / 製令 / 請購 / 銷貨即時查詢</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 產業分析 -->
+  <h3 class="mb-3">🏭 產業分析</h3>
+  <div class="row g-3 mb-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="industry_analysis.html">
+          <div class="icon">🏢</div>
+          <span class="category-label">每月 1 號自動生成</span>
+          <h5>產業分析月報</h5>
+          <p class="desc">五大區塊深度分析 + LINE multicast</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="thailand_factory_analysis.html">
+          <div class="icon">🇹🇭</div>
+          <span class="category-label">廠區分析</span>
+          <h5>泰國廠分析</h5>
+          <p class="desc">產能、客戶、成本結構評估</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="assembly_cost.html">
+          <div class="icon">⚙️</div>
+          <span class="category-label">成本分析</span>
+          <h5>組裝成本</h5>
+          <p class="desc">BOM + 工時 + 製程成本拆解</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 系統與技術 -->
+  <h3 class="mb-3">🔧 系統與技術</h3>
+  <div class="row g-3 mb-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="npi_overview.html">
+          <div class="icon">🆕</div>
+          <span class="category-label">NPI 流程</span>
+          <h5>新品導入總覽</h5>
+          <p class="desc">業務樣品需求單 + 製程單流程</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="pcn_ecn_overview.html">
+          <div class="icon">🔄</div>
+          <span class="category-label">變更管理</span>
+          <h5>PCN / ECN 總覽</h5>
+          <p class="desc">產品 / 工程變更通知流程</p>
+        </a>
+      </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="system_overview.html">
+          <div class="icon">🗺️</div>
+          <span class="category-label">系統地圖</span>
+          <h5>系統總覽</h5>
+          <p class="desc">鴻騰電子數位管理系統架構文件</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- 國際情勢 -->
+  <h3 class="mb-3">🌍 國際情勢</h3>
+  <div class="row g-3 mb-5">
+    <div class="col-md-6 col-lg-4">
+      <div class="card report-card shadow-sm">
+        <a href="iran_war_weekly.html">
+          <div class="icon">📰</div>
+          <span class="category-label">每週日 09:00 自動更新</span>
+          <h5>以伊戰爭週報</h5>
+          <p class="desc">Claude 深度分析中東情勢與影響</p>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <footer class="text-center small py-4 border-top">
+    Powered by Cloudflare Workers + GitHub｜
+    更新頻率因報告而異，最新內容請看各頁時間戳
+  </footer>
+
+</div>
+
+</body>
+</html>
