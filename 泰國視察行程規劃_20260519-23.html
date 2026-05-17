@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>泰國視察行程規劃 5/19–5/23</title>
+<style>
+  :root {
+    --navy: #1A2E4A;
+    --gold: #C9993A;
+    --blue: #2A5298;
+    --blue-light: #EBF1FB;
+    --green: #1A7A4A;
+    --green-light: #E6F4EC;
+    --orange: #D4700A;
+    --orange-light: #FEF3E2;
+    --purple: #6C3483;
+    --purple-light: #F5EEF8;
+    --gray: #5D6D7E;
+    --gray-light: #F2F3F4;
+    --red: #C0392B;
+    --border: #E0E0E0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: "Noto Sans TC", "Microsoft JhengHei", Arial, sans-serif;
+    background: #F0F2F5;
+    color: #222;
+    font-size: 13.5px;
+    line-height: 1.6;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, var(--navy) 0%, #2A5298 100%);
+    color: white;
+    padding: 28px 40px 24px;
+  }
+  .page-header .tag {
+    display: inline-block;
+    background: var(--gold);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-bottom: 10px;
+  }
+  .page-header h1 { font-size: 22px; font-weight: 800; margin-bottom: 4px; }
+  .page-header .sub { font-size: 12.5px; opacity: 0.7; margin-top: 6px; }
+
+  /* Legend */
+  .legend {
+    background: white;
+    border-bottom: 1px solid var(--border);
+    padding: 10px 40px;
+    display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+    font-size: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+
+  .content { max-width: 1080px; margin: 0 auto; padding: 28px 20px; }
+
+  /* Flight banner */
+  .flight-bar {
+    background: var(--navy);
+    color: white;
+    border-radius: 10px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 24px;
+    font-size: 13px;
+  }
+  .flight-bar .icon { font-size: 22px; }
+  .flight-bar .route { font-size: 17px; font-weight: 800; }
+  .flight-bar .detail { opacity: 0.75; font-size: 12px; margin-top: 2px; }
+  .flight-bar .divider { width: 1px; background: rgba(255,255,255,0.25); height: 36px; margin: 0 6px; }
+
+  /* Day grid */
+  .days-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .day-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    overflow: hidden;
+  }
+  .day-header {
+    padding: 12px 14px 10px;
+    border-bottom: 1px solid var(--border);
+  }
+  .day-date { font-size: 20px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .day-weekday { font-size: 11px; color: #888; margin-top: 2px; }
+  .day-label {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 10px;
+    margin-top: 5px;
+  }
+
+  .day-body { padding: 10px 0; }
+
+  .slot {
+    padding: 7px 14px;
+    border-left: 3px solid transparent;
+    margin: 2px 0;
+    cursor: default;
+  }
+  .slot:hover { background: rgba(0,0,0,0.02); }
+  .slot .time { font-size: 10.5px; color: #999; font-weight: 600; margin-bottom: 2px; }
+  .slot .title { font-size: 12.5px; font-weight: 700; line-height: 1.35; }
+  .slot .note { font-size: 11px; color: #777; margin-top: 2px; line-height: 1.4; }
+
+  /* Color types */
+  .slot.flight  { border-left-color: var(--navy); background: #F7F8FA; }
+  .slot.flight .title { color: var(--navy); }
+  .slot.property { border-left-color: var(--green); }
+  .slot.property .title { color: var(--green); }
+  .slot.meeting  { border-left-color: var(--blue); }
+  .slot.meeting .title { color: var(--blue); }
+  .slot.dinner   { border-left-color: var(--orange); }
+  .slot.dinner .title { color: var(--orange); }
+  .slot.social   { border-left-color: var(--purple); }
+  .slot.social .title { color: var(--purple); }
+  .slot.free     { border-left-color: #CCC; background: var(--gray-light); }
+  .slot.free .title { color: #888; }
+  .slot.drive    { border-left-color: #AAA; }
+  .slot.drive .title { color: #666; }
+
+  .slot-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 14px;
+  }
+
+  /* Region tag */
+  .region-tag {
+    display: inline-block;
+    font-size: 10px;
+    padding: 1px 6px;
+    border-radius: 10px;
+    font-weight: 600;
+    margin-top: 3px;
+  }
+  .region-bkk { background: #EBF1FB; color: #2A5298; }
+  .region-sp  { background: #FFF3E0; color: #E65100; }
+  .region-cnb { background: #E8F5E9; color: #2E7D32; }
+  .region-ryg { background: #F3E5F5; color: #6A1B9A; }
+  .region-spk { background: #E0F2F1; color: #00695C; }
+
+  /* Return flight */
+  .return-bar {
+    background: white;
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 24px;
+    font-size: 13px;
+  }
+  .return-bar .icon { font-size: 22px; }
+  .return-bar .route { font-size: 17px; font-weight: 800; color: var(--navy); }
+
+  /* Summary */
+  .summary-row {
+    display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;
+  }
+  .summary-chip {
+    background: white;
+    border-radius: 8px;
+    padding: 10px 16px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.07);
+    font-size: 12px;
+    flex: 1; min-width: 130px;
+  }
+  .summary-chip .chip-label { color: #888; font-size: 11px; margin-bottom: 3px; }
+  .summary-chip .chip-val { font-weight: 700; color: var(--navy); font-size: 14px; }
+
+  .footer {
+    text-align: center;
+    font-size: 11.5px;
+    color: #AAA;
+    margin-top: 28px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+  }
+
+  @media (max-width: 900px) {
+    .days-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="tag">CONFIDENTIAL</div>
+  <h1>✈️ 泰國視察行程規劃</h1>
+  <div class="sub">2026年5月19日（二）至 5月23日（六）　｜　鴻騰電子股份有限公司　｜　整理：Alice</div>
+</div>
+
+<div class="legend">
+  <strong style="color:#555;font-size:11px">圖例：</strong>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--navy)"></div>航班/交通</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--green)"></div>看房物件</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--blue)"></div>商業會議</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--orange)"></div>應酬/晚宴</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>個人會面</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#CCC"></div>留白/自由時間</div>
+</div>
+
+<div class="content">
+
+  <!-- Hotel Info -->
+  <div style="background:#fff;border:1px solid var(--border);border-left:4px solid var(--gold);border-radius:6px;padding:12px 20px;margin-bottom:16px;display:flex;align-items:center;gap:16px">
+    <div style="font-size:22px">🏨</div>
+    <div>
+      <div style="font-weight:700;font-size:13.5px">住宿：Amaranth Suvarnabhumi Hotel</div>
+      <div style="font-size:12px;color:#555;margin-top:2px">北欖府（Samut Prakan）｜素萬那普機場旁　｜　5/19 入住 → 5/23 退房</div>
+    </div>
+  </div>
+
+  <!-- Outbound Flight -->
+  <div class="flight-bar">
+    <div class="icon">✈️</div>
+    <div>
+      <div class="route">BR211 去程　桃園 → 曼谷（素萬那普）</div>
+      <div class="detail">長榮航空　08:20 出發 → 11:10 抵達　｜　飛行時間 3h50m　｜　5月19日（二）</div>
+    </div>
+    <div class="divider"></div>
+    <div style="font-size:12px;opacity:0.75">建議 06:00 前抵達桃園機場</div>
+  </div>
+
+  <!-- Days Grid -->
+  <div class="days-grid">
+
+    <!-- Day 1: 5/19 Mon -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">5/19</div>
+        <div class="day-weekday">星期二　抵達日</div>
+        <div class="day-label" style="background:#EBF1FB;color:#2A5298">抵達 + 會計師</div>
+      </div>
+      <div class="day-body">
+        <div class="slot flight">
+          <div class="time">11:10</div>
+          <div class="title">抵達曼谷 BKK</div>
+          <div class="note">入境、提領行李</div>
+        </div>
+        <div class="slot drive">
+          <div class="time">11:30–12:30</div>
+          <div class="title">辦理入住 ＋ 午餐</div>
+          <div class="note">Amaranth Suvarnabhumi Hotel（機場旁）<br>稍作休息後前往曼谷</div>
+        </div>
+        <div class="slot meeting">
+          <div class="time">14:00–15:30</div>
+          <div class="title">💼 HGM 會計師拜訪</div>
+          <div class="note">BOI申請策略、製程描述確認<br>受限製程清單討論</div>
+          <span class="region-tag region-bkk">曼谷</span>
+        </div>
+        <div class="slot meeting">
+          <div class="time">16:00–17:30</div>
+          <div class="title">💼 拜訪康董</div>
+          <div class="note">洽談未來合作機會</div>
+          <span class="region-tag region-bkk">曼谷</span>
+        </div>
+        <div class="slot free">
+          <div class="time">19:00–</div>
+          <div class="title">留白 / 輕鬆晚餐</div>
+          <div class="note">自由安排</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 2: 5/20 Tue -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">5/20</div>
+        <div class="day-weekday">星期三　北欖 → 春武里 → 羅勇</div>
+        <div class="day-label" style="background:#E6F4EC;color:#1A7A4A">北欖府 + 春武里 + 羅勇府</div>
+      </div>
+      <div class="day-body">
+        <div class="slot drive">
+          <div class="time">08:30</div>
+          <div class="title">從飯店出發 → AT SOKO</div>
+          <div class="note">Amaranth Hotel → 北欖府物件，車程極短</div>
+        </div>
+        <div class="slot property">
+          <div class="time">09:00–11:00</div>
+          <div class="title">🏭 AT SOKO 看房（北欖府）</div>
+          <div class="note">北欖府（Samut Prakan）<br>AT SOKO 物件共 2 件</div>
+          <span class="region-tag region-spk">北欖府</span>
+        </div>
+        <div class="slot drive">
+          <div class="time">11:00–12:30</div>
+          <div class="title">移動 → 春武里</div>
+          <div class="note">北欖府 → 春武里，車程約1h</div>
+        </div>
+        <div class="slot property">
+          <div class="time">12:30–15:30</div>
+          <div class="title">🏭 AT SOKO 看房（春武里）</div>
+          <div class="note">春武里（Chonburi）<br>AT SOKO 物件共 3 件</div>
+          <span class="region-tag region-cnb">春武里</span>
+        </div>
+        <div class="slot drive">
+          <div class="time">15:30–16:00</div>
+          <div class="title">移動 → 羅勇府</div>
+          <div class="note">春武里 → 羅勇府，車程約30min</div>
+        </div>
+        <div class="slot property">
+          <div class="time">16:00–17:30</div>
+          <div class="title">🏭 WHA 看房（羅勇府）</div>
+          <div class="note">羅勇府（Rayong）<br>WHA 物件共 1 件</div>
+          <span class="region-tag region-ryg">羅勇府</span>
+        </div>
+        <div class="slot drive">
+          <div class="time">18:00–20:00</div>
+          <div class="title">返回飯店</div>
+          <div class="note">羅勇 → 北欖府 Amaranth Hotel，車程約2h</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3: 5/21 Wed -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">5/21</div>
+        <div class="day-weekday">星期四　Hero 看房 ＋ 亞洲工業區</div>
+        <div class="day-label" style="background:#E6F4EC;color:#1A7A4A">北欖府</div>
+      </div>
+      <div class="day-body">
+        <div class="slot drive">
+          <div class="time">09:00</div>
+          <div class="title">從飯店出發 → Hero</div>
+          <div class="note">Amaranth Hotel → 北欖府物件，車程極短</div>
+        </div>
+        <div class="slot property">
+          <div class="time">09:30–12:00</div>
+          <div class="title">🏭 Hero 看房（北欖府）</div>
+          <div class="note">北欖府（Samut Prakan）<br>Hero 工業區物件共 2 件</div>
+          <span class="region-tag region-spk">北欖府</span>
+        </div>
+        <div class="slot free">
+          <div class="time">12:00–13:30</div>
+          <div class="title">午餐</div>
+          <div class="note">北欖府當地</div>
+        </div>
+        <div class="slot property">
+          <div class="time">14:00–16:30</div>
+          <div class="title">🏭 George 帶看亞洲工業區</div>
+          <div class="note">Asia Industrial Estate 看地<br>由 George 哥帶領導覽</div>
+          <span class="region-tag region-spk">北欖府</span>
+        </div>
+        <div class="slot free">
+          <div class="time">17:00–</div>
+          <div class="title">留白</div>
+          <div class="note">休息 / 自由安排</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 3 placeholder to shift content below -->
+    <!-- Day 4 replaces old Day 3 bottom section -->
+    <!-- continuing original Day 3 bottom: -->
+    <!-- REMOVED: Kevin + 順達 moved to Day 4 -->
+
+    <!-- (hidden dummy to maintain grid - actual Day 4 below) -->
+    <!-- Day 4: 5/22 Thu (rewritten) -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">5/22</div>
+        <div class="day-weekday">星期五　商業會議 ＋ 順達晚宴</div>
+        <div class="day-label" style="background:#EBF1FB;color:#2A5298">曼谷 → 大城府</div>
+      </div>
+      <div class="day-body">
+        <div class="slot meeting">
+          <div class="time">10:00–13:00</div>
+          <div class="title">💼 Kevin 行程</div>
+          <div class="note">第三方（染料小陳）洽談</div>
+          <span class="region-tag region-bkk">曼谷</span>
+        </div>
+        <div class="slot free">
+          <div class="time">14:00–17:30</div>
+          <div class="title">留白</div>
+          <div class="note">自由活動 / 採購</div>
+        </div>
+        <div class="slot drive">
+          <div class="time">17:30</div>
+          <div class="title">北上大城府</div>
+          <div class="note">曼谷 → 大城府（Ayutthaya），車程約1–1.5h</div>
+        </div>
+        <div class="slot dinner">
+          <div class="time">19:00–</div>
+          <div class="title">🍽️ 順達應酬晚宴</div>
+          <div class="note">與順達方主管晚宴</div>
+          <span class="region-tag" style="background:#FFF3E0;color:#E65100">大城府</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Day 5 placeholder - now 5/23 below -->
+
+    <!-- Day 5: 5/23 Fri -->
+    <div class="day-card">
+      <div class="day-header">
+        <div class="day-date">5/23</div>
+        <div class="day-weekday">星期六　回程日</div>
+        <div class="day-label" style="background:#FDECEA;color:#C0392B">回程</div>
+      </div>
+      <div class="day-body">
+        <div class="slot free">
+          <div class="time">08:00–10:30</div>
+          <div class="title">留白 / 早餐</div>
+          <div class="note">退房準備、最後採購<br>或輕鬆早晨</div>
+        </div>
+        <div class="slot free">
+          <div class="time">10:30–12:00</div>
+          <div class="title">留白（備用緩衝）</div>
+          <div class="note">可安排輕量會面<br>或提前前往機場</div>
+        </div>
+        <div class="slot drive">
+          <div class="time">12:30</div>
+          <div class="title">前往素萬那普機場</div>
+          <div class="note">車程約30–45分鐘，建議提前</div>
+        </div>
+        <div class="slot flight">
+          <div class="time">15:10</div>
+          <div class="title">BR202 出發</div>
+          <div class="note">建議 13:30 前抵達機場</div>
+        </div>
+        <div class="slot flight">
+          <div class="time">20:00</div>
+          <div class="title">抵達桃園</div>
+          <div class="note">長榮 BR202</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end days-grid -->
+
+  <!-- Return Flight -->
+  <div class="return-bar">
+    <div class="icon">✈️</div>
+    <div>
+      <div class="route">BR202 回程　曼谷（素萬那普）→ 桃園</div>
+      <div style="font-size:12px;color:#555;margin-top:2px">長榮航空　15:10 出發 → 20:00 抵達　｜　飛行時間 3h50m　｜　5月23日（六）</div>
+    </div>
+    <div style="width:1px;background:#DDD;height:36px;margin:0 10px"></div>
+    <div style="font-size:12px;color:#777">建議 13:30 前抵達機場</div>
+  </div>
+
+  <!-- Summary Chips -->
+  <div class="summary-row">
+    <div class="summary-chip">
+      <div class="chip-label">出行天數</div>
+      <div class="chip-val">5天4夜</div>
+    </div>
+    <div class="summary-chip">
+      <div class="chip-label">看房場次</div>
+      <div class="chip-val">3場（3府）</div>
+    </div>
+    <div class="summary-chip">
+      <div class="chip-label">商業會議</div>
+      <div class="chip-val">3場</div>
+    </div>
+    <div class="summary-chip">
+      <div class="chip-label">應酬/會面</div>
+      <div class="chip-val">2場</div>
+    </div>
+    <div class="summary-chip">
+      <div class="chip-label">留白區塊</div>
+      <div class="chip-val">充裕</div>
+    </div>
+    <div class="summary-chip">
+      <div class="chip-label">行程狀態</div>
+      <div class="chip-val" style="color:var(--orange)">持續更新中</div>
+    </div>
+  </div>
+
+  <!-- Notes -->
+  <div style="background:white;border-radius:10px;padding:16px 20px;margin-top:16px;border-left:4px solid var(--gold);font-size:12.5px;color:#555;box-shadow:0 1px 6px rgba(0,0,0,0.06)">
+    <strong style="color:var(--navy)">📌 行程備注：</strong>
+    本行程仍在更新中。5/22全天保留較多彈性，可依後續新增行程填入。東線（5/20）為全天移動，建議事先安排包車或租車。順達應酬若臨時調整，可移至5/22晚間。
+  </div>
+
+  <div class="footer">
+    鴻騰電子股份有限公司　｜　整理：Alice 林彥馨　｜　2026-05-11　｜　持續更新版本
+  </div>
+
+</div>
+</body>
+</html>
