@@ -1,9 +1,11 @@
 name = "honten-docs"
 compatibility_date = "2024-11-01"
+main = "src/index.js"
 
 [assets]
 directory = "."
 not_found_handling = "404-page"
+binding = "ASSETS"
 
 # 自訂網域：Cloudflare 偵測後會自動建立 DNS CNAME + SSL 憑證
 [[routes]]

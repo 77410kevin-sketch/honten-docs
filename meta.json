@@ -1,0 +1,54 @@
+{
+  "categories": [
+    {
+      "id": "investment",
+      "title": "💰 投資分析",
+      "items": [
+        {"file": "stock_screener", "icon": "🎯", "label": "每週一 08:00 自動更新", "name": "全市場篩選器", "desc": "台股 500 + 美股 540，5 大條件篩 + AI 決策評級 + 新聞情緒"},
+        {"file": "portfolio",       "icon": "💼", "label": "持股組合（手動觸發）",   "name": "持股最佳化分析", "desc": "HRP / Risk Parity / Min Vol / Max Decorrel 四策略 + Riskfolio-Lib"},
+        {"file": "topic_cpo",       "icon": "🔆", "label": "主題分析",               "name": "光通訊 / CPO",   "desc": "共封裝光學 + 光收發 + 化合物半導體供應鏈"},
+        {"file": "topic_memory",    "icon": "💾", "label": "主題分析",               "name": "記憶體 / HBM",   "desc": "DRAM / NAND / HBM + 控制器 + 封裝供應鏈"},
+        {"file": "topic_bbu",       "icon": "🔋", "label": "主題分析",               "name": "BBU 電池備援",   "desc": "資料中心電源 + BBU + UPS + 散熱配電"}
+      ]
+    },
+    {
+      "id": "business",
+      "title": "📈 業務管理",
+      "items": [
+        {"file": "weekly_dashboard",          "icon": "📅", "label": "每週五 09:00", "name": "業務週報儀表板", "desc": "BBU 三業務銷售進度與目標達成"},
+        {"file": "weekly_business_progress",  "icon": "📊", "label": "每週更新",     "name": "業務進度總覽",   "desc": "全域異動總覽 + 階段變化追蹤"},
+        {"file": "erp_dashboard",             "icon": "📦", "label": "ERP 整合",      "name": "ERP 儀表板",      "desc": "採購單 / 製令 / 請購 / 銷貨即時查詢"}
+      ]
+    },
+    {
+      "id": "industry",
+      "title": "🏭 產業分析",
+      "items": [
+        {"file": "industry_analysis",         "icon": "🏢", "label": "每月 1 號自動生成", "name": "產業分析月報", "desc": "五大區塊深度分析 + LINE multicast"},
+        {"file": "thailand_factory_analysis", "icon": "🇹🇭", "label": "廠區分析",          "name": "泰國廠分析",   "desc": "產能、客戶、成本結構評估"},
+        {"file": "assembly_cost",             "icon": "⚙️", "label": "成本分析",          "name": "組裝成本",     "desc": "BOM + 工時 + 製程成本拆解"}
+      ]
+    },
+    {
+      "id": "system",
+      "title": "🔧 系統與技術",
+      "items": [
+        {"file": "npi_overview",     "icon": "🆕", "label": "NPI 流程",   "name": "新品導入總覽",  "desc": "業務樣品需求單 + 製程單流程"},
+        {"file": "pcn_ecn_overview", "icon": "🔄", "label": "變更管理",   "name": "PCN / ECN 總覽","desc": "產品 / 工程變更通知流程"},
+        {"file": "system_overview",  "icon": "🗺️", "label": "系統地圖",   "name": "系統總覽",      "desc": "鴻騰電子數位管理系統架構文件"}
+      ]
+    },
+    {
+      "id": "world",
+      "title": "🌍 國際情勢",
+      "items": [
+        {"file": "iran_war_weekly", "icon": "📰", "label": "每週日 09:00 自動更新", "name": "以伊戰爭週報", "desc": "Claude 深度分析中東情勢與影響"}
+      ]
+    }
+  ],
+  "misc_category": {
+    "id": "misc",
+    "title": "📋 其他文件（右鍵上傳的檔案自動進入這裡）",
+    "default_icon": "📄"
+  }
+}
