@@ -49,7 +49,7 @@
 
   function exitEditMode(force = false) {
     if (!force && STATE.dirty &&
-        !confirm("有未儲存變更，確定要離開？")) return;
+        !confirm("⚠️ 有未儲存變更！\n\n按「取消」回去先點「💾 儲存」\n按「確定」會丟掉變更")) return;
     location.reload();
   }
 
@@ -153,7 +153,11 @@
       const s = Sortable.create(grid, {
         group: "cards",
         animation: 150,
+        // 多個事件都標記 dirty，保險起見（拖曳到不同分類用 onAdd / onRemove）
         onEnd: () => markDirty(),
+        onAdd: () => markDirty(),
+        onRemove: () => markDirty(),
+        onUpdate: () => markDirty(),
       });
       STATE.sortables.push(s);
     });
@@ -166,7 +170,16 @@
       b.classList.add("dirty");
       b.textContent = "💾 儲存 *";
     }
+    document.title = "* Kevin Reports — 未儲存";
   }
+
+  // 防止意外關閉頁面 / 上一頁丟失變更
+  window.addEventListener("beforeunload", (e) => {
+    if (STATE.dirty) {
+      e.preventDefault();
+      e.returnValue = "";
+    }
+  });
 
   // ============ 從 DOM 收集回 meta ============
 
