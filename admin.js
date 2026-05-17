@@ -1,4 +1,4 @@
-/* reports.kevinhung.org admin overlay — 編輯儀表板的客戶端邏輯 */
+/* reports.kevinhung.org — 首頁渲染 + 編輯模式（單一 source of truth: meta.json） */
 (function () {
   "use strict";
 
@@ -8,6 +8,7 @@
     files: [],           // 來自 /api/list-files
     sortables: [],
     dirty: false,
+    loaded: false,
   };
 
   const $ = (s, r = document) => r.querySelector(s);
@@ -20,9 +21,9 @@
   }
   const escAttr = (s) => escHtml(s).replace(/`/g, "&#96;");
 
-  // ============ 進入 / 退出編輯模式 ============
+  // ============ 載入 + 渲染（瀏覽模式） ============
 
-  async function enterEditMode() {
+  async function loadAndRender() {
     showLoading("載入中…");
     try {
       const [m, f] = await Promise.all([
@@ -34,17 +35,27 @@
 
       STATE.meta = m;
       STATE.files = f.files || [];
-      STATE.editing = true;
-      STATE.dirty = false;
-
-      document.body.classList.add("editing");
-      renderEditMode();
-      $("#btnEdit").textContent = "✕ 結束編輯";
+      STATE.loaded = true;
+      renderAll();
       hideLoading();
     } catch (e) {
       hideLoading();
-      alert("載入失敗：" + e.message);
+      $("#sections").innerHTML =
+        '<div class="alert alert-danger">載入失敗：' + escHtml(e.message) +
+        '<br><small>請確認 Cloudflare Worker 的 GITHUB_TOKEN secret 已正確設定</small></div>';
     }
+  }
+
+  function enterEditMode() {
+    if (!STATE.loaded) {
+      alert("資料還沒載入完畢，請稍候");
+      return;
+    }
+    STATE.editing = true;
+    STATE.dirty = false;
+    document.body.classList.add("editing");
+    $("#btnEdit").textContent = "✕ 結束編輯";
+    renderAll();
   }
 
   function exitEditMode(force = false) {
@@ -53,9 +64,9 @@
     location.reload();
   }
 
-  // ============ Edit-mode 渲染 ============
+  // ============ 渲染（瀏覽 + 編輯共用） ============
 
-  function renderEditMode() {
+  function renderAll() {
     const sections = $("#sections");
     sections.innerHTML = "";
 
@@ -81,16 +92,25 @@
     };
 
     const allCats = [...STATE.meta.categories, miscCat];
-    allCats.forEach((cat) => sections.appendChild(renderSection(cat)));
+    allCats.forEach((cat) => {
+      // 瀏覽模式：空分類不顯示；編輯模式：仍顯示供拖入
+      if (!STATE.editing && cat.items.length === 0 && !cat._isMisc) return;
+      sections.appendChild(renderSection(cat));
+    });
 
-    // 新增分類按鈕
-    const adder = document.createElement("div");
-    adder.className = "text-center mb-5";
-    adder.innerHTML =
-      '<button class="btn btn-outline-primary btn-lg" data-action="add-cat">+ 新增分類</button>';
-    sections.appendChild(adder);
-
-    enableSortable();
+    // 編輯模式才顯示「新增分類」按鈕
+    if (STATE.editing) {
+      const adder = document.createElement("div");
+      adder.className = "text-center mb-5";
+      adder.innerHTML =
+        '<button class="btn btn-outline-primary btn-lg" data-action="add-cat">+ 新增分類</button>';
+      sections.appendChild(adder);
+      enableSortable();
+    } else {
+      // 銷毀拖曳實例
+      STATE.sortables.forEach((s) => s.destroy());
+      STATE.sortables = [];
+    }
   }
 
   function renderSection(cat) {
@@ -237,16 +257,20 @@
   function addCategory() {
     const title = prompt("新分類標題（例：📝 個人筆記）：");
     if (!title) return;
+    // 先把目前 DOM 狀態（包含拖曳）收回，再加新分類
+    STATE.meta = syncFromDOM();
     const id = "cat_" + Date.now();
     STATE.meta.categories.push({ id, title: title.trim(), items: [] });
-    renderEditMode();
+    renderAll();
     markDirty();
   }
 
   function deleteCategory(catId) {
     if (!confirm("刪除這個分類？卡片會自動轉到「其他文件」")) return;
+    // 先把 DOM 變更收回 STATE.meta（保留拖曳結果），再刪分類
+    STATE.meta = syncFromDOM();
     STATE.meta.categories = STATE.meta.categories.filter((c) => c.id !== catId);
-    renderEditMode();
+    renderAll();
     markDirty();
   }
 
@@ -325,6 +349,14 @@
       hideLoading();
       alert("❌ 錯誤：" + e.message);
     }
+  }
+
+  // ============ 初始載入 ============
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", loadAndRender);
+  } else {
+    loadAndRender();
   }
 
   // ============ UI helpers ============
