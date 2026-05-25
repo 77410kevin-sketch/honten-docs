@@ -37,7 +37,7 @@
 <div class="header">
   <h1><i class="bi bi-calculator-fill me-2"></i>組裝線建置成本估算</h1>
   <div class="sub">
-    規模：2 條 × 15 米組裝線（評估升級為 30 米 × 1 條）｜ 人力：10 人 ｜
+    規模：2 條 × 15 米組裝線（可串聯為 1 條 30 米單線）｜ 人力：10 人 ｜
     客戶：勤誠 ｜ 條件：代組裝 利潤固定 3% ｜
     估算日：2026-05-11（修訂 2026-05-25）
   </div>
@@ -85,6 +85,27 @@
     <div class="col-12 col-xl-8">
       <div class="card-box">
         <div class="section-title">設備一次性投資明細</div>
+
+        <!-- 有動力 vs 無動力差異說明 -->
+        <div class="note mb-3" style="background:#e8f5e9;border-color:#2e7d32;color:#1b5e20;">
+          <div class="fw-bold mb-2"><i class="bi bi-lightning-charge-fill me-1"></i>線體選擇說明：有動力 vs 無動力（本案採用<span style="background:#fff59d;padding:1px 6px;border-radius:4px;">有動力</span>）</div>
+          <table class="table table-sm table-bordered mb-0" style="font-size:.82rem;background:#fff;">
+            <thead style="background:#2e7d32;color:#fff;">
+              <tr><th>項目</th><th>無動力（滾輪式）</th><th style="background:#fff59d;color:#1b5e20;">有動力（馬達皮帶） ← 採用</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>運作方式</td><td>人工推動機櫃在滾輪上滑動</td><td>馬達驅動皮帶，自動輸送至下一站</td></tr>
+              <tr><td>節拍控制</td><td>無，依作業員手速</td><td>可程式設定 CT，線平衡穩定</td></tr>
+              <tr><td>適用重量</td><td>機櫃 &lt; 150 kg 推得動</td><td>機櫃 200 kg 以上仍順暢</td></tr>
+              <tr><td>人力消耗</td><td>高（每站推/拉耗體力）</td><td>低（雙手專注於組裝動作）</td></tr>
+              <tr><td>產能</td><td>低，受人為節奏影響</td><td>高 20～30%，產出穩定</td></tr>
+              <tr><td>採購成本</td><td>2 條 18～36 萬</td><td>2 條 48～120 萬</td></tr>
+              <tr><td>維護成本</td><td>幾乎零</td><td>馬達/皮帶定期保養</td></tr>
+            </tbody>
+          </table>
+          <div class="mt-2"><strong>結論：</strong>勤誠機櫃重量大、需穩定節拍且 3% 利潤薄需提升人均產出 → <strong>全案以「有動力」估算與採購</strong>；無動力數字僅作為簡省方案參考，<strong>不採用</strong>。</div>
+        </div>
+
         <table class="table table-sm table-bordered table-hover" style="font-size:.88rem;">
           <thead>
             <tr>
@@ -96,22 +117,22 @@
           </thead>
           <tbody>
             <!-- 線體 -->
-            <tr>
+            <tr style="opacity:.55;">
               <td rowspan="2"><span class="badge bg-primary badge-cat">線體</span></td>
-              <td>無動力線體</td>
+              <td>無動力線體<br><span class="badge bg-secondary" style="font-size:.7rem;">不採用</span></td>
               <td>滾輪式 15m × 2 條</td>
               <td>2 條</td>
-              <td class="text-end range-low">180,000</td>
-              <td class="text-end range-high">360,000</td>
-              <td>若選無動力，成本較低</td>
+              <td class="text-end">180,000</td>
+              <td class="text-end">360,000</td>
+              <td>僅作為簡省方案參考，不列入採購</td>
             </tr>
-            <tr>
-              <td>有動力皮帶線</td>
-              <td>馬達驅動 15m × 2 條</td>
+            <tr style="background:#fff59d;">
+              <td>有動力皮帶線<br><span class="badge bg-success" style="font-size:.7rem;">✓ 採用</span></td>
+              <td>馬達驅動 15m × 2 條（可串聯為 30m 單線）</td>
               <td>2 條</td>
               <td class="text-end range-low">480,000</td>
               <td class="text-end range-high">1,200,000</td>
-              <td>⚠ 二擇一，建議有動力</td>
+              <td>勤誠機櫃重量大，採用有動力</td>
             </tr>
             <!-- 螺絲起子 -->
             <tr>
@@ -183,25 +204,25 @@
               <td class="text-end range-high">100,000</td>
               <td></td>
             </tr>
-            <!-- 合計（有動力線） -->
+            <!-- 合計（有動力線，採用） -->
             <tr class="total-row">
-              <td colspan="4">⚡ 設備合計（有動力線體）</td>
+              <td colspan="4">⚡ 設備合計（有動力線體）<span class="badge bg-success ms-2" style="font-size:.7rem;">採用方案</span></td>
               <td class="text-end range-low">1,016,500</td>
               <td class="text-end range-high">2,400,000</td>
-              <td>建議預算 150～240萬</td>
+              <td>本案採購預算 150～240萬</td>
             </tr>
-            <tr style="background:#f5f5f5;">
-              <td colspan="4">📦 設備合計（無動力線體）</td>
+            <tr style="background:#f5f5f5;opacity:.6;">
+              <td colspan="4">📦 設備合計（無動力線體，僅參考）</td>
               <td class="text-end">716,500</td>
               <td class="text-end">1,560,000</td>
-              <td>節省 30～84萬</td>
+              <td>不採用</td>
             </tr>
           </tbody>
         </table>
 
         <div class="note mt-3">
           <i class="bi bi-info-circle me-1"></i>
-          <strong>建議：</strong>初期以<strong>有動力線體（15m × 2 條）+ 自動拉釘機 × 1 台共用</strong>切入，設備預算抓 <strong>150～200萬</strong>；待量穩定後再評估升級 30 米單線或加購第二台自動拉釘機。
+          <strong>建議：</strong>採購<strong>有動力線體 15m × 2 條 + 自動拉釘機 × 1 台共用</strong>，設備預算抓 <strong>150～200 萬</strong>。兩條 15m 平行擺放可雙機種並行；若客戶為單一機種長流程，<strong>兩條串聯為 30m 單線</strong>即可運作，無需重複投資。
         </div>
       </div>
     </div>
@@ -306,12 +327,13 @@
       </div>
       <div class="col-md-4">
         <div class="p-3 rounded h-100" style="background:#fff;border-left:5px solid #ef6c00;">
-          <div class="fw-bold mb-2" style="color:#bf360c;">② 15m × 2 vs 30m × 1 評估</div>
+          <div class="fw-bold mb-2" style="color:#bf360c;">② 兩條 15m 可串聯為 30m 單線（同一套設備）</div>
           <ul class="mb-0 small">
-            <li><strong>15m × 2 條（首推）</strong>：彈性高、雙機種並行、單線停產不影響另一線</li>
-            <li><strong>30m × 1 條</strong>：站別細分、單件流順暢、人均產能高，但機種切換 setup 時間長</li>
-            <li>判斷關鍵：客戶<strong>單一機種 vs 多機種混線</strong>佔比</li>
-            <li>30m 單線需廠房長邊 ≥ 36m（含進出料區）</li>
+            <li>採購規格相同 — <strong>2 條 × 15m</strong>，視訂單型態彈性運用</li>
+            <li><strong>並排運作</strong>（預設）：雙機種並行，單線停產不影響另一線</li>
+            <li><strong>首尾串聯為 30m</strong>：站別細分、單件流順暢、適合單一機種長流程</li>
+            <li>切換成本低：只需挪動皮帶銜接 + 重排站位，<strong>不需加購線體</strong></li>
+            <li>串聯模式廠房長邊需 ≥ 36m（含進出料區）</li>
           </ul>
         </div>
       </div>
@@ -346,7 +368,7 @@
     <div class="warn mb-3">
       <i class="bi bi-exclamation-triangle me-1"></i>
       <strong>⚠ 重新評估重點：</strong>
-      線體由 25m × 2 縮為 <strong>15m × 2</strong>，組裝面積減少 40%；人力降為 10 人後，工作站、料架同步縮編；
+      線體由 25m × 2 縮為 <strong>15m × 2</strong>（可串聯為 30m 單線，同一套設備），組裝面積減少 40%；人力降為 10 人後，工作站、料架同步縮編；
       但成品/原料暫存仍需保留（機櫃不可疊放），整體最低需求約 <strong>180 坪</strong>，建議租 <strong>215 坪</strong>（含 20% 緩衝）。
     </div>
 
@@ -429,10 +451,10 @@
               <td class="text-end text-muted">原 327 坪 ↓</td>
             </tr>
             <tr style="background:#ede7f6;font-weight:600;">
-              <td colspan="3">🔄 替代方案：30m × 1 條（廠房長邊需 ≥ 36m）</td>
+              <td colspan="3">🔄 串聯運作模式：兩條 15m 首尾相接為 30m 單線（廠房長邊需 ≥ 36m）</td>
               <td class="text-end">約 660 m²</td>
               <td class="text-end">約 200 坪</td>
-              <td class="text-end text-muted">建議租 240 坪</td>
+              <td class="text-end text-muted">同一套設備，無需重購</td>
             </tr>
           </tbody>
         </table>
@@ -520,11 +542,12 @@
       </svg>
     </div>
 
-    <!-- 30m 單線替代方案說明 -->
+    <!-- 串聯運作模式說明 -->
     <div class="note mt-3" style="background:#ede7f6;border-color:#673ab7;color:#311b92;">
       <i class="bi bi-arrow-repeat me-1"></i>
-      <strong>替代評估：30m × 1 條長線</strong> — 廠房長邊需 ≥ 36m（含進出料），整體面積與 15m × 2 條相近（約 200 坪），
-      但<strong>站別可細分、單件流順暢、機種切換 setup 時間長</strong>，適合單一機種大量。是否導入取決於客戶主力機種佔比（待 SIP 評估）。
+      <strong>串聯運作模式：兩條 15m 首尾相接 → 30m 單線</strong> — 同一套設備、不需重購，只需挪動皮帶銜接 + 重排站位。
+      廠房長邊需 ≥ 36m（含進出料），整體面積與並排約 200 坪相近。
+      <strong>站別可細分、單件流順暢</strong>，適合客戶單一機種長流程（待 SIP 確認後決定預設配置）。
     </div>
 
     <!-- 廠房建議（機櫃版） -->
@@ -598,9 +621,9 @@
           <div class="fw-bold mb-1" style="color:#0d47a1;">📋 建議採購順序</div>
           <ol class="mb-0 small">
             <li>取得客戶<strong>單一機種 SIP</strong> → 確認站別/節拍</li>
-            <li>定案線體規格（15m × 2 或 30m × 1）</li>
-            <li>先以無動力線體試跑（節省初期投資）</li>
-            <li>3 個月後評估升級有動力 + 第 2 台自動拉釘機</li>
+            <li>採購<strong>有動力線體 15m × 2 條</strong>（同套設備可並排或串聯為 30m）</li>
+            <li>導入<strong>自動拉釘機 × 1 台</strong>共用</li>
+            <li>3 個月後依量評估加購第 2 台自動拉釘機</li>
           </ol>
         </div>
       </div>
