@@ -38,9 +38,9 @@
   <h1><i class="bi bi-calculator-fill me-2"></i>組裝線建置成本估算 — 勤誠 5U 維護上蓋（小 module）</h1>
   <div class="sub">
     產品：RM59901 / 5U 維護上蓋 L (384-MEC04399B0B0) + R (384-MEC04400B0B0)<br>
-    規模：2 條 × 15 米組裝線（依 SOP 10 站，可串聯為 30 米單線）｜ 人力：18 人（9 人/條） ｜
-    客戶：勤誠 ｜ 條件：代組裝 利潤固定 3% ｜
-    估算日：2026-05-11（修訂 2026-05-29，依客戶 SOP/BOM/SIP 資料更新）
+    規模：2 條 × 15 米 Cell 桌組裝線（依 SOP 8 站，可串聯為 30 米單線）｜ 人力：16 人（8 人/條） ｜ 自動拉釘機 × 2 台（兩線各 1 台，<strong>不導入機械手</strong>）｜
+    客戶：勤誠 ｜ 條件：純代工服務 3% 利潤 ｜
+    估算日：2026-05-11（修訂 2026-05-29，依客戶 SOP/BOM/SIP 重新評估為 Plan C）
   </div>
 </div>
 
@@ -50,19 +50,19 @@
   <div class="row g-3 mb-4">
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#1565c0;">
-        <div class="val" style="color:#1565c0;">112～242萬</div>
-        <div class="lbl">設備一次性投資（NT$）</div>
+        <div class="val" style="color:#1565c0;">110～237萬</div>
+        <div class="lbl">設備一次性投資（NT$，Plan C）</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#1b5e20;">
-        <div class="val" style="color:#1b5e20;">66.2萬</div>
-        <div class="lbl">月度人力成本（NT$/月，18 人）</div>
+        <div class="val" style="color:#1b5e20;">58.9萬</div>
+        <div class="lbl">月度人力成本（NT$/月，16 人）</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#e65100;">
-        <div class="val" style="color:#e65100;">861萬</div>
+        <div class="val" style="color:#e65100;">765萬</div>
         <div class="lbl">年度人力成本（含年終，NT$/年）</div>
       </div>
     </div>
@@ -74,14 +74,14 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#6a1b9a;">
-        <div class="val" style="color:#6a1b9a;">1,143～1,413萬</div>
+        <div class="val" style="color:#6a1b9a;">1,045～1,312萬</div>
         <div class="lbl">首年總成本（含林口租金，NT$）</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#c62828;">
         <div class="val" style="color:#c62828;">36 pcs/h</div>
-        <div class="lbl">瓶頸 UPH（A02~A06 整段同步）</div>
+        <div class="lbl">瓶頸 UPH（A01~A06 同步）</div>
       </div>
     </div>
   </div>
@@ -95,11 +95,12 @@
 
         <!-- 設備設計依據說明 -->
         <div class="note mb-3" style="background:#e8f5e9;border-color:#2e7d32;color:#1b5e20;">
-          <div class="fw-bold mb-2"><i class="bi bi-info-circle-fill me-1"></i>設備設計依據：依勤誠 SOP5-184/185 規格</div>
+          <div class="fw-bold mb-2"><i class="bi bi-info-circle-fill me-1"></i>設備設計依據：Plan C（依勤誠 SOP 簡化版）</div>
           <ul class="mb-0 small">
-            <li><strong>不採用輸送帶皮帶線</strong> — 客戶 SOP 明確規定使用「Cell 桌」單站獨立作業（人員固定站位、產品在桌間流轉），非輸送帶式整線</li>
-            <li><strong>核心設備：Cell 桌 + 自動化模組</strong> — 自動化模組為 SOP S03/S04 站專用（拉釘 + 螺絲），鴻騰需向勤誠取得規格後客製</li>
-            <li><strong>2 條 15m 線共用 1 套自動化模組</strong> — 節省初期投資，2026 Q4 量穩後評估加購</li>
+            <li><strong>不採用輸送帶皮帶線</strong> — 客戶 SOP 明確規定使用「Cell 桌」單站獨立作業</li>
+            <li><strong>核心設備：Cell 桌 × 16 + 自動拉釘機 × 2</strong>（兩條線各 1 台自動拉釘機）</li>
+            <li><strong>不導入機械手（原 SOP S03/S04）</strong> — 機械手單筆 200~500 萬，加上治具客製，總投資破千萬；Plan C 改以自動拉釘機（每台 20~50 萬）取代主要拉釘工作</li>
+            <li><strong>螺絲全部人工鎖</strong>（A02/A03/A04 三站），扭力起子可控制扭力誤差</li>
             <li><strong>治具確認中</strong> — SOP 明確點名 CY-05J-0005 / 0013 / 0014 三種治具，需確認由勤誠提供或鴻騰自行開發</li>
           </ul>
         </div>
@@ -114,25 +115,25 @@
             </tr>
           </thead>
           <tbody>
-            <!-- Cell 桌（取代大型輸送線） -->
+            <!-- Cell 桌 -->
             <tr style="background:#fff59d;">
               <td><span class="badge bg-primary badge-cat">線體</span></td>
               <td>Cell 桌（依 SOP 採用）<br><span class="badge bg-success" style="font-size:.7rem;">✓ 採用</span></td>
-              <td>單站 Cell 桌（W1500×D750×H750），符合 SOP5-184/185</td>
-              <td>18 張<br>(9/條 × 2)</td>
-              <td class="text-end range-low">144,000</td>
-              <td class="text-end range-high">270,000</td>
+              <td>單站 Cell 桌（W1500×D750×H750），符合 SOP 8 站需求</td>
+              <td>16 張<br>(8/條 × 2)</td>
+              <td class="text-end range-low">128,000</td>
+              <td class="text-end range-high">240,000</td>
               <td>每張 8,000～15,000；含工作面板、置物層架</td>
             </tr>
-            <!-- 自動化模組 (S03+S04) -->
+            <!-- 自動拉釘機 ×2 (取代機械手) -->
             <tr style="background:#ffebee;">
               <td><span class="badge bg-danger badge-cat">自動化</span></td>
-              <td>自動化模組（拉釘 + 螺絲）<br><span class="badge bg-success" style="font-size:.7rem;">✓ 採用</span></td>
-              <td>對應 SOP 之 S03/S04 站，含治具卡盤、上下料 R1/R2</td>
-              <td>1 套<br>(兩線共用)</td>
+              <td>自動拉釘機 × 2 台<br><span class="badge bg-success" style="font-size:.7rem;">✓ 採用</span></td>
+              <td>氣動自動進料式手持拉釘機（A01 站用，每條線 1 台）<br><span class="badge bg-secondary mt-1" style="font-size:.7rem;">不採用機械手</span> 原 SOP 之 S03/S04 機械手單筆 200~500 萬，本案<strong>不導入</strong></td>
+              <td>2 台</td>
               <td class="text-end range-low">400,000</td>
               <td class="text-end range-high">1,000,000</td>
-              <td>依勤誠 SOP 規格客製，2026 Q4 後評估加購第 2 套</td>
+              <td>每台 20~50 萬，國產氣動自動進料式</td>
             </tr>
             <!-- 電動螺絲起子 -->
             <tr>
@@ -144,14 +145,14 @@
               <td class="text-end range-high">80,000</td>
               <td>每支 4,000～8,000，扭力可調精度 ±1</td>
             </tr>
-            <!-- 氣動拉釘槍 -->
+            <!-- 氣動拉釘槍（補拉） -->
             <tr>
               <td><span class="badge bg-success badge-cat">手工具</span></td>
-              <td>氣動拉釘槍（A01 站用）</td>
-              <td>Stanley / FAR，配合 171-00032-200210 拉釘</td>
-              <td>6 支</td>
-              <td class="text-end range-low">15,000</td>
-              <td class="text-end range-high">36,000</td>
+              <td>氣動拉釘槍（補拉/維修用）</td>
+              <td>Stanley / FAR，A01 主要用自動拉釘機，這支備援</td>
+              <td>4 支</td>
+              <td class="text-end range-low">10,000</td>
+              <td class="text-end range-high">24,000</td>
               <td>每支 2,500～6,000</td>
             </tr>
             <!-- 掃碼槍 + 工控電腦 -->
@@ -178,7 +179,7 @@
             <tr>
               <td><span class="badge bg-secondary badge-cat">氣源</span></td>
               <td>空壓機 + 管路配置</td>
-              <td>10 HP 工業型，供應自動化模組+拉釘槍</td>
+              <td>10 HP 工業型，供應自動拉釘機 + 氣動工具</td>
               <td>1 式</td>
               <td class="text-end range-low">120,000</td>
               <td class="text-end range-high">280,000</td>
@@ -206,17 +207,17 @@
             </tr>
             <!-- 合計 -->
             <tr class="total-row">
-              <td colspan="4">⚡ 設備合計（依勤誠 SOP 規格）<span class="badge bg-success ms-2" style="font-size:.7rem;">採用</span></td>
-              <td class="text-end range-low">1,119,000</td>
-              <td class="text-end range-high">2,416,000</td>
-              <td>本案採購預算 150～240 萬</td>
+              <td colspan="4">⚡ 設備合計（Plan C：自動拉釘機 × 2，不採用機械手）<span class="badge bg-success ms-2" style="font-size:.7rem;">採用</span></td>
+              <td class="text-end range-low">1,098,000</td>
+              <td class="text-end range-high">2,374,000</td>
+              <td>本案採購預算 110～240 萬</td>
             </tr>
           </tbody>
         </table>
 
         <div class="note mt-3">
           <i class="bi bi-info-circle me-1"></i>
-          <strong>建議：</strong>採購<strong>Cell 桌 × 18 張（9/條 × 2 條）+ 自動化模組 × 1 套共用</strong>，設備預算抓 <strong>150～200 萬</strong>。
+          <strong>建議（Plan C）：</strong>採購<strong>Cell 桌 × 16 張（8/條 × 2 條）+ 自動拉釘機 × 2 台（兩線各 1 台）</strong>，設備預算抓 <strong>110～200 萬</strong>。
           兩條線平行擺放可同時運行 L+R 兩款；若需求單一款大量，亦可串聯為 30m 單線運作。
         </div>
       </div>
@@ -227,38 +228,38 @@
 
       <!-- 人力成本 -->
       <div class="card-box">
-        <div class="section-title">人力成本估算（依 SOP 9 人/條 × 2 條 = 18 人）</div>
+        <div class="section-title">人力成本估算（Plan C：8 人/條 × 2 條 = 16 人）</div>
         <table class="table table-sm table-bordered" style="font-size:.88rem;">
-          <thead><tr><th>項目</th><th class="text-end">18 人（SOP 標配）</th><th class="text-end">16 人（共用最佳化）</th></tr></thead>
+          <thead><tr><th>項目</th><th class="text-end">16 人（Plan C 採用）</th><th class="text-end" style="opacity:.6;">18 人（原 SOP 9/條備案）</th></tr></thead>
           <tbody>
             <tr><td>作業員月薪（含加班）</td><td class="text-end">32,000</td><td class="text-end">32,000</td></tr>
             <tr><td>勞健保 + 勞退（×1.15）</td><td class="text-end">36,800</td><td class="text-end">36,800</td></tr>
             <tr><td>月小計/人</td><td class="text-end fw-bold">36,800</td><td class="text-end fw-bold">36,800</td></tr>
             <tr style="background:#e8f5e9;">
               <td><strong>月人力總計</strong></td>
-              <td class="text-end range-low fw-bold">662,400</td>
-              <td class="text-end range-high fw-bold">588,800</td>
+              <td class="text-end range-low fw-bold">588,800</td>
+              <td class="text-end fw-bold" style="opacity:.6;">662,400</td>
             </tr>
             <tr style="background:#e8f5e9;">
               <td><strong>年人力總計（×12）</strong></td>
-              <td class="text-end range-low fw-bold">7,948,800</td>
-              <td class="text-end range-high fw-bold">7,065,600</td>
+              <td class="text-end range-low fw-bold">7,065,600</td>
+              <td class="text-end fw-bold" style="opacity:.6;">7,948,800</td>
             </tr>
             <tr>
               <td>年終獎金（+1個月）</td>
-              <td class="text-end">662,400</td>
               <td class="text-end">588,800</td>
+              <td class="text-end" style="opacity:.6;">662,400</td>
             </tr>
             <tr class="total-row">
               <td>年度人力含年終</td>
-              <td class="text-end range-low">8,611,200</td>
-              <td class="text-end range-high">7,654,400</td>
+              <td class="text-end range-low">7,654,400</td>
+              <td class="text-end" style="opacity:.6;">8,611,200</td>
             </tr>
           </tbody>
         </table>
         <div class="note mt-2" style="font-size:.82rem;">
-          <i class="bi bi-info-circle me-1"></i>依勤誠 SOP 人員配置表：S01-S04 + A01-A06 共 9 人/條，<strong>S03+S04 自動化模組共用 1 人</strong>。
-          兩條線共用自動化模組可省 2 人 → 16 人版本。
+          <i class="bi bi-info-circle me-1"></i>Plan C 移除原 SOP 之 S03/S04 機械手作業員 → 每條線 9 人 → <strong>8 人</strong>，
+          兩條線 16 人，相較原 SOP 版省 <strong>2 人 × 36,800 × 13 = 95.7 萬/年</strong>。
         </div>
       </div>
 
@@ -268,20 +269,22 @@
         <table class="table table-sm table-bordered" style="font-size:.88rem;">
           <thead><tr><th>項目</th><th class="text-end">低估</th><th class="text-end">高估</th></tr></thead>
           <tbody>
-            <tr><td>設備投資（依 SOP）</td><td class="text-end">1,119,000</td><td class="text-end">2,416,000</td></tr>
-            <tr><td>年度人力（18 人，含年終）</td><td class="text-end">8,611,200</td><td class="text-end">8,611,200</td></tr>
+            <tr><td>設備投資（Plan C）</td><td class="text-end">1,098,000</td><td class="text-end">2,374,000</td></tr>
+            <tr><td>年度人力（16 人，含年終）</td><td class="text-end">7,654,400</td><td class="text-end">7,654,400</td></tr>
             <tr><td>廠房租金（林口工業區 120 坪）</td><td class="text-end">1,300,000</td><td class="text-end">2,600,000</td></tr>
             <tr><td>水電 + 雜支（年）</td><td class="text-end">400,000</td><td class="text-end">500,000</td></tr>
             <tr class="total-row">
               <td>首年總計</td>
-              <td class="text-end range-low">11,430,200</td>
-              <td class="text-end range-high">14,127,200</td>
+              <td class="text-end range-low">10,452,400</td>
+              <td class="text-end range-high">13,128,400</td>
             </tr>
           </tbody>
         </table>
-        <div class="warn mt-2">
+        <div class="warn mt-2" style="font-size:.85rem;">
           <i class="bi bi-exclamation-triangle me-1"></i>
-          利潤固定 <strong>3%</strong>，年營收需達 <strong>3.8～4.7 億</strong> 才能回收首年成本（依瓶頸 36 pcs/h × 22 工作日 × 2 條 ≈ 月產 12,672 pcs，<strong>單台代工費需 &gt; 2,500 元才達標</strong>）。
+          <strong>純代工服務 3% 利潤：</strong>年成本 1,045~1,313 萬 → 年代工費收入需 <strong>1,077~1,353 萬</strong>（成本 / 0.97）<br>
+          年產 36 × 8 × 22 × 12 × 2 = <strong>152,064 pcs/年</strong> →
+          <strong style="color:#c62828;">單台純代工費需 ≈ 71~89 元 / pcs</strong>（不含料件成本，料件由勤誠供應）
         </div>
       </div>
 
@@ -362,7 +365,7 @@
     <!-- 對應說明 -->
     <div class="warn mt-3" style="background:#fff;border-color:#1565c0;color:#0d47a1;">
       <i class="bi bi-arrow-down-right-circle me-1"></i>
-      <strong>本報告範圍：</strong>對應「<strong>短期計畫</strong>」 — 2 條 15m Cell 桌組裝線（依 SOP 10 站 / 9 人，可串聯為 30m）+ 18 人 + 自動化模組 × 1 套共用，
+      <strong>本報告範圍（Plan C）：</strong>對應「<strong>短期計畫</strong>」 — 2 條 15m Cell 桌組裝線（依 SOP 8 站 / 8 人，可串聯為 30m）+ 16 人 + <strong>自動拉釘機 × 2 台（兩線各 1 台）</strong>，<strong style="color:#c62828;">不導入機械手</strong>（避免單筆 200~500 萬風險），
       符合客戶 5/21 會議共識，<strong style="color:#c62828;">需於 5/29 前定案回覆勤誠</strong>。
       沖壓機台與 25m 組裝線屬 2026 Q4 後的中長期擴充，本期暫不列入投資估算。
     </div>
@@ -390,7 +393,8 @@
           <ul class="mb-0 small">
             <li>SOP5-184（L 款，B00 版）</li>
             <li>SOP5-185（R 款，B00 版）</li>
-            <li>10 站別 + 人員配置圖</li>
+            <li>原 SOP 10 站（含 S03/S04 機械手）</li>
+            <li style="color:#c62828;"><strong>Plan C 簡化為 8 站</strong></li>
           </ul>
         </div>
       </div>
@@ -457,17 +461,17 @@
         <rect x="340" y="350" width="180" height="64" fill="#ffccbc" stroke="#bf360c" stroke-width="1.5" rx="4"/>
         <text x="430" y="370" text-anchor="middle" font-size="11" font-weight="bold" fill="#b71c1c">③ 小鐵件 493 × 5pcs</text>
         <text x="430" y="385" text-anchor="middle" font-size="10" fill="#b71c1c">(355-30000-8122A0)</text>
-        <text x="430" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ S03 / A01</text>
+        <text x="430" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ A01</text>
 
         <rect x="540" y="350" width="180" height="64" fill="#ffccbc" stroke="#bf360c" stroke-width="1.5" rx="4"/>
         <text x="630" y="370" text-anchor="middle" font-size="11" font-weight="bold" fill="#b71c1c">④ 小鐵件 715 × 30pcs</text>
         <text x="630" y="385" text-anchor="middle" font-size="10" fill="#b71c1c">(355-30001-1754A0)</text>
-        <text x="630" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ S03 / A01</text>
+        <text x="630" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ A01</text>
 
         <rect x="740" y="350" width="100" height="64" fill="#ffccbc" stroke="#bf360c" stroke-width="1.5" rx="4"/>
         <text x="790" y="370" text-anchor="middle" font-size="11" font-weight="bold" fill="#b71c1c">⑤ 小鐵件 492</text>
         <text x="790" y="385" text-anchor="middle" font-size="10" fill="#b71c1c">× 10pcs</text>
-        <text x="790" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ S03</text>
+        <text x="790" y="402" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ A01</text>
 
         <!-- 第三層：門鎖 -->
         <rect x="140" y="278" width="220" height="64" fill="#c5e1a5" stroke="#33691e" stroke-width="1.5" rx="4"/>
@@ -500,12 +504,12 @@
         <rect x="140" y="126" width="200" height="64" fill="#f8bbd0" stroke="#ad1457" stroke-width="1.5" rx="4"/>
         <text x="240" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#880e4f">⑪ 拉釘 × 約 120 pcs</text>
         <text x="240" y="161" text-anchor="middle" font-size="10" fill="#880e4f">(171-00032-200210)</text>
-        <text x="240" y="178" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ S03 / A01</text>
+        <text x="240" y="178" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ A01</text>
 
         <rect x="360" y="126" width="220" height="64" fill="#f48fb1" stroke="#ad1457" stroke-width="1.5" rx="4"/>
         <text x="470" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#880e4f">⑫ 螺絲 × 60+ pcs</text>
         <text x="470" y="161" text-anchor="middle" font-size="10" fill="#880e4f">(60H141230-054) 扭力 3-5 Kgf-cm</text>
-        <text x="470" y="178" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ S04 / A02 / A03 / A04</text>
+        <text x="470" y="178" text-anchor="middle" font-size="10" font-weight="bold" fill="#0d47a1">▶ A02 / A03 / A04</text>
 
         <rect x="600" y="126" width="240" height="64" fill="#f8bbd0" stroke="#ad1457" stroke-width="1.5" rx="4"/>
         <text x="720" y="146" text-anchor="middle" font-size="11" font-weight="bold" fill="#880e4f">⑬ 導電泡棉 × 15+ pcs</text>
@@ -583,13 +587,13 @@
         <!-- ③ 小鐵件 493 -->
         <div class="accordion-item">
           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col3">
-            <span class="badge bg-danger me-2">③</span>小鐵件 493 × 5 pcs（355-30000-8122A0）｜ 對應站：S03 / A01</button></h2>
+            <span class="badge bg-danger me-2">③</span>小鐵件 493 × 5 pcs（355-30000-8122A0）｜ 對應站：A01（自動拉釘機）</button></h2>
           <div id="col3" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
             <div class="row g-2"><div class="col-md-7">
               <ul class="small mb-2">
                 <li>SUS304 鐵件，沖壓成型</li>
-                <li>對應 SOP 站：<strong>S03 自動化模組 / A01</strong></li>
-                <li>每批入治具：S03 一批 5 pcs（搭配 715、492 共 45 件鐵件）</li>
+                <li>對應 SOP 站：<strong>A01（自動拉釘機）</strong></li>
+                <li>每批入治具：A01 一批 5 pcs（搭配 715、492 共 45 件鐵件）</li>
                 <li>檢驗：上料時須卡入定位 PIN；無漏拉、歪斜、浮高</li>
               </ul>
             </div><div class="col-md-5 text-center">
@@ -602,13 +606,13 @@
         <!-- ④ 小鐵件 715 -->
         <div class="accordion-item">
           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col4">
-            <span class="badge bg-danger me-2">④</span>小鐵件 715 × 30 pcs（355-30001-1754A0）｜ 對應站：S03 / A01</button></h2>
+            <span class="badge bg-danger me-2">④</span>小鐵件 715 × 30 pcs（355-30001-1754A0）｜ 對應站：A01（自動拉釘機）</button></h2>
           <div id="col4" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
             <div class="row g-2"><div class="col-md-7">
               <ul class="small mb-2">
                 <li>SUS304 1/2H 鐵件，每個產品需 6 pcs</li>
-                <li>對應 SOP 站：<strong>S03 自動化拉釘 + A01 人工補拉</strong></li>
-                <li>S03 批量：30 pcs（5 個產品 × 6）</li>
+                <li>對應 SOP 站：<strong>A01（自動拉釘機）</strong></li>
+                <li>A01 批量：30 pcs（5 個產品 × 6）</li>
                 <li>檢驗：兩兩孔位需對到孔；拉釘 18 pcs 將 6 pcs 715 與長鐵件固定</li>
               </ul>
             </div><div class="col-md-5 text-center">
@@ -621,13 +625,13 @@
         <!-- ⑤ 小鐵件 492 -->
         <div class="accordion-item">
           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col5">
-            <span class="badge bg-danger me-2">⑤</span>小鐵件 492 × 10 pcs（355-30000-8065A0）｜ 對應站：S03</button></h2>
+            <span class="badge bg-danger me-2">⑤</span>小鐵件 492 × 10 pcs（355-30000-8065A0）｜ 對應站：A01（自動拉釘機）</button></h2>
           <div id="col5" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
             <div class="row g-2"><div class="col-md-7">
               <ul class="small mb-2">
                 <li>SUS304 鐵件，每個產品需 2 pcs</li>
-                <li>對應 SOP 站：<strong>S03 自動化拉釘</strong></li>
-                <li>S03 批量：10 pcs（5 個產品 × 2）</li>
+                <li>對應 SOP 站：<strong>A01（自動拉釘機）</strong></li>
+                <li>A01 批量：10 pcs（5 個產品 × 2）</li>
                 <li>檢驗：拉釘 120 pcs 不可漏拉、歪斜、浮高</li>
               </ul>
             </div><div class="col-md-5 text-center">
@@ -736,13 +740,13 @@
         <!-- ⑪ 拉釘 -->
         <div class="accordion-item">
           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col11">
-            <span class="badge bg-danger me-2">⑪</span>拉釘 × 約 120 pcs（171-00032-200210）｜ 對應站：S03 / A01</button></h2>
+            <span class="badge bg-danger me-2">⑪</span>拉釘 × 約 120 pcs（171-00032-200210）｜ 對應站：A01（自動拉釘機）</button></h2>
           <div id="col11" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
             <div class="row g-2"><div class="col-md-7">
               <ul class="small mb-2">
                 <li>規格：SC-FL-M-0.80-5.00-3.00-4-A（沉頭半圓拉釘）</li>
                 <li>用量：每個產品約 120 pcs</li>
-                <li>對應 SOP 站：<strong>S03 自動化拉釘 + A01 補拉</strong></li>
+                <li>對應 SOP 站：<strong>A01（自動拉釘機批次處理）</strong></li>
                 <li>檢驗：不可漏拉、歪斜、浮高（SIP 標明 120 pcs 全數檢查）</li>
               </ul>
             </div><div class="col-md-5 text-center">
@@ -755,12 +759,12 @@
         <!-- ⑫ 螺絲 -->
         <div class="accordion-item">
           <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col12">
-            <span class="badge bg-warning text-dark me-2">⑫</span>螺絲 × 約 60+ pcs（60H141230-054）｜ 對應站：S04 / A02 / A03 / A04</button></h2>
+            <span class="badge bg-warning text-dark me-2">⑫</span>螺絲 × 約 60+ pcs（60H141230-054）｜ 對應站：A02 / A03 / A04（全人工）</button></h2>
           <div id="col12" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
             <div class="row g-2"><div class="col-md-7">
               <ul class="small mb-2">
                 <li>用量分布：A02 14 pcs（門鎖）+ A03 16 pcs（門鎖）+ A04 30 pcs（塑膠片）</li>
-                <li>對應 SOP 站：<strong>S04 自動化螺絲 / A02 / A03 / A04</strong></li>
+                <li>對應 SOP 站：<strong>A02 / A03 / A04（Plan C 全人工鎖）</strong></li>
                 <li>扭力規範：A02/A03 門鎖 <strong>5 ± 1 Kgf-cm</strong>；A04 塑膠片 <strong>3 ± 1 Kgf-cm</strong></li>
                 <li>檢驗：不可漏鎖、鎖歪、浮高；凸點須對位</li>
               </ul>
@@ -876,7 +880,7 @@
       </div>
       <div class="col-md-6">
         <div class="card-box" style="background:#e3f2fd;border:1px solid #90caf9;">
-          <div class="fw-bold mb-2" style="color:#0d47a1;"><i class="bi bi-diagram-2 me-1"></i>組裝站別配置（依 SOP5-184/185，9 人/條）</div>
+          <div class="fw-bold mb-2" style="color:#0d47a1;"><i class="bi bi-diagram-2 me-1"></i>組裝站別配置（Plan C：8 站 / 8 人/條，移除機械手）</div>
           <table class="table table-sm table-bordered" style="font-size:.82rem;background:#fff;">
             <thead style="background:#1565c0;color:#fff;">
               <tr><th>站</th><th>工站名稱</th><th>設備</th><th class="text-end">CT(s)</th><th class="text-end">UPH</th></tr>
@@ -884,28 +888,29 @@
             <tbody>
               <tr><td>S01</td><td>中塑膠片加工（導電泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">18</td><td class="text-end">200</td></tr>
               <tr><td>S02</td><td>大塑膠片加工（導電泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">18</td><td class="text-end">200</td></tr>
-              <tr style="background:#fff3e0;"><td>S03</td><td>自動化模組-1（拉釘）<small class="text-muted">［批=5 pcs］</small></td><td>自動化模組</td><td class="text-end">750/批</td><td class="text-end">4.8 批<br>≈24 pcs</td></tr>
-              <tr style="background:#fff3e0;"><td>S04</td><td>自動化模組-2（螺絲）<small class="text-muted">［批=1~2 pcs］</small></td><td>自動化模組</td><td class="text-end">300/批</td><td class="text-end">12 批<br>≈12-24 pcs</td></tr>
-              <tr><td>A01</td><td>Cover 加工-1（拉釘）<small class="text-muted">［批=5 pcs］</small></td><td>Cell 桌</td><td class="text-end">500/批</td><td class="text-end">7.2 批<br>≈36 pcs</td></tr>
+              <tr style="background:#f5f5f5;color:#999;"><td>S03</td><td><s>原機械手拉釘</s> — <strong style="color:#c62828;">Plan C 移除</strong></td><td>—</td><td class="text-end">—</td><td class="text-end">—</td></tr>
+              <tr style="background:#f5f5f5;color:#999;"><td>S04</td><td><s>原機械手螺絲</s> — <strong style="color:#c62828;">Plan C 移除</strong></td><td>—</td><td class="text-end">—</td><td class="text-end">—</td></tr>
+              <tr style="background:#fff3e0;"><td>A01</td><td>Cover 加工-1（拉釘）<small class="text-muted">［批=5 pcs，自動拉釘機輔助］</small></td><td>Cell 桌 + 自動拉釘機</td><td class="text-end">500/批</td><td class="text-end">7.2 批<br>≈36 pcs</td></tr>
               <tr style="background:#ffebee;"><td>A02</td><td>Cover 加工-2（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#ffebee;"><td>A03</td><td>Cover 加工-3（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#ffebee;"><td>A04</td><td>Cover 加工-4（鎖螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#ffebee;"><td>A05</td><td>Cover 加工-5（貼泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#ffebee;"><td>A06</td><td>Cover 加工-6 + 品檢包裝（最終輸出口）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#e8f5e9;font-weight:700;">
-                <td colspan="2">每條線總人員（S03/S04 共用 1 人）</td>
-                <td colspan="2">9 人</td>
+                <td colspan="2">每條線總人員（不含機械手作業員）</td>
+                <td colspan="2">8 人</td>
                 <td class="text-end">36</td>
               </tr>
             </tbody>
           </table>
           <div class="small mt-2 p-2 rounded" style="background:#fff3e0;border-left:3px solid #ef6c00;">
-            <div class="fw-bold mb-1" style="color:#bf360c;"><i class="bi bi-info-circle me-1"></i>瓶頸與批次說明（依勤誠 SOP 與人員配置表）</div>
+            <div class="fw-bold mb-1" style="color:#bf360c;"><i class="bi bi-info-circle me-1"></i>Plan C 重要說明（vs 原 SOP 9 人版）</div>
             <ul class="mb-0" style="font-size:.8rem;">
-              <li><strong>整線瓶頸 = A02 ~ A06 五站皆 36 UPH</strong>（紅底） — 整段同步瓶頸，A06 是最終輸出口故產出 = 36 pcs/h</li>
-              <li><strong>「批」= 自動化模組/A01 一次處理多個產品</strong>，例如 S03 一批塞 5pcs 鐵件套組（5+30+10）= 5 個產品；A01 一批 5 個產品</li>
-              <li>自動化模組（S03/S04）作業員上料完即可去做其他事，<strong>不卡整線節拍</strong>，所以官方 UPH 仍掛 36</li>
-              <li>月產約 <strong>6,000 pcs/條</strong>（36 × 8h × 22 工作天），2 條 ≈ 12,000 pcs/月</li>
+              <li><strong>S03/S04 機械手移除</strong>：勤誠原 SOP 自動化模組為 6 軸機械手（同 1 台兩動作），單筆採購 200~500 萬，本案不導入</li>
+              <li><strong>A01 改為自動拉釘機輔助</strong>：每條線各 1 台手持氣動自動進料式拉釘機（共 2 台），CT 維持 500s/批 5 pcs ≈ 36 UPH</li>
+              <li><strong>瓶頸 A01 ~ A06 同步 36 UPH</strong>，月產約 <strong>6,300 pcs/條</strong>（36 × 8h × 22 工作天），2 條 ≈ <strong>12,700 pcs/月</strong></li>
+              <li><strong>螺絲全部人工鎖</strong>（A02/A03/A04），扭力起子 5±1 / 3±1 Kgf-cm</li>
+              <li>人力 9 人 → 8 人（省 1 個機械手作業員）</li>
             </ul>
           </div>
         </div>
@@ -986,15 +991,15 @@
             <tr><td>S02</td><td>大塑膠片加工</td>
               <td>導電泡棉 1 pcs 不可漏貼；黑色烤漆 2 處無漏烤；藍色把手 2 pcs；黑色麥拉 2 pcs</td>
               <td>每 pcs 全檢</td><td>手套</td></tr>
-            <tr style="background:#fff3e0;"><td>S03</td><td>自動化模組-1（拉釘）</td>
-              <td>上料時確認卡入定位 PIN；<strong>拉釘 120 pcs</strong> 不可漏拉、歪斜、浮高</td>
-              <td>每批 5 pcs 產品</td><td>自動化模組 + 治具</td></tr>
-            <tr style="background:#fff3e0;"><td>S04</td><td>自動化模組-2（螺絲）</td>
-              <td>上料時確認卡入定位；搭配機械手作業；<strong>螺絲不可漏鎖、鎖歪、浮高</strong></td>
-              <td>每批 1~2 pcs</td><td>自動化模組 + 機械手</td></tr>
-            <tr><td>A01</td><td>Cover 加工-1（拉釘）</td>
-              <td>掃標籤；<strong>拉釘 120 pcs 全檢</strong>；確認鐵件兩兩孔位對齊</td>
-              <td>每批 5 pcs</td><td>氣動拉釘槍、CY-05J-0014、掃碼槍</td></tr>
+            <tr style="background:#f5f5f5;color:#999;"><td>S03</td><td><s>原機械手拉釘</s></td>
+              <td><strong style="color:#c62828;">Plan C 移除</strong> — 改由 A01 自動拉釘機承接</td>
+              <td>—</td><td>—</td></tr>
+            <tr style="background:#f5f5f5;color:#999;"><td>S04</td><td><s>原機械手螺絲</s></td>
+              <td><strong style="color:#c62828;">Plan C 移除</strong> — 螺絲改由 A02-A04 人工鎖附</td>
+              <td>—</td><td>—</td></tr>
+            <tr style="background:#fff3e0;"><td>A01</td><td>Cover 加工-1（拉釘）</td>
+              <td>掃標籤；<strong>拉釘 120 pcs 全檢</strong>；確認鐵件兩兩孔位對齊；<strong>自動拉釘機輔助</strong></td>
+              <td>每批 5 pcs</td><td><strong>自動拉釘機</strong>、CY-05J-0014、掃碼槍</td></tr>
             <tr><td>A02</td><td>Cover 加工-2（門鎖）</td>
               <td>5 pcs 小門鎖 + 2 pcs 大門鎖；<strong>螺絲 14 pcs 全檢</strong>；凸點對位</td>
               <td>每 pcs 全檢</td><td>電動起子 <strong>5 ± 1 Kgf-cm</strong></td></tr>
@@ -1101,8 +1106,8 @@
     <!-- 結論：人力是否需要修正 -->
     <div class="warn mt-3" style="background:#fff;border-color:#c62828;color:#b71c1c;">
       <i class="bi bi-arrow-down-right-circle me-1"></i>
-      <strong>本期定案前需釐清：</strong>勤誠 SOP 9 人/條 <strong>不含 IQC/IPQC/OQC</strong>。
-      若鴻騰需自負來料+製程+出貨檢驗，<strong>需額外 3 人</strong>（兩線共用） → 整廠 21 人，年人力增加約 132 萬。
+      <strong>本期定案前需釐清：</strong>Plan C 8 人/條 <strong>不含 IQC/IPQC/OQC</strong>。
+      若鴻騰需自負來料+製程+出貨檢驗，<strong>需額外 3 人</strong>（兩線共用） → 整廠 19 人，年人力增加約 132 萬。
       建議向業務確認：勤誠是否提供現場 SQA 駐廠？或由鴻騰 QC 部支援？
     </div>
   </div>
@@ -1165,11 +1170,11 @@
 
     <!-- 視覺化排列示意 -->
     <div class="mt-3 p-3 rounded" style="background:#fff;border:1px dashed #00838f;font-family:monospace;font-size:.9rem;text-align:center;">
-      <div class="mb-2 small" style="color:#006064;font-family:'Microsoft JhengHei';"><strong>Cell 桌排列示意（每條線 9 人）：</strong></div>
+      <div class="mb-2 small" style="color:#006064;font-family:'Microsoft JhengHei';"><strong>Plan C Cell 桌排列示意（每條線 8 人，含自動拉釘機）：</strong></div>
       <div style="line-height:1.8;">
-        [S01桌] → [S02桌] → [A01桌] → [A02桌] → [A03桌] → [A04桌] → [A05桌] → [A06桌+包裝]
+        [S01桌] → [S02桌] → [A01桌+自動拉釘機] → [A02桌] → [A03桌] → [A04桌] → [A05桌] → [A06桌+包裝]
       </div>
-      <div class="small mt-2" style="color:#00838f;font-family:'Microsoft JhengHei';">↑ 作業員手抱半成品從一張桌傳到下一張桌（S03/S04 自動化模組獨立區，兩條線共用） ↑</div>
+      <div class="small mt-2" style="color:#00838f;font-family:'Microsoft JhengHei';">↑ 作業員手抱半成品從一張桌傳到下一張桌（自動拉釘機 × 2 台，每條線各 1 台架在 A01 站旁） ↑</div>
     </div>
   </div>
 
@@ -1205,13 +1210,13 @@
       </div>
       <div class="col-md-4">
         <div class="p-3 rounded h-100" style="background:#fff;border-left:5px solid #ef6c00;">
-          <div class="fw-bold mb-2" style="color:#bf360c;">③ 治具歸屬與自動化模組規格</div>
+          <div class="fw-bold mb-2" style="color:#bf360c;">③ 治具歸屬與自動拉釘機規格</div>
           <ul class="mb-0 small">
             <li>SOP 已提供 ✅ — <strong>單一機種 SIP（L 款 + R 款）已收到</strong></li>
             <li>需確認：<strong>治具 CY-05J-0005/0013/0014 是勤誠供應 or 鴻騰自開</strong>？</li>
-            <li>需確認：<strong>自動化模組（S03/S04）規格與藍圖</strong>，鴻騰能否自製或須勤誠介紹廠商</li>
+            <li>需確認：<strong>自動拉釘機規格</strong>（拉釘 171-00032-200210，氣動自動進料式建議廠商）</li>
             <li>另需確認 19 份 IQC SIP 對應的來料檢驗範圍</li>
-            <li><strong>建議 5/29 前列入鴻騰回覆勤誠的清單</strong></li>
+            <li>告知勤誠：<strong>Plan C 不導入機械手</strong>，改自動拉釘機 × 2 + 全人工螺絲鎖附</li>
           </ul>
         </div>
       </div>
@@ -1257,8 +1262,8 @@
               <td class="text-end text-muted">小 module 較緊湊</td>
             </tr>
             <tr style="background:#fff8e1;">
-              <td><strong>自動化模組區</strong></td>
-              <td>S03/S04 設備，含上下料 R1/R2 工位</td>
+              <td><strong>自動拉釘機區</strong></td>
+              <td>Plan C 自動拉釘機 × 2 台（每線 1 台架在 A01 站旁）</td>
               <td class="text-end">5 × 4</td>
               <td class="text-end fw-bold">20</td>
               <td class="text-end fw-bold" style="color:#bf360c;">6</td>
@@ -1354,10 +1359,10 @@
         <!-- 外框 -->
         <rect x="10" y="10" width="840" height="360" fill="none" stroke="#333" stroke-width="2"/>
 
-        <!-- 組裝線 1：10 站 Cell 桌 -->
+        <!-- 組裝線 1：8 站 Cell 桌 (Plan C) -->
         <rect x="10" y="10" width="380" height="100" fill="#b3e5fc" stroke="#0288d1" stroke-width="1.5"/>
-        <text x="200" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#01579b">組裝線 1（10 站 Cell 桌，9 人）</text>
-        <text x="200" y="52" text-anchor="middle" font-size="10" fill="#0277bd">S01 S02 │ A01 A02 A03 A04 A05 A06</text>
+        <text x="200" y="35" text-anchor="middle" font-size="13" font-weight="bold" fill="#01579b">組裝線 1（Plan C：8 站 Cell 桌，8 人）</text>
+        <text x="200" y="52" text-anchor="middle" font-size="10" fill="#0277bd">S01 S02 │ A01（含自動拉釘機）│ A02 A03 A04 A05 A06</text>
         <!-- 站別小方塊 -->
         <g font-size="9" fill="#01579b">
           <rect x="22" y="62" width="38" height="40" fill="#e1f5fe" stroke="#0288d1"/><text x="41" y="86" text-anchor="middle">S01</text>
@@ -1376,8 +1381,8 @@
 
         <!-- 組裝線 2 -->
         <rect x="10" y="140" width="380" height="100" fill="#b2dfdb" stroke="#00796b" stroke-width="1.5"/>
-        <text x="200" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#004d40">組裝線 2（10 站 Cell 桌，9 人）</text>
-        <text x="200" y="182" text-anchor="middle" font-size="10" fill="#00695c">L+R 鏡像配置，共用 S03/S04 自動化模組</text>
+        <text x="200" y="165" text-anchor="middle" font-size="13" font-weight="bold" fill="#004d40">組裝線 2（Plan C：8 站 Cell 桌，8 人）</text>
+        <text x="200" y="182" text-anchor="middle" font-size="10" fill="#00695c">L+R 鏡像配置，A01 站旁各架自動拉釘機 1 台</text>
         <g font-size="9" fill="#004d40">
           <rect x="22" y="192" width="38" height="40" fill="#e0f2f1" stroke="#00796b"/><text x="41" y="216" text-anchor="middle">S01</text>
           <rect x="62" y="192" width="38" height="40" fill="#e0f2f1" stroke="#00796b"/><text x="81" y="216" text-anchor="middle">S02</text>
@@ -1389,14 +1394,14 @@
           <rect x="302" y="192" width="76" height="40" fill="#fce4ec" stroke="#c62828"/><text x="340" y="216" text-anchor="middle" fill="#b71c1c" font-weight="bold">A06 包裝</text>
         </g>
 
-        <!-- 中：自動化模組共用區 -->
+        <!-- 中：自動拉釘機 × 2 區（兩線各 1 台） -->
         <rect x="395" y="62" width="110" height="170" fill="#ffcdd2" stroke="#c62828" stroke-width="1.5"/>
-        <text x="450" y="100" text-anchor="middle" font-size="12" font-weight="bold" fill="#b71c1c">自動化模組</text>
-        <text x="450" y="118" text-anchor="middle" font-size="10" fill="#b71c1c">S03 + S04</text>
-        <text x="450" y="136" text-anchor="middle" font-size="10" fill="#b71c1c">拉釘 + 螺絲</text>
-        <text x="450" y="160" text-anchor="middle" font-size="9" fill="#c62828">1 套兩線共用</text>
-        <text x="450" y="180" text-anchor="middle" font-size="9" fill="#c62828">含治具卡盤</text>
-        <text x="450" y="200" text-anchor="middle" font-size="9" fill="#c62828">R1/R2 上下料</text>
+        <text x="450" y="95" text-anchor="middle" font-size="12" font-weight="bold" fill="#b71c1c">自動拉釘機</text>
+        <text x="450" y="113" text-anchor="middle" font-size="11" font-weight="bold" fill="#b71c1c">× 2 台</text>
+        <text x="450" y="135" text-anchor="middle" font-size="9" fill="#c62828">兩線各 1 台</text>
+        <text x="450" y="152" text-anchor="middle" font-size="9" fill="#c62828">A01 站旁</text>
+        <text x="450" y="180" text-anchor="middle" font-size="9" font-weight="bold" fill="#558b2f">不導入</text>
+        <text x="450" y="195" text-anchor="middle" font-size="9" font-weight="bold" fill="#558b2f">機械手</text>
 
         <!-- 右上：原料暫存 -->
         <rect x="510" y="10" width="170" height="115" fill="#fff9c4" stroke="#f9a825" stroke-width="1.5"/>
@@ -1487,7 +1492,7 @@
             <li>料件種類多（200+ pcs）→ <strong>料件管控難度高</strong></li>
             <li>導電泡棉/貼紙易刮損 → <strong>ESD 與作業環境要求</strong></li>
             <li>瓶頸在 A06 包裝 → <strong>瓶頸破除可提升產能</strong></li>
-            <li>自動化模組依賴勤誠規格 → <strong>設備規格未鎖定有變動風險</strong></li>
+            <li>自動拉釘機規格選定 → <strong>建議國產氣動進料式（多家可選）</strong></li>
             <li>3% 利潤薄 → <strong>單台代工費需 2,200+ 元才回收</strong></li>
           </ul>
         </div>
@@ -1501,34 +1506,36 @@
     <div class="row g-3">
       <div class="col-md-4">
         <div class="p-3 rounded" style="background:#e8f5e9;border-left:4px solid #2e7d32;">
-          <div class="fw-bold mb-1" style="color:#1b5e20;">✅ 優先投資項目</div>
+          <div class="fw-bold mb-1" style="color:#1b5e20;">✅ Plan C 優先投資項目</div>
           <ul class="mb-0 small">
-            <li><strong>自動化模組 × 1 套</strong>（依勤誠 SOP S03/S04 規格）</li>
-            <li>Cell 桌 × 18 張（取代輸送帶線體）</li>
+            <li><strong>自動拉釘機 × 2 台</strong>（兩線各 1 台，A01 站旁）</li>
+            <li>Cell 桌 × 16 張（8/條 × 2 條）</li>
             <li>專用治具 3 種（CY-05J-0005/0013/0014）</li>
             <li>工控電腦 + 掃碼系統（Shop Floor 預留）</li>
+            <li><strong style="color:#c62828;">不採購機械手</strong>（省 200~500 萬資本支出）</li>
           </ul>
         </div>
       </div>
       <div class="col-md-4">
         <div class="p-3 rounded" style="background:#fff8e1;border-left:4px solid #f9a825;">
-          <div class="fw-bold mb-1" style="color:#7a5000;">⚠ 財務風險提示</div>
+          <div class="fw-bold mb-1" style="color:#7a5000;">⚠ 財務試算（純工費 3%）</div>
           <ul class="mb-0 small">
-            <li>瓶頸 A06 包裝 36 pcs/h，月產約 6,000 pcs/條</li>
-            <li>3% 利潤 → <strong>單台代工費需 2,500+ 元</strong>才回收首年（含林口租金）</li>
-            <li>建議談「工時計費」或「按 BOM 成本加成」</li>
-            <li>16 人最佳化版可省 ~96 萬/年</li>
+            <li>瓶頸 A01~A06 同步 36 UPH，月產 6,300 pcs/條</li>
+            <li>年產 152,064 pcs（2 條 × 12 月）</li>
+            <li>3% 利潤 → 損平 <strong>單台純工費 ≈ 71~89 元 / pcs</strong></li>
+            <li>建議：純工費 + 3%（料件由勤誠採購供應）</li>
+            <li>若客戶要求包料 → 重新評估</li>
           </ul>
         </div>
       </div>
       <div class="col-md-4">
         <div class="p-3 rounded" style="background:#e3f2fd;border-left:4px solid #1565c0;">
-          <div class="fw-bold mb-1" style="color:#0d47a1;">📋 建議執行順序（5/29 前完成定案）</div>
+          <div class="fw-bold mb-1" style="color:#0d47a1;">📋 Plan C 執行順序（5/29 前定案）</div>
           <ol class="mb-0 small">
             <li>確認<strong>治具歸屬</strong>（勤誠供應 or 鴻騰自開）</li>
-            <li>確認<strong>自動化模組規格</strong>（向勤誠取得藍圖）</li>
-            <li>採購 <strong>Cell 桌 × 18 + 自動化模組 × 1 套</strong></li>
-            <li>派員至嘉義廠學習 SOP（會議共識第 4 項）</li>
+            <li>選定<strong>自動拉釘機廠商</strong>（國產氣動自動進料式）</li>
+            <li>採購 <strong>Cell 桌 × 16 + 自動拉釘機 × 2</strong></li>
+            <li>派員至嘉義廠學習 SOP（告知<strong>不導入機械手</strong>調整版）</li>
             <li>2026 Q4 量穩後評估擴 25m 線 + 沖壓機</li>
           </ol>
         </div>
@@ -1546,7 +1553,7 @@ const font = 'Microsoft JhengHei';
 new Chart(document.getElementById('spaceChart'), {
   type: 'doughnut',
   data: {
-    labels: ['Cell桌組裝區 36坪', '自動化模組 6坪', '原料暫存 12坪', '成品暫存 9坪', 'QC/IQC 6坪', '辦公 7坪', '設備間 4坪', '通道 18坪'],
+    labels: ['Cell桌組裝區 36坪', '自動拉釘機 6坪', '原料暫存 12坪', '成品暫存 9坪', 'QC/IQC 6坪', '辦公 7坪', '設備間 4坪', '通道 18坪'],
     datasets: [{ data: [36, 6, 12, 9, 6, 7, 4, 18],
       backgroundColor: ['#0288d1','#c62828','#f9a825','#7b1fa2','#ef6c00','#3949ab','#455a64','#607d8b'],
       borderWidth: 2 }]
@@ -1563,9 +1570,9 @@ new Chart(document.getElementById('spaceChart'), {
 new Chart(document.getElementById('equipChart'), {
   type: 'doughnut',
   data: {
-    labels: ['Cell 桌×18', '自動化模組×1', '專用治具×3種', '電腦+掃碼×4', '空壓機+管路', '電動螺絲起子×10', '氣動拉釘槍×6', '包裝設備', '雜項'],
+    labels: ['Cell 桌×16', '自動拉釘機×2', '專用治具×3種', '電腦+掃碼×4', '空壓機+管路', '電動螺絲起子×10', '氣動拉釘槍×4', '包裝設備', '雜項'],
     datasets: [{
-      data: [207000, 700000, 225000, 160000, 200000, 60000, 25500, 75000, 115000],
+      data: [184000, 700000, 225000, 160000, 200000, 60000, 17000, 75000, 115000],
       backgroundColor: ['#1565c0','#c62828','#0097a7','#f9a825','#2e7d32','#6a1b9a','#e65100','#37474f','#757575'],
       borderWidth: 2
     }]
@@ -1583,11 +1590,11 @@ new Chart(document.getElementById('equipChart'), {
 new Chart(document.getElementById('totalChart'), {
   type: 'bar',
   data: {
-    labels: ['設備投資', '年度人力（18人）', '林口廠房租金', '水電雜支'],
+    labels: ['設備投資', '年度人力（16人）', '林口廠房租金', '水電雜支'],
     datasets: [
-      { label: '低估', data: [1119000, 8611200, 1300000, 400000],
+      { label: '低估', data: [1098000, 7654400, 1300000, 400000],
         backgroundColor: 'rgba(21,101,192,0.8)', borderRadius: 4 },
-      { label: '高估', data: [2416000, 8611200, 2600000, 500000],
+      { label: '高估', data: [2374000, 7654400, 2600000, 500000],
         backgroundColor: 'rgba(198,40,40,0.8)', borderRadius: 4 }
     ]
   },
