@@ -74,8 +74,8 @@
     </div>
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#6a1b9a;">
-        <div class="val" style="color:#6a1b9a;">1,023～1,223萬</div>
-        <div class="lbl">首年總成本（含租金，NT$）</div>
+        <div class="val" style="color:#6a1b9a;">1,143～1,413萬</div>
+        <div class="lbl">首年總成本（含林口租金，NT$）</div>
       </div>
     </div>
     <div class="col-6 col-md-3">
@@ -270,17 +270,18 @@
           <tbody>
             <tr><td>設備投資（依 SOP）</td><td class="text-end">1,119,000</td><td class="text-end">2,416,000</td></tr>
             <tr><td>年度人力（18 人，含年終）</td><td class="text-end">8,611,200</td><td class="text-end">8,611,200</td></tr>
-            <tr><td>廠房水電雜支（估）</td><td class="text-end">500,000</td><td class="text-end">1,200,000</td></tr>
+            <tr><td>廠房租金（林口工業區 120 坪）</td><td class="text-end">1,300,000</td><td class="text-end">2,600,000</td></tr>
+            <tr><td>水電 + 雜支（年）</td><td class="text-end">400,000</td><td class="text-end">500,000</td></tr>
             <tr class="total-row">
               <td>首年總計</td>
-              <td class="text-end range-low">10,230,200</td>
-              <td class="text-end range-high">12,227,200</td>
+              <td class="text-end range-low">11,430,200</td>
+              <td class="text-end range-high">14,127,200</td>
             </tr>
           </tbody>
         </table>
         <div class="warn mt-2">
           <i class="bi bi-exclamation-triangle me-1"></i>
-          利潤固定 <strong>3%</strong>，年營收需達 <strong>3.4～4.1 億</strong> 才能回收首年成本（依瓶頸 36 pcs/h × 22 工作日 × 2 條 ≈ 月產 12,672 pcs，<strong>單台代工費需 &gt; 2,200 元才達標</strong>）。
+          利潤固定 <strong>3%</strong>，年營收需達 <strong>3.8～4.7 億</strong> 才能回收首年成本（依瓶頸 36 pcs/h × 22 工作日 × 2 條 ≈ 月產 12,672 pcs，<strong>單台代工費需 &gt; 2,500 元才達標</strong>）。
         </div>
       </div>
 
@@ -935,13 +936,14 @@
       </div>
       <div class="col-md-4">
         <div class="p-3 rounded" style="background:#f1f8e9;border-left:4px solid #558b2f;">
-          <div class="fw-bold mb-1" style="color:#33691e;"><i class="bi bi-currency-dollar me-1"></i>租金估算（台南/高雄工業區）</div>
+          <div class="fw-bold mb-1" style="color:#33691e;"><i class="bi bi-currency-dollar me-1"></i>租金估算（新北林口工業區）</div>
           <ul class="mb-0 small">
-            <li>工業廠房租金：<strong>500～1,200 元/坪/月</strong></li>
-            <li>120 坪 × 800 元 = <strong>9.6 萬/月</strong></li>
-            <li>年租金：<strong>約 72～173 萬</strong></li>
-            <li>押金：通常 2～3 個月</li>
+            <li>工業廠房租金：<strong>900～1,800 元/坪/月</strong>（林口行情）</li>
+            <li>120 坪 × 1,300 元 = <strong>15.6 萬/月</strong>（中估）</li>
+            <li>年租金：<strong>約 130～260 萬</strong></li>
+            <li>押金：通常 2～3 個月（~30～80 萬）</li>
             <li>ESD 地坪/裝修：<strong>另加 30～80 萬</strong></li>
+            <li style="color:#558b2f;"><strong>優勢：</strong>近 64 快速道路、機場捷運，距勤誠（新店/桃園）車程短、技轉與物流便利</li>
           </ul>
         </div>
       </div>
@@ -980,7 +982,7 @@
           <div class="fw-bold mb-1" style="color:#7a5000;">⚠ 財務風險提示</div>
           <ul class="mb-0 small">
             <li>瓶頸 A06 包裝 36 pcs/h，月產約 6,000 pcs/條</li>
-            <li>3% 利潤 → <strong>單台代工費需 2,200+ 元</strong>才回收首年</li>
+            <li>3% 利潤 → <strong>單台代工費需 2,500+ 元</strong>才回收首年（含林口租金）</li>
             <li>建議談「工時計費」或「按 BOM 成本加成」</li>
             <li>16 人最佳化版可省 ~96 萬/年</li>
           </ul>
@@ -1048,11 +1050,11 @@ new Chart(document.getElementById('equipChart'), {
 new Chart(document.getElementById('totalChart'), {
   type: 'bar',
   data: {
-    labels: ['設備投資', '年度人力（18人）', '廠房水電雜支'],
+    labels: ['設備投資', '年度人力（18人）', '林口廠房租金', '水電雜支'],
     datasets: [
-      { label: '低估', data: [1119000, 8611200, 500000],
+      { label: '低估', data: [1119000, 8611200, 1300000, 400000],
         backgroundColor: 'rgba(21,101,192,0.8)', borderRadius: 4 },
-      { label: '高估', data: [2416000, 8611200, 1200000],
+      { label: '高估', data: [2416000, 8611200, 2600000, 500000],
         backgroundColor: 'rgba(198,40,40,0.8)', borderRadius: 4 }
     ]
   },
