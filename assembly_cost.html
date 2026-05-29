@@ -81,7 +81,7 @@
     <div class="col-6 col-md-3">
       <div class="kpi" style="border-color:#c62828;">
         <div class="val" style="color:#c62828;">36 pcs/h</div>
-        <div class="lbl">瓶頸 UPH（依 SOP，A06 包裝）</div>
+        <div class="lbl">瓶頸 UPH（A02~A06 整段同步）</div>
       </div>
     </div>
   </div>
@@ -553,14 +553,14 @@
             <tbody>
               <tr><td>S01</td><td>中塑膠片加工（導電泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">18</td><td class="text-end">200</td></tr>
               <tr><td>S02</td><td>大塑膠片加工（導電泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">18</td><td class="text-end">200</td></tr>
-              <tr style="background:#fff3e0;"><td>S03</td><td>自動化模組-1（拉釘）</td><td>自動化模組</td><td class="text-end">750</td><td class="text-end">4.8 批</td></tr>
-              <tr style="background:#fff3e0;"><td>S04</td><td>自動化模組-2（螺絲）</td><td>自動化模組</td><td class="text-end">300</td><td class="text-end">12 批</td></tr>
-              <tr><td>A01</td><td>Cover 加工-1（拉釘）</td><td>Cell 桌</td><td class="text-end">500</td><td class="text-end">7.2</td></tr>
-              <tr><td>A02</td><td>Cover 加工-2（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36</td></tr>
-              <tr><td>A03</td><td>Cover 加工-3（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36</td></tr>
-              <tr><td>A04</td><td>Cover 加工-4（鎖螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36</td></tr>
-              <tr><td>A05</td><td>Cover 加工-5（貼泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36</td></tr>
-              <tr style="background:#fce4ec;"><td>A06</td><td>Cover 加工-6 + 品檢包裝</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
+              <tr style="background:#fff3e0;"><td>S03</td><td>自動化模組-1（拉釘）<small class="text-muted">［批=5 pcs］</small></td><td>自動化模組</td><td class="text-end">750/批</td><td class="text-end">4.8 批<br>≈24 pcs</td></tr>
+              <tr style="background:#fff3e0;"><td>S04</td><td>自動化模組-2（螺絲）<small class="text-muted">［批=1~2 pcs］</small></td><td>自動化模組</td><td class="text-end">300/批</td><td class="text-end">12 批<br>≈12-24 pcs</td></tr>
+              <tr><td>A01</td><td>Cover 加工-1（拉釘）<small class="text-muted">［批=5 pcs］</small></td><td>Cell 桌</td><td class="text-end">500/批</td><td class="text-end">7.2 批<br>≈36 pcs</td></tr>
+              <tr style="background:#ffebee;"><td>A02</td><td>Cover 加工-2（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
+              <tr style="background:#ffebee;"><td>A03</td><td>Cover 加工-3（裝門鎖、螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
+              <tr style="background:#ffebee;"><td>A04</td><td>Cover 加工-4（鎖螺絲）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
+              <tr style="background:#ffebee;"><td>A05</td><td>Cover 加工-5（貼泡棉、貼紙）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
+              <tr style="background:#ffebee;"><td>A06</td><td>Cover 加工-6 + 品檢包裝（最終輸出口）</td><td>Cell 桌</td><td class="text-end">100</td><td class="text-end">36 ⚠</td></tr>
               <tr style="background:#e8f5e9;font-weight:700;">
                 <td colspan="2">每條線總人員（S03/S04 共用 1 人）</td>
                 <td colspan="2">9 人</td>
@@ -568,7 +568,15 @@
               </tr>
             </tbody>
           </table>
-          <div class="small mt-1" style="color:#c62828;"><i class="bi bi-exclamation-triangle me-1"></i><strong>整線瓶頸：A06 包裝站 36 pcs/h</strong> → 月產約 6,000 pcs/條（22 工作天）。</div>
+          <div class="small mt-2 p-2 rounded" style="background:#fff3e0;border-left:3px solid #ef6c00;">
+            <div class="fw-bold mb-1" style="color:#bf360c;"><i class="bi bi-info-circle me-1"></i>瓶頸與批次說明（依勤誠 SOP 與人員配置表）</div>
+            <ul class="mb-0" style="font-size:.8rem;">
+              <li><strong>整線瓶頸 = A02 ~ A06 五站皆 36 UPH</strong>（紅底） — 整段同步瓶頸，A06 是最終輸出口故產出 = 36 pcs/h</li>
+              <li><strong>「批」= 自動化模組/A01 一次處理多個產品</strong>，例如 S03 一批塞 5pcs 鐵件套組（5+30+10）= 5 個產品；A01 一批 5 個產品</li>
+              <li>自動化模組（S03/S04）作業員上料完即可去做其他事，<strong>不卡整線節拍</strong>，所以官方 UPH 仍掛 36</li>
+              <li>月產約 <strong>6,000 pcs/條</strong>（36 × 8h × 22 工作天），2 條 ≈ 12,000 pcs/月</li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
