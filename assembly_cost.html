@@ -521,6 +521,321 @@
       </svg>
     </div>
 
+    <!-- 料件下拉展開 Accordion（含 SOP 圖示） -->
+    <div class="mt-4">
+      <div class="fw-bold mb-2" style="color:#4a148c;"><i class="bi bi-arrows-expand me-1"></i>點擊各料件展開 SOP 圖示與檢驗重點：</div>
+      <div class="accordion" id="layoutAccordion">
+
+        <!-- ① 長鐵件基座 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col1">
+            <span class="badge bg-secondary me-2">①</span>長鐵件基座 × 1 pcs（355-30000-8044A0）｜ 對應站：A01</button></h2>
+          <div id="col1" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>規格：金屬長鐵件，SOP 中標號 491（產品主骨架）</li>
+                <li>用途：5U 維護上蓋的主基座，所有後續料件鎖附其上</li>
+                <li>對應 SOP 站：<strong>A01（拉釘）</strong>取長鐵件 + 小鐵件入治具，拉釘固定</li>
+                <li>檢驗：外觀無有感刮/碰傷、變形、氧化；金屬件 C 級面控管</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image16.png" class="img-fluid border rounded" alt="A01 長鐵件拉釘" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A01：長鐵件拉釘工位</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ② 鉸鏈模組 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col2">
+            <span class="badge bg-warning text-dark me-2">②</span>鉸鏈模組 × 2 pcs（356-30000-2311A0）｜ 含彈簧 + 鋅合金件</button></h2>
+          <div id="col2" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>內含：扭力彈簧（163-30000-0157A0）+ 鋅合金鉸鏈座（357-30000-0286A0）+ 鉸鏈底蓋（357-30000-0291A0）</li>
+                <li>L 款與 R 款<strong>鏡像對稱</strong>，鉸鏈方向相反</li>
+                <li>對應 SOP 站：<strong>A02</strong>（裝門鎖時同時固定鉸鏈）</li>
+                <li>檢驗：外觀無刮碰傷、彈簧不可變形、鋅合金件凸點需對位</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image25.png" class="img-fluid border rounded" alt="A02 鉸鏈裝配" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A02：鉸鏈與門鎖鎖附</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ③ 小鐵件 493 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col3">
+            <span class="badge bg-danger me-2">③</span>小鐵件 493 × 5 pcs（355-30000-8122A0）</button></h2>
+          <div id="col3" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>SUS304 鐵件，沖壓成型</li>
+                <li>對應 SOP 站：<strong>S03 自動化模組 / A01</strong></li>
+                <li>每批入治具：S03 一批 5 pcs（搭配 715、492 共 45 件鐵件）</li>
+                <li>檢驗：上料時須卡入定位 PIN；無漏拉、歪斜、浮高</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image10.png" class="img-fluid border rounded" alt="S03 鐵件入治具" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP S03：自動化拉釘治具</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ④ 小鐵件 715 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col4">
+            <span class="badge bg-danger me-2">④</span>小鐵件 715 × 30 pcs（355-30001-1754A0）</button></h2>
+          <div id="col4" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>SUS304 1/2H 鐵件，每個產品需 6 pcs</li>
+                <li>對應 SOP 站：<strong>S03 自動化拉釘 + A01 人工補拉</strong></li>
+                <li>S03 批量：30 pcs（5 個產品 × 6）</li>
+                <li>檢驗：兩兩孔位需對到孔；拉釘 18 pcs 將 6 pcs 715 與長鐵件固定</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image11.png" class="img-fluid border rounded" alt="S03 鐵件批次入料" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP S03：鐵件 715 批次入料</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑤ 小鐵件 492 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col5">
+            <span class="badge bg-danger me-2">⑤</span>小鐵件 492 × 10 pcs（355-30000-8065A0）</button></h2>
+          <div id="col5" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>SUS304 鐵件，每個產品需 2 pcs</li>
+                <li>對應 SOP 站：<strong>S03 自動化拉釘</strong></li>
+                <li>S03 批量：10 pcs（5 個產品 × 2）</li>
+                <li>檢驗：拉釘 120 pcs 不可漏拉、歪斜、浮高</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image12.png" class="img-fluid border rounded" alt="S03 鐵件 492" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP S03：鐵件 492 拉釘成型</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑥ 小門鎖 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col6">
+            <span class="badge bg-success me-2">⑥</span>小門鎖 × 13 pcs（5 + 8，356-30000-2490A0）</button></h2>
+          <div id="col6" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>含彈簧、塑膠按鍵</li>
+                <li>對應 SOP 站：<strong>A02（5 pcs）+ A03（8 pcs）</strong></li>
+                <li>每個門鎖以 2 pcs 螺絲（60H141230-054）固定</li>
+                <li>檢驗：外觀無有感刮/碰傷、氧化；螺絲不可漏鎖、鎖歪、浮高</li>
+                <li>扭力：5 ± 1 Kgf-cm</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image28.png" class="img-fluid border rounded" alt="A03 小門鎖" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A03：小門鎖鎖附</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑦ 大門鎖 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col7">
+            <span class="badge bg-success me-2">⑦</span>大門鎖 × 2 pcs（356-30000-2311A0）</button></h2>
+          <div id="col7" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>與鉸鏈模組相同料號家族</li>
+                <li>對應 SOP 站：<strong>A02</strong>（與 5 個小門鎖一起鎖附）</li>
+                <li>每個大門鎖以 2 pcs 螺絲固定</li>
+                <li>檢驗：外觀無刮碰傷；扭力 5 ± 1 Kgf-cm</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image26.png" class="img-fluid border rounded" alt="A02 大門鎖" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A02：大門鎖鎖附</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑧ 大塑膠片 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col8">
+            <span class="badge bg-primary me-2">⑧</span>大塑膠片 × 2 pcs（383-30001-1128A0）</button></h2>
+          <div id="col8" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>黑色烤漆塑膠件</li>
+                <li>對應 SOP 站：<strong>S02 大塑膠片加工</strong>（貼 1 pcs 導電泡棉 167-30000-0552A0）</li>
+                <li>S02 標準工時 18 秒，UPH 200</li>
+                <li>檢驗：外觀無刮碰傷；黑色烤漆無漏烤、破損、錯位；導電泡棉不可漏貼、貼歪、破損</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image7.png" class="img-fluid border rounded" alt="S02 大塑膠片" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP S02：大塑膠片貼泡棉</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑨ 中塑膠片 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col9">
+            <span class="badge bg-primary me-2">⑨</span>中塑膠片 × 12 pcs（383-30001-1129A0）</button></h2>
+          <div id="col9" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>黑色烤漆塑膠件，每個產品最大宗料件</li>
+                <li>對應 SOP 站：<strong>S01 中塑膠片加工</strong>（貼 2 pcs 短導電泡棉 167-30000-0553A0）</li>
+                <li>S01 標準工時 18 秒，UPH 200</li>
+                <li>檢驗：外觀無刮碰傷；藍色把手、麥拉、貼紙均不可漏貼/破損</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image3.png" class="img-fluid border rounded" alt="S01 中塑膠片" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP S01：中塑膠片貼泡棉</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑩ 小塑膠片 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col10">
+            <span class="badge bg-primary me-2">⑩</span>小塑膠片 × 2 pcs（383-30001-1130A0）</button></h2>
+          <div id="col10" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>黑色烤漆塑膠件，位於兩端</li>
+                <li>對應 SOP 站：<strong>A04（鎖螺絲）</strong>與大/中塑膠片一同鎖附於長鐵件</li>
+                <li>A04 配置：1 大 + 6 中 + 1 小卡入治具，鎖 30 pcs 螺絲</li>
+                <li>檢驗：螺絲不可漏鎖、鎖歪、浮高；扭力 3 ± 1 Kgf-cm</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image29.png" class="img-fluid border rounded" alt="A04 塑膠片鎖附" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A04：塑膠片陣列鎖附</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑪ 拉釘 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col11">
+            <span class="badge bg-danger me-2">⑪</span>拉釘 × 約 120 pcs（171-00032-200210）</button></h2>
+          <div id="col11" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>規格：SC-FL-M-0.80-5.00-3.00-4-A（沉頭半圓拉釘）</li>
+                <li>用量：每個產品約 120 pcs</li>
+                <li>對應 SOP 站：<strong>S03 自動化拉釘 + A01 補拉</strong></li>
+                <li>檢驗：不可漏拉、歪斜、浮高（SIP 標明 120 pcs 全數檢查）</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image22.png" class="img-fluid border rounded" alt="A01 拉釘作業" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A01：人工拉釘工位</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑫ 螺絲 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col12">
+            <span class="badge bg-warning text-dark me-2">⑫</span>螺絲 × 約 60+ pcs（60H141230-054）</button></h2>
+          <div id="col12" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>用量分布：A02 14 pcs（門鎖）+ A03 16 pcs（門鎖）+ A04 30 pcs（塑膠片）</li>
+                <li>對應 SOP 站：<strong>S04 自動化螺絲 / A02 / A03 / A04</strong></li>
+                <li>扭力規範：A02/A03 門鎖 <strong>5 ± 1 Kgf-cm</strong>；A04 塑膠片 <strong>3 ± 1 Kgf-cm</strong></li>
+                <li>檢驗：不可漏鎖、鎖歪、浮高；凸點須對位</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image30.png" class="img-fluid border rounded" alt="A04 鎖螺絲" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A04：塑膠片鎖螺絲</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑬ 導電泡棉 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col13">
+            <span class="badge bg-info me-2">⑬</span>導電泡棉 × 15+ pcs（167-30000-0553/0554/0555/0556/0557）</button></h2>
+          <div id="col13" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>5 種規格泡棉：短/長/側邊/上側/下側</li>
+                <li>對應 SOP 站：<strong>S01 / S02 / A05 / A06</strong>（多站貼附）</li>
+                <li>A05 主要貼附：中塑膠片 5 pcs（左側）+ 6 pcs（凹槽）</li>
+                <li>A06 補貼：大塑膠片右側 + 下側</li>
+                <li>檢驗：不可漏貼、貼歪、破損</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image34.png" class="img-fluid border rounded" alt="A05 貼泡棉" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A05：貼導電泡棉</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑭ 標籤 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col14">
+            <span class="badge bg-secondary me-2">⑭</span>標籤 × 7+ pcs（350-30000-3423A0）</button></h2>
+          <div id="col14" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>含黃色貼紙 7 pcs（方向需一致）+ 半透明貼紙 4 pcs</li>
+                <li>對應 SOP 站：<strong>A05 + A06</strong></li>
+                <li>使用檢具 CY-05J-0005 確認貼紙方向</li>
+                <li>檢驗：不可漏貼、皺褶、黏貼錯位、油墨模糊、貼反；<strong>生產週別、料號、REV 版本須正確</strong></li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image39.png" class="img-fluid border rounded" alt="A06 標籤" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A06：產品標籤</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑮ PE 袋 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col15">
+            <span class="badge bg-info me-2">⑮</span>PE 袋 × 1 pcs（173-00021-0004A0）</button></h2>
+          <div id="col15" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>透明 PE 防靜電袋</li>
+                <li>對應 SOP 站：<strong>A06 包裝</strong>（標籤朝內放入，多餘 PE 袋內折）</li>
+                <li>裝箱前最後一步包覆</li>
+                <li>檢驗：袋子完整無破損；標籤需從外部可見料號</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image40.png" class="img-fluid border rounded" alt="A06 PE 袋" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP A06：PE 袋包覆</div>
+            </div></div>
+          </div></div>
+        </div>
+
+        <!-- ⑯ 紙箱 + 棧板 -->
+        <div class="accordion-item">
+          <h2 class="accordion-header"><button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#col16">
+            <span class="badge bg-dark me-2">⑯</span>紙箱 + 棧板（73H039508A009，570×430×180mm）</button></h2>
+          <div id="col16" class="accordion-collapse collapse" data-bs-parent="#layoutAccordion"><div class="accordion-body">
+            <div class="row g-2"><div class="col-md-7">
+              <ul class="small mb-2">
+                <li>包材：天地蓋 + 隔板 + 長刀卡 4 + 短刀卡 4 + 護角紙</li>
+                <li>對應 SOP 站：<strong>成品箱組裝 + A06 裝箱</strong></li>
+                <li>裝箱規則：每格刀卡 4 pcs，標籤朝下；共 7 層；<strong>第 1、4、7 層各放 1 pcs 乾燥包</strong></li>
+                <li>運輸：空運 4 箱/棧板，海運 4+4 箱/棧板</li>
+                <li>檢驗：包材無缺件、破損、髒污；成品不可超出棧板外圍</li>
+              </ul>
+            </div><div class="col-md-5 text-center">
+              <img src="assembly_sop_images/image52.png" class="img-fluid border rounded" alt="成品箱組裝" style="max-height:200px;">
+              <div class="small text-muted mt-1">SOP：成品箱組裝</div>
+            </div></div>
+          </div></div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- 料件統計 -->
     <div class="row g-3 mt-3">
       <div class="col-md-6">
@@ -579,6 +894,200 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- SIP / 檢驗計畫 -->
+  <div class="card-box mb-4" style="border:2px solid #c62828;background:#ffebee;">
+    <div class="section-title" style="border-color:#c62828;color:#c62828;">
+      <i class="bi bi-clipboard2-check-fill me-1"></i>SIP 檢驗計畫（依勤誠提供之 SIP/自主檢查表/Rackmount 規範 R7.1）
+    </div>
+
+    <!-- 4 層檢驗體系 -->
+    <div class="row g-3 mb-3">
+      <div class="col-md-3">
+        <div class="p-3 rounded h-100" style="background:#e3f2fd;border-left:5px solid #1565c0;">
+          <div class="fw-bold mb-1" style="color:#0d47a1;">① IQC 來料檢驗</div>
+          <ul class="mb-0 small">
+            <li><strong>週期：</strong>每批進料</li>
+            <li><strong>方法：</strong>AQL 抽樣</li>
+            <li><strong>負責：</strong>QC 部</li>
+            <li><strong>文件：</strong>19 份 IQC SIP</li>
+            <li><strong>NG 處理：</strong>退貨/挑選 + 8D 通知供應商</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 rounded h-100" style="background:#e8f5e9;border-left:5px solid #2e7d32;">
+          <div class="fw-bold mb-1" style="color:#1b5e20;">② 製程自主檢查</div>
+          <ul class="mb-0 small">
+            <li><strong>週期：</strong>每 pcs 全檢</li>
+            <li><strong>方法：</strong>手指指物目視到位點檢</li>
+            <li><strong>負責：</strong>各站作業員</li>
+            <li><strong>文件：</strong>自主檢查表 × 2（L+R）</li>
+            <li><strong>NG 處理：</strong>立即向領班反應</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 rounded h-100" style="background:#fff8e1;border-left:5px solid #f57f17;">
+          <div class="fw-bold mb-1" style="color:#bf360c;">③ IPQC 製程巡檢</div>
+          <ul class="mb-0 small">
+            <li><strong>週期：</strong>每 1~2 小時巡檢</li>
+            <li><strong>方法：</strong>抽樣 + 扭力儀</li>
+            <li><strong>負責：</strong>IPQC 工程師</li>
+            <li><strong>重點：</strong>扭力、拉釘、貼附</li>
+            <li><strong>記錄：</strong>製程點檢表</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="p-3 rounded h-100" style="background:#fce4ec;border-left:5px solid #6a1b9a;">
+          <div class="fw-bold mb-1" style="color:#4a148c;">④ OQC 出貨檢驗</div>
+          <ul class="mb-0 small">
+            <li><strong>週期：</strong>每出貨批</li>
+            <li><strong>方法：</strong>AQL 抽樣 + Rackmount R7.1</li>
+            <li><strong>負責：</strong>OQC 工程師</li>
+            <li><strong>文件：</strong>出貨報告（範本已收到）</li>
+            <li><strong>NG 處理：</strong>暫扣出貨 + 重檢</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 各站自主檢查重點 -->
+    <div class="card-box mb-3" style="background:#fff;">
+      <div class="fw-bold mb-2" style="color:#c62828;"><i class="bi bi-list-check me-1"></i>各站自主檢查重點（依勤誠自主檢查表）</div>
+      <div class="table-responsive">
+        <table class="table table-sm table-bordered" style="font-size:.82rem;">
+          <thead style="background:#c62828;color:#fff;">
+            <tr><th width="6%">站</th><th width="20%">工站名稱</th><th width="35%">關鍵檢驗項目</th><th width="20%">數量/規格</th><th width="19%">扭力/工具</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>S01</td><td>中塑膠片加工</td>
+              <td>導電泡棉 2 pcs 不可漏貼、貼歪、破損；黑色烤漆 4 處無漏烤；藍色把手 1 pcs；黑色麥拉 1 pcs；黃色貼紙 1 pcs</td>
+              <td>每 pcs 全檢</td><td>手套</td></tr>
+            <tr><td>S02</td><td>大塑膠片加工</td>
+              <td>導電泡棉 1 pcs 不可漏貼；黑色烤漆 2 處無漏烤；藍色把手 2 pcs；黑色麥拉 2 pcs</td>
+              <td>每 pcs 全檢</td><td>手套</td></tr>
+            <tr style="background:#fff3e0;"><td>S03</td><td>自動化模組-1（拉釘）</td>
+              <td>上料時確認卡入定位 PIN；<strong>拉釘 120 pcs</strong> 不可漏拉、歪斜、浮高</td>
+              <td>每批 5 pcs 產品</td><td>自動化模組 + 治具</td></tr>
+            <tr style="background:#fff3e0;"><td>S04</td><td>自動化模組-2（螺絲）</td>
+              <td>上料時確認卡入定位；搭配機械手作業；<strong>螺絲不可漏鎖、鎖歪、浮高</strong></td>
+              <td>每批 1~2 pcs</td><td>自動化模組 + 機械手</td></tr>
+            <tr><td>A01</td><td>Cover 加工-1（拉釘）</td>
+              <td>掃標籤；<strong>拉釘 120 pcs 全檢</strong>；確認鐵件兩兩孔位對齊</td>
+              <td>每批 5 pcs</td><td>氣動拉釘槍、CY-05J-0014、掃碼槍</td></tr>
+            <tr><td>A02</td><td>Cover 加工-2（門鎖）</td>
+              <td>5 pcs 小門鎖 + 2 pcs 大門鎖；<strong>螺絲 14 pcs 全檢</strong>；凸點對位</td>
+              <td>每 pcs 全檢</td><td>電動起子 <strong>5 ± 1 Kgf-cm</strong></td></tr>
+            <tr><td>A03</td><td>Cover 加工-3（門鎖）</td>
+              <td>8 pcs 小門鎖；<strong>螺絲 16 pcs 全檢</strong>；凸點對位</td>
+              <td>每 pcs 全檢</td><td>電動起子 <strong>5 ± 1 Kgf-cm</strong></td></tr>
+            <tr><td>A04</td><td>Cover 加工-4（塑膠片）</td>
+              <td>1 大 + 6 中 + 1 小塑膠片入治具；<strong>螺絲 30 pcs 全檢</strong></td>
+              <td>每 pcs 全檢</td><td>電動起子 <strong>3 ± 1 Kgf-cm</strong>、CY-05J-0013</td></tr>
+            <tr><td>A05</td><td>Cover 加工-5（泡棉+貼紙）</td>
+              <td>導電泡棉 5 + 6 pcs；黃色貼紙 7 pcs 方向一致；半透明貼紙 4 pcs</td>
+              <td>每 pcs 全檢</td><td>CY-05J-0005（方向檢具）</td></tr>
+            <tr style="background:#fce4ec;"><td>A06</td><td>Cover 加工-6 + 包裝</td>
+              <td>導電泡棉補貼；<strong>標籤生產週別/料號/REV 正確</strong>；PE 袋；裝箱 7 層 + 1/4/7 層各 1 乾燥包</td>
+              <td>每 pcs 全檢</td><td>掃碼槍</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- IQC SIP 對應料件 -->
+    <div class="card-box mb-3" style="background:#fff;">
+      <div class="fw-bold mb-2" style="color:#1565c0;"><i class="bi bi-collection me-1"></i>IQC SIP 19 份 — 對應採購料件清單</div>
+      <div class="row g-2">
+        <div class="col-md-4">
+          <div class="p-2 rounded" style="background:#e3f2fd;">
+            <div class="fw-bold small mb-1">鐵件類（4 份）</div>
+            <ul class="small mb-0">
+              <li>SIP-355-30000-8043A0（鐵件）</li>
+              <li>SIP-355-30000-8044A0（長鐵件 491）</li>
+              <li>SIP-355-30000-8065A0（鐵件 492）</li>
+              <li>SIP-355-30000-8122A0（鐵件 493）</li>
+              <li>SIP-355-30001-1754A0（鐵件 715）</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-2 rounded" style="background:#fff8e1;">
+            <div class="fw-bold small mb-1">門鎖類（2 份）</div>
+            <ul class="small mb-0">
+              <li>SIP-356-30000-2311A0（大門鎖/鉸鏈）</li>
+              <li>SIP-356-30000-2490A0（小門鎖）</li>
+            </ul>
+            <div class="fw-bold small mb-1 mt-2">泡棉類（4 份）</div>
+            <ul class="small mb-0">
+              <li>SIP-167-30000-0554A0</li>
+              <li>SIP-167-30000-0555A0</li>
+              <li>SIP-167-30000-0556A0</li>
+              <li>SIP-167-30000-0557A0</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="p-2 rounded" style="background:#fce4ec;">
+            <div class="fw-bold small mb-1">塑膠片類（8 份）</div>
+            <ul class="small mb-0">
+              <li>SIP-383-30001-1130A0（小塑膠片）</li>
+              <li>SIP-383-30001-1133A0（中塑膠片）</li>
+              <li>SIP-383-30001-179600（大塑膠片）</li>
+              <li>SIP-383-30001-180200、180400</li>
+              <li>SIP-383-30001-180800、180900、181100</li>
+            </ul>
+            <div class="fw-bold small mb-1 mt-2">固定件（2 份）</div>
+            <ul class="small mb-0">
+              <li>SIP-171-00032-200210（拉釘）</li>
+              <li>SIP-60H141230-054（螺絲）</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="small mt-2 fst-italic" style="color:#666;">
+        ※ 全 19 份 IQC SIP 已收到，存於 <code>~/Desktop/勤誠組裝/.../IQC_SIP/</code>；建議建立 IQC 收料 SOP 並對應勤誠送料批號。
+      </div>
+    </div>
+
+    <!-- 檢驗風險與資源需求 -->
+    <div class="row g-3">
+      <div class="col-md-6">
+        <div class="p-3 rounded h-100" style="background:#fff3e0;border-left:5px solid #ef6c00;">
+          <div class="fw-bold mb-2" style="color:#bf360c;"><i class="bi bi-exclamation-triangle me-1"></i>檢驗風險點（依 SIP 內容彙整）</div>
+          <ul class="mb-0 small">
+            <li><strong>拉釘漏拉風險：</strong>每台 120 pcs，全檢容易遺漏 → 建議導入 AOI 影像比對</li>
+            <li><strong>扭力管控：</strong>A02/A03 5 Kgf-cm vs A04 3 Kgf-cm 不同 → 起子需貼明顯標籤</li>
+            <li><strong>L/R 混料：</strong>L 與 R 鏡像對稱 → 站別需明確分線或時段隔離</li>
+            <li><strong>標籤錯版：</strong>生產週別/REV 印錯為勤誠重大不良 → 進料即查 + 換 lot 時複查</li>
+            <li><strong>泡棉貼歪：</strong>15+ pcs 多規格易誤貼 → 治具孔位指引</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="p-3 rounded h-100" style="background:#e0f7fa;border-left:5px solid #00838f;">
+          <div class="fw-bold mb-2" style="color:#006064;"><i class="bi bi-people me-1"></i>檢驗人力與設備需求</div>
+          <ul class="mb-0 small">
+            <li><strong>IQC 1 人</strong>：依 SIP 抽檢來料，含扭力儀、卡尺、AOI（共用）</li>
+            <li><strong>IPQC 1 人</strong>（兩線共用）：每小時巡檢扭力、拉釘、貼附</li>
+            <li><strong>OQC 1 人</strong>：依 Rackmount R7.1 抽樣，與出貨報告連動</li>
+            <li><strong>檢驗設備</strong>：扭力儀 × 2、卡尺 × 4、檢具 CY-05J-0005、AOI（建議）</li>
+            <li><strong>檢驗成本</strong>：3 人 × 36,800 = <strong>11.04 萬/月</strong>（已含於 18 人之外，需另列）</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- 結論：人力是否需要修正 -->
+    <div class="warn mt-3" style="background:#fff;border-color:#c62828;color:#b71c1c;">
+      <i class="bi bi-arrow-down-right-circle me-1"></i>
+      <strong>本期定案前需釐清：</strong>勤誠 SOP 9 人/條 <strong>不含 IQC/IPQC/OQC</strong>。
+      若鴻騰需自負來料+製程+出貨檢驗，<strong>需額外 3 人</strong>（兩線共用） → 整廠 21 人，年人力增加約 132 萬。
+      建議向業務確認：勤誠是否提供現場 SQA 駐廠？或由鴻騰 QC 部支援？
     </div>
   </div>
 
