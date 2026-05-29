@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>工作權責與目標 — 鴻騰電子</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { font-family: 'Noto Sans TC', 'PingFang TC', sans-serif; }
+  body {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e8eef5 100%);
+    color: #2d3748;
+    line-height: 1.75;
+    min-height: 100vh;
+  }
+
+  header.hero {
+    background: linear-gradient(135deg, #1a365d 0%, #2c5282 50%, #2b6cb0 100%);
+    color: white;
+    padding: 60px 40px 90px;
+    text-align: center;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+  header.hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,0.08) 0, transparent 40%),
+      radial-gradient(circle at 80% 70%, rgba(255,255,255,0.06) 0, transparent 40%);
+    pointer-events: none;
+  }
+  header.hero h1 {
+    font-size: 2.6rem;
+    font-weight: 900;
+    margin-bottom: 12px;
+    letter-spacing: 4px;
+    position: relative;
+  }
+  header.hero .sub {
+    font-size: 1.05rem;
+    opacity: 0.9;
+    font-weight: 300;
+    letter-spacing: 2px;
+    position: relative;
+  }
+
+  main {
+    max-width: 1180px;
+    margin: -50px auto 60px;
+    padding: 0 24px;
+    position: relative;
+    z-index: 2;
+  }
+
+  section {
+    background: white;
+    border-radius: 18px;
+    padding: 48px 44px;
+    margin-bottom: 28px;
+    box-shadow: 0 4px 28px rgba(0,0,0,0.07);
+  }
+
+  section h2 {
+    font-size: 1.7rem;
+    font-weight: 900;
+    margin-bottom: 6px;
+    color: #1a365d;
+    border-left: 6px solid #2b6cb0;
+    padding-left: 18px;
+    letter-spacing: 1px;
+  }
+  section .section-intro {
+    color: #718096;
+    margin-bottom: 32px;
+    font-size: 0.98rem;
+    padding-left: 24px;
+  }
+
+  /* ─── Five Forces ─── */
+  .forces-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+  .force-card {
+    border-radius: 14px;
+    padding: 28px 16px;
+    color: white;
+    transition: transform 0.3s, box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    min-height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .force-card::after {
+    content: '';
+    position: absolute;
+    top: -22px; right: -22px;
+    width: 90px; height: 90px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 50%;
+  }
+  .force-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.2);
+  }
+  .force-card .icon {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    font-weight: 900;
+  }
+  .force-card .title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    position: relative;
+  }
+  .force-card .toggle-hint {
+    margin-top: 10px;
+    font-size: 0.72rem;
+    opacity: 0.75;
+    letter-spacing: 2px;
+    transition: opacity 0.3s;
+  }
+  .force-card.open .toggle-hint { opacity: 0; height: 0; margin-top: 0; }
+  .force-card .desc {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    font-size: 0.88rem;
+    line-height: 1.7;
+    transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.4s ease, padding-top 0.4s ease;
+    margin-top: 0;
+    padding-top: 0;
+    position: relative;
+    text-align: left;
+    width: 100%;
+  }
+  .force-card.open .desc {
+    max-height: 260px;
+    opacity: 1;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.25);
+  }
+  .force-quality { background: linear-gradient(135deg, #38a169, #276749); }
+  .force-price { background: linear-gradient(135deg, #dd6b20, #9c4221); }
+  .force-delivery { background: linear-gradient(135deg, #3182ce, #2a4365); }
+  .force-service { background: linear-gradient(135deg, #d53f8c, #97266d); }
+  .force-tech { background: linear-gradient(135deg, #805ad5, #553c9a); }
+
+  /* ─── Responsibility Matrix ─── */
+  .resp-table-wrap { overflow-x: auto; border-radius: 12px; }
+  .resp-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 720px;
+  }
+  .resp-table th, .resp-table td {
+    padding: 14px 12px;
+    text-align: center;
+    border-bottom: 1px solid #e2e8f0;
+  }
+  .resp-table thead th {
+    background: #1a365d;
+    color: white;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
+  }
+  .resp-table thead th:first-child { border-top-left-radius: 10px; text-align: left; padding-left: 22px; }
+  .resp-table thead th:last-child { border-top-right-radius: 10px; }
+  .resp-table tbody tr:hover { background: #f7fafc; }
+  .resp-table tbody tr:last-child td { border-bottom: none; }
+  .resp-table tbody tr:last-child td:first-child { border-bottom-left-radius: 10px; }
+  .resp-table tbody tr:last-child td:last-child { border-bottom-right-radius: 10px; }
+  .resp-table td.dept-name {
+    font-weight: 700;
+    font-size: 1.02rem;
+    background: #f7fafc;
+    text-align: left;
+    padding-left: 22px;
+    color: #1a365d;
+  }
+  .badge-main, .badge-sub, .badge-none {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .badge-main { background: linear-gradient(135deg, #e53e3e, #9b2c2c); color: white; box-shadow: 0 2px 6px rgba(229,62,62,0.3); }
+  .badge-sub { background: #bee3f8; color: #2c5282; font-weight: 500; }
+  .badge-none { color: #cbd5e0; font-weight: 400; font-size: 1.1rem; }
+
+  .resp-legend {
+    margin-top: 22px;
+    padding: 18px 22px;
+    background: linear-gradient(135deg, #f7fafc, #edf2f7);
+    border-radius: 10px;
+    font-size: 0.92rem;
+  }
+  .resp-legend ul { margin-top: 8px; padding-left: 22px; line-height: 2; }
+
+  /* ─── Expandable Dept Detail ─── */
+  .resp-table tr.dept-row { cursor: pointer; transition: background 0.2s; }
+  .resp-table tr.dept-row:hover { background: #edf2f7; }
+  .resp-table tr.dept-row.open td.dept-name { background: #ebf4ff; color: #2b6cb0; }
+  .caret {
+    display: inline-block;
+    margin-right: 8px;
+    font-size: 0.75rem;
+    color: #718096;
+    transition: transform 0.3s ease;
+  }
+  .dept-row.open .caret { transform: rotate(90deg); color: #2b6cb0; }
+
+  .dept-detail-row > td { padding: 0 !important; border: none !important; background: #f7fafc; }
+  .detail-inner {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .dept-detail-row.open .detail-inner { max-height: 600px; }
+  .detail-grid {
+    padding: 22px 28px 26px;
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 24px;
+  }
+  .detail-col h5 {
+    font-size: 0.92rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    padding: 4px 14px;
+    border-radius: 16px;
+    display: inline-block;
+    letter-spacing: 1px;
+  }
+  .detail-col.main h5 {
+    background: linear-gradient(135deg, #e53e3e, #9b2c2c);
+    color: white;
+  }
+  .detail-col.sub h5 {
+    background: #bee3f8;
+    color: #2c5282;
+  }
+  .detail-col ul { list-style: none; padding: 0; }
+  .detail-col li {
+    padding: 8px 0 8px 22px;
+    position: relative;
+    line-height: 1.7;
+    font-size: 0.93rem;
+    color: #2d3748;
+    border-bottom: 1px dashed #e2e8f0;
+  }
+  .detail-col li:last-child { border-bottom: none; }
+  .detail-col li::before {
+    content: '';
+    position: absolute;
+    left: 4px;
+    top: 17px;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  .detail-col.main li::before { background: #e53e3e; }
+  .detail-col.sub li::before { background: #4299e1; }
+  .detail-col li .tag {
+    display: inline-block;
+    padding: 1px 8px;
+    border-radius: 4px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-right: 6px;
+    background: #2d3748;
+    color: white;
+    letter-spacing: 1px;
+  }
+  @media (max-width: 768px) {
+    .detail-grid { grid-template-columns: 1fr; gap: 16px; padding: 18px 16px 22px; }
+  }
+
+  /* ─── Pentagon Animation ─── */
+  .pentagon-controls {
+    text-align: center;
+    margin: 8px 0 20px;
+  }
+  .pentagon-controls button {
+    background: linear-gradient(135deg, #2b6cb0, #1a365d);
+    color: white;
+    border: none;
+    padding: 13px 32px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    font-family: inherit;
+    letter-spacing: 1px;
+  }
+  .pentagon-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px rgba(43,108,176,0.4);
+  }
+  .pentagon-state {
+    color: #4a5568;
+    font-size: 0.95rem;
+    margin-top: 14px;
+    font-weight: 500;
+  }
+
+  .pentagon-wrap { text-align: center; }
+  .pentagon-svg {
+    width: 100%;
+    max-width: 720px;
+    height: auto;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .dept-group circle.bubble {
+    transition: r 1s cubic-bezier(0.34, 1.45, 0.55, 1),
+                fill-opacity 0.8s ease,
+                stroke-width 0.8s ease;
+    stroke-width: 3;
+    fill-opacity: 0.88;
+  }
+  .pentagon-svg.active .dept-group circle.bubble {
+    r: 140;
+    fill-opacity: 0.7;
+  }
+
+  .dept-sales       circle.bubble { fill: #4299e1; stroke: #2b6cb0; }
+  .dept-engineering circle.bubble { fill: #9f7aea; stroke: #6b46c1; }
+  .dept-qa          circle.bubble { fill: #48bb78; stroke: #2f855a; }
+  .dept-production  circle.bubble { fill: #ed8936; stroke: #c05621; }
+  .dept-materials   circle.bubble { fill: #38b2ac; stroke: #2c7a7b; }
+
+  .dept-group text {
+    fill: white;
+    text-anchor: middle;
+    font-weight: 900;
+    font-family: 'Noto Sans TC', sans-serif;
+    pointer-events: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.25);
+  }
+  .dept-group text.label { font-size: 23px; letter-spacing: 1px; }
+  .dept-group text.sublabel { font-size: 11px; font-weight: 500; opacity: 0.92; letter-spacing: 1px; }
+
+  .leader-lines line {
+    stroke: #a0aec0;
+    stroke-width: 2;
+    stroke-dasharray: 7 5;
+    transition: opacity 0.7s ease, stroke-width 0.7s ease;
+    opacity: 0.7;
+  }
+  .pentagon-svg.active .leader-lines line {
+    opacity: 0;
+  }
+
+  .gap-marks {
+    transition: opacity 0.7s ease;
+  }
+  .pentagon-svg.active .gap-marks {
+    opacity: 0;
+  }
+  .gap-marks text.gap-q {
+    text-anchor: middle;
+    font-size: 18px;
+    font-weight: 900;
+    fill: #dd6b20;
+    font-family: 'Noto Sans TC', sans-serif;
+  }
+  @keyframes gap-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.18); }
+  }
+  .gap-marks > g {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: gap-pulse 2.2s ease-in-out infinite;
+  }
+  .gap-marks > g:nth-child(2) { animation-delay: 0.4s; }
+  .gap-marks > g:nth-child(3) { animation-delay: 0.8s; }
+  .gap-marks > g:nth-child(4) { animation-delay: 1.2s; }
+  .gap-marks > g:nth-child(5) { animation-delay: 1.6s; }
+
+  .leader {
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.5, 0, 0.75, 0);
+    transform-origin: 400px 360px;
+    transform-box: view-box;
+  }
+  .pentagon-svg.active .leader {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  @keyframes russell-strain {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-1px) rotate(-0.6deg); }
+    75% { transform: translateY(-1px) rotate(0.6deg); }
+  }
+  .pentagon-svg:not(.active) .leader {
+    animation: russell-strain 1.6s ease-in-out infinite;
+  }
+  .leader text.leader-label {
+    font-size: 17px;
+    text-anchor: middle;
+    fill: #2d3748;
+    font-weight: 900;
+    letter-spacing: 6px;
+  }
+
+  .insight-box {
+    margin-top: 32px;
+    padding: 22px 26px;
+    background: linear-gradient(135deg, #ebf8ff, #e6fffa);
+    border-left: 5px solid #2b6cb0;
+    border-radius: 10px;
+    line-height: 1.85;
+  }
+  .insight-box strong.tag { color: #1a365d; font-size: 1.05rem; }
+  .insight-box p { margin-top: 8px; color: #2c5282; font-size: 0.97rem; }
+
+  /* ─── 內耗 Complaint cards ─── */
+  .complaint-list { display: flex; flex-direction: column; gap: 14px; }
+  .complaint-card {
+    background: white;
+    border: 1px solid #e2e8f0;
+    border-radius: 14px;
+    overflow: hidden;
+    transition: box-shadow 0.3s, transform 0.2s, border-color 0.3s;
+  }
+  .complaint-card:hover {
+    box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+    border-color: #cbd5e0;
+  }
+  .complaint-card.open {
+    box-shadow: 0 10px 28px rgba(0,0,0,0.1);
+    border-color: #a0aec0;
+  }
+  .complaint-header {
+    display: flex;
+    align-items: center;
+    padding: 18px 22px;
+    gap: 18px;
+    cursor: pointer;
+  }
+  .dept-tag {
+    padding: 8px 14px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    min-width: 80px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .dept-tag.sales       { background: linear-gradient(135deg, #4299e1, #2b6cb0); }
+  .dept-tag.engineering { background: linear-gradient(135deg, #9f7aea, #6b46c1); }
+  .dept-tag.qa          { background: linear-gradient(135deg, #48bb78, #2f855a); }
+  .dept-tag.materials   { background: linear-gradient(135deg, #38b2ac, #2c7a7b); }
+  .dept-tag.production  { background: linear-gradient(135deg, #ed8936, #c05621); }
+  .complaint-header .summary {
+    flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #4a5568;
+    line-height: 1.5;
+  }
+  .complaint-header .expand-icon {
+    font-size: 0.8rem;
+    color: #a0aec0;
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+  }
+  .complaint-card.open .expand-icon { transform: rotate(180deg); }
+
+  .complaint-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.55s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .complaint-card.open .complaint-body { max-height: 1400px; }
+  .complaint-body-inner {
+    padding: 4px 22px 22px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 18px;
+  }
+  .grievance, .response {
+    padding: 16px 18px;
+    border-radius: 10px;
+  }
+  .grievance {
+    background: #fff5f5;
+    border-left: 4px solid #e53e3e;
+  }
+  .response {
+    background: #f0fff4;
+    border-left: 4px solid #38a169;
+  }
+  .block-title {
+    font-weight: 800;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    letter-spacing: 1.5px;
+  }
+  .grievance .block-title { color: #c53030; }
+  .response  .block-title { color: #276749; }
+  .grievance ul { padding-left: 20px; margin: 0; }
+  .grievance li { padding: 4px 0; color: #742a2a; line-height: 1.65; font-size: 0.93rem; }
+  .response p { color: #1c4532; line-height: 1.85; font-size: 0.94rem; margin: 0; }
+  .response p + p, .response p + ul, .response ul + p { margin-top: 10px; }
+  .response ul {
+    margin: 0;
+    padding-left: 22px;
+    color: #1c4532;
+    line-height: 1.7;
+    font-size: 0.93rem;
+  }
+  .response ul li {
+    padding: 5px 0;
+    list-style-type: '▸ ';
+  }
+  .response ul li::marker { color: #38a169; font-weight: 900; }
+
+  @media (max-width: 768px) {
+    .complaint-body-inner { grid-template-columns: 1fr; gap: 12px; padding: 0 16px 18px; }
+    .complaint-header { padding: 16px; gap: 12px; }
+    .dept-tag { min-width: 64px; padding: 6px 10px; font-size: 0.9rem; }
+  }
+
+  footer {
+    text-align: center;
+    color: #718096;
+    font-size: 0.88rem;
+    padding: 20px;
+    letter-spacing: 1px;
+  }
+
+  @media (max-width: 768px) {
+    header.hero { padding: 44px 20px 70px; }
+    header.hero h1 { font-size: 1.9rem; letter-spacing: 2px; }
+    section { padding: 32px 22px; }
+    section h2 { font-size: 1.3rem; }
+    .forces-grid { grid-template-columns: repeat(2, 1fr); }
+    .resp-table { font-size: 0.85rem; }
+    .resp-table th, .resp-table td { padding: 10px 6px; }
+    .badge-main, .badge-sub { padding: 3px 9px; font-size: 0.75rem; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>工作權責與目標</h1>
+  <div class="sub">以「五力競爭」為主軸 ‧ 建構鴻騰電子協作文化</div>
+</header>
+
+<main>
+
+<!-- ───────────────────────────── Section 1 ───────────────────────────── -->
+<section>
+  <h2>一、競爭力</h2>
+  <p class="section-intro">點擊任一卡片可展開定義說明。</p>
+
+  <div class="forces-grid">
+    <div class="force-card force-quality" onclick="toggleForce(this)">
+      <div class="icon">◆</div>
+      <div class="title">品質</div>
+      <div class="toggle-hint">點擊展開</div>
+      <div class="desc">產品符合規格、批次穩定、客訴率低，是建立客戶長期信任的根基。</div>
+    </div>
+    <div class="force-card force-price" onclick="toggleForce(this)">
+      <div class="icon">¥</div>
+      <div class="title">價格</div>
+      <div class="toggle-hint">點擊展開</div>
+      <div class="desc">在合理成本結構下提供具競爭力的售價，創造價值差異與毛利空間。</div>
+    </div>
+    <div class="force-card force-delivery" onclick="toggleForce(this)">
+      <div class="icon">⌛</div>
+      <div class="title">交期</div>
+      <div class="toggle-hint">點擊展開</div>
+      <div class="desc">準時交貨、彈性應變、急單能力，是客戶供應鏈穩定的關鍵保證。</div>
+    </div>
+    <div class="force-card force-service" onclick="toggleForce(this)">
+      <div class="icon">♥</div>
+      <div class="title">客戶服務</div>
+      <div class="toggle-hint">點擊展開</div>
+      <div class="desc">售前提案、售中響應、售後支援，全方位提升客戶體驗與黏著度。</div>
+    </div>
+    <div class="force-card force-tech" onclick="toggleForce(this)">
+      <div class="icon">⚙</div>
+      <div class="title">技術能力</div>
+      <div class="toggle-hint">點擊展開</div>
+      <div class="desc">研發能量、製程創新、客製化設計能力，構築進入門檻與長期優勢。</div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────────────────────── Section 2 ───────────────────────────── -->
+<section>
+  <h2>二、各部門權責對應五力</h2>
+  <p class="section-intro">以五力為座標，定義六大部門的「主權責」（主導執行、負最終結果責任）與「協辦權責」（跨部支援，配合資源/資訊/行動）。</p>
+
+  <div class="resp-table-wrap">
+  <table class="resp-table">
+    <thead>
+      <tr>
+        <th>部門 ／ 五力</th>
+        <th>品質</th>
+        <th>價格</th>
+        <th>交期</th>
+        <th>客戶服務</th>
+        <th>技術</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- 採購 -->
+      <tr class="dept-row" data-dept="purchase" onclick="toggleDept('purchase')">
+        <td class="dept-name"><span class="caret">▶</span>採購</td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-none">—</span></td>
+        <td><span class="badge-none">—</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-purchase">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">價格</span>與供應商議價，建立合理成本結構，創造採購價值。</li>
+                <li><span class="tag">交期</span>管控供應商出貨節奏，確保物料準時到廠，不卡關到產線。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">品質</span>協助供應商<strong>品質異常後的處理</strong>（重工、特採、退補貨、賠償談判等）；扮演<strong>品保與供應商之間的潤滑角色</strong>，把品保的標準語言、供應商的執行限制兩邊翻譯到位，共同維持供應商品質水準。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+
+      <!-- 業務 -->
+      <tr class="dept-row" data-dept="sales" onclick="toggleDept('sales')">
+        <td class="dept-name"><span class="caret">▶</span>業務</td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-sales">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">客戶服務</span>滿足客戶 — 從售前提案、售中響應、售後支援全程負責，是客戶端的單一窗口。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">品質 / 價格 / 交期 / 技術</span>在「滿足客戶」這個前提下，所有跨部門的協辦項目都要主動跟追到底，不能丟給其他部門就放手。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+
+      <!-- 工程 -->
+      <tr class="dept-row" data-dept="engineering" onclick="toggleDept('engineering')">
+        <td class="dept-name"><span class="caret">▶</span>工程</td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-main">主權責</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-engineering">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">技術</span>前期技術開發 — 將「混亂無序」導入「標準有序」，建立量產可複製的技術基底。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">品質</span>量產後品質異常處理、檢治具設計、標準調整與核定。</li>
+                <li><span class="tag">技術 / 價格 / 品質</span>RFQ 階段挑選合適的廠商與製程，平衡技術可行性、成本與品質。</li>
+                <li><span class="tag">交期</span>開模與樣品排程合理性的安排與盯催。</li>
+                <li><span class="tag">客戶服務</span>客戶端 RD 專業問題點對接，提供技術回覆。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+
+      <!-- 產線 -->
+      <tr class="dept-row" data-dept="production" onclick="toggleDept('production')">
+        <td class="dept-name"><span class="caret">▶</span>產線</td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-none">—</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-production">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">品質</span>生產出來的產品符合標準 — 廠內生產品質一次做對。</li>
+                <li><span class="tag">價格</span>在符合標準的前提下，UPH 拉高、製程優化，達成單位成本下降。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">交期</span>滿足生管（最終代表客戶）所要求的出貨交期。</li>
+                <li><span class="tag">技術</span>主動新增、試行更多製程項目，增加廠內的技術競爭力與可承接範圍。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+
+      <!-- 生管/業助 -->
+      <tr class="dept-row" data-dept="planning" onclick="toggleDept('planning')">
+        <td class="dept-name"><span class="caret">▶</span>生管/業助</td>
+        <td><span class="badge-none">—</span></td>
+        <td><span class="badge-none">—</span></td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-none">—</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-planning">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">交期</span>串接客戶端業助的客戶交期需求；將「供應商交期 ‧ 廠內產能 ‧ 客戶要求」三者拉在同一條線上，做出平衡與取捨。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">客戶服務</span>作為客戶交期需求對內的窗口，反映客戶端的真實聲音、節奏與壓力。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+
+      <!-- 品保 -->
+      <tr class="dept-row" data-dept="qa" onclick="toggleDept('qa')">
+        <td class="dept-name"><span class="caret">▶</span>品保</td>
+        <td><span class="badge-main">主權責</span></td>
+        <td><span class="badge-none">—</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+        <td><span class="badge-sub">協辦</span></td>
+      </tr>
+      <tr class="dept-detail-row" id="detail-qa">
+        <td colspan="6">
+          <div class="detail-inner"><div class="detail-grid">
+            <div class="detail-col main">
+              <h5>主辦</h5>
+              <ul>
+                <li><span class="tag">品質</span>依據客戶與工程定義的標準，統合「供應商品質 ‧ 廠內品質」拉在同一條線上，作為品質的最終守門員。</li>
+              </ul>
+            </div>
+            <div class="detail-col sub">
+              <h5>協辦</h5>
+              <ul>
+                <li><span class="tag">客戶服務</span>產生客訴時與客戶對接，作為公司對外品質的代表窗口。</li>
+                <li><span class="tag">交期</span>及時做出判定，給出處置做法的標準（特採／重工／報廢），避免品質問題拖累出貨。</li>
+                <li><span class="tag">技術</span>依據品保專業，給出流程與標準建議，協助工程把標準訂得更可執行。</li>
+              </ul>
+            </div>
+          </div></div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+
+  <div class="resp-legend">
+    <strong>定義說明：</strong>
+    <ul>
+      <li><span class="badge-main">主權責</span> 該部門對此項五力負最終結果責任，需主導 KPI 達成。</li>
+      <li><span class="badge-sub">協辦</span> 該部門需配合提供資源、資訊或行動，使主權責方達標。</li>
+      <li><span class="badge-none">—</span> 該部門對此項五力幾乎無直接影響，但仍應保持基本認知。</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ───────────────────────────── Section 3 ───────────────────────────── -->
+<section>
+  <h2>三、我目前的感受</h2>
+  <p class="section-intro">
+    我每天在中間拉著五個部門 — 每個部門都各司其職，但<strong>部門之間的間隙</strong>，常常沒人補。
+    一旦我退出，這些「中間的工作」就掉到地上。
+    我希望的協作文化是 — 大家都願意多跨一步、多協助一點，讓中間的空白自然被填滿。
+  </p>
+
+  <div class="pentagon-controls">
+    <button id="toggleBtn" onclick="togglePentagon()">▶ 點擊啟動：每個部門多做一點</button>
+    <div class="pentagon-state" id="stateText">目前狀態：我居中拉著大家 ‧ 五個部門之間有明顯間隙</div>
+  </div>
+
+  <div class="pentagon-wrap">
+    <svg class="pentagon-svg" id="pentagonSvg" viewBox="0 0 800 700" onclick="togglePentagon()">
+      <defs>
+        <radialGradient id="leaderGrad" cx="50%" cy="40%">
+          <stop offset="0%"  stop-color="#fef3c7"/>
+          <stop offset="55%" stop-color="#f6ad55"/>
+          <stop offset="100%" stop-color="#c05621"/>
+        </radialGradient>
+        <filter id="softShadow" x="-30%" y="-30%" width="160%" height="160%">
+          <feGaussianBlur in="SourceAlpha" stdDeviation="5"/>
+          <feOffset dy="4"/>
+          <feComponentTransfer><feFuncA type="linear" slope="0.35"/></feComponentTransfer>
+          <feMerge>
+            <feMergeNode/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- 主管拉動的繩子（虛線，active 時淡出） -->
+      <g class="leader-lines">
+        <line x1="400" y1="350" x2="400"   y2="150"/>
+        <line x1="400" y1="350" x2="590.2" y2="288.2"/>
+        <line x1="400" y1="350" x2="517.6" y2="511.8"/>
+        <line x1="400" y1="350" x2="282.4" y2="511.8"/>
+        <line x1="400" y1="350" x2="209.8" y2="288.2"/>
+      </g>
+
+      <!-- 五個部門圈圈，依五角形頂點排列（r=60 強調間隙） -->
+      <g class="dept-group dept-sales" transform="translate(400, 150)">
+        <circle class="bubble" cx="0" cy="0" r="60" filter="url(#softShadow)"/>
+        <text class="label" y="8">業務</text>
+      </g>
+
+      <g class="dept-group dept-engineering" transform="translate(590.2, 288.2)">
+        <circle class="bubble" cx="0" cy="0" r="60" filter="url(#softShadow)"/>
+        <text class="label" y="8">工程</text>
+      </g>
+
+      <g class="dept-group dept-qa" transform="translate(517.6, 511.8)">
+        <circle class="bubble" cx="0" cy="0" r="60" filter="url(#softShadow)"/>
+        <text class="label" y="8">品保</text>
+      </g>
+
+      <g class="dept-group dept-production" transform="translate(282.4, 511.8)">
+        <circle class="bubble" cx="0" cy="0" r="60" filter="url(#softShadow)"/>
+        <text class="label" y="8">產線</text>
+      </g>
+
+      <g class="dept-group dept-materials" transform="translate(209.8, 288.2)">
+        <circle class="bubble" cx="0" cy="0" r="60" filter="url(#softShadow)"/>
+        <text class="label" y="2">資材</text>
+        <text class="sublabel" y="22">採購＋生管/業助</text>
+      </g>
+
+      <!-- 間隙標記：誰來補？（active 時淡出） -->
+      <g class="gap-marks">
+        <g transform="translate(495.1, 219.1)">
+          <circle r="14" fill="#fffaf0" stroke="#ed8936" stroke-width="2" stroke-dasharray="3 2"/>
+          <text class="gap-q" y="6">?</text>
+        </g>
+        <g transform="translate(553.9, 400)">
+          <circle r="14" fill="#fffaf0" stroke="#ed8936" stroke-width="2" stroke-dasharray="3 2"/>
+          <text class="gap-q" y="6">?</text>
+        </g>
+        <g transform="translate(400, 511.8)">
+          <circle r="14" fill="#fffaf0" stroke="#ed8936" stroke-width="2" stroke-dasharray="3 2"/>
+          <text class="gap-q" y="6">?</text>
+        </g>
+        <g transform="translate(246.1, 400)">
+          <circle r="14" fill="#fffaf0" stroke="#ed8936" stroke-width="2" stroke-dasharray="3 2"/>
+          <text class="gap-q" y="6">?</text>
+        </g>
+        <g transform="translate(304.9, 219.1)">
+          <circle r="14" fill="#fffaf0" stroke="#ed8936" stroke-width="2" stroke-dasharray="3 2"/>
+          <text class="gap-q" y="6">?</text>
+        </g>
+      </g>
+
+      <!-- 中間：我（可愛小胖子 — 努力地拉著五個部門） -->
+      <g class="leader" id="leader">
+        <!-- 地面陰影 -->
+        <ellipse cx="400" cy="432" rx="52" ry="8" fill="rgba(0,0,0,0.22)"/>
+
+        <!-- 努力線條（用力的氣場） -->
+        <path d="M 330 346 L 344 348" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 470 346 L 456 348" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 326 358 L 342 360" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 474 358 L 458 360" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 330 370 L 344 370" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M 470 370 L 456 370" stroke="#a0aec0" stroke-width="2.4" stroke-linecap="round"/>
+
+        <!-- 雙腳（黑色小球鞋） -->
+        <ellipse cx="381" cy="424" rx="13" ry="7" fill="#1a202c"/>
+        <ellipse cx="419" cy="424" rx="13" ry="7" fill="#1a202c"/>
+        <ellipse cx="381" cy="423" rx="8" ry="3" fill="white" opacity="0.5"/>
+        <ellipse cx="419" cy="423" rx="8" ry="3" fill="white" opacity="0.5"/>
+
+        <!-- 小短褲（深藍色） -->
+        <path d="M 356 400 L 354 422 L 396 422 L 397 400 Z" fill="#2c5282" stroke="#1a365d" stroke-width="1"/>
+        <path d="M 444 400 L 446 422 L 404 422 L 403 400 Z" fill="#2c5282" stroke="#1a365d" stroke-width="1"/>
+
+        <!-- 身體（紅色 T 恤，圓圓胖胖） -->
+        <path d="M 344 362 Q 332 420 380 424 L 420 424 Q 468 420 456 362 Q 454 345 434 342 L 366 342 Q 346 345 344 362 Z"
+              fill="#e53e3e" stroke="#9b2c2c" stroke-width="2.4"/>
+
+        <!-- T 恤領口 -->
+        <path d="M 386 343 Q 400 350 414 343" stroke="#9b2c2c" stroke-width="2" fill="#f6d3a8"/>
+
+        <!-- T 恤中間白色橫條 -->
+        <path d="M 348 385 Q 400 392 452 385" stroke="white" stroke-width="6" fill="none" opacity="0.9"/>
+        <path d="M 348 385 Q 400 392 452 385" stroke="#9b2c2c" stroke-width="1" fill="none" opacity="0.4"/>
+
+        <!-- 左手（向外用力拉） -->
+        <path d="M 348 365 Q 326 358 308 350" stroke="#f6d3a8" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <circle cx="308" cy="350" r="9.5" fill="#f6d3a8" stroke="#c89668" stroke-width="1.3"/>
+        <!-- 左手指（小指頭） -->
+        <path d="M 302 346 L 300 343" stroke="#c89668" stroke-width="1" fill="none"/>
+        <path d="M 305 343 L 304 340" stroke="#c89668" stroke-width="1" fill="none"/>
+
+        <!-- 右手（向外用力拉） -->
+        <path d="M 452 365 Q 474 358 492 350" stroke="#f6d3a8" stroke-width="13" fill="none" stroke-linecap="round"/>
+        <circle cx="492" cy="350" r="9.5" fill="#f6d3a8" stroke="#c89668" stroke-width="1.3"/>
+        <path d="M 498 346 L 500 343" stroke="#c89668" stroke-width="1" fill="none"/>
+        <path d="M 495 343 L 496 340" stroke="#c89668" stroke-width="1" fill="none"/>
+
+        <!-- 脖子（短，與身體相連） -->
+        <path d="M 388 340 Q 400 345 412 340 L 412 350 L 388 350 Z" fill="#f6d3a8"/>
+
+        <!-- 頭（圓圓大大 r=42） -->
+        <circle cx="400" cy="312" r="42" fill="#f6d3a8" stroke="#c89668" stroke-width="2"/>
+
+        <!-- 頭髮（蘑菇頭，黑色蓋頂） -->
+        <path d="M 358 312 Q 358 268 400 264 Q 442 268 442 312 Q 442 295 432 290 Q 416 285 400 286 Q 384 285 368 290 Q 358 295 358 312 Z"
+              fill="#1a202c"/>
+        <!-- 兩側鬢角 -->
+        <ellipse cx="364" cy="308" rx="6" ry="10" fill="#1a202c"/>
+        <ellipse cx="436" cy="308" rx="6" ry="10" fill="#1a202c"/>
+        <!-- 中央瀏海尖 -->
+        <path d="M 392 286 Q 400 282 408 286 L 406 296 L 394 296 Z" fill="#1a202c"/>
+
+        <!-- 痛苦眉毛（八字眉） -->
+        <path d="M 376 320 Q 385 312 396 312" stroke="#1a202c" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+        <path d="M 404 312 Q 415 312 424 320" stroke="#1a202c" stroke-width="3.6" stroke-linecap="round" fill="none"/>
+
+        <!-- 大眼睛（可愛、稍微下垂、瞳孔靠上 — 苦撐感） -->
+        <ellipse cx="386" cy="326" rx="4.5" ry="5.4" fill="white" stroke="#1a202c" stroke-width="1.6"/>
+        <ellipse cx="414" cy="326" rx="4.5" ry="5.4" fill="white" stroke="#1a202c" stroke-width="1.6"/>
+        <circle cx="386" cy="324.5" r="3" fill="#1a202c"/>
+        <circle cx="414" cy="324.5" r="3" fill="#1a202c"/>
+        <circle cx="387" cy="323" r="1.1" fill="white"/>
+        <circle cx="415" cy="323" r="1.1" fill="white"/>
+
+        <!-- 紅潤臉頰（漲紅） -->
+        <ellipse cx="368" cy="336" rx="9" ry="7" fill="#f56565" opacity="0.6"/>
+        <ellipse cx="432" cy="336" rx="9" ry="7" fill="#f56565" opacity="0.6"/>
+
+        <!-- 嘴巴（咬牙撐住 — 露牙） -->
+        <rect x="389" y="340" width="22" height="8" rx="2" fill="#742a2a"/>
+        <rect x="390.5" y="341.5" width="19" height="5" fill="#fef3c7"/>
+        <line x1="394.5" y1="341.5" x2="394.5" y2="346.5" stroke="#742a2a" stroke-width="0.9"/>
+        <line x1="399" y1="341.5" x2="399" y2="346.5" stroke="#742a2a" stroke-width="0.9"/>
+        <line x1="403.5" y1="341.5" x2="403.5" y2="346.5" stroke="#742a2a" stroke-width="0.9"/>
+        <line x1="408" y1="341.5" x2="408" y2="346.5" stroke="#742a2a" stroke-width="0.9"/>
+        <line x1="390.5" y1="344" x2="409.5" y2="344" stroke="#742a2a" stroke-width="0.8"/>
+
+        <!-- 汗滴（5 顆） -->
+        <path d="M 354 290 Q 351 298 354 302 Q 357 298 354 290 Z" fill="#4fc3f7" stroke="#1976d2" stroke-width="0.9"/>
+        <path d="M 446 290 Q 443 298 446 302 Q 449 298 446 290 Z" fill="#4fc3f7" stroke="#1976d2" stroke-width="0.9"/>
+        <path d="M 344 318 Q 341 326 344 330 Q 347 326 344 318 Z" fill="#4fc3f7" stroke="#1976d2" stroke-width="0.9"/>
+        <path d="M 456 318 Q 453 326 456 330 Q 459 326 456 318 Z" fill="#4fc3f7" stroke="#1976d2" stroke-width="0.9"/>
+        <path d="M 400 262 Q 397 268 400 272 Q 403 268 400 262 Z" fill="#4fc3f7" stroke="#1976d2" stroke-width="0.9" opacity="0.9"/>
+
+        <!-- 標籤：我 -->
+        <text class="leader-label" x="400" y="465">我</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="insight-box">
+    <strong class="tag">💡 思維轉換</strong>
+    <p>
+      傳統組織靠「主管在中間拉」維持秩序，但主管一離開團隊就鬆散。理想的協作文化是 —
+      <strong>每個部門都願意多跨一步、多協助一點</strong>，部門之間的權責自然交疊，
+      即使沒有我居中，仍能補滿那塊任何單一部門都搆不到的「中間空白」。
+    </p>
+  </div>
+</section>
+
+<!-- ───────────────────────────── Section 4 ───────────────────────────── -->
+<section>
+  <h2>四、內耗 — 各部門的真實心聲</h2>
+  <p class="section-intro">
+    每個部門都有自己的委屈與抱怨。攤開來看，不是要互相指責，而是讓彼此理解 —
+    才能找到對的解法，把抱怨變成行動。<strong>點擊任一卡片展開內容。</strong>
+  </p>
+
+  <div class="complaint-list">
+
+    <!-- 業務 -->
+    <div class="complaint-card" onclick="toggleComplaint(this)">
+      <div class="complaint-header">
+        <div class="dept-tag sales">業務</div>
+        <div class="summary">後勤不給力 ‧ 報價太慢 ‧ 交期太久 ‧ 品質一直出問題</div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="complaint-body"><div class="complaint-body-inner">
+        <div class="grievance">
+          <div class="block-title">💢 抱怨</div>
+          <ul>
+            <li>後勤不給力，報價給太慢</li>
+            <li>交期承諾太久，客戶都跑光了</li>
+            <li>品質一直出問題，客訴砲火都是我在前面接</li>
+          </ul>
+        </div>
+        <div class="response">
+          <div class="block-title">🎯 我的建議</div>
+          <p>業務的痛我懂 — 你站在客戶第一線，報價慢、交期長、品質出包，所有砲火都你接。</p>
+          <p>但反過來想 — <strong>客戶的事，業務自己要先急起來</strong>。如果業務不急、不每天追、不一通電話一通電話地推，憑什麼期待後勤其他單位為你的客戶「特事特辦」？業務對客戶需求展現出來的<strong>積極性</strong>，本身就是推動後勤跟進的引擎 — 你不催，後勤就用標準節奏跑；你天天跟，後勤才會把你的單往前挪。</p>
+          <p>同時請把客戶的<strong>真實需求、底線、節奏</strong>完整即時地帶回後勤，也把後勤的限制原汁原味帶出去給客戶。業務不是傳聲筒，是<strong>雙向翻譯機 + 主動引擎</strong> — 你越急、越主動，後勤才越願意為你客製化加速。</p>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 工程 -->
+    <div class="complaint-card" onclick="toggleComplaint(this)">
+      <div class="complaint-header">
+        <div class="dept-tag engineering">工程</div>
+        <div class="summary">表單太多 ‧ 事情太多 ‧ 衝 A 就只能放棄 B</div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="complaint-body"><div class="complaint-body-inner">
+        <div class="grievance">
+          <div class="block-title">💢 抱怨</div>
+          <ul>
+            <li>表單太多，事情太多，做不完</li>
+            <li>主管要我衝 A，就只能放棄 B</li>
+            <li>永遠沒有資源做完所有事</li>
+          </ul>
+        </div>
+        <div class="response">
+          <div class="block-title">🎯 我的建議</div>
+          <p>表單與事項過載是真實的。但隨著我們把流程<strong>系統化、表單上系統</strong>後，相關文件本就該由負責執行的單位自己填、自己回 — 工程的角色是「<strong>定義標準 + 審核把關</strong>」，不是替所有單位代勞。每個單位扛起自己該扛的那份，工程才能回到本該做的位置上。</p>
+          <p>資源永遠不夠，重點是<strong>讓優先順序透明化</strong>。把「放棄 B 的後果」寫清楚（影響哪個案子、哪個客戶、什麼時程），同步攤在主管面前一起做取捨；決策由管理層背，<strong>不需要自己默默犧牲</strong>。</p>
+          <p>至於「衝 A 就只能放棄 B」— 換個角度想，當一件事跟自己<strong>真正在乎的東西</strong>綁在一起時，人通常會擠出辦法把兩件事都顧上。選擇背後反映的，不只是資源問題，更是看待這份工作的態度。我相信你也明白 — 哪些事多走一步，結果就會差很多。</p>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 品保 -->
+    <div class="complaint-card" onclick="toggleComplaint(this)">
+      <div class="complaint-header">
+        <div class="dept-tag qa">品保</div>
+        <div class="summary">供應商與廠內沒品質意識 ‧ 客訴扛砲火 ‧ 後勤不給數據與方案</div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="complaint-body"><div class="complaint-body-inner">
+        <div class="grievance">
+          <div class="block-title">💢 抱怨</div>
+          <ul>
+            <li>供應商沒品質意識，廠內也沒品質意識</li>
+            <li>客訴一來，前線扛砲火的是品保</li>
+            <li>後勤又不給數據、不給改善方案</li>
+          </ul>
+        </div>
+        <div class="response">
+          <div class="block-title">🎯 我的建議</div>
+          <p>品保是公司對外品質的代表，前線扛砲火的角色不會消失 — 但你<strong>不該是孤軍</strong>。</p>
+          <p>請把每次客訴拆成「<strong>現象 ‧ 根因 ‧ 責任歸屬 ‧ 改善行動</strong>」四欄，<strong>丟回該負責的單位</strong>（不論是設計、製程、來料或廠內），把「不給數據、不給方案」變成具體的 owner 與 due date。沒有 owner 的問題，永遠不會被解決。</p>
+          <p>品質意識不是天生的，是<strong>被流程逼出來</strong>的 — 用 8D、用稽核、用具體案例反覆對焦，<strong>這個方向絕對是對的</strong>。只是現階段礙於供應商與廠內的成熟度，還沒辦法做到完整到位 — 這是我們要一步一步把能力撐起來的部分，先從關鍵料、關鍵製程做起，慢慢把標準補上來。</p>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 資材 -->
+    <div class="complaint-card" onclick="toggleComplaint(this)">
+      <div class="complaint-header">
+        <div class="dept-tag materials">資材</div>
+        <div class="summary">客戶要的價格交期不合理 ‧ 前端給的資訊與判定不完善</div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="complaint-body"><div class="complaint-body-inner">
+        <div class="grievance">
+          <div class="block-title">💢 抱怨</div>
+          <ul>
+            <li>客戶要的價格、交期不合理，怎麼可能達到</li>
+            <li>前端業務、工程給的資訊與判定不完善</li>
+            <li>永遠在補別人的破網</li>
+          </ul>
+        </div>
+        <div class="response">
+          <div class="block-title">🎯 我的建議</div>
+          <p><strong>重點不在「合不合理」，而在「怎麼滿足」</strong> — 客戶對公司的佔比與重要性，往往決定我們最終還是得做。這是商業現實。</p>
+          <p>資材的角色是<strong>站在客戶與廠內中間，把雙方的價格與交期拉到平衡點</strong>：</p>
+          <ul>
+            <li>對<strong>客戶端</strong>：用 lead time、最小批量、料源能量，給出一個「客戶能接受、廠內也能做」的修正版本</li>
+            <li>對<strong>廠內與廠商</strong>：拿客戶的重要性當籌碼，推供應商爭取交期成本，把廠內能力往客戶要的位置推</li>
+            <li><strong>取捨</strong>：守毛利讓交期、或讓毛利搶時間 — 這是資材每天該思考的戰場</li>
+          </ul>
+          <p><strong>「前端資訊不完善」也要換角度看</strong> — 很多時候是前端在等客戶回覆，<strong>客戶刻意拖慢本身可能就是策略</strong>（佔資源、壓籌碼、保留彈性）。看到前端慢，先問「卡在哪一段、卡在誰」，別把外部拖延算到自己人頭上。</p>
+        </div>
+      </div></div>
+    </div>
+
+    <!-- 生產 -->
+    <div class="complaint-card" onclick="toggleComplaint(this)">
+      <div class="complaint-header">
+        <div class="dept-tag production">生產</div>
+        <div class="summary">做的都我們在做 ‧ 你們都出張嘴 ‧ 不知道做的人的辛苦</div>
+        <span class="expand-icon">▼</span>
+      </div>
+      <div class="complaint-body"><div class="complaint-body-inner">
+        <div class="grievance">
+          <div class="block-title">💢 抱怨</div>
+          <ul>
+            <li>做都我們在做，你們都只出張嘴</li>
+            <li>說的人不知道做的人有多辛苦</li>
+            <li>每天救火、每天加班、沒人理解</li>
+          </ul>
+        </div>
+        <div class="response">
+          <div class="block-title">🎯 我的建議</div>
+          <p>「做的辛苦只有做的人懂」— 這句話絕對是事實，所以<strong>我們管理者的責任，就是讓現場的聲音被聽見、被處理</strong>。</p>
+          <p>但反過來說：前端業務、工程、品保也在各自的戰場上挨砲，他們不是「出張嘴」，是<strong>扛另一種砲</strong>。每個人都覺得自己最辛苦，這就是內耗的根源。</p>
+          <p>請用<strong>數據說話</strong>：把人力、設備、瓶頸、不良率、工時攤出來，而不是用情緒。情緒讓人想躲開，數據讓人想處理。我會把現場聲音帶到管理會議桌上 — 但你們要給我能戰鬥的彈藥。</p>
+        </div>
+      </div></div>
+    </div>
+
+  </div>
+
+  <div class="insight-box" style="margin-top: 28px;">
+    <strong class="tag">🌱 我的相信</strong>
+    <p>
+      每個抱怨背後，都是「我做得很多、別人沒看見」的委屈。
+      解法不是叫大家少抱怨，而是<strong>讓彼此的辛苦被看見、被換算成具體的下一步</strong>。
+      當每個人都願意多走一步、多翻一次譯，內耗就會變成內力。
+    </p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  鴻騰電子 ‧ 跨部門整合報告 ‧ 2026
+</footer>
+
+<script>
+  function toggleForce(el) {
+    el.classList.toggle('open');
+  }
+
+  function toggleComplaint(el) {
+    el.classList.toggle('open');
+  }
+
+  function toggleDept(name) {
+    const row = document.querySelector(`.dept-row[data-dept="${name}"]`);
+    const detail = document.getElementById(`detail-${name}`);
+    if (!row || !detail) return;
+    row.classList.toggle('open');
+    detail.classList.toggle('open');
+  }
+
+  function togglePentagon() {
+    const svg = document.getElementById('pentagonSvg');
+    const btn = document.getElementById('toggleBtn');
+    const stateText = document.getElementById('stateText');
+
+    svg.classList.toggle('active');
+
+    if (svg.classList.contains('active')) {
+      btn.innerHTML = '↺ 重設：回到「我居中拉著大家」的狀態';
+      stateText.innerHTML = '理想狀態：我退出後 ‧ 大家都多做一點 ‧ 部門間自然交疊 ‧ 間隙被自然補滿';
+    } else {
+      btn.innerHTML = '▶ 點擊啟動：每個部門多做一點';
+      stateText.innerHTML = '目前狀態：我居中拉著大家 ‧ 五個部門之間有明顯間隙';
+    }
+  }
+</script>
+
+</body>
+</html>
