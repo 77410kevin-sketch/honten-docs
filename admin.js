@@ -80,14 +80,22 @@
       c.items = c.items.filter((i) => STATE.files.includes(i.file));
     });
 
-    // 未分類的 → misc
+    // 未分類的 → misc（套用 misc_overrides 的自訂顯示資訊）
+    const overrides = STATE.meta.misc_overrides || {};
     const miscFiles = STATE.files.filter((f) => !classified.has(f));
     const miscCat = {
       id: "misc",
       title: (STATE.meta.misc_category || {}).title || "📋 其他文件",
-      items: miscFiles.map((f) => ({
-        file: f, icon: "📄", label: "右鍵上傳", name: f, desc: "",
-      })),
+      items: miscFiles.map((f) => {
+        const o = overrides[f] || {};
+        return {
+          file: f,
+          icon: o.icon || "📄",
+          label: o.label != null ? o.label : "右鍵上傳",
+          name: o.name || f,
+          desc: o.desc || "",
+        };
+      }),
       _isMisc: true,
     };
 
@@ -205,8 +213,8 @@
 
   function syncFromDOM() {
     const newCats = [];
+    const miscOverrides = {};
     $$("section[data-cat-id]").forEach((sec) => {
-      if (sec.dataset.misc === "1") return; // misc 動態產生，不存
       const catId = sec.dataset.catId;
       const title = (sec.querySelector(".cat-title")?.textContent || "").trim();
       const items = [];
@@ -221,9 +229,18 @@
           });
         }
       });
+      if (sec.dataset.misc === "1") {
+        // misc 不存成正式分類，但保留每張卡的自訂顯示資訊（依檔名）
+        items.forEach((it) => {
+          miscOverrides[it.file] = {
+            icon: it.icon, label: it.label, name: it.name, desc: it.desc,
+          };
+        });
+        return;
+      }
       newCats.push({ id: catId, title, items });
     });
-    return { ...STATE.meta, categories: newCats };
+    return { ...STATE.meta, categories: newCats, misc_overrides: miscOverrides };
   }
 
   // ============ 行為 handlers ============
