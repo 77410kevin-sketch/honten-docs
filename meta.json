@@ -83,7 +83,7 @@
           "file": "assembly_cost",
           "icon": "⚙️",
           "label": "成本分析",
-          "name": "組裝成本",
+          "name": "勤誠組裝成本",
           "desc": "BOM + 工時 + 製程成本拆解"
         }
       ]
