@@ -153,5 +153,13 @@
     "id": "misc",
     "title": "📋 其他文件（右鍵上傳的檔案自動進入這裡）",
     "default_icon": "📄"
+  },
+  "misc_overrides": {
+    "cross_department_report": {
+      "icon": "各部門工作執掌",
+      "label": "右鍵上傳",
+      "name": "cross_department_report",
+      "desc": ""
+    }
   }
 }
