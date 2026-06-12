@@ -17,27 +17,6 @@
           "label": "持股組合（手動觸發）",
           "name": "持股最佳化分析",
           "desc": "HRP / Risk Parity / Min Vol / Max Decorrel 四策略 + Riskfolio-Lib"
-        },
-        {
-          "file": "topic_cpo",
-          "icon": "🔆",
-          "label": "主題分析",
-          "name": "光通訊 / CPO",
-          "desc": "共封裝光學 + 光收發 + 化合物半導體供應鏈"
-        },
-        {
-          "file": "topic_memory",
-          "icon": "💾",
-          "label": "主題分析",
-          "name": "記憶體 / HBM",
-          "desc": "DRAM / NAND / HBM + 控制器 + 封裝供應鏈"
-        },
-        {
-          "file": "topic_bbu",
-          "icon": "🔋",
-          "label": "主題分析",
-          "name": "BBU 電池備援",
-          "desc": "資料中心電源 + BBU + UPS + 散熱配電"
         }
       ]
     },
