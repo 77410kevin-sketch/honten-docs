@@ -1,5 +1,11 @@
 [
   {
+    "file": "assembly_cost",
+    "name": "勤誠組裝成本",
+    "desc": "BOM + 工時 + 製程成本拆解",
+    "icon": "⚙️"
+  },
+  {
     "file": "kitten_adoption_care_plan",
     "name": "kitten_adoption_care_plan",
     "desc": "",
