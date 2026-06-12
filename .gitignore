@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Syncthing 衝突檔（跨機同步殘留，避免污染 git 工作區）
+*.sync-conflict-*
