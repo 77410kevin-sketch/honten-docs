@@ -1,11 +1,5 @@
 [
   {
-    "file": "industry_analysis",
-    "name": "產業分析月報",
-    "desc": "記憶體 / BBU / 光通訊 / 散熱液冷 — 五大區塊產業深度分析",
-    "icon": "🏭"
-  },
-  {
     "file": "thailand_factory_analysis",
     "name": "泰國廠分析",
     "desc": "產能、客戶、成本結構評估",
