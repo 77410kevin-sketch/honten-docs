@@ -33,6 +33,7 @@
   .card .label{font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:#6610f2; font-weight:700; margin-top:.5rem;}
   .card h3{margin:.25rem 0 .4rem; font-size:1.15rem;}
   .card p{margin:0; font-size:.86rem; color:#6b7a8d; line-height:1.5;}
+  .empty{text-align:center; color:#6b7a8d; padding:2rem;}
   footer{text-align:center; color:#6b7a8d; font-size:.8rem; padding:1.5rem 1rem 0;}
 </style>
 </head>
@@ -45,35 +46,42 @@
 </div>
 
 <div class="wrap">
-  <div class="grid">
-
-    <a class="card" href="./industry_analysis.html">
-      <div class="icon">🏭</div>
-      <div class="label">每月自動更新</div>
-      <h3>產業分析月報</h3>
-      <p>記憶體 / BBU / 光通訊 / 散熱液冷 — 五大區塊產業深度分析</p>
-    </a>
-
-    <a class="card" href="./thailand_factory_analysis.html">
-      <div class="icon">🇹🇭</div>
-      <div class="label">廠區分析</div>
-      <h3>泰國廠分析</h3>
-      <p>產能、客戶、成本結構評估</p>
-    </a>
-
-    <a class="card" href="./鴻騰電子_各地區戰略佈局.html">
-      <div class="icon">🗺️</div>
-      <div class="label">戰略佈局</div>
-      <h3>各地區戰略佈局</h3>
-      <p>鴻騰電子各地區佈局與戰略分析</p>
-    </a>
-
+  <div class="grid" id="grid">
+    <div class="empty">載入中…</div>
   </div>
 </div>
 
 <footer>
   © 鴻騰電子 HonTen Electronic ・ www.honten.com.tw
 </footer>
+
+<script>
+  function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){
+    return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+
+  fetch("./manifest.json?_=" + Date.now())
+    .then(function(r){ return r.ok ? r.json() : []; })
+    .then(function(list){
+      var grid = document.getElementById("grid");
+      if (!Array.isArray(list) || list.length === 0){
+        grid.innerHTML = '<div class="empty">目前沒有公開報告。</div>';
+        return;
+      }
+      grid.innerHTML = list.map(function(it){
+        var file = encodeURIComponent(it.file);
+        return '<a class="card" href="./' + file + '.html">'
+          + '<div class="icon">' + esc(it.icon || "📄") + '</div>'
+          + '<div class="label">' + esc(it.label || "公開報告") + '</div>'
+          + '<h3>' + esc(it.name || it.file) + '</h3>'
+          + '<p>' + esc(it.desc || "") + '</p>'
+          + '</a>';
+      }).join("");
+    })
+    .catch(function(){
+      document.getElementById("grid").innerHTML =
+        '<div class="empty">清單載入失敗，請稍後重試。</div>';
+    });
+</script>
 
 </body>
 </html>

@@ -5,7 +5,8 @@
   const STATE = {
     editing: false,
     meta: null,          // 來自 /api/meta
-    files: [],           // 來自 /api/list-files
+    files: [],           // 根目錄（鎖定區）檔案，來自 /api/list-files
+    publicFiles: [],     // share/（公用區）檔案
     sortables: [],
     dirty: false,
     loaded: false,
@@ -35,6 +36,7 @@
 
       STATE.meta = m;
       STATE.files = f.files || [];
+      STATE.publicFiles = f.public || [];
       STATE.loaded = true;
       renderAll();
       hideLoading();
@@ -106,6 +108,12 @@
       sections.appendChild(renderSection(cat));
     });
 
+    // 公用區（share/）— 有公開檔或編輯模式時顯示
+    const pubFiles = STATE.publicFiles || [];
+    if (pubFiles.length || STATE.editing) {
+      sections.appendChild(renderPublicSection(pubFiles));
+    }
+
     // 編輯模式才顯示「新增分類」按鈕
     if (STATE.editing) {
       const adder = document.createElement("div");
@@ -156,6 +164,8 @@
     col.innerHTML = `
       <div class="card report-card shadow-sm position-relative">
         <div class="admin-card-actions">
+          <button class="btn btn-sm btn-success" title="設為公開（移到公用區，任何人有連結可看）"
+                  data-action="make-public">🌐</button>
           <button class="btn btn-sm btn-light" title="編輯卡片資訊"
                   data-action="edit-card">✏️</button>
           <button class="btn btn-sm btn-light" title="從分類移除（檔案保留）"
@@ -172,6 +182,39 @@
       </div>
     `;
     return col;
+  }
+
+  // 公用區（share/）區塊：列出公開檔，可移回鎖定 / 複製連結
+  function renderPublicSection(files) {
+    const section = document.createElement("section");
+    section.dataset.public = "1";
+    const cards = files.map((f) => `
+      <div class="col-md-6 col-lg-4">
+        <div class="card report-card shadow-sm position-relative" style="border:2px solid #d1f0df;">
+          <div class="admin-card-actions">
+            <button class="btn btn-sm btn-light" title="複製公開連結"
+                    data-action="copy-public" data-file="${escAttr(f)}">🔗</button>
+            <button class="btn btn-sm btn-warning" title="移回鎖定區（不再公開）"
+                    data-action="make-private" data-file="${escAttr(f)}">🔒</button>
+          </div>
+          <a href="/share/${escAttr(f)}.html" target="_blank">
+            <div class="icon">🌐</div>
+            <span class="category-label" style="color:#198754;">公開・免登入</span>
+            <h5>${escHtml(f)}</h5>
+            <p class="desc">reports.kevinhung.org/share/${escHtml(f)}</p>
+          </a>
+        </div>
+      </div>
+    `).join("");
+    section.innerHTML = `
+      <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+        <h3 class="mb-0">🌐 公用區<small class="text-muted fs-6 ms-2">任何人有連結即可看・免登入</small></h3>
+      </div>
+      <div class="row g-3 mb-5">${
+        cards || '<div class="col-12 text-muted py-3">（目前沒有公開報告。在上面任一報告卡按 🌐 即可設為公開）</div>'
+      }</div>
+    `;
+    return section;
   }
 
   function enableSortable() {
@@ -264,6 +307,13 @@
       removeFromCat(btn.closest("[data-file]"));
     } else if (action === "delete-file") {
       deleteFile(btn.closest("[data-file]"));
+    } else if (action === "make-public") {
+      const f = btn.closest("[data-file]")?.dataset.file;
+      if (f) movePublic(f, "public");
+    } else if (action === "make-private") {
+      movePublic(btn.dataset.file, "private");
+    } else if (action === "copy-public") {
+      copyPublicLink(btn.dataset.file);
     }
   });
 
@@ -341,6 +391,44 @@
     } catch (e) {
       hideLoading();
       alert("❌ 錯誤：" + e.message);
+    }
+  }
+
+  async function movePublic(file, to) {
+    const isPub = to === "public";
+    const verb = isPub ? "設為公開（移到公用區）" : "移回鎖定區";
+    const warn = isPub ? "\n⚠️ 之後任何人有連結就能看到，不需登入。" : "";
+    if (!confirm(`確定要把「${file}」${verb}？${warn}`)) return;
+    showLoading(isPub ? "設為公開中…" : "移回鎖定中…");
+    try {
+      const r = await fetch("/api/move-file", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ filename: file + ".html", to }),
+      });
+      const result = await r.json();
+      hideLoading();
+      if (result.success) {
+        toast("✅ " + (result.message || "已搬移"));
+        await loadAndRender();   // 檔案位置已變，重抓清單重畫（編輯模式會保留）
+      } else {
+        alert("❌ " + (result.error || JSON.stringify(result)));
+      }
+    } catch (e) {
+      hideLoading();
+      alert("❌ 錯誤：" + e.message);
+    }
+  }
+
+  function copyPublicLink(file) {
+    const url = location.origin + "/share/" + file;
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(url).then(
+        () => toast("🔗 已複製連結：" + url),
+        () => prompt("複製這個公開連結：", url)
+      );
+    } else {
+      prompt("複製這個公開連結：", url);
     }
   }
 

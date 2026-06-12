@@ -50,6 +50,9 @@ export default {
         if (url.pathname === "/api/delete-file" && request.method === "POST") {
           return await handleDeleteFile(request, env, accessEmail);
         }
+        if (url.pathname === "/api/move-file" && request.method === "POST") {
+          return await handleMoveFile(request, env, accessEmail);
+        }
         return json({ error: "Not found" }, 404);
       } catch (e) {
         return json({ error: String(e), stack: e.stack }, 500);
@@ -88,24 +91,27 @@ async function handleGetMeta(env) {
 }
 
 async function handleListFiles(env) {
+  const files = await listHtmlInDir(env, "");          // 根目錄＝鎖定區
+  const pub = await listHtmlInDir(env, "share");        // share/＝公用區
+  if (files === null) return json({ error: "GitHub list failed" }, 500);
+  return json({ files, public: pub || [] });
+}
+
+/** 列出某資料夾下的 .html（去掉副檔名、排除 index.html）。失敗回 null，資料夾不存在回 []。 */
+async function listHtmlInDir(env, dir) {
+  const path = dir ? `${encodeURIComponent(dir)}` : "";
   const resp = await githubFetch(
     env,
-    `https://api.github.com/repos/${GH_REPO}/contents/?ref=${GH_BRANCH}`
+    `https://api.github.com/repos/${GH_REPO}/contents/${path}?ref=${GH_BRANCH}`
   );
-  if (!resp.ok) {
-    return json({ error: `GitHub list ${resp.status}` }, 500);
-  }
+  if (resp.status === 404) return [];
+  if (!resp.ok) return null;
   const items = await resp.json();
-  const htmls = items
-    .filter(
-      (i) =>
-        i.type === "file" &&
-        i.name.endsWith(".html") &&
-        i.name !== "index.html"
-    )
+  if (!Array.isArray(items)) return [];
+  return items
+    .filter((i) => i.type === "file" && i.name.endsWith(".html") && i.name !== "index.html")
     .map((i) => i.name.replace(/\.html$/i, ""))
     .sort();
-  return json({ files: htmls });
 }
 
 async function handleSaveMeta(request, env, email) {
@@ -164,7 +170,106 @@ async function handleDeleteFile(request, env, email) {
   return json({ success: true, message: `已刪除 ${filename}` });
 }
 
+/** 把 HTML 在「鎖定區(根目錄)」與「公用區(share/)」之間搬移 */
+async function handleMoveFile(request, env, email) {
+  const body = await request.json();
+  const filename = body.filename;            // e.g. "thailand_factory_analysis.html"
+  const to = body.to;                        // "public" | "private"
+  if (!filename || !filename.endsWith(".html") || filename === "index.html" || filename.includes("/")) {
+    return json({ error: "Invalid filename" }, 400);
+  }
+  if (to !== "public" && to !== "private") {
+    return json({ error: "Invalid 'to'（需 public 或 private）" }, 400);
+  }
+  const src = to === "public" ? filename : `share/${filename}`;
+  const dest = to === "public" ? `share/${filename}` : filename;
+
+  const file = await githubGetFile(env, src);
+  if (!file) return json({ error: `來源檔不存在：${src}` }, 404);
+
+  // 1. 寫到目的地
+  const put = await githubPutFile(env, dest, file.content, `Move ${filename} → ${to} by ${email}`);
+  if (!put.ok) return json({ error: "搬移失敗（建立目的地）", details: put.error }, 500);
+
+  // 2. 刪除來源
+  const del = await githubDeleteFile(env, src, `Move ${filename} → ${to} cleanup by ${email}`);
+  if (!del.ok) return json({ error: "搬移失敗（刪除來源）", details: del.error }, 500);
+
+  // 3. 更新公用區清單（給 /share/ 入口頁讀）；失敗不阻擋搬移
+  try {
+    await updatePublicManifest(env, filename, to, email);
+  } catch (e) {
+    console.log("manifest update failed:", String(e));
+  }
+
+  return json({
+    success: true,
+    message: `${filename} 已${to === "public" ? "設為公開" : "移回鎖定"}，30-60 秒生效`,
+  });
+}
+
+/** 維護 share/manifest.json（公用區入口頁的資料來源） */
+async function updatePublicManifest(env, filename, to, email) {
+  const base = filename.replace(/\.html$/i, "");
+  let manifest = [];
+  const existing = await githubGetFile(env, "share/manifest.json").catch(() => null);
+  if (existing) {
+    try {
+      const parsed = JSON.parse(existing.content);
+      if (Array.isArray(parsed)) manifest = parsed;
+    } catch {}
+  }
+  manifest = manifest.filter((m) => m.file !== base);   // 移除舊的同名項
+  if (to === "public") {
+    let info = { name: base, desc: "", icon: "📄" };     // 預設
+    try {
+      const meta = await getMetaObject(env);
+      for (const c of meta.categories || []) {
+        const it = (c.items || []).find((i) => i.file === base);
+        if (it) { info = { name: it.name || base, desc: it.desc || "", icon: it.icon || "📄" }; break; }
+      }
+    } catch {}
+    manifest.push({ file: base, name: info.name, desc: info.desc, icon: info.icon });
+  }
+  manifest.sort((a, b) => String(a.file).localeCompare(String(b.file)));
+  await githubPutFile(
+    env, "share/manifest.json",
+    JSON.stringify(manifest, null, 2) + "\n",
+    `Update public manifest (${to} ${base}) by ${email}`
+  );
+}
+
+async function getMetaObject(env) {
+  const file = await githubGetFile(env, "meta.json");
+  if (!file) return { categories: [] };
+  return JSON.parse(file.content);
+}
+
 // ============ GitHub helpers ============
+
+/** 對路徑每段做 URL 編碼但保留斜線（支援 share/ 子資料夾與中文檔名） */
+function encodePath(p) {
+  return String(p).split("/").map(encodeURIComponent).join("/");
+}
+
+/** 刪除 GitHub 檔案；不存在視為成功 */
+async function githubDeleteFile(env, path, message) {
+  const file = await githubGetFile(env, path);
+  if (!file) return { ok: true };
+  const resp = await githubFetch(
+    env,
+    `https://api.github.com/repos/${GH_REPO}/contents/${encodePath(path)}`,
+    {
+      method: "DELETE",
+      body: JSON.stringify({
+        message, sha: file.sha, branch: GH_BRANCH,
+        author: COMMIT_AUTHOR, committer: COMMIT_AUTHOR,
+      }),
+    }
+  );
+  if (!resp.ok) return { ok: false, error: `${resp.status}: ${await resp.text()}` };
+  return { ok: true };
+}
 
 async function githubFetch(env, url, init = {}) {
   const headers = {
@@ -183,7 +288,7 @@ async function githubFetch(env, url, init = {}) {
 async function githubGetFile(env, path) {
   const resp = await githubFetch(
     env,
-    `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(path)}?ref=${GH_BRANCH}`
+    `https://api.github.com/repos/${GH_REPO}/contents/${encodePath(path)}?ref=${GH_BRANCH}`
   );
   if (resp.status === 404) return null;
   if (!resp.ok) throw new Error(`GitHub GET ${path} ${resp.status}`);
@@ -217,7 +322,7 @@ async function githubPutFile(env, path, content, message) {
 
   const resp = await githubFetch(
     env,
-    `https://api.github.com/repos/${GH_REPO}/contents/${encodeURIComponent(path)}`,
+    `https://api.github.com/repos/${GH_REPO}/contents/${encodePath(path)}`,
     { method: "PUT", body: JSON.stringify(body) }
   );
 
