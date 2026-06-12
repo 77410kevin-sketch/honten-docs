@@ -88,19 +88,6 @@
       ]
     },
     {
-      "id": "world",
-      "title": "🌍 國際情勢",
-      "items": [
-        {
-          "file": "iran_war_weekly",
-          "icon": "📰",
-          "label": "每週日 09:00 自動更新",
-          "name": "以伊戰爭週報",
-          "desc": "Claude 深度分析中東情勢與影響"
-        }
-      ]
-    },
-    {
       "id": "cat_1779013718893",
       "title": "泰國資料",
       "items": [
