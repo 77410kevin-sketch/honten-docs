@@ -170,7 +170,7 @@ async function handleDeleteFile(request, env, email) {
   return json({ success: true, message: `已刪除 ${filename}` });
 }
 
-/** 把 HTML 在「鎖定區(根目錄)」與「公用區(share/)」之間搬移 */
+/** 把 HTML 在「鎖定區(根目錄)」與「公用區(share/)」之間搬移 —— 單一 commit（避免部署塞車） */
 async function handleMoveFile(request, env, email) {
   const body = await request.json();
   const filename = body.filename;            // e.g. "thailand_factory_analysis.html"
@@ -181,26 +181,33 @@ async function handleMoveFile(request, env, email) {
   if (to !== "public" && to !== "private") {
     return json({ error: "Invalid 'to'（需 public 或 private）" }, 400);
   }
+  const base = filename.replace(/\.html$/i, "");
   const src = to === "public" ? filename : `share/${filename}`;
   const dest = to === "public" ? `share/${filename}` : filename;
 
   const file = await githubGetFile(env, src);
   if (!file) return json({ error: `來源檔不存在：${src}` }, 404);
 
-  // 1. 寫到目的地
-  const put = await githubPutFile(env, dest, file.content, `Move ${filename} → ${to} by ${email}`);
-  if (!put.ok) return json({ error: "搬移失敗（建立目的地）", details: put.error }, 500);
-
-  // 2. 刪除來源
-  const del = await githubDeleteFile(env, src, `Move ${filename} → ${to} cleanup by ${email}`);
-  if (!del.ok) return json({ error: "搬移失敗（刪除來源）", details: del.error }, 500);
-
-  // 3. 更新公用區清單（給 /share/ 入口頁讀）；失敗不阻擋搬移
-  try {
-    await updatePublicManifest(env, filename, to, email);
-  } catch (e) {
-    console.log("manifest update failed:", String(e));
+  // 算出「搬移後」的公用區清單，據此重建 manifest（永遠與實際資料夾一致）
+  let shareFiles = (await listHtmlInDir(env, "share")) || [];
+  if (to === "public") {
+    if (!shareFiles.includes(base)) shareFiles.push(base);
+  } else {
+    shareFiles = shareFiles.filter((f) => f !== base);
   }
+  const manifest = await buildManifest(env, shareFiles);
+
+  // 一個 commit 同時：建目的地、刪來源、更新 manifest → 只觸發一次 Cloudflare 部署
+  const res = await githubCommitChanges(
+    env, GH_BRANCH,
+    [
+      { path: dest, content: file.content },
+      { path: src, delete: true },
+      { path: "share/manifest.json", content: JSON.stringify(manifest, null, 2) + "\n" },
+    ],
+    `Move ${filename} → ${to} by ${email}`
+  );
+  if (!res.ok) return json({ error: "搬移失敗", details: res.error }, 500);
 
   return json({
     success: true,
@@ -208,35 +215,22 @@ async function handleMoveFile(request, env, email) {
   });
 }
 
-/** 維護 share/manifest.json（公用區入口頁的資料來源） */
-async function updatePublicManifest(env, filename, to, email) {
-  const base = filename.replace(/\.html$/i, "");
-  let manifest = [];
-  const existing = await githubGetFile(env, "share/manifest.json").catch(() => null);
-  if (existing) {
-    try {
-      const parsed = JSON.parse(existing.content);
-      if (Array.isArray(parsed)) manifest = parsed;
-    } catch {}
-  }
-  manifest = manifest.filter((m) => m.file !== base);   // 移除舊的同名項
-  if (to === "public") {
-    let info = { name: base, desc: "", icon: "📄" };     // 預設
-    try {
-      const meta = await getMetaObject(env);
-      for (const c of meta.categories || []) {
-        const it = (c.items || []).find((i) => i.file === base);
-        if (it) { info = { name: it.name || base, desc: it.desc || "", icon: it.icon || "📄" }; break; }
-      }
-    } catch {}
-    manifest.push({ file: base, name: info.name, desc: info.desc, icon: info.icon });
-  }
-  manifest.sort((a, b) => String(a.file).localeCompare(String(b.file)));
-  await githubPutFile(
-    env, "share/manifest.json",
-    JSON.stringify(manifest, null, 2) + "\n",
-    `Update public manifest (${to} ${base}) by ${email}`
-  );
+/** 依公用區檔名清單建出 manifest（顯示資訊優先取自 meta.json） */
+async function buildManifest(env, shareBaseNames) {
+  let lookup = {};
+  try {
+    const meta = await getMetaObject(env);
+    for (const c of meta.categories || []) {
+      for (const it of c.items || []) lookup[it.file] = it;
+    }
+  } catch {}
+  return shareBaseNames
+    .slice()
+    .sort((a, b) => String(a).localeCompare(String(b)))
+    .map((f) => {
+      const it = lookup[f] || {};
+      return { file: f, name: it.name || f, desc: it.desc || "", icon: it.icon || "📄" };
+    });
 }
 
 async function getMetaObject(env) {
@@ -269,6 +263,48 @@ async function githubDeleteFile(env, path, message) {
   );
   if (!resp.ok) return { ok: false, error: `${resp.status}: ${await resp.text()}` };
   return { ok: true };
+}
+
+/** 用 Git Data API 把多個檔案變更（content 或 delete）合成「單一 commit」 */
+async function githubCommitChanges(env, branch, changes, message) {
+  const api = `https://api.github.com/repos/${GH_REPO}`;
+  // 1. 取分支 head sha
+  let r = await githubFetch(env, `${api}/git/ref/heads/${branch}`);
+  if (!r.ok) return { ok: false, error: `ref ${r.status}: ${await r.text()}` };
+  const headSha = (await r.json()).object.sha;
+  // 2. head commit → base tree
+  r = await githubFetch(env, `${api}/git/commits/${headSha}`);
+  if (!r.ok) return { ok: false, error: `commit ${r.status}` };
+  const baseTree = (await r.json()).tree.sha;
+  // 3. 建 tree（content=新增/覆蓋；delete→sha:null 表刪除）
+  const tree = changes.map((c) =>
+    c.delete
+      ? { path: c.path, mode: "100644", type: "blob", sha: null }
+      : { path: c.path, mode: "100644", type: "blob", content: c.content }
+  );
+  r = await githubFetch(env, `${api}/git/trees`, {
+    method: "POST",
+    body: JSON.stringify({ base_tree: baseTree, tree }),
+  });
+  if (!r.ok) return { ok: false, error: `tree ${r.status}: ${await r.text()}` };
+  const newTree = (await r.json()).sha;
+  // 4. 建 commit
+  r = await githubFetch(env, `${api}/git/commits`, {
+    method: "POST",
+    body: JSON.stringify({
+      message, tree: newTree, parents: [headSha],
+      author: COMMIT_AUTHOR, committer: COMMIT_AUTHOR,
+    }),
+  });
+  if (!r.ok) return { ok: false, error: `commit-create ${r.status}: ${await r.text()}` };
+  const newCommit = (await r.json()).sha;
+  // 5. 更新分支 ref
+  r = await githubFetch(env, `${api}/git/refs/heads/${branch}`, {
+    method: "PATCH",
+    body: JSON.stringify({ sha: newCommit }),
+  });
+  if (!r.ok) return { ok: false, error: `ref-update ${r.status}: ${await r.text()}` };
+  return { ok: true, commit: newCommit };
 }
 
 async function githubFetch(env, url, init = {}) {
