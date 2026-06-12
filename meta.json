@@ -43,7 +43,7 @@
     },
     {
       "id": "business",
-      "title": "📈 業務管理",
+      "title": "📈 彙報資料管理",
       "items": [
         {
           "file": "erp_dashboard",
@@ -159,6 +159,12 @@
       "icon": "各部門工作執掌",
       "label": "右鍵上傳",
       "name": "cross_department_report",
+      "desc": ""
+    },
+    "kitten_adoption_care_plan": {
+      "icon": "喵喵養成教學計劃",
+      "label": "右鍵上傳",
+      "name": "kitten_adoption_care_plan",
       "desc": ""
     }
   }
