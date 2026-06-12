@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 各地區戰略佈局</title>
+<style>
+  :root{
+    --navy:#1F3A68; --blue:#1E88E5; --slate:#556677; --ink:#2C3E50;
+    --rowA:#F7F9FC; --line:#E3E9F2; --amber:#C0392B; --gold:#FFC000;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{
+    font-family:"Arial","PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink); background:#eef2f7; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:1180px;margin:0 auto;padding:0 20px 60px;}
+
+  /* header */
+  header{
+    background:linear-gradient(135deg,#16294a 0%,var(--navy) 55%,#27508c 100%);
+    color:#fff;padding:48px 0 40px;margin-bottom:34px;
+    box-shadow:0 4px 18px rgba(31,58,104,.25);
+  }
+  header .wrap{padding-bottom:0;}
+  .eyebrow{color:var(--gold);font-weight:700;letter-spacing:3px;font-size:14px;}
+  header h1{font-size:38px;font-weight:800;margin:8px 0 6px;letter-spacing:1px;}
+  header p{color:#cfe0f5;font-size:17px;}
+  .meta{margin-top:14px;font-size:13px;color:#9db8de;}
+
+  /* header map */
+  .hgrid{display:grid;grid-template-columns:1.05fr .95fr;gap:28px;align-items:center;}
+  .mapwrap{
+    background:rgba(8,18,38,.38);border:1px solid rgba(120,160,220,.25);
+    border-radius:16px;padding:10px;backdrop-filter:blur(2px);
+  }
+  .mapwrap svg{width:100%;height:auto;display:block;}
+  .pulse{transform-box:fill-box;transform-origin:center;animation:pulse 2.4s ease-out infinite;}
+  .pulse2{animation-delay:.8s;}
+  .pulse3{animation-delay:1.6s;}
+  @keyframes pulse{0%{opacity:.55;transform:scale(.6);}70%{opacity:0;transform:scale(2.1);}100%{opacity:0;}}
+  @media(max-width:860px){.hgrid{grid-template-columns:1fr;}}
+
+  /* map row of pills */
+  .axis{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 6px;}
+  .pill{
+    flex:1;min-width:220px;background:#fff;border-radius:14px;padding:16px 18px;
+    border:1px solid var(--line);box-shadow:0 2px 8px rgba(31,58,104,.06);
+    display:flex;align-items:center;gap:12px;
+  }
+  .pill .ico{font-size:26px;}
+  .pill b{display:block;color:var(--navy);font-size:16px;}
+  .pill span{font-size:13px;color:var(--slate);}
+
+  section.region{
+    background:#fff;border-radius:16px;margin-top:26px;overflow:hidden;
+    border:1px solid var(--line);box-shadow:0 3px 14px rgba(31,58,104,.07);
+  }
+  .rhead{
+    display:flex;align-items:center;gap:16px;padding:20px 26px;
+    border-left:8px solid var(--blue);
+  }
+  .rhead .flag{font-size:34px;}
+  .rhead h2{color:var(--navy);font-size:25px;font-weight:800;}
+  .rhead .role{
+    margin-left:auto;background:var(--navy);color:#fff;font-size:13px;font-weight:700;
+    padding:6px 14px;border-radius:20px;white-space:nowrap;
+  }
+  .rhead .sub{color:var(--slate);font-size:14px;margin-top:2px;}
+  .rbody{padding:6px 26px 26px;}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;}
+  .card{
+    background:var(--rowA);border:1px solid var(--line);border-radius:12px;padding:18px 18px 16px;
+  }
+  .card .tag{
+    display:inline-block;background:var(--blue);color:#fff;font-size:12px;font-weight:700;
+    padding:3px 10px;border-radius:6px;margin-bottom:10px;
+  }
+  .card h3{color:var(--navy);font-size:17px;margin-bottom:8px;}
+  .card ul{list-style:none;}
+  .card li{font-size:14px;padding:4px 0 4px 18px;position:relative;color:var(--ink);}
+  .card li:before{content:"▪";color:var(--blue);position:absolute;left:2px;top:3px;}
+
+  .note{display:flex;gap:8px;margin-top:6px;}
+  .note ul{list-style:none;font-size:14.5px;}
+  .note li{padding:5px 0 5px 20px;position:relative;}
+  .note li:before{content:"➤";color:var(--blue);position:absolute;left:0;}
+
+  footer{text-align:center;color:var(--slate);font-size:13px;margin-top:40px;}
+  footer b{color:var(--navy);}
+  .amber{color:var(--amber);}
+
+  @media(max-width:820px){
+    .cards{grid-template-columns:1fr;}
+    header h1{font-size:30px;}
+    .rhead{flex-wrap:wrap;}
+    .rhead .role{margin-left:0;}
+  }
+  @media print{
+    body{background:#fff;}
+    section.region,.pill{box-shadow:none;}
+    header{box-shadow:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+   <div class="hgrid">
+    <div>
+      <div class="eyebrow">HONTEN ELECTRONIC · GLOBAL STRATEGY</div>
+      <h1>各地區戰略佈局</h1>
+      <p>三地分工：中國採購中心 · 台灣客戶服務與稽核 · 泰國就地供應</p>
+      <div class="meta">鴻騰電子 HonTen Electronic ｜ 內部策略版 ｜ 2026-06</div>
+    </div>
+
+    <div class="mapwrap">
+      <svg viewBox="0 0 440 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="中國台灣泰國三地據點地圖">
+        <!-- graticule -->
+        <g stroke="rgba(140,175,225,.12)" stroke-width="1">
+          <line x1="0" y1="70" x2="440" y2="70"/><line x1="0" y1="140" x2="440" y2="140"/>
+          <line x1="0" y1="210" x2="440" y2="210"/><line x1="0" y1="280" x2="440" y2="280"/>
+          <line x1="90" y1="0" x2="90" y2="330"/><line x1="190" y1="0" x2="190" y2="330"/>
+          <line x1="290" y1="0" x2="290" y2="330"/><line x1="390" y1="0" x2="390" y2="330"/>
+        </g>
+        <!-- landmasses -->
+        <g fill="#2c5290" stroke="#5b86c4" stroke-width="1.5" opacity=".92">
+          <!-- China -->
+          <path d="M150,72 Q205,40 278,55 Q345,66 352,108 Q346,142 300,146 Q255,156 208,138 Q158,128 145,102 Q143,84 150,72 Z"/>
+          <!-- Thailand -->
+          <path d="M158,182 Q186,176 198,204 Q205,232 188,260 Q180,278 173,262 Q170,238 164,216 Q154,200 158,182 Z"/>
+        </g>
+        <!-- Taiwan (island) -->
+        <ellipse cx="356" cy="172" rx="9" ry="18" fill="#2c5290" stroke="#5b86c4" stroke-width="1.5"/>
+
+        <!-- flow lines -->
+        <g stroke-dasharray="5 5" fill="none" stroke-width="2">
+          <line x1="262" y1="100" x2="184" y2="232" stroke="#5b9bd5"/>
+          <line x1="350" y1="176" x2="190" y2="236" stroke="#FFC000"/>
+        </g>
+        <text x="206" y="158" fill="#9fc2ee" font-size="11" font-family="Arial">設備·物料</text>
+        <text x="262" y="214" fill="#ffd866" font-size="11" font-family="Arial">技術</text>
+
+        <!-- pin: China -->
+        <g>
+          <circle class="pulse" cx="262" cy="100" r="11" fill="#FFC000"/>
+          <circle cx="262" cy="100" r="7" fill="#FFC000" stroke="#fff" stroke-width="2"/>
+          <rect x="178" y="60" width="118" height="24" rx="12" fill="rgba(8,18,38,.78)" stroke="rgba(255,192,0,.5)"/>
+          <text x="237" y="76" fill="#fff" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial">中國 · 採購中心</text>
+        </g>
+        <!-- pin: Taiwan -->
+        <g>
+          <circle class="pulse pulse2" cx="356" cy="172" r="11" fill="#5b9bd5"/>
+          <circle cx="356" cy="172" r="7" fill="#5b9bd5" stroke="#fff" stroke-width="2"/>
+          <rect x="300" y="120" width="130" height="24" rx="12" fill="rgba(8,18,38,.78)" stroke="rgba(91,155,213,.6)"/>
+          <text x="365" y="136" fill="#fff" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial">台灣 · 研發接單</text>
+        </g>
+        <!-- pin: Thailand -->
+        <g>
+          <circle class="pulse pulse3" cx="184" cy="234" r="11" fill="#70AD47"/>
+          <circle cx="184" cy="234" r="7" fill="#70AD47" stroke="#fff" stroke-width="2"/>
+          <rect x="96" y="252" width="128" height="24" rx="12" fill="rgba(8,18,38,.78)" stroke="rgba(112,173,71,.6)"/>
+          <text x="160" y="268" fill="#fff" font-size="13" font-weight="700" text-anchor="middle" font-family="Arial">泰國 · 生產基地</text>
+        </g>
+      </svg>
+    </div>
+   </div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- quick axis -->
+  <div class="axis">
+    <div class="pill"><span class="ico">🇨🇳</span><div><b>中國 · 採購中心</b><span>供應鏈整合 / 量產槓桿</span></div></div>
+    <div class="pill"><span class="ico">🇹🇼</span><div><b>台灣 · 研發接單中心</b><span>客戶對接 / 中高階測試 / 組裝</span></div></div>
+    <div class="pill"><span class="ico">🇹🇭</span><div><b>泰國 · 去中生產地</b><span>台灣技術＋中國設備物料 support</span></div></div>
+  </div>
+
+  <!-- CHINA -->
+  <section class="region">
+    <div class="rhead">
+      <span class="flag">🇨🇳</span>
+      <div>
+        <h2>中國 — 採購中心</h2>
+        <div class="sub">設立公司實體取得貿易主體，以便宜原物料與供應鏈整合作為集團成本槓桿</div>
+      </div>
+      <span class="role">採購中心 Procurement Hub</span>
+    </div>
+    <div class="rbody">
+      <div class="cards">
+        <div class="card">
+          <span class="tag">產品採購</span>
+          <h3>金屬加工件</h3>
+          <ul>
+            <li>成品採購</li>
+            <li>半成品採購</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">原物料採購</span>
+          <h3>金屬原料</h3>
+          <ul>
+            <li>板料</li>
+            <li>卷料</li>
+            <li>鋁擠料（6061 / 6063）</li>
+          </ul>
+        </div>
+        <div class="card">
+          <span class="tag">設備採購</span>
+          <h3>生產設備</h3>
+          <ul>
+            <li>沖壓設備</li>
+            <li>自動化設備</li>
+            <li>產線擴充與升級導入</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note">
+        <ul>
+          <li><b>設立公司實體的重要性：</b>取得在地<b>貿易（進出口／報關）</b>主體資格，直接議價、簽約、開票，掌握金流與供應鏈控制權。</li>
+          <li><b>便宜原物料優勢：</b>就源採購大陸<b>板／卷／鋁擠</b>等原料，以量議價取得成本優勢，支援台灣與泰國產線。</li>
+          <li>三大採購軸線：<b>產品（加工件成品／半成品）</b>、<b>原物料（板／卷／鋁擠）</b>、<b>設備（沖壓／自動化）</b>。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TAIWAN -->
+  <section class="region">
+    <div class="rhead">
+      <span class="flag">🇹🇼</span>
+      <div>
+        <h2>台灣 — 研發接單中心</h2>
+        <div class="sub">主要對接台灣客戶端，承接必須在台灣生產的中高階測試與組裝產線</div>
+      </div>
+      <span class="role">研發接單中心 R&amp;D + Sales Hub</span>
+    </div>
+    <div class="rbody">
+      <div class="cards">
+        <div class="card">
+          <span class="tag">客戶對接</span>
+          <h3>研發 / 接單</h3>
+          <ul><li>主要對接台灣客戶端</li><li>研發與接單中心</li><li>需求對焦與打樣窗口</li></ul>
+        </div>
+        <div class="card">
+          <span class="tag">中高階產線</span>
+          <h3>測試 / 組裝</h3>
+          <ul><li>中高階測試產線（須在台生產）</li><li>勤誠組裝產線</li><li>各製程測試產線</li></ul>
+        </div>
+        <div class="card">
+          <span class="tag">擴充風口製程</span>
+          <h3>新增產線方向</h3>
+          <ul><li>機櫃組裝</li><li>散熱模組測試產線</li><li>切入液冷 / AI 伺服器風口</li></ul>
+        </div>
+        <div class="card">
+          <span class="tag">在台生產理由</span>
+          <h3>須留台項目</h3>
+          <ul><li>客戶指定／<b>產地敏感度高</b>之產品</li><li>中高階測試驗證工序</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THAILAND -->
+  <section class="region">
+    <div class="rhead">
+      <span class="flag">🇹🇭</span>
+      <div>
+        <h2>泰國 — 去中實際生產地</h2>
+        <div class="sub">作為去中客戶的實際量產基地，技術由台灣支援、設備與原物料由中國支援</div>
+      </div>
+      <span class="role">去中生產地 De-China Site</span>
+    </div>
+    <div class="rbody">
+      <div class="cards">
+        <div class="card">
+          <span class="tag">定位</span>
+          <h3>實際生產地</h3>
+          <ul><li>去中客戶實際量產基地</li><li>合法取得非中原產地</li><li>就近供應服務</li><li>電池能源相關供應鏈</li><li>中國成品中繼站，轉運回台灣</li></ul>
+        </div>
+        <div class="card">
+          <span class="tag">技術端</span>
+          <h3>台灣 support</h3>
+          <ul><li>製程技術由台灣支援</li><li>研發 / 品保導入</li><li>測試驗證標準同步</li></ul>
+        </div>
+        <div class="card">
+          <span class="tag">設備 / 物料端</span>
+          <h3>中國 support</h3>
+          <ul><li>設備由中國採購中心供應</li><li>原物料（板／卷／鋁擠）由中國供應</li><li>成本與供應鏈槓桿延伸</li></ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p><b>鴻騰電子 HonTen Electronic</b> ｜ www.honten.com.tw</p>
+    <p style="margin-top:6px;color:var(--slate);">三地分工：中國採購 · 台灣研發接單與中高階測試 · 泰國去中量產（台灣技術＋中國設備物料）</p>
+  </footer>
+
+</div>
+</body>
+</html>
