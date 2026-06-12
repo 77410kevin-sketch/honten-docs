@@ -32,13 +32,6 @@
           "desc": "採購單 / 製令 / 請購 / 銷貨即時查詢"
         },
         {
-          "file": "weekly_dashboard",
-          "icon": "📅",
-          "label": "每週五 09:00",
-          "name": "業務週報儀表板",
-          "desc": "BBU 三業務銷售進度與目標達成"
-        },
-        {
           "file": "weekly_business_progress",
           "icon": "📊",
           "label": "每週更新",
