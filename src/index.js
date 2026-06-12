@@ -223,6 +223,9 @@ async function buildManifest(env, shareBaseNames) {
     for (const c of meta.categories || []) {
       for (const it of c.items || []) lookup[it.file] = it;
     }
+    // 「其他文件」上傳檔的自訂顯示（misc_overrides）也納入
+    const ov = meta.misc_overrides || {};
+    for (const f in ov) if (!lookup[f]) lookup[f] = ov[f];
   } catch {}
   return shareBaseNames
     .slice()
