@@ -207,8 +207,12 @@
       </div>
     `).join("");
     section.innerHTML = `
-      <div class="d-flex justify-content-between align-items-center mb-3 mt-2">
+      <div class="d-flex justify-content-between align-items-center mb-3 mt-2 flex-wrap gap-2">
         <h3 class="mb-0">🌐 公用區<small class="text-muted fs-6 ms-2">任何人有連結即可看・免登入</small></h3>
+        <div class="d-flex gap-2">
+          <a class="btn btn-sm btn-outline-success" href="/share/" target="_blank">↗ 開啟公開首頁</a>
+          <button class="btn btn-sm btn-outline-secondary" data-action="copy-public-home">🔗 複製公開首頁連結</button>
+        </div>
       </div>
       <div class="row g-3 mb-5">${
         cards || '<div class="col-12 text-muted py-3">（目前沒有公開報告。在上面任一報告卡按 🌐 即可設為公開）</div>'
@@ -314,6 +318,8 @@
       movePublic(btn.dataset.file, "private");
     } else if (action === "copy-public") {
       copyPublicLink(btn.dataset.file);
+    } else if (action === "copy-public-home") {
+      copyHomeLink();
     }
   });
 
@@ -421,14 +427,21 @@
   }
 
   function copyPublicLink(file) {
-    const url = location.origin + "/share/" + file;
+    copyText(location.origin + "/share/" + file, "🔗 已複製連結：");
+  }
+
+  function copyHomeLink() {
+    copyText(location.origin + "/share/", "🔗 已複製公開首頁連結：");
+  }
+
+  function copyText(url, okPrefix) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(url).then(
-        () => toast("🔗 已複製連結：" + url),
-        () => prompt("複製這個公開連結：", url)
+        () => toast(okPrefix + url),
+        () => prompt("複製這個連結：", url)
       );
     } else {
-      prompt("複製這個公開連結：", url);
+      prompt("複製這個連結：", url);
     }
   }
 
