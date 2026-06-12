@@ -78,13 +78,6 @@
           "label": "每月 1 號自動生成",
           "name": "產業分析月報",
           "desc": "五大區塊深度分析 + LINE multicast"
-        },
-        {
-          "file": "assembly_cost",
-          "icon": "⚙️",
-          "label": "成本分析",
-          "name": "勤誠組裝成本",
-          "desc": "BOM + 工時 + 製程成本拆解"
         }
       ]
     },
@@ -159,12 +152,6 @@
       "icon": "各部門工作執掌",
       "label": "右鍵上傳",
       "name": "cross_department_report",
-      "desc": ""
-    },
-    "kitten_adoption_care_plan": {
-      "icon": "喵喵養成教學計劃",
-      "label": "右鍵上傳",
-      "name": "kitten_adoption_care_plan",
       "desc": ""
     }
   }
