@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>鴻騰電子 — 熱模組／散熱液冷 產業分析（含致伸 Primax、尼德科超眾）</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+<style>
+  body { font-family: 'Microsoft JhengHei', 'PingFang TC', sans-serif; background: #f0f2f5; }
+  .sys-header {
+    background: linear-gradient(135deg, #1a3a5c 0%, #6610f2 100%);
+    color: white; padding: 2rem 0; margin-bottom: 2rem;
+  }
+  .sys-header .subtitle { opacity:.75; font-size:.95rem; }
+  .stat-card { border:none; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.08); }
+  .stat-card .stat-value { font-size:2.0rem; font-weight:700; line-height:1; }
+  .stat-card .stat-label { font-size:.82rem; color:#6c757d; margin-top:.3rem; }
+  .stat-card .stat-icon { font-size:2rem; opacity:.25; }
+  .section-title {
+    font-size:1.1rem; font-weight:700;
+    border-left:4px solid #6610f2; padding-left:.75rem; margin-bottom:1.25rem;
+  }
+  .content-wrap { background:white; border-radius:12px; padding:1.75rem; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+  .trend-chip {
+    display:inline-block; background:#f3e8ff; color:#6610f2; border:1px solid #d8b4fe;
+    border-radius:20px; padding:.3rem .85rem; margin:.15rem; font-size:.82rem; font-weight:500;
+  }
+  .client-card {
+    border:1px solid #e9ecef; border-radius:10px; padding:1.1rem; margin-bottom:.9rem;
+    background:#fcfcfd; transition: box-shadow .2s;
+  }
+  .client-card:hover { box-shadow:0 4px 12px rgba(102,16,242,.08); }
+  .client-card .client-name { font-size:1.05rem; font-weight:700; color:#1a3a5c; }
+  .client-card .client-meta { font-size:.82rem; color:#6c757d; }
+  .client-card .client-body { font-size:.9rem; margin-top:.6rem; line-height:1.7; }
+  .rating { color:#f59e0b; font-size:.95rem; letter-spacing:1px; }
+  .rating .text { color:#6c757d; font-size:.8rem; margin-left:.4rem; }
+  .opp-table th { background:#f8f9fa; font-size:.85rem; }
+  .opp-table td { font-size:.88rem; vertical-align: middle; }
+  .opp-table .rating { white-space:nowrap; }
+  .strategy-card {
+    background:#f8f7ff; border-left:4px solid #6610f2; border-radius:8px;
+    padding:1rem 1.2rem; margin-bottom:.9rem;
+  }
+  .strategy-card .s-title { font-weight:700; color:#6610f2; margin-bottom:.4rem; }
+  .strategy-card .s-body { font-size:.88rem; line-height:1.7; color:#333; }
+  .region-table th { background:#eef2ff; font-size:.85rem; color:#1a3a5c; }
+  .region-table td { font-size:.88rem; vertical-align: middle; }
+  .level-h { background:#10b981; color:white; }
+  .level-m { background:#f59e0b; color:white; }
+  .level-l { background:#6c757d; color:white; }
+  .level-chip { display:inline-block; padding:.15rem .6rem; border-radius:10px; font-size:.75rem; font-weight:600; }
+  .footer-note { color:#6c757d; font-size:.82rem; text-align:center; padding:2rem 0 1rem; }
+  .alert-warn { background:#fff8e1; border-left:4px solid #f59e0b; padding:.8rem 1rem; border-radius:6px; font-size:.85rem; margin-bottom:1rem; }
+  .source-list { font-size:.78rem; color:#6c757d; }
+  .source-list a { color:#6610f2; text-decoration:none; }
+  .source-list a:hover { text-decoration:underline; }
+  h3.sub-h { font-size:1.15rem; color:#1a3a5c; margin-top:1.75rem; margin-bottom:1rem; }
+  /* 業務切入管道 highlight */
+  .entry-channel {
+    margin-top:.7rem; background:#e7f1ff; border-left:3px solid #0d6efd; border-radius:6px;
+    padding:.55rem .85rem; font-size:.87rem; color:#0a4a8f; line-height:1.75;
+  }
+  .entry-channel .ec-title { font-weight:700; color:#0d6efd; }
+  .entry-channel .person { background:#0d6efd; color:white; padding:.05rem .45rem; border-radius:6px; font-weight:600; }
+  /* 主攻產品標記 */
+  .focus-note { background:#fff4e6; border:1px solid #ffd8a8; border-radius:8px; padding:.7rem 1rem; font-size:.86rem; color:#8a4b00; margin-bottom:1rem; line-height:1.7; }
+  .focus-note strong { color:#d9480f; }
+  /* 三段式供應鏈布局 */
+  .supply-model { background:linear-gradient(135deg,#eef2ff,#f3e8ff); border:1px solid #d8b4fe; border-radius:12px; padding:1.1rem 1.3rem; margin-bottom:1.5rem; }
+  .sm-title { font-weight:700; color:#6610f2; margin-bottom:.8rem; font-size:1.02rem; }
+  .sm-flow { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; }
+  .sm-step { background:white; border-radius:8px; padding:.55rem 1rem; font-size:.86rem; color:#1a3a5c; box-shadow:0 1px 3px rgba(0,0,0,.06); line-height:1.55; }
+  .sm-step b { color:#0d6efd; font-size:.95rem; }
+  .sm-step.sm-th b { color:#d9480f; }
+  .sm-arrow { color:#6610f2; font-weight:700; font-size:1.3rem; }
+  .sm-note { font-size:.84rem; color:#555; margin-top:.75rem; line-height:1.7; }
+</style>
+</head>
+<body>
+
+<div class="sys-header">
+  <div class="container">
+    <h2 class="mb-1"><i class="bi bi-thermometer-snow"></i> 鴻騰電子 — 熱模組／散熱液冷 產業分析</h2>
+    <div class="subtitle">聚焦 7 大台灣客戶切入 ・ 主攻冷板 Cold Plate／分水器 Manifold／水冷模組三大產品 ・ 含致伸 Primax、尼德科超眾 ・ 更新：2026-06-25</div>
+  </div>
+</div>
+
+<div class="container pb-5">
+
+  <div class="content-wrap">
+
+    <!-- 統計卡片 -->
+    <div class="row g-3 mb-4">
+      <div class="col-6 col-md-3">
+        <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+          <div><div class="stat-value text-primary">$6.8B</div><div class="stat-label">資料中心液冷市場 2026</div></div>
+          <i class="bi bi-thermometer-snow stat-icon text-primary"></i>
+        </div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+          <div><div class="stat-value" style="color:#0d6efd;">7</div><div class="stat-label">聚焦台灣客戶</div></div>
+          <i class="bi bi-building stat-icon" style="color:#0d6efd;"></i>
+        </div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+          <div><div class="stat-value text-success">3</div><div class="stat-label">主攻產品項（冷板/分水器/水冷模組）</div></div>
+          <i class="bi bi-bullseye stat-icon text-success"></i>
+        </div></div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="card stat-card h-100"><div class="card-body d-flex justify-content-between align-items-center">
+          <div><div class="stat-value" style="color:#6610f2;">8</div><div class="stat-label">金屬加工切入品類</div></div>
+          <i class="bi bi-tools stat-icon" style="color:#6610f2;"></i>
+        </div></div>
+      </div>
+    </div>
+
+    <!-- 三段式供應鏈布局 -->
+    <div class="supply-model">
+      <div class="sm-title"><i class="bi bi-diagram-3-fill"></i> 鴻騰三段式供應鏈布局（本報告統一定位）</div>
+      <div class="sm-flow">
+        <span class="sm-step"><b>① 台灣</b><br>接單・打樣・測試</span>
+        <span class="sm-arrow">→</span>
+        <span class="sm-step"><b>② 中國</b><br>生產・製造（量產）</span>
+        <span class="sm-arrow">→</span>
+        <span class="sm-step sm-th"><b>③ 泰國</b><br>遇去中議題 → 零件運泰廠組裝後交貨</span>
+      </div>
+      <div class="sm-note">客戶於<strong>台灣</strong>對接接單、打樣與測試；量產於<strong>中國</strong>生產製造；若客戶有去中化／關稅／地緣考量，零件改運至<strong>鴻騰泰國廠組裝</strong>後再交貨給客戶——一套產線、三地彈性配置。</div>
+    </div>
+
+    <!-- 趨勢關鍵字 -->
+    <div class="mb-4">
+      <div class="section-title">市場趨勢關鍵字</div>
+      <span class="trend-chip">液冷滲透率 2026 達 47%（TrendForce）</span>
+      <span class="trend-chip">GB300 QDC 對數翻倍（108→252／系統）</span>
+      <span class="trend-chip">冷板 Cold Plate 市佔 &gt;55%</span>
+      <span class="trend-chip">奇鋐佔 NVIDIA 冷板 40-50%</span>
+      <span class="trend-chip">Vera Rubin 600kW/rack 強制液冷</span>
+      <span class="trend-chip">★ 鴻騰供應鏈：台灣打樣→中國量產→泰國組裝交貨</span>
+    </div>
+
+    <!-- 市場概覽 -->
+    <h3 class="sub-h"><i class="bi bi-graph-up"></i> A. 市場概覽</h3>
+    <div class="row g-3 mb-4">
+      <div class="col-md-6">
+        <ul style="font-size:.9rem; line-height:1.9;">
+          <li>資料中心液冷市場 2026 約 <strong>USD 6.8–8.2B</strong>，CAGR <strong>22–30%</strong>，2030 上看 USD 8–22B（口徑而異，MarketsandMarkets／GMInsights）</li>
+          <li>水冷板 Cold Plate 為當前主流（D2C），2026 市佔 <strong>&gt;55%、產值 &gt;USD 3.1B</strong>（Future Market Insights）</li>
+          <li>CDU 市場 2026 約 <strong>USD 1.9B</strong>，CAGR 18.2% 至 2033 達 USD 6.1B；In-Rack 機種市佔 &gt;41%（Persistence MR）</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <ul style="font-size:.9rem; line-height:1.9;">
+          <li>液冷滲透率：2024 <strong>14%</strong> → 2025 <strong>33%</strong> → 2026 <strong>47%</strong>，2027 L2L 快速放量（TrendForce）</li>
+          <li>晶片 TDP H100 700W → B200/B300 <strong>&gt;1,000W</strong>；Rubin Ultra NVL576 達 <strong>600kW/rack</strong>（2027 H2）→ 氣冷物理失效、強制液冷</li>
+          <li>QDC 用量：GB200 全系統 108 對 → <strong>GB300 翻倍至 252 對</strong>；冷板/manifold/快接金屬機構件為液冷模組「結構骨幹」，用量隨晶片數倍增</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 台灣客戶分析 -->
+    <h3 class="sub-h"><i class="bi bi-geo-alt-fill"></i> B. 七大指定客戶切入分析</h3>
+    <div class="focus-note">
+      <i class="bi bi-bullseye"></i> <strong>本輪主攻產品（前三項）：</strong>① 冷板 Cold Plate 殼體／流道　② 分水器 Manifold 殼體／接管座　③ 水冷模組二供／半成品代工（差異化主打）。每家客戶下方標示<span style="color:#0d6efd;font-weight:700;">業務切入管道</span>，鎖定人脈與 AVL 路徑優先推進。
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-1-circle-fill text-primary"></i> 台達電 Delta Electronics（2308） <span style="background:#0d6efd;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 既有業務協調夥伴</span></div>
+          <div class="client-meta">電力鏈 + 液冷整廠基建龍頭 ・ 桃園/台南總部 ・ 泰國 800V 產線 ・ 德國 800V 研發中心（2026-05 啟用）</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 +886-3-362-6301 ・ 🌐 <a href="https://www.deltaww.com/zh-TW/products/data-center-cooling" target="_blank">資料中心散熱</a> ・ 📧 <a href="https://www.deltaww.com/zh-TW/customerService" target="_blank">聯絡/RFQ</a> ・ 💼 <a href="https://www.linkedin.com/company/delta-electronics" target="_blank">LinkedIn</a></small></div>
+        </div>
+        <div class="rating">★★☆☆☆<span class="text">切入等級：中（夥伴關係加分）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>2026 動態：</strong>Computex 2026 亮相預製型 AI 模組化資料中心（含 3MW 液冷）、<strong>800VDC 2.4MW 液對液 CDU</strong>、NVIDIA Vera Rubin NVL72 冷板模組；液冷營收占比約 9% 並快速拉升。<br>
+        <strong>客戶層級：</strong>NVIDIA 指定散熱/電源夥伴，直供 CSP 與鴻海等 GB300 整廠案。<br>
+        <strong>建議切入點（主攻前三項）：</strong>定位 <strong>① 冷板殼體/流道 + ② manifold 接管座 + ③ 水冷模組半成品代工</strong>（依三段式供應鏈：台灣打樣→中國量產→泰國組裝交貨），借既有業務協調夥伴關係引薦；CDU/Sidecar 機殼鈑金為加值延伸。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> 透過<span class="person">廣明 副總 Michael</span>轉介紹切入 → 由 Michael 引薦至台達資料中心散熱事業部窗口，以冷板/分水器半成品先送樣。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-2-circle-fill text-primary"></i> 奇鋐科技 AVC（3017） <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">散熱模組（冷板/manifold/QDC）龍頭 ・ 高雄前鎮總部 ・ 越南 V7/V8 水冷模組新廠（2026 底拚 12 廠）・ 子公司富世達(6805) 做 QDC</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 07-815-7612 ・ 🌐 <a href="https://www.avc.co/zh-tw/About-AVC/CompanyProfile" target="_blank">官網</a> ・ 📧 <a href="https://www.avc.co/zh-tw/About-AVC" target="_blank">聯絡我們</a> ・ 💼 <a href="https://tw.linkedin.com/company/asia-vital-components-co.-ltd." target="_blank">LinkedIn</a></small></div>
+        </div>
+        <div class="rating">★★☆☆☆<span class="text">切入等級：中</span></div>
+      </div>
+      <div class="client-body">
+        <strong>2026 動態：</strong>GB300 量產帶動營收連 10 月創高（年增最高 142%），2026 液冷營收占比拚 55%；<strong>估佔 NVIDIA GB200/GB300 冷板市場 40-50%</strong>；新增「水冷系統關鍵機構件」產線（2026 Q1 啟用）、2027 再擴 cold plate/inner+rack manifold。QDC 已獲 NVIDIA 認證。<br>
+        <strong>建議切入點（主攻前三項）：</strong>定位 <strong>① 冷板 CNC 半成品 + ② inner/rack manifold 殼體</strong>（台灣打樣→中國量產，必要時泰國組裝交貨）<strong>+ ③ 旺季水冷模組外溢二供</strong>，不直搶核心模組。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> 透過先前業務<span class="person">Sam</span>，以 <strong>Outside Sales（外部業務代理）模式</strong>切入 → 由 Sam 既有窗口接旺季冷板/manifold 外溢代工單。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-3-circle-fill text-primary"></i> 雙鴻科技 Auras（3324） <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">AI 伺服器散熱龍頭 ・ 新北新莊總部 ・ 泰國廠為液冷產能主力（冷板/CDU/分歧管/快接組裝，月產能 30 萬套+）</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 02-8990-1653 ・ 🌐 <a href="https://www.auras.com.tw/" target="_blank">官網</a> ・ 📧 <a href="https://www.auras.com.tw/content/contact-us-4" target="_blank">聯絡表單</a> ・ 💼 N/A</small></div>
+        </div>
+        <div class="rating">★★☆☆☆<span class="text">切入等級：中（須過 NVIDIA 認證鏈）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>2026 動態：</strong>3 月營收 33.3 億、年增 91.7%；上修 2026 營收成長 50%→70%；取得 GB200 液冷大單，已過 GB200/GB300/Rubin 認證、深度滲透北美四大 CSP。<br>
+        <strong>建議切入點（主攻前三項）：</strong>定位 <strong>① 冷板 base/殼體半成品 CNC + ② manifold 殼體/接管座 + ③ 水冷模組二供</strong>；以 <strong>台灣打樣＋中國量產成本</strong> 做價格競爭力，去中需求則泰國組裝交貨。鎖定 <strong>HVDC 水冷新賽道</strong>切入。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> <span class="person">東憲（同學）</span>為雙鴻負責<strong>水冷的 RD 主管</strong> → 透過同學關係切入 <strong>HVDC 水冷賽道</strong>；技術門檻：<strong>須投資購買金屬 3D 列印設備</strong>（配合 HVDC 水冷件打樣需求）。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-4-circle-fill text-primary"></i> 健策精密 Jentech（3653） <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">均熱片(lid)王者 + 半導體導熱 + 切入 AI 液冷冷板 ・ 桃園龜山總部</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 03-211-5678 ・ 🌐 <a href="https://www.jentech.com.tw/" target="_blank">官網</a> ・ 💼 經晶達 Hank 引薦高層</small></div>
+        </div>
+        <div class="rating">★★★☆☆<span class="text">切入等級：中（相對較易，最推薦）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>2026 動態：</strong>2025 Q3 營收 50.7 億、年增 41.1%；MCL 微通道蓋板 2026 量產；首度進入 NVIDIA Vera Rubin NVL72 液冷鏈，供 Cold Plate + Manifold（註：Rubin 設計急轉彎曾衝擊股價）。<br>
+        <strong>建議切入點（主攻前三項）：</strong>其冷板/manifold 液冷事業新起步、垂直整合未完成 → 留有外包空間；定位 <strong>① ±0.02mm CNC 冷板半成品 + ② 中國量產 manifold 產能 + ③ 水冷模組半成品代工</strong>（台灣打樣→中國量產→必要時泰國組裝），<strong>列為本區優先攻堅對象</strong>。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> 透過<span class="person">晶達 Hank</span>介紹健策高層切入 → 由 Hank 牽線高層後，送 capability deck 與冷板樣品。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-5-circle-fill text-primary"></i> Cooler Master 訊凱國際 <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">老牌散熱+機殼大廠 ・ 台北內湖總部 ・ 資料中心 B2B（coolermastercorp.com）含中國產線</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 +1-800-459-5570 ・ 🌐 <a href="https://www.coolermastercorp.com/" target="_blank">資料中心 B2B</a> ・ 📧 官網表單 ・ 💼 內湖新湖一路 398 號</small></div>
+        </div>
+        <div class="rating">★★☆☆☆<span class="text">切入等級：偏難（半競半客）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>2026 動態：</strong>Computex 2026「Thermal Authority」showcase 展 cold plate、泵驅二相冷卻、CDU、rack-scale 系統；推 Google Project Deschutes 相容 CDU、120kW 液對液 in-rack CDU；為 ASUS 液冷供精密零組件。<br>
+        <strong>建議切入點（主攻前三項）：</strong>定位 <strong>build-to-print 二供</strong>——① cold plate 基板、② manifold 接頭、③ 水冷模組標準件代工；籌碼為 <strong>台灣打樣＋中國量產成本 + 自家陽極氧化</strong>（去中需求泰國組裝交貨），切非關鍵標準件與產能 overflow。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> <strong>現有 AVL（已在合格供應商名單）</strong> → 由現有合作關係<strong>切入水冷 BU 導入</strong>，從既有品項擴展至冷板/manifold 水冷件送樣。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-6-circle-fill text-primary"></i> 致伸科技 Primax（4915） <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">電腦周邊 + 影像 + 散熱（跨入 AI 伺服器熱模組）・ 台北內湖總部 ・ 泰國東部經濟走廊(EEC)二廠 2026 投產（中國以外最大基地）</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 02-2798-9008 ・ 🌐 <a href="https://www.primax.com.tw/" target="_blank">官網</a> ・ 📧 官網表單 ・ 💼 連哥／陳總（高層人脈）</small></div>
+        </div>
+        <div class="rating">★★★☆☆<span class="text">切入等級：中（高層人脈直通）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>建議切入點（主攻前三項）：</strong>致伸跨入 AI 伺服器熱模組／散熱領域 → 定位 <strong>① 冷板殼體/流道 + ② manifold 接管座 + ③ 水冷模組半成品代工</strong>，搭配鴻騰三段式供應鏈（台灣打樣→中國量產→泰國組裝交貨）與自家陽極。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> 透過<span class="person">連哥</span>或<span class="person">陳總</span>高層人脈切入 → 高層直通定義熱模組金屬件規格，再導入冷板/水冷模組送樣。
+      </div>
+    </div>
+
+    <div class="client-card">
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <div class="client-name"><i class="bi bi-7-circle-fill text-primary"></i> 尼得科超眾 Nidec Chaun-Choung（6230） <span style="background:#10b981;color:white;padding:.15rem .6rem;border-radius:8px;font-size:.7rem;margin-left:.4rem;">★ 目標客戶</span></div>
+          <div class="client-meta">熱導管／均熱板 VC／散熱模組大廠（日商 Nidec 集團持股 86.3%）・ 新北三重總部 ・ 生產基地：三重/重慶/崑山/越南，泰越擴產接 AI 水冷 LCM</div>
+          <div class="client-meta" style="margin-top:.3rem;"><small style="color:#6c757d;">📞 02-2999-9899 ・ 🌐 <a href="https://www.ccic.com.tw/" target="_blank">官網</a> ・ 📧 官網表單 ・ 💼 現有 AVL</small></div>
+        </div>
+        <div class="rating">★★★★☆<span class="text">切入等級：較易（現有 AVL + 樣品轉量產）</span></div>
+      </div>
+      <div class="client-body">
+        <strong>建議切入點（主攻前三項）：</strong>超眾強於熱導管/均熱板 VC，液冷冷板/manifold 仍需外部產能 → 定位 <strong>① 冷板殼體/流道 + ② manifold 接管座 + ③ 水冷模組半成品代工</strong>，依三段式供應鏈（台灣打樣→中國量產→泰國組裝交貨）承接放量。
+      </div>
+      <div class="entry-channel">
+        <span class="ec-title"><i class="bi bi-person-check-fill"></i> 業務切入管道：</span> <strong>現有 AVL（已在合格供應商名單）</strong> → 由<strong>樣品階段切入，導入量產</strong>（樣轉量）：台灣打樣→中國量產承接放量，去中需求泰國組裝交貨。
+      </div>
+    </div>
+
+    <!-- 東南亞在地供應 -->
+    <h3 class="sub-h"><i class="bi bi-globe2"></i> C. 七大客戶東南亞據點 ✕ 鴻騰泰廠在地對接</h3>
+    <p style="font-size:.86rem;color:#555;margin-bottom:.8rem;line-height:1.7;">七家客戶皆已在東南亞設廠（泰國／越南），與鴻騰<strong>三段式供應鏈第三段（泰國組裝交貨）</strong>高度契合 → 客戶去中需求時，鴻騰可就近於泰國廠組裝、供料予客戶東南亞產線。</p>
+    <table class="table table-sm region-table">
+      <thead><tr><th>客戶</th><th>東南亞據點</th><th>鴻騰在地對接角度</th></tr></thead>
+      <tbody>
+        <tr><td><strong>台達電 Delta</strong></td><td>🇹🇭 泰國（Delta Thailand 大型基地，800VDC 液冷產線）</td><td>泰國就近供 CDU/Sidecar 機殼 + 冷板/manifold 半成品，鴻騰泰廠組裝交貨</td></tr>
+        <tr><td><strong>奇鋐 AVC</strong></td><td>🇻🇳 越南寧平省（斥資 6 億美元，亞洲最重要製造基地，三期擴產中）</td><td>越南在地 manifold 殼體 / 冷板機構件代工，旺季外溢二供</td></tr>
+        <tr><td><strong>雙鴻 Auras</strong></td><td>🇹🇭 泰國（液冷水冷產線 2026 Q4 貢獻營收，月產 30 萬套+）</td><td>泰國就地冷板 base/manifold 半成品供料，HVDC 水冷件對接</td></tr>
+        <tr><td><strong>健策 Jentech</strong></td><td>🇹🇭 泰國新廠（2026 投產、H2 放量，重要海外基地）</td><td>泰國在地 ±0.02mm CNC 冷板/分水器外包供料</td></tr>
+        <tr><td><strong>Cooler Master 訊凱</strong></td><td>🇻🇳 越南北寧嘉平工業區（擬加碼至 30 億美元，AI 伺服器散熱/液冷樞紐）</td><td>越南就近供冷板基板/manifold 接頭標準件、產能 overflow</td></tr>
+        <tr><td><strong>致伸 Primax</strong></td><td>🇹🇭 泰國 EEC 東部經濟走廊二廠（2026 投產，中國以外最大基地）</td><td>泰國就地供熱模組/冷板金屬件，與鴻騰泰廠組裝交貨綜效最高</td></tr>
+        <tr><td><strong>尼得科超眾 CCI</strong></td><td>🇻🇳 越南廠（崑山量產＋泰越擴產，接 AI 水冷 LCM）</td><td>越南/泰國在地冷板/manifold 量產承接，樣品轉量產放量</td></tr>
+      </tbody>
+    </table>
+    <p class="source-list"><i class="bi bi-info-circle"></i> 七大客戶東南亞產線擴張（泰國：台達/雙鴻/健策/致伸；越南：奇鋐/Cooler Master/超眾），正是鴻騰「台灣打樣→中國量產→泰國組裝就地供料」三段式供應鏈 + 2027 Q1 泰廠配套的切入窗口。</p>
+
+    <div class="alert-warn" style="background:#f8f9fa; border-left:4px solid #1a3a5c; padding:1rem 1.2rem; margin:1.5rem 0;">
+      <strong><i class="bi bi-flag-fill"></i> 2026-06-06 本區塊 Action Items：</strong>
+      <div style="margin-top:.6rem;">
+        <strong style="color:#0d6efd; font-size:.9rem;">🔵 既有夥伴關係延伸</strong>
+        <ul style="margin:.3rem 0 0; padding-left:1.5rem; font-size:.88rem; line-height:1.8;">
+          <li><strong>台達電 Delta</strong>：借既有業務協調夥伴關係 → 引薦至資料中心散熱事業部，提 <strong>CDU/Sidecar 機殼 + 冷板/manifold 半成品代工</strong>（台灣打樣→中國量產→泰國組裝交貨）</li>
+        </ul>
+      </div>
+      <div style="margin-top:.6rem;">
+        <strong style="color:#10b981; font-size:.9rem;">🟢 目標客戶觸發（本區新開發）</strong>
+        <ul style="margin:.3rem 0 0; padding-left:1.5rem; font-size:.88rem; line-height:1.8;">
+          <li><strong>健策 Jentech（最優先）</strong>：液冷板事業新起步、外包空間大 → 經晶達 Hank 引薦高層送 capability deck，主打 <strong>±0.02mm CNC 冷板半成品 + 中國量產分水器產能</strong></li>
+          <li><strong>奇鋐 AVC（Sam/Outside Sales）/ 雙鴻 Auras（東憲/HVDC 水冷）</strong>：GB300 旺季產能滿載 → 提 <strong>冷板/manifold 旺季外溢 CNC 二供</strong>，以台灣打樣＋中國量產成本切入；雙鴻需投資金屬 3D 列印設備接 HVDC 水冷</li>
+          <li><strong>台達（廣明 Michael）/ 致伸（連哥·陳總）/ Cooler Master·超眾（現有 AVL）</strong>：人脈與 AVL 路徑直通 → 主攻冷板/分水器/水冷模組三大品項送樣，超眾走樣品轉量產</li>
+        </ul>
+      </div>
+      <div style="margin-top:.6rem;">
+        <strong style="color:#f0ad4e; font-size:.9rem;">🟡 認證門檻（必備）</strong>
+        <ul style="margin:.3rem 0 0; padding-left:1.5rem; font-size:.88rem; line-height:1.8;">
+          <li>液冷件須 <strong>100% 氦檢/壓檢、零洩漏壽命驗證</strong>；對接 <strong>NVQD/UQD（NVIDIA 認證）</strong> 規格 → 進入推薦供應鏈即具黏著度（參考 Boyd 模式），為門檻亦為護城河</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub-h"><i class="bi bi-tools"></i> D. 鴻騰金屬加工切入品類（前三項為主攻）</h3>
+    <table class="table opp-table">
+      <thead><tr><th>#</th><th>金屬件品類</th><th>製程</th><th>商機評估</th><th>說明</th></tr></thead>
+      <tbody>
+        <tr style="background:#fff4e6;"><td>1</td><td><strong>冷板 Cold Plate 殼體/流道</strong> <span style="color:#d9480f;font-weight:700;">主攻</span></td><td>CNC ±0.02mm + 硬銲</td><td class="rating">★★★★★</td><td>液冷核心件，平面度/流道對口鴻騰強項</td></tr>
+        <tr style="background:#fff4e6;"><td>2</td><td><strong>分水器 Manifold 殼體/接管座</strong> <span style="color:#d9480f;font-weight:700;">★ 主攻</span></td><td>台灣打樣 + 中國量產</td><td class="rating">★★★★★</td><td>中國量產線直接對口，GB300 用量倍增</td></tr>
+        <tr style="background:#fff4e6;"><td>3</td><td><strong>水冷模組二供/半成品代工</strong> <span style="color:#d9480f;font-weight:700;">★ 主攻（差異化）</span></td><td>中國量產 + 泰國組裝交貨</td><td class="rating">★★★★☆</td><td>從金屬件升級半模組，往價值鏈上游爬升</td></tr>
+        <tr><td>4</td><td>快接頭 QDC 金屬機構件</td><td>精密車銑</td><td class="rating">★★★★☆</td><td>NVQD/UQD 規格，機構件門檻高</td></tr>
+        <tr><td>5</td><td>CDU/Sidecar 機殼鈑金 + 結構件</td><td>鈑金 + CNC</td><td class="rating">★★★★☆</td><td>2.5MW 大型 CDU 結構件量大</td></tr>
+        <tr><td>6</td><td>散熱器 base / 鰭片（氣冷+液冷）</td><td>鋁擠 + 沖壓 80-110T</td><td class="rating">★★★★☆</td><td>沖壓 50 台產能對口</td></tr>
+        <tr><td>7</td><td>冷板/殼體 陽極氧化表面處理</td><td>自家陽極（含硬陽）</td><td class="rating">★★★★☆</td><td>自家線是差異化護城河，可外包承接</td></tr>
+        <tr><td>8</td><td>機櫃/Rack 結構支架、水泵座</td><td>鈑金 + CNC</td><td class="rating">★★★☆☆</td><td>整櫃液冷網絡結構件</td></tr>
+      </tbody>
+    </table>
+
+    <!-- 策略建議 -->
+    <h3 class="sub-h"><i class="bi bi-flag-fill"></i> E. 銷售策略建議</h3>
+    <div class="strategy-card">
+      <div class="s-title">策略 1：以「台灣打樣→中國量產→泰國組裝」三段式供應鏈往價值鏈上游爬升（差異化主打）</div>
+      <div class="s-body">鴻騰最大新籌碼＝<strong>三段式彈性供應鏈</strong>：<strong>台灣接單打樣測試 → 中國生產製造（可量產水冷模組與分水器 manifold）→ 客戶若有去中／關稅考量，零件運鴻騰泰國廠組裝後交貨</strong>。從單純金屬件供應「升級為半模組/模組供應」，提高單機價值量。對 7 大台灣客戶（台達/奇鋐/雙鴻/健策/Cooler Master/致伸/超眾）承接其外包零件、旺季外溢與樣品轉量產，切入 GB300/Vera Rubin manifold 倍量需求。</div>
+    </div>
+    <div class="strategy-card">
+      <div class="s-title">策略 2：定位「散熱大廠的金屬件/冷板半成品 CNC 二供」，不直搶整模組</div>
+      <div class="s-body">奇鋐/雙鴻/台達垂直整合度極高、自製冷板與 CDU。鴻騰<strong>不與其競爭整模組</strong>，而是定位上游金屬機構件供應商 + <strong>旺季冷板/manifold 半成品 CNC 代工</strong>，以台灣打樣＋中國量產成本 + ±0.02mm 精度 + 自家陽極 + 泰國組裝交貨彈性做價格與一條龍優勢。</div>
+    </div>
+    <div class="strategy-card">
+      <div class="s-title">策略 3：以「人脈 + 現有 AVL」雙路徑加速 7 家切入</div>
+      <div class="s-body"><strong>人脈直通</strong>：台達（廣明 Michael 轉介）、雙鴻（同學東憲，主攻 HVDC 水冷）、健策（晶達 Hank 引薦高層）、致伸（連哥/陳總高層）。<strong>現有 AVL/業務路徑</strong>：奇鋐（Sam，Outside Sales 外溢代工）、Cooler Master（AVL 切水冷 BU）、超眾（AVL，樣品轉中國量產）。優先序：<strong>健策＋超眾（門檻最低）→ 奇鋐／雙鴻（量大）→ 台達／致伸／Cooler Master</strong>。</div>
+    </div>
+    <div class="strategy-card">
+      <div class="s-title">策略 4：先備妥液冷件認證能力 + 打樣設備（門檻即護城河）</div>
+      <div class="s-body">液冷金屬件須過 <strong>100% 氦檢/壓檢、零洩漏壽命驗證</strong>，並對接 <strong>NVQD/UQD（NVIDIA）</strong> 規格。建議優先投資 <strong>檢測能力 + 打樣設備</strong>——尤其 <strong>微通道（MCL）等高難度結構用金屬 3D 列印機</strong>（雙鴻 HVDC 水冷、健策 MCL 微通道蓋板皆需），快速打樣建立技術門檻。一旦進入 NVIDIA 推薦供應鏈（如 Boyd 模式）即具高黏著度，是進入門檻亦是長期護城河。</div>
+    </div>
+
+    <div class="source-list mt-4">
+      <strong>主要來源：</strong>
+      <a href="https://www.trendforce.com/presscenter/news/20250821-12682.html" target="_blank">TrendForce 液冷滲透率</a> ｜
+      <a href="https://www.persistencemarketresearch.com/market-research/coolant-distribution-unit-cdu-market.asp" target="_blank">Persistence MR CDU</a> ｜
+      <a href="https://www.digitimes.com/news/a20260512VL206/" target="_blank">DigiTimes 台廠液冷</a> ｜
+      <a href="https://www.businesswire.com/news/home/20260217894368/en/" target="_blank">Boyd 墨西哥擴產</a> ｜
+      <a href="https://www.boydcorp.com/uncategorized/boyd-validated-for-nvidia-gb200-nvl72-recommended-vendor-list.html" target="_blank">Boyd NVIDIA 認證</a>
+    </div>
+
+  </div>
+
+  <div class="footer-note">
+    鴻騰電子 HonTen Electronic ・ 熱模組／散熱液冷 產業分析（自原產業分析報告獨立拉出）<br>
+    www.honten.com.tw
+  </div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
