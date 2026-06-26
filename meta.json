@@ -107,10 +107,22 @@
     "default_icon": "📄"
   },
   "misc_overrides": {
+    "assembly_cost": {
+      "icon": "📄",
+      "label": "右鍵上傳",
+      "name": "assembly_cost",
+      "desc": ""
+    },
     "cross_department_report": {
       "icon": "各部門工作執掌",
       "label": "右鍵上傳",
       "name": "cross_department_report",
+      "desc": ""
+    },
+    "kitten_adoption_care_plan": {
+      "icon": "📄",
+      "label": "右鍵上傳",
+      "name": "kitten_adoption_care_plan",
       "desc": ""
     },
     "七家公司深度調查": {
