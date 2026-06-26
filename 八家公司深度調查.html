@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>八家公司深度調查報告 — 廣明 / 富動 / 永擎 / 雙鴻 / 台端 / 桓鼎 / 碩禾 / 創奕</title>
+<style>
+  :root{
+    --navy:#1F3A68; --blue:#1E88E5; --sub:#556677; --ink:#2C3E50;
+    --line:#E3E8EF; --bg:#F7F9FC; --warn:#C0392B; --ok:#1E8E5A; --amber:#B8860B;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:"Helvetica Neue",Arial,"PingFang TC","Microsoft JhengHei",sans-serif;
+    color:var(--ink);line-height:1.7;background:#fff;}
+  header.hero{background:linear-gradient(135deg,#16294a,#1F3A68 60%,#27508f);
+    color:#fff;padding:46px 40px 38px;}
+  header.hero h1{margin:0 0 8px;font-size:30px;font-weight:800;letter-spacing:.5px;}
+  header.hero p{margin:4px 0;color:#cdd9ec;font-size:14px;}
+  .tags{margin-top:14px;}
+  .tags span{display:inline-block;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);
+    border-radius:20px;padding:4px 13px;margin:4px 6px 0 0;font-size:13px;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 26px 70px;}
+  h2.section{color:var(--navy);font-size:22px;margin:46px 0 6px;padding-bottom:8px;border-bottom:3px solid var(--blue);}
+  .sub{color:var(--sub);font-size:14px;margin:0 0 18px;}
+  .alert{border-radius:10px;padding:16px 20px;margin:18px 0;font-size:14.5px;}
+  .alert.red{background:#FDEDEC;border:1px solid #f5b7b1;color:#922b21;}
+  .alert.amber{background:#FEF9E7;border:1px solid #f7dc6f;color:#7d6608;}
+  .alert.blue{background:#EAF2FB;border:1px solid #aed0f0;color:#1a4f7a;}
+  .alert b{color:inherit;}
+  table{border-collapse:collapse;width:100%;margin:14px 0 8px;font-size:13.5px;}
+  th,td{border:1px solid var(--line);padding:9px 11px;text-align:left;vertical-align:top;}
+  th{background:var(--navy);color:#fff;font-weight:600;}
+  tbody tr:nth-child(even){background:var(--bg);}
+  td.first,th.first{color:var(--blue);font-weight:700;background:#fff;}
+  tbody tr:nth-child(even) td.first{background:var(--bg);}
+  .matrix{font-size:12.5px;} .matrix td,.matrix th{text-align:center;padding:7px 6px;}
+  .matrix td.lbl{text-align:left;font-weight:700;color:var(--navy);background:#eef3fa;}
+  .yes{color:var(--ok);font-weight:700;}
+  .no{color:#b0bac4;}
+  .maybe{color:var(--amber);font-weight:700;}
+  .self{background:#1F3A68;color:#fff;}
+  .card{border:1px solid var(--line);border-radius:14px;padding:0;margin:26px 0;overflow:hidden;box-shadow:0 2px 10px rgba(31,58,104,.06);}
+  .card .top{background:var(--navy);color:#fff;padding:16px 22px;display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;}
+  .card .top .cn{font-size:20px;font-weight:800;}
+  .card .top .en{font-size:13px;color:#bcd0ea;}
+  .card .top .code{margin-left:auto;background:var(--blue);padding:3px 12px;border-radius:14px;font-size:13px;font-weight:700;}
+  .card .top .code.unl{background:#7f8c8d;}
+  .card .body{padding:18px 22px;}
+  .card h4{color:var(--navy);margin:18px 0 6px;font-size:15.5px;border-left:4px solid var(--blue);padding-left:9px;}
+  .card h4:first-child{margin-top:2px;}
+  .pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:10px;margin-left:6px;vertical-align:middle;}
+  .pill.g{background:#e8f6ef;color:var(--ok);} .pill.r{background:#fdeded;color:var(--warn);}
+  .pill.a{background:#fef6e0;color:var(--amber);}
+  ul{margin:6px 0 6px;padding-left:20px;} li{margin:3px 0;}
+  .grp{font-size:12.5px;color:var(--sub);}
+  footer{background:var(--navy);color:#cdd9ec;text-align:center;padding:30px;margin-top:50px;font-size:13px;}
+  footer b{color:#fff;}
+  .small{font-size:12px;color:var(--sub);}
+  a{color:var(--blue);text-decoration:none;} a:hover{text-decoration:underline;}
+  .legend{font-size:12.5px;color:var(--sub);margin:6px 0 0;}
+  .kgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;margin:16px 0;}
+  .kbox{border:1px solid var(--line);border-radius:10px;padding:14px 16px;background:var(--bg);}
+  .kbox .n{font-size:19px;font-weight:800;color:var(--navy);}
+  .kbox .l{font-size:12.5px;color:var(--sub);}
+</style>
+</head>
+<body>
+<header class="hero">
+  <h1>八家公司深度調查報告</h1>
+  <p>廣明光電 ・ 富動科技 ・ 永擎電子 ・ 雙鴻科技 ・ 台端興業 ・ 桓鼎-KY ・ 碩禾電子 ・ 創奕能源</p>
+  <p>業務內容 ╱ 法人股東結構 ╱ 互相持股查核 ╱ 經營團隊（董事長・總經理・副總）</p>
+  <p class="small" style="color:#aebfd8;">調查基準日 2026-06-26　|　資料來源：MOPS 公開資訊觀測站、經濟部商業發展署、各公司官網/年報、Goodinfo・財報狗・鉅亨・富邦e01 等公開財經資料，已交叉驗證</p>
+  <div class="tags">
+    <span>廣明 6188（上櫃）</span><span>富動 6813（已終止興櫃）</span><span>永擎 7711（上市）</span>
+    <span>雙鴻 3324（上櫃）</span><span>台端 3432（上市）</span><span>桓鼎-KY 5543（上櫃）</span>
+    <span>碩禾 3691（上櫃）</span><span>創奕能源（未上市）</span>
+  </div>
+</header>
+
+<div class="wrap">
+
+<!-- ============ 重點結論 ============ -->
+<h2 class="section">⓪ 一頁式總結（先看這裡）</h2>
+<p class="sub">8 間公司分屬 6 個集團／產業，全面比對各公司官方「轉投資概況」與股東結構後的結論。</p>
+
+<div class="alert red">
+  <b>關鍵結論 1｜8 間公司中，只有「兩組」存在真正的股權關係。</b>
+  ① <b>桓鼎集團 → 台端</b>（透過桓鼎能源→統量電能持台端 14.75%，最大股東）；
+  ② <b>碩禾 → 創奕能源</b>（碩禾直接持創奕約 10.1%＋一席董事）。
+  其餘公司彼此「查無任何交叉持股」，被一起提到多半只是「同題材股」被並列，並非股權關聯。
+</div>
+<div class="alert amber">
+  <b>關鍵結論 2｜兩個「投資－被投資」配對橫跨不同產業。</b>
+  桓鼎（建材→綠能）布局台端（連接器→微電車）；碩禾（太陽能/電池材料）布局創奕（電動巴士）——
+  都是「能源材料母體」往「電動載具終端」延伸，但<b>兩組之間互不相干、無交叉</b>。
+</div>
+<div class="alert blue">
+  <b>關鍵結論 3｜兩間公司身份需修正。</b>
+  「<b>富動</b>」＝觸控面板廠<b>富動科技（6813）</b>，與機器人/伺服器無關，且 2024 已終止興櫃、2026 遭檢調搜索、累積虧損逾資本額半數（高風險）。
+  「<b>創奕</b>」官方英文名為 <b>TRON ENERGY</b>（非 Master Transportation Bus），為<b>未上市公司、無正式股票代號</b>。
+</div>
+
+<table>
+  <thead><tr><th class="first">公司</th><th>代號/狀態</th><th>所屬集團</th><th>本業</th><th>董事長</th><th>總經理</th></tr></thead>
+  <tbody>
+    <tr><td class="first">廣明光電</td><td>6188 上櫃</td><td>廣達集團</td><td>SSD儲存＋達明機器人</td><td>何世池</td><td>張嘉峰</td></tr>
+    <tr><td class="first">富動科技</td><td>6813 終止興櫃</td><td>獨立（盟鑫為股東）</td><td>觸控顯示器</td><td>黃士恭</td><td>陳正育</td></tr>
+    <tr><td class="first">永擎電子</td><td>7711 上市</td><td>華擎→和碩集團</td><td>AI 伺服器主機板/整機</td><td>許隆倫</td><td>沙韋旭</td></tr>
+    <tr><td class="first">雙鴻科技</td><td>3324 上櫃</td><td>獨立</td><td>散熱模組／AI液冷</td><td>林育申</td><td>陳志偉</td></tr>
+    <tr><td class="first">台端興業</td><td>3432 上市</td><td>桓鼎集團(5543)</td><td>連接器→微電車TUKU</td><td>陳帝生</td><td>林樂賢</td></tr>
+    <tr><td class="first">桓鼎-KY</td><td>5543 上櫃</td><td>桓鼎集團（母）</td><td>節能建材→綠能/儲能/微電車</td><td>莊宏偉</td><td>楊志文</td></tr>
+    <tr><td class="first">碩禾電子</td><td>3691 上櫃</td><td>國碩(2406)/盧明光體系</td><td>太陽能導電漿＋電池材料＋AI液冷</td><td>陳繼明</td><td>黃文瑞</td></tr>
+    <tr><td class="first">創奕能源</td><td>未上市（無代號）</td><td>碩禾/國碩 轉投資</td><td>電動巴士＋電池模組＋儲能</td><td>黃振聲</td><td>黃振聲(兼)</td></tr>
+  </tbody>
+</table>
+
+<!-- ============ 互相持股矩陣 ============ -->
+<h2 class="section">① 互相持股查核矩陣</h2>
+<p class="sub">逐一比對每家公司的官方「轉投資概況」與大股東名冊。直行＝持有方，橫列＝被持有方。</p>
+<table class="matrix">
+  <thead><tr><th>持有↓ ＼ 被持有→</th><th>廣明</th><th>富動</th><th>永擎</th><th>雙鴻</th><th>台端</th><th>桓鼎</th><th>碩禾</th><th>創奕</th></tr></thead>
+  <tbody>
+    <tr><td class="lbl">廣明</td><td class="self">—</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">富動</td><td class="no">無</td><td class="self">—</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">永擎</td><td class="no">無</td><td class="no">無</td><td class="self">—</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">雙鴻</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="self">—</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">台端</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="self">—</td><td class="no">無</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">桓鼎</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="yes">間接持股†</td><td class="self">—</td><td class="no">無</td><td class="no">無</td></tr>
+    <tr><td class="lbl">碩禾</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="self">—</td><td class="yes">持股10.1%‡</td></tr>
+    <tr><td class="lbl">創奕</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="no">無</td><td class="self">—</td></tr>
+  </tbody>
+</table>
+<p class="legend">
+  <span class="yes">間接持股†</span>＝桓鼎-KY→桓鼎能源(100%)→統量電能(25.7%)→台端(14.75%) 控制鏈
+  <span class="yes">持股10.1%‡</span>＝碩禾直接持創奕約10.1%＋一席董事（另國碩 2406 再間接持創奕約2.26%）
+  <span class="no">無</span>＝查無持股關係　<span class="self" style="padding:1px 8px;border-radius:8px;">—</span>＝自身
+</p>
+
+<div class="alert blue">
+  <b>各集團歸屬一覽（共 6 集團）：</b>
+  廣明＝<b>廣達集團</b>（廣達持股 29.78%）；永擎＝<b>華擎(3515)→和碩(4938)</b>（華擎約 46%）；
+  富動＝獨立（傳產盟鑫工業為法人股東）；雙鴻＝獨立（創辦人林育申為最大股東）；
+  台端＋桓鼎＝<b>桓鼎集團(5543)</b>；碩禾＋創奕＝<b>國碩(2406)/盧明光體系</b>（國碩持碩禾約36%，碩禾持創奕約10%）。
+  → 跨集團之間無交叉持股；只有「桓鼎集團內部」與「碩禾集團內部」各自有一條母子持股鏈。
+</div>
+
+<!-- ============ 各公司詳細 ============ -->
+<h2 class="section">② 各公司詳細檔案</h2>
+
+<!-- 廣明 -->
+<div class="card">
+  <div class="top"><span class="cn">廣明光電</span><span class="en">Quanta Storage Inc.</span><span class="code">6188・上櫃</span></div>
+  <div class="body">
+    <p class="grp">📍 桃園市龜山區　|	成立 1999/02　|	實收資本額約 27.83 億　|	所屬：<b>廣達集團</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li>早期以<b>光碟機(ODD)</b>起家，2016 退出光碟機，轉型<b>外接硬碟／SSD／企業級儲存</b>。</li>
+      <li>透過子公司<b>達明機器人</b>切入協作型／人形機器人——這是現在的最大題材。</li>
+    </ul>
+    <h4>法人股東 <span class="pill g">第一大＝母公司</span></h4>
+    <ul>
+      <li><b>廣達電腦(2382)：29.78%</b>（82,882 張，派 3 席法人董事：黃健堂、楊俊烈、蔡文弘）</li>
+      <li>外資約 9.6%、投信約 7,400 張；前十大股東合計約 30.9%。</li>
+    </ul>
+    <h4>關鍵轉投資（與其餘 7 家無關）</h4>
+    <ul>
+      <li><b>達明機器人 66.68%</b>（廣達的「金孫」，已於 <b>2025/09/26 上市</b>，策略股東含台灣歐姆龍 ~11%）</li>
+      <li>其餘：TMT International 100%、Quanta Storage Int'l 100%、恩悠數位 29.8% 等。</li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長：何世池</b>（Imperial College 機械博士，前台大教授，兼達明董事長）</li>
+      <li><b>總經理：張嘉峰</b>　|	副總：李志仁（兼發言人/財會）、郭志成、葉慰慈、劉文忠、邱彥豪</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 富動 -->
+<div class="card">
+  <div class="top"><span class="cn">富動科技</span><span class="en">GeneTouch Corp.</span><span class="code unl">6813・已終止興櫃</span></div>
+  <div class="body">
+    <div class="alert red" style="margin-top:0;"><b>⚠ 身份修正：</b>此為<b>觸控顯示器製造商</b>，非機器人/AI 伺服器/廣達系。且目前處於<b>高度財務與法律風險</b>。</div>
+    <p class="grp">📍 桃園市蘆竹區　|	成立 2009/05　|	實收資本額約 2.04 億　|	所屬：<b>獨立</b></p>
+    <h4>是做什麼的</h4>
+    <ul><li>整合 LCD 與觸控技術的顯示器設計製造：紅外線/電容式觸控顯示器、數位顯示器、無線投影、工業/防水顯示器、客製代工。員工約 65 人。</li></ul>
+    <h4>法人股東</h4>
+    <ul>
+      <li>唯一明確法人股東＝<b>盟鑫工業</b>（傳產金屬扣件/螺絲，代表人王錦峰任董事，約 10.8%）。</li>
+      <li>其餘籌碼集中於董監個人：黃士恭 ~12%、陳正育 ~12%。<b>無金融機構/投信/外資重大持股</b>。</li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul><li><b>董事長：黃士恭　總經理(兼發言人)：陳正育</b>（副總層級姓名未公開揭露）</li></ul>
+    <h4>近期動態（皆為警訊）<span class="pill r">高風險</span></h4>
+    <ul>
+      <li><b>2024/06/14 終止興櫃買賣</b>（已下市狀態）。</li>
+      <li><b>2026/03/12 遭檢調搜索調查</b>。</li>
+      <li><b>2026/04 公告累積虧損逾實收資本額 1/2、不分派股利、擬停止公開發行</b>；2025H1 EPS 約 -2.12 元。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 永擎 -->
+<div class="card">
+  <div class="top"><span class="cn">永擎電子</span><span class="en">ASRock Rack Inc.</span><span class="code">7711・上市</span></div>
+  <div class="body">
+    <p class="grp">📍 台北市北投區　|	成立 2013/01　|	2025/11/19 上市　|	實收資本約 7.17 億　|	所屬：<b>華擎→和碩集團</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li><b>伺服器主機板＋整機系統</b>研發銷售（通用/儲存/邊緣/機櫃伺服器，含 AI GPU 伺服器）。全數委外代工，員工約 370 人、研發占 8 成。</li>
+      <li><b>約八成營收來自 AI 伺服器</b>，深度綁定 NVIDIA（HGX B300、Vera CPU 平台）。</li>
+    </ul>
+    <h4>法人股東 <span class="pill g">華擎控股</span></h4>
+    <ul>
+      <li><b>華擎科技(3515)：約 46.2%</b>（上市前約 53%，承銷釋股後稀釋）。外資約 1%。</li>
+      <li>集團最上層＝<b>和碩(4938)，董事長童子賢</b>；永擎為和碩「金孫」。</li>
+    </ul>
+    <h4>對外策略投資</h4>
+    <ul><li>2026/05 董事會決議取得美商 <b>Together Computer Inc.</b>（AI 雲端）特別股，上限 1,000 萬美元——與其餘 7 家無關。</li></ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長：許隆倫</b>（兼華擎科技總經理）　|	<b>總經理：沙韋旭</b>　|	資深副總：陳式仁、陳松儉</li>
+    </ul>
+    <h4>近期動態</h4>
+    <ul>
+      <li>2026/03 列 NVIDIA GTC「背板股」連飆漲停；COMPUTEX/MWC 2026 發表新世代 AI 伺服器。</li>
+      <li>與日商 <b>Datasection</b> 合作：採購 587 台 B200 伺服器（4,696 顆 GPU）攻泰國/東南亞 AI 資料中心。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 雙鴻 -->
+<div class="card">
+  <div class="top"><span class="cn">雙鴻科技</span><span class="en">AURAS Technology</span><span class="code">3324・上櫃</span></div>
+  <div class="body">
+    <p class="grp">📍 新北市新莊區　|	成立 1998/08　|	實收資本約 9.31 億　|	市值約 940 億　|	所屬：<b>獨立</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li><b>散熱模組</b>設計製造：散熱器、熱導管、均熱板(VC)、風扇，及<b>液冷散熱</b>（水冷板、CDU、manifold）。</li>
+      <li>自 2012 年布局液冷，為 NVIDIA 認證水冷供應商；2025 伺服器產品占營收約 72%（其中水冷 51%）。</li>
+    </ul>
+    <h4>法人股東（資料日 2026-06）</h4>
+    <ul>
+      <li><b>外資 25.34%</b>、自營 5.84%、投信 0.12% → 三大法人合計 31.30%。</li>
+      <li>最大個人股東＝董事長<b>林育申 14.17%</b>（創辦人）。</li>
+    </ul>
+    <h4>轉投資（與其餘 7 家無關）</h4>
+    <ul><li>泰鴻/利鴻/皓鴻 100%、台灣美特精密 52.8%、宗暘 60.57% 等，名單<b>不含</b>本報告其他公司。</li></ul>
+    <h4>經營團隊</h4>
+    <ul><li><b>董事長：林育申</b>（創辦人，最大股東）　|	<b>總經理：陳志偉</b>　|	副總：黃如懋、朱家亨</li></ul>
+    <h4>近期動態 <span class="pill g">獲利創高</span></h4>
+    <ul>
+      <li>2025 全年營收 232.8 億(+47.5%)、<b>EPS 28.26 元創新高</b>；受惠 NVIDIA GB200/GB300 液冷放量。</li>
+      <li>客戶含 Meta/AWS/微軟；泰國廠擴產為核心，2026 拚營收增 60~70%。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 台端 -->
+<div class="card">
+  <div class="top"><span class="cn">台端興業</span><span class="en">Tai Twun Enterprise</span><span class="code">3432・上市</span></div>
+  <div class="body">
+    <div class="alert amber" style="margin-top:0;"><b>⚠ 身份修正：</b>連接器廠，本業近乎停擺，靠桓鼎集團入主轉型<b>微電車</b>；背負踩雷虧損與經營權訴訟風險。</div>
+    <p class="grp">📍 新北市中和區　|	成立 1988/05　|	2010/12 上市　|	實收資本 4.22 億　|	所屬：<b>桓鼎集團(5543)</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li>本業：<b>連接器</b>（精密模具、OEM/ODM），但近年本業近乎停擺。</li>
+      <li>轉型：自有微電車品牌 <b>TUKU</b>，結合桓鼎旗下統量科技電控、佐茂(7854)電池模組。</li>
+    </ul>
+    <h4>法人股東</h4>
+    <ul>
+      <li><b>統量電能：14.75%</b>（2024/04 私募現增入主，桓鼎能源轉投資）</li>
+      <li>林樂堯 12.43%、樂美投資 10.34%、陳帝生 2.67%。</li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長：陳帝生</b>（兼桓鼎能源/統量電能董事長；前國泰證券副總）</li>
+      <li><b>總經理：林樂賢</b>　|	電動二輪事業群營運長：邱建凱　|	財務長/發言人：鄭佩琪</li>
+    </ul>
+    <h4>近期動態（含重大風險）<span class="pill r">治理警訊</span></h4>
+    <ul>
+      <li>2025/11 發表 TUKU 品牌，2026/01 開首間門市，全台據點 15 間。</li>
+      <li><b>澳豐基金踩雷：</b>2022 提列損失約 16.82 億，EPS -17.57 元，遭證交所重罰。</li>
+      <li><b>經營權/掏空爭議：</b>2024 桓鼎-KY 董事長張建智控告陳帝生背信掏空（挪用桓鼎能源約 9,900 萬參與台端私募）。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 桓鼎 -->
+<div class="card">
+  <div class="top"><span class="cn">桓鼎-KY</span><span class="en">Buima Group Holding</span><span class="code">5543・上櫃</span></div>
+  <div class="body">
+    <div class="alert amber" style="margin-top:0;"><b>★ 樞紐公司：</b>台端的母集團。本身為<b>高治理風險</b>標的（董座雙胞訴訟、曾列全額交割股、虧損）。</div>
+    <p class="grp">📍 開曼註冊／台北中正區　|	成立 2009/11（前身崇佑）　|	2016/05 上櫃　|	實收資本約 4.67 億　|	所屬：<b>桓鼎集團（母公司）</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li>由<b>節能建材</b>（崇佑品牌，中國松江・鎮江廠）轉型為<b>整合型綠能解決方案</b>商。</li>
+      <li>四大事業群：節能建材 ／ 創能基建營造（漁電共生、聯鋌營造）／ <b>儲能與鋰電池</b>（儲能牆「B.E.S.T」LFP、佐茂電池模組）／ 微型電動載具。</li>
+    </ul>
+    <h4>集團控制鏈（最關鍵）<span class="pill a">樞紐</span></h4>
+    <ul>
+      <li><b>桓鼎-KY → 桓鼎能源(100%) → 統量電能(25.7%) → 台端 3432(14.75%，最大股東)</b></li>
+      <li>轉投資 <b>佐茂科技(7854)</b>：先進電池模組（穿戴/輕載具/資料中心 BBU）。統量電能：電動（貨運）自行車三電整合，為荷蘭 Accell Group 電池供應商。</li>
+    </ul>
+    <h4>法人股東</h4>
+    <ul>
+      <li>前十大股東合計僅約 11.2%、董監持股約 11.16%，<b>法人/外資持股偏低、籌碼分散</b>，官股約 1.24%。</li>
+    </ul>
+    <h4>與其他 7 家的關係查核</h4>
+    <ul>
+      <li><b>台端：間接控股</b>（見控制鏈，14.75% 最大股東）。</li>
+      <li><b>廣明 / 富動 / 永擎 / 雙鴻 / 碩禾 / 創奕：查無任何持股或合作關係</b>。</li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長／發言人：莊宏偉</b>（2024/08 起任，爭議中續任）　|	<b>總經理：楊志文</b>　|	董事：陳帝生（兼台端董事長）、林建興</li>
+    </ul>
+    <h4>近期動態與風險 <span class="pill r">治理高風險</span></h4>
+    <ul>
+      <li>題材：固態電池儲能、微電車（結盟台端/茁壯，高雄開首店）、儲能牆 B.E.S.T。</li>
+      <li><b>董座雙胞訴訟：</b>前董座張建智控莊宏偉偽造文書、互控掏空（桓鼎能源 9,900 萬→統量→台端私募），涉證交法，台北地檢偵辦。</li>
+      <li><b>2024/10 一度被櫃買中心列全額交割股</b>；2024 營收約 34 億但<b>稅後淨損約 2.31 億、EPS 約 -5.67 元</b>，累積虧損逾資本額半數。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 碩禾 -->
+<div class="card">
+  <div class="top"><span class="cn">碩禾電子材料</span><span class="en">GigaSolar Materials Corp.</span><span class="code">3691・上櫃</span></div>
+  <div class="body">
+    <div class="alert blue" style="margin-top:0;"><b>★ 樞紐公司：</b>創奕能源的最大法人股東。國碩(2406)/盧明光體系，從太陽能材料延伸到電池材料＋AI 液冷。</div>
+    <p class="grp">📍 新竹縣湖口鄉　|	成立 2003/07（國碩光電材料事業部分割）　|	2010/11 上櫃　|	實收資本約 9.19 億　|	所屬：<b>國碩(2406)集團</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li>核心本業：<b>太陽能導電漿</b>（背面鋁漿、銀鋁漿、正面銀漿），全球前五大導電漿廠。</li>
+      <li>延伸三主軸：<b>再生能源/綠電</b>、<b>電池正負極材料</b>（芯和能源磷酸鐵鋰、榮炭負極碳材）、<b>AI 伺服器液冷散熱</b>（孫公司碩通 7929，2026/06/26 登錄興櫃）。</li>
+    </ul>
+    <h4>法人股東 <span class="pill g">籌碼極集中</span></h4>
+    <ul>
+      <li><b>國碩科技(2406)：約 36.3%</b>（單一最大股東，董事長由國碩法人代表陳繼明出任）。</li>
+      <li><b>鴻海系</b>（鴻揚創投 林忠正 10.08%）為第二大、含 2020/21 私募入股。外資僅約 4.3%、<b>投信 0</b>；董監＋大股東合計約九成，在外流通張數極少。</li>
+    </ul>
+    <h4>關鍵轉投資</h4>
+    <ul>
+      <li>禾迅綠電 97.38%、芯和能源(磷酸鐵鋰正極) 52.81%、華旭先進 34.46%、<b>創奕能源(電動巴士) 約10.1%</b>、榮炭科技(負極) 6.71%。</li>
+      <li>孫公司<b>碩通散熱(7929)</b>：AI 液冷管路/水冷板，2025 EPS 19.55 元，2026/06/26 興櫃（最大催化題材）。</li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長(兼發言人)：陳繼明</b>（國碩代表）　|	<b>董事兼總經理：黃文瑞</b>　|	副總：顏光甫、陳元毓</li>
+    </ul>
+    <h4>近期動態與財務 <span class="pill r">仍虧損</span></h4>
+    <ul>
+      <li>題材：AI 液冷（碩通）＋電池材料一條龍＋美國/印度太陽能；鴻海合作電動車電池材料。</li>
+      <li><b>財務承壓：</b>2024 EPS -7.62 元；2025 前三季淨損約 7.45 億、不配息、累積虧損達資本額 1/2；2026 力拚轉盈（股價已先反映題材，存「股價領先基本面」風險）。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- 創奕 -->
+<div class="card">
+  <div class="top"><span class="cn">創奕能源科技</span><span class="en">TRON ENERGY TECHNOLOGY</span><span class="code unl">未上市・無代號</span></div>
+  <div class="body">
+    <div class="alert blue" style="margin-top:0;"><b>身份釐清：</b>官方英文名 <b>TRON ENERGY</b>（品牌 TRONe），<b>非</b> Master Transportation Bus（那是美國加州另一家電巴廠）。<b>未公開發行、無正式股票代號</b>；網路上「5387」等是未上市網站內部編號。</div>
+    <p class="grp">📍 桃園市中壢區青埔　|	成立 2011/07　|	實收資本約 6.19 億　|	統編 53488162　|	所屬：<b>碩禾/國碩 轉投資</b></p>
+    <h4>是做什麼的</h4>
+    <ul>
+      <li>三大業務：<b>電動巴士</b>（低地板市區電巴、電動中巴、自駕巴士、機場行李拖車）、<b>客製化電池模組系統</b>（LFP 電池＋BMS、液冷電池）、<b>儲能系統</b>。</li>
+      <li>台灣電動大客車<b>市占約 3 成、前三大</b>；營運里程逾 1,300 萬公里。</li>
+    </ul>
+    <h4>法人股東 <span class="pill g">碩禾為最大法人股東</span></h4>
+    <ul>
+      <li><b>碩禾(3691)：約 10.1%（6,244,989 股）＋一席董事</b>（代表人黃文瑞）。曾於 2019 增資至 13.54%，後因多輪增資稀釋。</li>
+      <li>王元宏(個人) ~8.8%、董事長黃振聲 ~2.9%；另國碩(2406)直接再持約 2.26%。</li>
+      <li><b>碩禾是策略型大股東/集團關聯，非母公司、不具控制力。</b></li>
+    </ul>
+    <h4>經營團隊</h4>
+    <ul>
+      <li><b>董事長兼最高經營者：黃振聲</b>（創辦人，原任職聯電）　|	<b>副總：丘為臣</b>（海外/技術發言）</li>
+      <li><span class="small">登記經理人僅黃振聲一人，研判其身兼董事長與總經理。</span></li>
+    </ul>
+    <h4>近期動態與財務</h4>
+    <ul>
+      <li><b>大同(2371)</b>第二代 250kW EV 動力系統合作，訂單上看 500 套；新埔智能園區新廠將動工。</li>
+      <li>外銷放量：泰國、新加坡、印尼、印度、埃及，2026/06 交付電巴至加勒比海友邦。</li>
+      <li><b>風險：</b>2026/04 電巴「環景裝置晶片」資安疑慮澄清事件（公司稱無連網、已改用台製晶片）。</li>
+      <li>財務：2018 起獲利、近年小幅獲利，喊年營收上看 15 億；<b>未公開發行、完整財報未揭露，精確數字未能查證</b>；IPO 僅止於規畫、尚未送件。</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ============ 題材分群 ============ -->
+<h2 class="section">③ 為什麼會被放在一起？（題材分群）</h2>
+<p class="sub">這 8 家可依「AI / 能源」題材歸成幾條線，其中有兩條各自存在母子持股。</p>
+<div class="kgrid">
+  <div class="kbox"><div class="n">AI 伺服器</div><div class="l"><b>永擎</b>(主機板/整機)・<b>雙鴻</b>(液冷散熱)・<b>廣明</b>(SSD)・<b>碩禾</b>(碩通液冷)<br>同為 NVIDIA 供應鏈題材常被並列，<b>但分屬和碩/獨立/廣達/國碩四集團</b>。</div></div>
+  <div class="kbox"><div class="n">機器人</div><div class="l"><b>廣明</b>(達明機器人母公司)<br>人形/協作機器人題材龍頭之一。</div></div>
+  <div class="kbox"><div class="n">綠能 × 微電車（桓鼎組）</div><div class="l"><b>桓鼎</b>(母,5543) → <b>台端</b>(微電車,持股14.75%)<br>建材母體往電動二輪/微電車終端延伸。<b>有實質股權</b>。</div></div>
+  <div class="kbox"><div class="n">電池材料 × 電動巴士（碩禾組）</div><div class="l"><b>碩禾</b>(太陽能/電池材料,3691) → <b>創奕</b>(電動巴士,持股10.1%＋董事)<br>能源材料往電動載具終端延伸。<b>有實質股權</b>。</div></div>
+  <div class="kbox"><div class="n">與題材無關</div><div class="l"><b>富動</b>(觸控面板，已下市/檢調案)<br>應是與「廣運 6125」等同名混淆所致。</div></div>
+</div>
+
+<!-- ============ 註記 ============ -->
+<h2 class="section">④ 資料可信度與未能查證事項</h2>
+<ul>
+  <li>「桓鼎→台端」「碩禾→創奕」兩組持股，係依<b>各公司官方轉投資概況表＋董監名冊＋經濟部商業發展署公示</b>得出，可信度高；其餘「彼此無交叉持股」亦同此查核。</li>
+  <li>各上市櫃公司<b>「具名前十大法人股東逐筆明細」</b>（投信/壽險/外資名稱與張數），公開財經網站多只揭露彙總數，需直接調 <b>MOPS 年報「股權分散表」</b>補齊。</li>
+  <li>富動、台端、桓鼎、創奕的<b>副總經理姓名</b>部分未公開揭露。</li>
+  <li><b>創奕能源為未公開發行公司</b>，完整財報未對外揭露，營收/損益為媒體引述經營層說法，精確數字未能查證；IPO 尚未正式送件。</li>
+  <li>碩禾「量產矽碳負極/固態電池材料」屬市場題材，未查到量產公告；中美晶「直接」持有碩禾未在董監名冊查證（僅國碩持股 + 集團關聯）。</li>
+  <li>各公司持股 % 會隨增資/釋股/改選浮動，本報告以 2026 年 5–6 月公開資料為準。</li>
+</ul>
+
+</div><!-- /wrap -->
+
+<footer>
+  <b>八家公司深度調查報告</b>　|	調查基準日 2026-06-26<br>
+  資料來源：MOPS 公開資訊觀測站 ・ 經濟部商業發展署 ・ 各公司官網與年報 ・ Goodinfo/財報狗/鉅亨/富邦e01 等公開財經資料（已交叉驗證）<br>
+  <span style="color:#8aa0c0;">本報告僅供研究參考，不構成投資建議。投資前請查閱各公司最新財報與公開說明書。</span><br>
+  <b>www.honten.com.tw</b>
+</footer>
+
+</body>
+</html>
