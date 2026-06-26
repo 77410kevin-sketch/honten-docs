@@ -1,9 +1,9 @@
 [
   {
     "file": "assembly_cost",
-    "name": "勤誠組裝成本",
-    "desc": "BOM + 工時 + 製程成本拆解",
-    "icon": "⚙️"
+    "name": "assembly_cost",
+    "desc": "",
+    "icon": "📄"
   },
   {
     "file": "kitten_adoption_care_plan",
@@ -12,9 +12,15 @@
     "icon": "📄"
   },
   {
+    "file": "熱模組_散熱液冷_產業分析",
+    "name": "熱模組_散熱液冷_產業分析",
+    "desc": "",
+    "icon": "📄"
+  },
+  {
     "file": "鴻騰電子_各地區戰略佈局",
-    "name": "各地區戰略佈局",
-    "desc": "鴻騰電子各地區佈局與戰略分析",
-    "icon": "🗺️"
+    "name": "鴻騰電子_各地區戰略佈局",
+    "desc": "",
+    "icon": "📄"
   }
 ]
