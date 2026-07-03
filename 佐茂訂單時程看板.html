@@ -1,0 +1,349 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>佐茂訂單時程看板</title>
+<style>
+  :root{
+    --ink:#1F3A68; --sub:#556677; --line:#e3e8f0; --bg:#f4f6fb; --card:#fff;
+    --text:#2C3E50; --muted:#8493a8;
+    --done:#12a48a; --done-bg:#e2f5f0;
+    --sampling:#1E88E5; --sampling-bg:#e4f0fc;
+    --mold:#F09819; --mold-bg:#fdf1df;
+    --verified:#7E57C2; --verified-bg:#eee7f8;
+    --today:#e6455f;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{ --ink:#cfe0ff; --sub:#9fb2cc; --line:#2a3550; --bg:#0f1626; --card:#171f33;
+      --text:#dbe4f2; --muted:#7688a3; --done-bg:#0f3a33; --sampling-bg:#12314d;
+      --mold-bg:#3d2f16; --verified-bg:#2c2540; }
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:Arial,"PingFang TC","Microsoft JhengHei",sans-serif;
+    background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+  header{background:linear-gradient(120deg,#1F3A68,#2a5298);color:#fff;padding:22px 26px}
+  header h1{margin:0;font-size:22px;font-weight:800;letter-spacing:.5px}
+  header .meta{margin-top:6px;font-size:12.5px;opacity:.85}
+  .wrap{max-width:1280px;margin:0 auto;padding:18px}
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin-bottom:16px}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+  .stat b{display:block;font-size:24px;font-weight:800;color:var(--ink)}
+  .stat b small{font-size:13px;font-weight:700;color:var(--muted)}
+  .stat span{font-size:12px;color:var(--muted)}
+  .tabs{display:flex;gap:8px;margin-bottom:14px}
+  .tabbtn{border:1px solid var(--line);background:var(--card);color:var(--sub);
+    padding:8px 18px;border-radius:10px;font-size:13.5px;font-weight:700;cursor:pointer}
+  .tabbtn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .bar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:14px}
+  .chip{border:1px solid var(--line);background:var(--card);color:var(--sub);
+    padding:5px 12px;border-radius:20px;font-size:12.5px;cursor:pointer;user-select:none}
+  .chip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .legend{display:flex;gap:14px;flex-wrap:wrap;margin-left:auto;font-size:12px;color:var(--sub)}
+  .legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  /* gantt */
+  .gantt{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+  .scroll{overflow-x:auto}
+  .grid{position:relative;min-width:900px}
+  .axis{display:flex;position:sticky;top:0;background:var(--card);border-bottom:1px solid var(--line);z-index:3}
+  .axis .lbl{flex:0 0 210px;padding:8px 12px;font-size:11px;color:var(--muted);
+    border-right:1px solid var(--line);font-weight:700}
+  .axis .months{position:relative;flex:1;height:34px}
+  .tick{position:absolute;top:0;bottom:0;border-left:1px solid var(--line)}
+  .tick span{position:absolute;top:5px;left:4px;font-size:10.5px;color:var(--muted);white-space:nowrap}
+  .grp-h{background:linear-gradient(90deg,rgba(31,58,104,.08),transparent);
+    padding:7px 12px;font-weight:800;color:var(--ink);font-size:13.5px;
+    border-top:1px solid var(--line);display:flex;align-items:center;gap:8px}
+  .grp-h .cnt{font-size:11px;color:var(--muted);font-weight:600}
+  .row{display:flex;border-top:1px solid var(--line);position:relative}
+  .row:hover{background:rgba(30,136,229,.05)}
+  .row .lbl{flex:0 0 210px;padding:8px 12px;border-right:1px solid var(--line)}
+  .row .lbl .t{font-weight:700;font-size:12.5px;color:var(--text)}
+  .row .lbl .s{font-size:11px;color:var(--muted);margin-top:2px}
+  .track{position:relative;flex:1;min-height:46px}
+  .vline{position:absolute;top:0;bottom:0;border-left:1px dashed var(--line);opacity:.5}
+  .today{position:absolute;top:0;bottom:0;border-left:2px solid var(--today);z-index:2}
+  .today span{position:absolute;top:2px;left:4px;font-size:10px;color:var(--today);font-weight:700}
+  .barr{position:absolute;height:22px;top:11px;border-radius:6px;display:flex;align-items:center;
+    padding:0 8px;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;cursor:pointer;
+    box-shadow:0 1px 3px rgba(0,0,0,.15)}
+  .barr.done{background:var(--done)} .barr.sampling{background:var(--sampling)}
+  .barr.mold{background:var(--mold)} .barr.verified{background:var(--verified)}
+  .dia{position:absolute;top:13px;width:16px;height:16px;transform:rotate(45deg);
+    border:2px solid #fff;z-index:2;cursor:pointer;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+  .dia.done{background:var(--done)} .dia.sampling{background:var(--sampling)}
+  .dia.mold{background:var(--mold)} .dia.verified{background:var(--verified)}
+  /* mold table */
+  .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:4px 0;overflow:hidden}
+  table.mt{width:100%;border-collapse:collapse;font-size:13px}
+  table.mt th{background:var(--ink);color:#fff;padding:9px 10px;text-align:left;font-size:12px;position:sticky;top:0}
+  table.mt td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--text)}
+  table.mt tr:nth-child(even) td{background:rgba(0,0,0,.015)}
+  .mgrp td{background:var(--ink)!important;color:#fff;font-weight:800;font-size:12.5px}
+  .pill{display:inline-block;font-size:11px;font-weight:800;padding:2px 9px;border-radius:20px;white-space:nowrap}
+  .pill.mold{background:var(--mold-bg);color:var(--mold)}
+  .pill.done{background:var(--done-bg);color:var(--done)}
+  .pill.verified{background:var(--verified-bg);color:var(--verified)}
+  .hide{display:none}
+  /* detail */
+  .detail{position:fixed;z-index:40;max-width:360px;background:var(--card);
+    border:1px solid var(--line);border-radius:12px;box-shadow:0 12px 34px rgba(0,0,0,.28);
+    padding:14px 16px;display:none}
+  .detail h3{margin:0 0 6px;font-size:14.5px;color:var(--ink)}
+  .detail .tag{display:inline-block;font-size:11px;font-weight:700;padding:2px 9px;border-radius:20px;margin-bottom:8px}
+  .detail table{width:100%;border-collapse:collapse;font-size:12px;margin-top:6px}
+  .detail td{padding:3px 4px;vertical-align:top;border-bottom:1px solid var(--line)}
+  .detail td:first-child{color:var(--muted);white-space:nowrap;width:64px}
+  .detail .items{margin:6px 0 0;padding-left:16px}
+  .detail .items li{margin:1px 0}
+  .close{float:right;cursor:pointer;color:var(--muted);font-weight:700;font-size:16px;line-height:1}
+  footer{text-align:center;color:var(--muted);font-size:11.5px;padding:22px}
+</style>
+
+<header>
+  <h1>佐茂 樣品／開模訂單 — 機種 × 時程看板</h1>
+  <div class="meta">資料來源：Google 試算表「佐茂訂單」＋「已寄出+給檢表」　│　產出日：2026-07-03　│　負責：Alan</div>
+</header>
+
+<div class="wrap">
+  <div class="stats" id="stats"></div>
+
+  <div class="tabs">
+    <div class="tabbtn on" data-v="gantt">📅 時程看板</div>
+    <div class="tabbtn" data-v="mold">🛠 開模模具彙整（16 套）</div>
+  </div>
+
+  <!-- 時程看板 -->
+  <div id="view-gantt">
+    <div class="bar">
+      <span style="font-size:12px;color:var(--sub);font-weight:700">機種：</span>
+      <div id="modelChips"></div>
+      <div class="legend">
+        <span><i style="background:var(--done)"></i>已寄出</span>
+        <span><i style="background:var(--sampling)"></i>打樣中</span>
+        <span><i style="background:var(--mold)"></i>開模中</span>
+        <span><i style="background:var(--verified)"></i>已驗證待下單</span>
+        <span>◆ 鴻騰交期</span>
+      </div>
+    </div>
+    <div class="gantt"><div class="scroll"><div class="grid" id="grid"></div></div></div>
+  </div>
+
+  <!-- 開模模具彙整 -->
+  <div id="view-mold" class="hide">
+    <div class="bar">
+      <span style="font-size:12.5px;color:var(--sub);font-weight:700">共 16 套模具：</span>
+      <span class="pill verified">已驗證 6</span>
+      <span class="pill done">已開好 1</span>
+      <span class="pill mold">開模中 9</span>
+    </div>
+    <div class="panel"><div class="scroll"><table class="mt" id="moldTable"></table></div></div>
+  </div>
+
+  <footer>點擊任一橫條／◆ 可查看完整明細　·　鴻騰電子 www.honten.com.tw</footer>
+</div>
+
+<div class="detail" id="detail"></div>
+
+<script>
+const D="2026-";
+// ===== 訂單資料（兩頁籤整合，共 16 區塊）=====
+const data=[
+ // ---- 已寄出（打樣完成）----
+ {model:"Apollo Robot",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-18",end:D+"06-23",ship:D+"06-22",
+  po:"JPM32-260519011",buyer:"蔡靜樺",vendor:"拓海 NCT 6/18",erp:"2202-260604002",
+  items:["GASCKET-A/變更尺寸 ×40（SECC 1.2T）"],note:"6/23 已給出貨檢表"},
+ {model:"Restar DC Charging",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-22",end:D+"06-25",ship:D+"06-24",
+  po:"JPM32-2606040002",buyer:"吳宗豪 Matt",vendor:"鴻濰 NCT 6/22",erp:"2202-260608001",
+  items:["正極配件 ×6（磷青銅）","負極配件 ×6（磷青銅）"],note:"6/29 已給出貨檢表"},
+ {model:"Restar DC Charging",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-22",end:D+"06-25",ship:D+"06-24",
+  po:"JPM32-2606040004",buyer:"蔡靜樺",vendor:"銳太 CNC 6/22",erp:"2202-260608002",
+  items:["上蓋 ×6（PC+ABS，1透明5黑）","下蓋 ×6（PC+ABS）"],note:"6/24 已給出貨檢表"},
+ {model:"Apollo Robot",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-18",end:D+"07-02",ship:D+"06-26",
+  po:"JPM32-2605180008",buyer:"吳宗豪 Matt",vendor:"拓海 NCT 6/18 › 祺瑞鍍鎳 6/24",erp:"2202-260604001",
+  items:["串聯 BUSBAR ×40","CELL BUSBAR ×40","轉接 BUSBAR-1 ×40","散熱鋁板-A面 ×40"],note:"6/25 已給出貨檢表"},
+ {model:"Apollo Robot",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-18",end:D+"07-02",ship:D+"06-26",
+  po:"JPM31-2606100001",buyer:"吳宗豪 Matt",vendor:"拓海 NCT 6/18 › 祐鋅陽極 6/24",erp:"2202-260611002",
+  items:["散熱鋁板-1 ×20（變更規格）","散熱鋁板-2 ×20（變更規格）"],note:"6/25 已給出貨檢表"},
+ {model:"台端AF1K 電摩",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-18",end:D+"06-25",ship:D+"06-25",
+  po:"JPM32-2606010004",buyer:"蔡靜樺",vendor:"翼高 NCT+烤漆黑織紋 6/18",erp:"2202-260602002",
+  items:["下板金 ×13（+RD5+留樣3=21）","上板金 ×15（+RD5+留樣3=23）"],note:"6/25 已給出貨檢表"},
+ {model:"儲能牆 (台塑生醫)",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-12",end:D+"06-26",ship:D+"06-24",
+  po:"115052303",buyer:"王昱晴 Nina／茂利",vendor:"翼高 NCT+鍍鎳+PVC浸塑",erp:"2202-260522003",
+  items:["P端 BUS BAR-2 ×10","極耳 BUS BAR ×160","CELL 加壓桿-1 ×10","CELL 加壓桿-2 ×20"],
+  note:"佐茂設計、華岳下單、窗口茂利；6/24 已給出貨檢表"},
+ {model:"台端AF1K 電摩",kind:"開模",status:"done",statusTxt:"已寄出",start:D+"06-20",end:D+"07-01",ship:D+"06-30",
+  po:"JPM32-2605190009",buyer:"蔡靜樺",vendor:"嶸碩 鋁擠+CNC+噴砂100#+陽極黑",erp:"2201-260609001",
+  items:["AF1K 鋁擠 ×15（開模品，+RD5+留樣3=23）"],note:"開模品；模具已開好、6/30 已寄出"},
+ {model:"系統電子GCS-6070 2S1P",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-24",end:D+"07-01",ship:D+"06-30",
+  po:"JPM32-2606160001 / JPM31-2606180005",buyer:"—",vendor:"拓海 NCT 6/26",erp:"2202-260617001",
+  items:["沖型鎳片A(凸點) ×65","沖型鎳片B(凸點) ×65","沖型鎳片C(凸點) ×65"],note:"6/18 客戶加10套；6/30 已給出貨檢表"},
+ {model:"台端AF1K 電摩",kind:"打樣",status:"done",statusTxt:"已寄出",start:D+"06-30",end:D+"07-03",ship:D+"07-01",
+  po:"PM32-2606290005",buyer:"蔡靜樺",vendor:"拓海 NCT 7/2",erp:"—",
+  items:["上板金 ×1（寄RD）","下板金 ×1（寄RD）","板金-1 ×2（寄採購）"],note:"不用表面處理；7/1 已給板金-1檢表"},
+
+ // ---- 開模中 ----
+ {model:"Restar DC Charging",kind:"開模",status:"mold",statusTxt:"開模中",start:D+"06-15",end:D+"07-24",milestone:D+"07-14",msTxt:"T1 試模",
+  po:"JPM34-2606110003",buyer:"吳宗豪 Matt／許芷庭 Tina",vendor:"伸揚 沖壓 7/14 T1",erp:"2203-260615001",
+  items:["正極配件（開模品）JM02A-5H1","負極配件（開模品）JM02B-5H1","總成件 JM02P-MA1-002","總成件 JM02P-MB1-002"],
+  note:"4 套模具；6/15 回覆客戶 7/20 完成開模、7/21 試模；7/24 寄 6 套沖壓半成品"},
+ {model:"儲能牆48V",kind:"開模",status:"mold",statusTxt:"開模中",start:D+"06-15",end:D+"08-06",milestone:D+"07-20",msTxt:"鎳片3 試模",
+  po:"JPM32-2606090001 / JPM34-2606080007",buyer:"吳宗豪 Matt",vendor:"翼高 沖壓：鎳片1 7/14、鎳片2 7/17、鎳片3 7/20 試模",erp:"2201-260609005 / 2203-260618001",
+  items:["M 48V 鎳片1 ×60","M 48V 鎳片2 ×400","M 48V 鎳片3 ×450"],
+  note:"3 套模具；7/24 翼高寄 12 套 T0；8/6 提供 T0 樣品 10 套，驗證 OK 再生產"},
+ {model:"台端AF1K 電摩",kind:"開模",status:"mold",statusTxt:"開模中",start:D+"07-01",end:D+"08-01",tentative:true,
+  po:"JPM34-2606300003",buyer:"吳宗豪 Matt／許芷庭 Tina",vendor:"翼高",erp:"—",
+  items:["鎳片-1（開模品）10JE05000416A1","沖型鎳片-2（開模品）10JE05000423A1"],note:"2 套模具；交期未定（暫估）"},
+
+ // ---- 打樣中 ----
+ {model:"系統電子GCS-6070 2S1P",kind:"打樣",status:"sampling",statusTxt:"打樣中",start:D+"06-25",end:D+"07-29",milestone:D+"07-23",msTxt:"翻模約7/23",
+  po:"JPM31-2606250033 / JPM34-2607010005",buyer:"蔡靜樺",vendor:"銳太 翻模64套+CNC 2套 7/20（約7/23）",erp:"2202-260701002",
+  items:["下蓋 ×64+2","上蓋 ×64+2","防水塑膠件 ×64+2","五金端子固定塑膠座 ×64+2","Cell Holder ×64+2"],note:"翻模件；交期 7/27 → 改 7/29"},
+ {model:"系統電子GCS-6070 2S1P",kind:"打樣",status:"sampling",statusTxt:"打樣中",start:D+"06-29",end:D+"07-29",milestone:D+"07-24",msTxt:"好邦鍍金7/24",
+  po:"JPM31-2606290007",buyer:"蔡靜樺",vendor:"鴻濰 NCT 7/17 › 好邦 鍍鎳鍍金 7/24",erp:"202-260701001",
+  items:["五金端子 ×392（銅鍍鎳金；實產440）"],note:"訂單 392 PCS，實際生產 440 PCS"},
+
+ // ---- 已驗證待下單（無交期）----
+ {model:"儲能牆 (ENERGY WALL)",kind:"開模",status:"verified",statusTxt:"已驗證·待下單",nodate:true,
+  po:"ENERGY WALL",buyer:"Matt",vendor:"翼高",erp:"—",
+  items:["鎳片1 JM03A-5Z0 ×2","鎳片2 JM03B-5Z0 ×16","鎳片3 JM03C-5Z0 ×2","鎳片4 JM03D-5Z0 ×16","鎳片5 JM03E-5Z0 ×14","鎳片6 JM03F-5Z0 ×14"],
+  note:"6 套鎳片模具已驗證通過，待客戶下訂單"},
+];
+
+// ===== 16 套模具彙整表 =====
+const molds=[
+ {proj:"Restar DC Charging",name:"正極配件",ht:"JM02A-5H1",vendor:"伸揚 沖壓",st:"mold",stTxt:"開模中",note:"7/14 T1 試模、7/24 寄6套半成品"},
+ {proj:"Restar DC Charging",name:"負極配件",ht:"JM02B-5H1",vendor:"伸揚 沖壓",st:"mold",stTxt:"開模中",note:"隨正極同步 T1 試模"},
+ {proj:"Restar DC Charging",name:"總成件 MA1",ht:"JM02P-MA1-002",vendor:"伸揚 沖壓",st:"mold",stTxt:"開模中",note:"正極總成配件"},
+ {proj:"Restar DC Charging",name:"總成件 MB1",ht:"JM02P-MB1-002",vendor:"伸揚 沖壓",st:"mold",stTxt:"開模中",note:"負極總成配件"},
+ {proj:"儲能牆48V",name:"M 48V 鎳片1",ht:"JM05A-5Z0",vendor:"翼高 沖壓",st:"mold",stTxt:"開模中",note:"7/14 試模 ×60"},
+ {proj:"儲能牆48V",name:"M 48V 鎳片2",ht:"JM05B-5Z0",vendor:"翼高 沖壓",st:"mold",stTxt:"開模中",note:"7/17 試模 ×400"},
+ {proj:"儲能牆48V",name:"M 48V 鎳片3",ht:"JM05C-5Z0",vendor:"翼高 沖壓",st:"mold",stTxt:"開模中",note:"7/20 試模 ×450；8/6 交10套T0"},
+ {proj:"台端AF1K 電摩",name:"鎳片-1",ht:"10JE05000416A1",vendor:"翼高",st:"mold",stTxt:"開模中",note:"交期未定"},
+ {proj:"台端AF1K 電摩",name:"沖型鎳片-2",ht:"10JE05000423A1",vendor:"翼高",st:"mold",stTxt:"開模中",note:"交期未定"},
+ {proj:"台端AF1K 電摩",name:"AF1K 鋁擠",ht:"JM01A-5D1",vendor:"嶸碩 鋁擠+CNC+陽極黑",st:"done",stTxt:"已開好",note:"✅ 模具已開好，6/30 已寄出（開模品）"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片1",ht:"JM03A-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過，待下訂單 ×2"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片2",ht:"JM03B-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過，待下訂單 ×16"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片3",ht:"JM03C-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過 ×2"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片4",ht:"JM03D-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過 ×16"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片5",ht:"JM03E-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過 ×14"},
+ {proj:"儲能牆 (ENERGY WALL)",name:"鎳片6",ht:"JM03F-5Z0",vendor:"翼高",st:"verified",stTxt:"已驗證",note:"✅ 已驗證通過 ×14"},
+];
+
+// ===== 時間軸 =====
+const AXIS_START=new Date("2026-06-12"),AXIS_END=new Date("2026-08-08"),TODAY=new Date("2026-07-03");
+const DAY=86400000,SPAN=(AXIS_END-AXIS_START)/DAY;
+const pct=d=>Math.max(0,Math.min(100,((new Date(d)-AXIS_START)/DAY)/SPAN*100));
+const md=d=>(d.getMonth()+1)+"/"+d.getDate();
+
+// ===== 統計 =====
+const moldCount=molds.length; // 16
+const sampCount=data.filter(d=>d.kind==="打樣").reduce((s,d)=>s+d.items.length,0);
+const models=[...new Set(data.map(d=>d.model))];
+const doneMold=molds.filter(m=>m.st!=="mold").length, ingMold=molds.filter(m=>m.st==="mold").length;
+document.getElementById("stats").innerHTML=[
+ ["機種數",models.length,""],
+ ["開模模具",`${moldCount}<small> 套</small>`,"var(--mold)"],
+ ["└ 已開好/已驗證",doneMold,"var(--done)"],
+ ["└ 開模中",ingMold,"var(--mold)"],
+ ["打樣件數",`${sampCount}<small> 件</small>`,"var(--sampling)"],
+ ["訂單區塊",data.length,""],
+].map(([s,b,c])=>`<div class="stat"><b style="${c?'color:'+c:''}">${b}</b><span>${s}</span></div>`).join("");
+
+// ===== 分頁切換 =====
+document.querySelectorAll(".tabbtn").forEach(btn=>btn.onclick=()=>{
+  document.querySelectorAll(".tabbtn").forEach(b=>b.classList.toggle("on",b===btn));
+  const v=btn.dataset.v;
+  document.getElementById("view-gantt").classList.toggle("hide",v!=="gantt");
+  document.getElementById("view-mold").classList.toggle("hide",v!=="mold");
+});
+
+// ===== 機種篩選 =====
+let active=new Set(models);
+const chipWrap=document.getElementById("modelChips");
+function renderChips(){
+  chipWrap.innerHTML="";
+  const all=document.createElement("span");
+  all.className="chip"+(active.size===models.length?" on":"");
+  all.textContent="全部";all.onclick=()=>{active=new Set(models);renderChips();renderG()};
+  chipWrap.appendChild(all);
+  models.forEach(m=>{const c=document.createElement("span");
+    c.className="chip"+(active.has(m)?" on":"");c.textContent=m;
+    c.onclick=()=>{if(active.has(m)&&active.size>1)active.delete(m);else active.add(m);renderChips();renderG()};
+    chipWrap.appendChild(c);});
+}
+
+function ticks(){let h='';for(let t=new Date(AXIS_START);t<=AXIS_END;t=new Date(+t+DAY))
+  if(t.getDay()===1)h+=`<div class="tick" style="left:${pct(t)}%"><span>${md(t)}</span></div>`;return h;}
+function weeklines(){let h='';for(let t=new Date(AXIS_START);t<=AXIS_END;t=new Date(+t+DAY))
+  if(t.getDay()===1)h+=`<div class="vline" style="left:${pct(t)}%"></div>`;return h;}
+const todayLine=`<div class="today" style="left:${pct(TODAY)}%"><span>今日</span></div>`;
+
+const grid=document.getElementById("grid");
+function renderG(){
+  const shown=models.filter(m=>active.has(m));
+  let html=`<div class="axis"><div class="lbl">機種 / 訂單</div><div class="months">${ticks()}</div></div>`;
+  shown.forEach(m=>{
+    const rows=data.filter(d=>d.model===m);
+    html+=`<div class="grp-h">${m} <span class="cnt">${rows.length} 筆</span></div>`;
+    rows.forEach(d=>{
+      const idx=data.indexOf(d);
+      let track;
+      if(d.nodate){
+        track=`<div class="barr ${d.status}" onclick="showD(${idx},event)" style="left:6px">${d.statusTxt}</div>`;
+      }else{
+        const L=pct(d.start),R=pct(d.end),W=Math.max(R-L,2);
+        const bar=`<div class="barr ${d.status}" onclick="showD(${idx},event)" style="left:${L}%;width:${W}%">${d.statusTxt}${d.tentative?' ?':''}</div>`;
+        const dia=`<div class="dia ${d.status}" onclick="showD(${idx},event)" title="鴻騰交期 ${md(new Date(d.end))}" style="left:calc(${R}% - 8px)"></div>`;
+        const ms=d.milestone?`<div class="dia ${d.status}" style="left:calc(${pct(d.milestone)}% - 6px);top:15px;width:12px;height:12px;opacity:.5" title="${d.msTxt||''} ${md(new Date(d.milestone))}"></div>`:'';
+        track=`${ms}${bar}${dia}`;
+      }
+      const shipTxt=d.ship?`已寄 ${md(new Date(d.ship))}`:(d.nodate?'待下單':'交期 '+md(new Date(d.end))+(d.tentative?'?':''));
+      html+=`<div class="row"><div class="lbl"><div class="t">${d.po.split(' /')[0].split('\n')[0]}</div>
+        <div class="s">${d.kind} · ${shipTxt}</div></div>
+        <div class="track">${weeklines()}${todayLine}${track}</div></div>`;
+    });
+  });
+  grid.innerHTML=html;
+}
+
+// ===== 模具彙整表 =====
+function renderMold(){
+  let html=`<tr><th>#</th><th>品名</th><th>鴻騰料號</th><th>廠商</th><th>模具狀態</th><th>說明</th></tr>`;
+  let lastProj="",n=0;
+  molds.forEach(m=>{
+    if(m.proj!==lastProj){lastProj=m.proj;
+      const c=molds.filter(x=>x.proj===m.proj).length;
+      html+=`<tr class="mgrp"><td colspan="6">${m.proj}　<span style="font-weight:600;opacity:.8">${c} 套</span></td></tr>`;}
+    n++;
+    html+=`<tr><td>${n}</td><td><b>${m.name}</b></td><td>${m.ht}</td><td>${m.vendor}</td>
+      <td><span class="pill ${m.st}">${m.stTxt}</span></td><td>${m.note}</td></tr>`;
+  });
+  document.getElementById("moldTable").innerHTML=html;
+}
+
+// ===== 明細卡 =====
+const det=document.getElementById("detail");
+function showD(i,e){
+  const d=data[i];
+  const cmap={done:["var(--done)","var(--done-bg)"],mold:["var(--mold)","var(--mold-bg)"],
+    sampling:["var(--sampling)","var(--sampling-bg)"],verified:["var(--verified)","var(--verified-bg)"]};
+  const[color,bgc]=cmap[d.status];
+  det.innerHTML=`<span class="close" onclick="det.style.display='none'">×</span>
+    <span class="tag" style="background:${bgc};color:${color}">${d.kind}·${d.statusTxt}</span>
+    <h3>${d.model}</h3>
+    <ul class="items">${d.items.map(x=>`<li>${x}</li>`).join("")}</ul>
+    <table>
+      <tr><td>訂單號</td><td>${d.po.replace(/\n/g,'<br>')}</td></tr>
+      <tr><td>採購</td><td>${d.buyer}</td></tr>
+      <tr><td>廠商製程</td><td>${d.vendor}</td></tr>
+      <tr><td>鴻騰交期</td><td>${d.nodate?'待下單':md(new Date(d.end))+(d.tentative?'（未定）':'')}${d.ship?' ・已寄 '+md(new Date(d.ship)):''}</td></tr>
+      <tr><td>ERP</td><td>${d.erp||'—'}</td></tr>
+      <tr><td>備註</td><td>${d.note||'—'}</td></tr>
+    </table>`;
+  det.style.display="block";
+  const x=Math.min(e.clientX,innerWidth-370),y=Math.min(e.clientY+12,innerHeight-280);
+  det.style.left=Math.max(10,x)+"px";det.style.top=Math.max(10,y)+"px";
+  e.stopPropagation();
+}
+document.addEventListener("click",e=>{if(!det.contains(e.target)&&!e.target.classList.contains("barr")&&!e.target.classList.contains("dia"))det.style.display="none";});
+
+renderChips();renderG();renderMold();
+</script>
