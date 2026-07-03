@@ -1,5 +1,11 @@
 [
   {
+    "file": "bbu_gantt_calendar",
+    "name": "BBU 專案甘特 / 行事曆",
+    "desc": "三業務 follow-up 日期 → 甘特圖 / 行事曆，可篩選客戶 / 機種 / 階段",
+    "icon": "📅"
+  },
+  {
     "file": "鴻騰電子_各地區戰略佈局",
     "name": "鴻騰電子_各地區戰略佈局",
     "desc": "",
