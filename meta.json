@@ -37,6 +37,13 @@
           "label": "每週更新",
           "name": "業務進度總覽",
           "desc": "全域異動總覽 + 階段變化追蹤"
+        },
+        {
+          "file": "bbu_gantt_calendar",
+          "icon": "📅",
+          "label": "每週五更新",
+          "name": "BBU 專案甘特 / 行事曆",
+          "desc": "三業務 follow-up 日期 → 甘特圖 / 行事曆，可篩選客戶 / 機種 / 階段"
         }
       ]
     },
