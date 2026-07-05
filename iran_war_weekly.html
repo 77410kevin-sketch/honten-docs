@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-TW">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>美伊戰爭情勢週報 2026-06-28</title>
+  <title>⚔️ 美伊戰爭情勢週報 2026-07-05</title>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,16 +14,15 @@
       max-width: 960px;
       margin: 0 auto;
       padding: 2rem 1rem;
-      background: #f8f9fa;
+      background-color: #f8f9fa;
       color: #212529;
     }
     .report-header {
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-      color: #fff;
+      color: white;
+      padding: 2.5rem 2rem;
       border-radius: 12px;
-      padding: 2rem;
       margin-bottom: 2rem;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
     .report-header h1 {
       font-size: 2rem;
@@ -31,17 +30,8 @@
       margin-bottom: 0.5rem;
     }
     .report-header .meta {
-      color: #adb5bd;
       font-size: 0.95rem;
-    }
-    .badge-conflict {
-      background: #dc3545;
-      color: #fff;
-      font-size: 0.85rem;
-      padding: 0.35rem 0.75rem;
-      border-radius: 20px;
-      display: inline-block;
-      margin-left: 0.5rem;
+      opacity: 0.85;
     }
     h2 {
       border-left: 4px solid #dc3545;
@@ -52,32 +42,42 @@
     }
     h3 {
       font-size: 1.1rem;
-      font-weight: 600;
+      font-weight: 700;
       color: #495057;
       margin-top: 1.5rem;
     }
     table {
       font-size: 0.92rem;
     }
-    .card-section {
-      background: #fff;
+    .badge-day {
+      background-color: #dc3545;
+      color: white;
+      font-size: 1rem;
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .section-card {
+      background: white;
       border-radius: 8px;
       padding: 1.5rem;
-      margin-top: 1.5rem;
-      box-shadow: 0 1px 6px rgba(0,0,0,0.08);
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.06);
     }
     footer {
       margin-top: 3rem;
-      padding: 1.25rem;
-      background: #e9ecef;
+      padding: 1.5rem;
+      background: #212529;
+      color: #adb5bd;
       border-radius: 8px;
-      font-size: 0.85rem;
-      color: #6c757d;
+      font-size: 0.88rem;
       text-align: center;
     }
-    .status-danger { color: #dc3545; font-weight: 600; }
-    .status-warning { color: #fd7e14; font-weight: 600; }
-    .status-ok { color: #198754; font-weight: 600; }
+    .risk-high { color: #dc3545; font-weight: 600; }
+    .risk-mid  { color: #fd7e14; font-weight: 600; }
+    .risk-low  { color: #198754; font-weight: 600; }
+    a { color: #0d6efd; }
+    .source-list li { margin-bottom: 0.5rem; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -86,245 +86,250 @@
 <div class="report-header">
   <h1>&#9876;&#65039; 美伊戰爭情勢週報</h1>
   <div class="meta">
-    &#128197; 報告日期：2026-06-28
-    <span class="badge-conflict">衝突第 120 天</span>
-    &nbsp;・&nbsp;&#128260; 下次更新：2026-07-05
+    <i class="bi bi-calendar3"></i> 報告日期：<strong>2026-07-05</strong>
+    &nbsp;&#183;&nbsp;
+    <span class="badge-day">衝突第 127 天</span>
+    &nbsp;&#183;&nbsp;
+    <i class="bi bi-arrow-repeat"></i> 下次更新：<strong>2026-07-12</strong>
   </div>
 </div>
 
 <!-- 本週重點 Callout -->
-<div class="alert alert-info border-0 shadow-sm" role="alert">
+<div class="alert alert-info border-start border-info border-4" role="alert">
   <h5 class="alert-heading"><i class="bi bi-megaphone-fill me-2"></i>本週重點摘要</h5>
   <ul class="mb-0">
-    <li>&#128721; 6 月 26 日：伊朗無人機攻擊荷莫茲海峽貨輪，美軍隨即反擊，轟炸伊朗飛彈儲存設施與海岸雷達站</li>
-    <li>&#128220; 6 月 17 日簽署的 14 點停火備忘錄（MOU）面臨嚴峻考驗，60 天期限恐難維持</li>
-    <li>&#128674; 聯合國海事組織（IMO）暫停荷莫茲海峽護航行動，石油通道再添變數</li>
-    <li>&#128176; 布蘭特原油維持每桶約 108 美元，較戰前（70 美元以下）漲逾 55%</li>
-    <li>&#127481;&#127484; 台灣通膨維持 1.5% 以下，央行預期「連 8 凍」，科技業供應鏈展現韌性</li>
+    <li>&#128345; 美伊諒解備忘錄（MoU）已於 6/17 正式簽署，60 天停火框架正式啟動</li>
+    <li>&#129309; 卡達多哈間接技術談判達成「正面進展」，副總統 Vance 稱談判「進展良好」</li>
+    <li>&#128674; 荷姆茲海峽已重新開放，台灣能源供應壓力短期緩解</li>
+    <li>&#128332; 何梅尼（Khamenei）葬禮 7/4–7/9 舉行，伊朗警告美以勿趁機「誤判」</li>
+    <li>&#9888;&#65039; 核武談判、制裁解除、伊朗 3,000 億美元資產解凍等核心議題仍懸而未決</li>
   </ul>
 </div>
 
-<!-- 一、戰爭背景與本週摘要 -->
-<div class="card-section">
-  <h2><i class="bi bi-journal-text me-2 text-danger"></i>一、戰爭背景與本週摘要</h2>
+<!-- 一、背景摘要 -->
+<div class="section-card">
+  <h2>一、戰爭背景與本週摘要</h2>
   <p>
-    2026 年 2 月 28 日，美國與以色列聯手對伊朗實施大規模空襲，目標涵蓋德黑蘭周邊軍事設施與核子研究中心，導致伊朗最高領袖哈米尼（Khamenei）喪生。伊朗伊斯蘭革命衛隊（IRGC）旋即展開大規模報復行動，封鎖荷莫茲海峽，引發全球能源危機與航運中斷，衝突迅速蔓延至黎巴嫩、葉門及波斯灣水域。
+    2026 年 2 月 28 日，美國與以色列聯手對伊朗發動空襲，正式啟動本輪美伊戰爭，
+    同日伊朗最高領袖阿里·哈梅尼（Ali Khamenei）在空襲中身亡，引發全球震驚。
+    衝突主要聚焦於核設施打擊、荷姆茲海峽封鎖、以及伊朗代理勢力（黎巴嫩真主黨、胡塞武裝）的多線作戰。
   </p>
   <p>
-    本週（2026-06-22 至 06-28）局勢出現重大逆轉：6 月 17 日甫完成簽署的「伊斯蘭馬巴德諒解備忘錄」（Islamabad MOU）在不到 10 天內遭受嚴峻考驗。6 月 26 日，伊朗革命衛隊疑似派遣四架單程自殺無人機攻擊荷莫茲海峽附近一艘大型貨輪，造成部分損傷。川普總統隨即宣稱伊朗違反停火協議，授權美軍對伊朗境內的飛彈及無人機儲存設施、海岸雷達陣地發動打擊。6 月 27 日，雙方再度互轟，地區緊張情勢急劇升溫。巴基斯坦斡旋的核談判亦因此被迫暫停，60 天框架協議的存續岌岌可危。
+    截至本報告日（2026-07-05，衝突第 127 天），美伊雙方已於 6 月 17 日簽署諒解備忘錄，進入 60 天停火談判期。
+    本週（7/1–7/5）主要焦點為：卡達多哈間接談判持續進行、荷姆茲海峽維持開放、
+    以及伊朗進行為期六天的何梅尼國葬（7/4–7/9），雙方緊張程度雖稍緩，但核心爭議尚未化解。
   </p>
 </div>
 
-<!-- 二、當前軍事情勢 -->
-<div class="card-section">
-  <h2><i class="bi bi-crosshair2 me-2 text-danger"></i>二、當前軍事情勢</h2>
+<!-- 二、軍事情勢 -->
+<div class="section-card">
+  <h2>二、當前軍事情勢</h2>
   <p>
-    本週美伊雙方在停火備忘錄框架下爆發最嚴重的武裝衝突。美軍中央司令部（CENTCOM）確認空襲係針對伊朗「繼續進行侵略性行動」之反制措施。伊朗革命衛隊發表聲明，否認違反停火協議，並稱攻擊貨輪係回應「美以持續的海上封鎖行動」。
+    6/17 MoU 生效後，美軍暫停主動打擊行動，伊朗正規軍亦相對克制。
+    然而，伊朗軍事指揮官 Ali Abdollahi 少將於 7/4 嚴正警告：
+    美以若在何梅尼葬禮期間採取任何「誤判」行動，將遭「嚴厲且令人悔恨的回應」。
+    荷姆茲海峽目前維持開放，但美軍海軍艦隊仍部署於波斯灣保持戒備態勢。
   </p>
   <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>指標</th>
-        <th>現況</th>
-        <th>備註</th>
-      </tr>
+      <tr><th>指標</th><th>現況</th><th>備註</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>荷莫茲海峽通行</td>
-        <td><span class="status-warning">部分中斷</span></td>
-        <td>IMO 暫停護航；商業船隻繞道好望角</td>
+        <td>停火狀態</td>
+        <td><span class="risk-low">MoU 停火中（60天）</span></td>
+        <td>6/17–8/17，談判期間</td>
       </tr>
       <tr>
-        <td>美軍地面兵力</td>
-        <td><span class="status-warning">維持警戒</span></td>
-        <td>波斯灣航母打擊群 2 組持續部署</td>
+        <td>荷姆茲海峽</td>
+        <td><span class="risk-low">已重開（民用航運恢復）</span></td>
+        <td>MoU 核心條款之一</td>
+      </tr>
+      <tr>
+        <td>美軍部署</td>
+        <td><span class="risk-mid">波斯灣艦隊維持警戒</span></td>
+        <td>尚未完全撤離</td>
+      </tr>
+      <tr>
+        <td>伊朗代理武裝</td>
+        <td><span class="risk-mid">黎巴嫩停火，胡塞武裝仍活躍</span></td>
+        <td>MoU 含「所有戰線停火」條款</td>
       </tr>
       <tr>
         <td>伊朗核設施</td>
-        <td><span class="status-danger">多處受損</span></td>
-        <td>福爾道、納坦茲遭空襲，IAEA 中斷視察</td>
+        <td><span class="risk-high">受損嚴重，修復進度未公開</span></td>
+        <td>核武談判仍是核心議題</td>
       </tr>
       <tr>
-        <td>黎巴嫩前線</td>
-        <td><span class="status-warning">低強度衝突</span></td>
-        <td>美以黎三方框架協議 6/27 簽署，仍有零星交火</td>
-      </tr>
-      <tr>
-        <td>葉門胡塞武裝</td>
-        <td><span class="status-danger">仍活躍</span></td>
-        <td>持續對紅海商船發射反艦飛彈</td>
-      </tr>
-      <tr>
-        <td>停火備忘錄狀態</td>
-        <td><span class="status-warning">高度脆弱</span></td>
-        <td>60 天期限（截止 8 月 16 日）核談判面臨破局風險</td>
+        <td>何梅尼葬禮</td>
+        <td><span class="risk-mid">7/4–7/9 舉行（伊朗及伊拉克）</span></td>
+        <td>伊朗警告勿趁機挑釁</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- 三、外交談判動態 -->
-<div class="card-section">
-  <h2><i class="bi bi-globe2 me-2 text-danger"></i>三、外交談判動態</h2>
+<!-- 三、外交談判 -->
+<div class="section-card">
+  <h2>三、外交談判動態</h2>
   <p>
-    6 月 14 日，美伊雙方在巴基斯坦斡旋下宣布達成初步協議；6 月 17 日，兩國總統正式簽署 14 點「伊斯蘭馬巴德諒解備忘錄」（MOU），主要內容包括：荷莫茲海峽 60 天內重新開放商業航運、雙方解除港口封鎖、啟動核子計畫與制裁解除談判。然而，6 月 26 日的貨輪攻擊事件使談判陷入僵局。
+    美伊雙方透過卡達作為中間人，在多哈持續進行間接技術性談判。
+    7 月 2 日，卡達外交部表示談判獲得「正面進展」；
+    7 月 1 日，美國副總統 Vance 表示「談判進展良好」。
+    雙方 60 天談判期（至 8/17）的核心議題包括：核武計畫、制裁解除、伊朗凍結資產、
+    荷姆茲海峽長期管理機制及 3,000 億美元重建計畫。
   </p>
   <ul>
-    <li><strong>核問題分歧：</strong>美方要求伊朗濃縮鈾庫存降至 5% 以下；伊朗主張保留 20% 濃縮能力，雙方核查機制尚未達成共識</li>
-    <li><strong>制裁解除時程：</strong>伊朗要求先解除石油出口制裁，美方堅持先完成核查才能解禁</li>
-    <li><strong>巴基斯坦斡旋中斷：</strong>6 月 27 日伊斯蘭馬巴德宣佈暫停調停，等待局勢降溫</li>
-    <li><strong>英媒批評川普：</strong>《衛報》、《金融時報》均指責美方在荷莫茲開放條款（僅 60 天免費）預留過多模糊空間</li>
-    <li><strong>以色列立場：</strong>內塔尼亞胡對 MOU 保持距離，仍主張維持黎巴嫩軍事壓力</li>
-    <li><strong>聯合國安理會：</strong>6 月 25 日召開緊急會議，呼籲雙方克制，決議遭中俄否決</li>
+    <li><strong>6/14</strong>：美伊初步達成協議框架，宣布停火延長</li>
+    <li><strong>6/17</strong>：川普於凡爾賽宮、Pezeshkian 於德黑蘭各自簽署 MoU</li>
+    <li><strong>7/1</strong>：多哈會議，Vance 稱「進展良好」</li>
+    <li><strong>7/2</strong>：卡達確認「正面進展」，技術性間接談判完成一輪</li>
+    <li><strong>7/4–7/9</strong>：何梅尼葬禮期間，談判暫緩，雙方維持低調</li>
+    <li><strong>待議</strong>：伊朗核武未來、制裁解除時程、凍結資產 $3,000 億解凍方式</li>
   </ul>
 </div>
 
 <!-- 四、全球經濟衝擊 -->
-<div class="card-section">
-  <h2><i class="bi bi-bar-chart-fill me-2 text-danger"></i>四、全球經濟衝擊</h2>
-  <table class="table table-bordered table-hover">
+<div class="section-card">
+  <h2>四、全球經濟衝擊</h2>
+  <p>
+    美伊戰爭自 2 月爆發以來，對全球能源市場、通膨及供應鏈造成顯著衝擊。
+    荷姆茲海峽重開後，布蘭特原油價格從高峰回落，但仍高於戰前水準。
+    歐美富裕國家的消費者購買力因通膨超越薪資成長而縮水。
+  </p>
+  <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>項目</th>
-        <th>數據</th>
-        <th>說明</th>
-      </tr>
+      <tr><th>項目</th><th>數據</th><th>說明</th></tr>
     </thead>
     <tbody>
       <tr>
         <td>布蘭特原油</td>
-        <td><span class="status-danger">≈ $108/桶</span></td>
-        <td>較戰前（&lt;$70）漲逾 55%；6/26 衝突後再度拉高</td>
+        <td><strong>約 $88–95/桶</strong></td>
+        <td>戰爭高峰逾 $130，停火後回落；荷姆茲重開後持續下行</td>
       </tr>
       <tr>
-        <td>WTI 原油</td>
-        <td><span class="status-danger">≈ $104/桶</span></td>
-        <td>美銀極端情景預測可達 $130-150</td>
-      </tr>
-      <tr>
-        <td>荷莫茲海峽石油流量</td>
-        <td>↓ 約 70%</td>
-        <td>全球每日約 20% 石油仰賴此通道，繞道成本大增</td>
-      </tr>
-      <tr>
-        <td>全球航運成本</td>
-        <td>↑ 約 40%</td>
-        <td>好望角繞行每程多 10-14 天，波交所 BDI 指數攀升</td>
+        <td>荷姆茲海峽通行量</td>
+        <td><strong>每日約 2,100 萬桶</strong></td>
+        <td>全球石油供應約 20% 途經此處，已恢復通行</td>
       </tr>
       <tr>
         <td>全球通膨壓力</td>
-        <td>歐元區 CPI ↑ 0.8pp</td>
-        <td>能源輸入型通膨；日歐英央行傾向升息應對</td>
+        <td><strong>物價漲幅 &gt; 薪資成長</strong></td>
+        <td>歐美富國購買力縮水（5 月數據）</td>
       </tr>
       <tr>
-        <td>天然氣（歐洲 TTF）</td>
-        <td>↑ 約 35%</td>
-        <td>液化天然氣（LNG）船改繞行，交付期延長</td>
+        <td>航運保費</td>
+        <td><strong>仍高於戰前 3–5 倍</strong></td>
+        <td>波斯灣航線風險溢價尚未完全回落</td>
       </tr>
       <tr>
-        <td>聯準會利率</td>
-        <td>降息壓力</td>
-        <td>美國本身為產油國；Fed 逆勢降息以穩內需</td>
+        <td>LNG 現貨價</td>
+        <td><strong>每 MMBtu $18–22</strong></td>
+        <td>亞洲進口商搶貨效應，但荷姆茲重開後趨緩</td>
+      </tr>
+      <tr>
+        <td>美元指數</td>
+        <td><strong>偏強（避險需求）</strong></td>
+        <td>地緣政治不確定性支撐美元</td>
       </tr>
     </tbody>
   </table>
 </div>
 
 <!-- 五、台灣受衝擊評估 -->
-<div class="card-section">
-  <h2><i class="bi bi-geo-alt-fill me-2 text-danger"></i>五、台灣受衝擊評估</h2>
-  <table class="table table-bordered table-hover">
+<div class="section-card">
+  <h2>五、台灣受衝擊評估</h2>
+  <p>
+    台灣高度依賴中東能源，約 60% 的石油及 1/3 的天然氣須經荷姆茲海峽輸入。
+    荷姆茲重開後短期風險緩解，但台灣天然氣安全存量僅 11 天，為日韓台三國中最低，脆弱性依然存在。
+  </p>
+  <table class="table table-bordered table-hover mt-3">
     <thead class="table-dark">
-      <tr>
-        <th>面向</th>
-        <th>現況</th>
-        <th>風險評估</th>
-      </tr>
+      <tr><th>面向</th><th>現況</th><th>風險評估</th></tr>
     </thead>
     <tbody>
       <tr>
-        <td>能源進口成本</td>
-        <td>原油進口每桶成本增約 $38</td>
-        <td><span class="status-danger">高</span></td>
-      </tr>
-      <tr>
         <td>CPI 通膨</td>
-        <td>維持 1.5% 以下（相對穩健）</td>
-        <td><span class="status-warning">中度</span></td>
+        <td>油價每漲 10%，CPI 升約 0.2%；近期調漲 5%，推升 +0.11%</td>
+        <td><span class="risk-mid">中度影響</span>，政府吸收部分漲幅</td>
       </tr>
       <tr>
-        <td>央行利率政策</td>
-        <td>預期「連 8 凍」，暫不升息</td>
-        <td><span class="status-ok">低</span></td>
+        <td>央行政策</td>
+        <td>台灣央行密切監控通膨，暫維持利率不變</td>
+        <td><span class="risk-mid">若停火破局，升息壓力回升</span></td>
       </tr>
       <tr>
-        <td>半導體供應鏈（TSMC）</td>
-        <td>氦氣回收率達 80-90%，韌性強</td>
-        <td><span class="status-ok">低</span></td>
+        <td>天然氣供應</td>
+        <td>安全存量 11 天（日韓約 3–4 週）；燃氣發電占台電 53.3%</td>
+        <td><span class="risk-high">高度脆弱</span>，荷姆茲若再封閉衝擊極大</td>
       </tr>
       <tr>
-        <td>航空燃油附加費</td>
-        <td>短程 +$27.5；長程 +$71.5（4 月起）</td>
-        <td><span class="status-warning">中度</span></td>
+        <td>石油供應</td>
+        <td>中油已分散採購：卡達 / 美國 / 澳洲三分天下</td>
+        <td><span class="risk-low">短期穩定</span>，供應來源多元化成效顯著</td>
       </tr>
       <tr>
-        <td>石化 / 建材</td>
-        <td>乙烯翻倍、PVC 漲 50%，營建成本激增</td>
-        <td><span class="status-danger">高</span></td>
+        <td>科技產業</td>
+        <td>石化原料、特殊氣體供應鏈受衝擊；半導體能耗成本上升</td>
+        <td><span class="risk-mid">中度影響</span>，台積電等廠商已預做備料</td>
       </tr>
       <tr>
-        <td>航運 / 轉口貿易</td>
-        <td>高雄港轉口量下降，繞道增加交期</td>
-        <td><span class="status-warning">中度</span></td>
-      </tr>
-      <tr>
-        <td>台股</td>
-        <td>戰爭初期單日跌逾 1,500 點，後逐步回穩</td>
-        <td><span class="status-warning">中度（已部分反映）</span></td>
+        <td>航運物流</td>
+        <td>台灣進出口航線改道，運費成本上升</td>
+        <td><span class="risk-mid">荷姆茲重開後好轉</span>，但保費仍偏高</td>
       </tr>
     </tbody>
   </table>
 </div>
 
-<!-- 六、後市情勢研判 -->
-<div class="card-section">
-  <h2><i class="bi bi-binoculars-fill me-2 text-danger"></i>六、後市情勢研判</h2>
+<!-- 六、後市研判 -->
+<div class="section-card">
+  <h2>六、後市情勢研判</h2>
 
-  <h3>短期（1-3 個月）：停火協議搖搖欲墜</h3>
+  <h3><i class="bi bi-clock me-1"></i>短期（1–3 個月，7–9 月）</h3>
   <p>
-    6 月 26 日衝突顯示 MOU 執行機制嚴重不足，缺乏有效的違規認定與懲罰程序。未來 1-3 個月，巴基斯坦斡旋能否重啟將是關鍵。若核查爭議無法化解，美方極可能以「伊朗違約」為由重新升級空襲。布蘭特原油短期維持 $100-115 區間波動，一旦荷莫茲海峽再度完全封鎖，可能測試 $130 極端情景。台股科技類股受直接影響有限，但能源、航運、石化類股壓力持續。
+    在 MoU 60 天停火框架（至 8/17）有效期間，大規模軍事衝突再起機率偏低。
+    卡達多哈談判「正面進展」意味核心議題漸趨共識，但伊朗新領導層（何梅尼後繼者未定）的政治立場存在不確定性。
+    何梅尼葬禮（7/4–7/9）期間，雙方均可能保持相對克制，為本週最敏感觀察窗口。
+    油價短期維持 $85–95/桶區間，若談判延長或破局則有再度衝高風險。
+    台灣 CPI 壓力可控，但能源補貼財政負擔持續累積。
   </p>
 
-  <h3>中期（6-12 個月）：核談判決定最終走向</h3>
+  <h3><i class="bi bi-graph-up me-1"></i>中期（6–12 個月，至 2027 年初）</h3>
   <p>
-    若雙方能在 8 月 16 日 MOU 到期前就核問題達成框架共識，中期情景為伊朗部分制裁解除，油價逐步回落至 $85-95 區間，台灣進口成本壓力緩解，通膨仍處可控範圍。若談判徹底破裂、衝突重新擴大，伊朗可能尋求中俄支持，形成多極衝突格局，全球供應鏈重組加速，台灣作為半導體核心供應者戰略地位更受矚目，但地緣政治風險溢價亦將提升。台灣央行若通膨超過 2.5%，不排除在 2026 Q4 採取升息動作。
+    中期走向取決於三大核心議題的談判結果：①伊朗核武計畫（是否接受 IAEA 核查）、
+    ②3,000 億美元凍結資產解凍條件、③荷姆茲海峽長期管理機制。
+    若談判成功，伊朗制裁解除將釋放每日約 100–150 萬桶的伊朗原油回歸市場，
+    推動油價回落至 $75–80/桶，台灣能源成本壓力大幅緩解。
+    若談判破局，戰爭重啟風險急升，荷姆茲再封閉恐導致油價飆破 $130，
+    台灣天然氣存量告急，台電供電穩定性將面臨嚴峻考驗。
+    建議台灣政府持續推進能源分散與存量提升，目標將天然氣安全存量拉升至 20 天以上。
   </p>
 </div>
 
 <!-- 七、資料來源 -->
-<div class="card-section">
-  <h2><i class="bi bi-link-45deg me-2 text-danger"></i>七、資料來源</h2>
-  <ul>
-    <li><a href="https://www.aljazeera.com/news/liveblog/2026/6/27/iran-war-live-us-strikes-iran-after-fire-on-vessel-in-strait-of-hormuz" target="_blank">Al Jazeera — Iran war updates: US hits Iran in latest tit-for-tat strike（2026-06-27）</a></li>
-    <li><a href="https://www.cbsnews.com/live-updates/us-iran-war-israel-hezbollah-strait-of-hormuz-peace-deal-talks/" target="_blank">CBS News — U.S.-Iran Latest: US launches more strikes, Trump accuses Tehran of ceasefire violation（2026-06-27）</a></li>
-    <li><a href="https://www.cnn.com/2026/06/27/world/live-news/iran-war-strikes-trump" target="_blank">CNN Live — US launches more strikes against Iran（2026-06-27）</a></li>
-    <li><a href="https://www.npr.org/2026/06/15/nx-s1-5858590/us-iran-deal-updates" target="_blank">NPR — U.S. and Iran announce an initial deal to end the war and reopen the Strait of Hormuz（2026-06-15）</a></li>
-    <li><a href="https://www.axios.com/2026/06/14/us-iran-ceasefire-extended-hormuz-reopen-trump" target="_blank">Axios — U.S. and Iran reach deal to extend ceasefire and open strait（2026-06-14）</a></li>
-    <li><a href="https://www.npr.org/2026/06/23/nx-s1-5867322/us-iran-finalize-war-ending-deal" target="_blank">NPR — A U.S.-Iran dispute over nuclear inspections clouds work to finalize a war-ending deal（2026-06-23）</a></li>
-    <li><a href="https://en.wikipedia.org/wiki/2026_Iran_war" target="_blank">Wikipedia — 2026 Iran war（持續更新）</a></li>
-    <li><a href="https://www.cna.com.tw/topic/newstopic/4890.aspx" target="_blank">中央社 — 美伊戰爭最新情勢專題（持續更新）</a></li>
-    <li><a href="https://www.cna.com.tw/news/aopl/202605260233.aspx" target="_blank">中央社 — 美伊戰爭對國際經濟、財經市場與民生衝擊（2026-05-26）</a></li>
-    <li><a href="https://technews.tw/2026/04/01/us-iran-war-impact-international-economy-financial-markets-peoples-livelihoods/" target="_blank">科技新報 — 美伊戰爭對國際經濟、財經市場與民生衝擊一次看（2026-04-01）</a></li>
-    <li><a href="https://www.businessweekly.com.tw/focus/blog/3021056" target="_blank">商業周刊 — 美伊戰爭衝擊石化供應鏈（2026）</a></li>
-    <li><a href="https://www.dbs.com.tw/treasures-private-client-zh/aics/templatedata/article/generic/data/zh/CIO/032026/tw_260319_insights3.xml" target="_blank">星展銀行 — 原油市場動態：調整上半年油價預測（2026-03）</a></li>
+<div class="section-card">
+  <h2>七、資料來源</h2>
+  <ul class="source-list">
+    <li><a href="https://www.cna.com.tw/topic/newstopic/4890.aspx" target="_blank">中央社 CNA｜美伊戰爭最新情勢專題</a>（2026-07-05）</li>
+    <li><a href="https://www.britannica.com/event/2026-Iran-war" target="_blank">Britannica｜2026 Iran War — Deal Explained, Strait of Hormuz</a>（2026-07-05）</li>
+    <li><a href="https://www.cnn.com/2026/07/02/world/live-news/iran-war-us-talks" target="_blank">CNN｜July 2 – Iran issues fresh Hormuz warning, Qatar talks make 'positive progress'</a>（2026-07-02）</li>
+    <li><a href="https://www.aljazeera.com/news/liveblog/2026/7/2/iran-war-live-positive-progress-as-us-tehran-wrap-up-indirect-talks" target="_blank">Al Jazeera｜Iran War Live: Positive progress as US and Tehran wrap up indirect talks</a>（2026-07-02）</li>
+    <li><a href="https://www.cnn.com/2026/07/01/world/live-news/iran-war-trump" target="_blank">CNN｜July 1 – Meetings in Doha, Vance says talks 'going well'</a>（2026-07-01）</li>
+    <li><a href="https://abcnews.com/International/live-updates/iran-live-updates/?id=134300648" target="_blank">ABC News｜Trump says Iran gets 'a week off' as Khamenei funeral begins</a>（2026-07-04）</li>
+    <li><a href="https://www.aljazeera.com/news/2026/7/1/us-iran-negotiations-whats-the-latest" target="_blank">Al Jazeera｜US-Iran negotiations: What's the latest?</a>（2026-07-01）</li>
+    <li><a href="https://en.wikipedia.org/wiki/2026_Iran_war_ceasefire" target="_blank">Wikipedia｜2026 Iran war ceasefire</a>（2026-07-05）</li>
+    <li><a href="https://www.axios.com/2026/06/14/us-iran-ceasefire-extended-hormuz-reopen-trump" target="_blank">Axios｜U.S. and Iran reach deal to extend ceasefire and open Strait of Hormuz</a>（2026-06-14）</li>
+    <li><a href="https://www.bnext.com.tw/article/90305/2026-iran-war-energy" target="_blank">數位時代 BusinessNext｜美伊戰爭卡住能源進口，對台灣有什麼影響？</a>（2026-07）</li>
+    <li><a href="https://www.cna.com.tw/news/aopl/202605260233.aspx" target="_blank">中央社 CNA｜美伊戰爭對國際經濟、財經市場與民生衝擊</a>（2026-05-26）</li>
+    <li><a href="https://www.globalsecurity.org/military/ops/iran-war-oprep.htm" target="_blank">GlobalSecurity.org｜Iran War 2026 – Day 125 Update – 02 July 2026</a>（2026-07-02）</li>
+    <li><a href="https://www.aljazeera.com/news/2026/6/17/read-the-us-account-of-unreleased-14-point-iran-ceasefire-memorandum" target="_blank">Al Jazeera｜美伊 14 點諒解備忘錄全文（美方版本）</a>（2026-06-17）</li>
   </ul>
 </div>
 
 <!-- Footer -->
 <footer>
-  &#129302; 自動由 Claude Agent 於 2026-06-28 生成 ・ 下次更新預計 2026-07-05（週日）<br>
-  資料截止：2026-06-28 ・ 僅供參考，不構成投資建議
+  &#129302; 自動由 Claude Agent 於 <strong>2026-07-05</strong> 生成 &#183; 資料截至 2026-07-05 &#183; 下次更新預計 <strong>2026-07-12</strong>（週日）
 </footer>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
