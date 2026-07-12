@@ -1,9 +1,15 @@
 [
   {
     "file": "bbu_gantt_calendar",
-    "name": "BBU 專案甘特 / 行事曆",
-    "desc": "三業務 follow-up 日期 → 甘特圖 / 行事曆，可篩選客戶 / 機種 / 階段",
-    "icon": "📅"
+    "name": "bbu_gantt_calendar",
+    "desc": "",
+    "icon": "📄"
+  },
+  {
+    "file": "cost_price_deadstock",
+    "name": "成本 × 售價 × 呆料週報",
+    "desc": "標準成本 / 各客戶售價毛利 / 呆料金額與趨勢 / 逾期未交",
+    "icon": "🏷️"
   },
   {
     "file": "鴻騰電子_各地區戰略佈局",
