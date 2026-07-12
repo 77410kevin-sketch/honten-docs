@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寵物選品雷達 v1 — 2026-07-12</title>
+<style>
+  :root {
+    --surface-1: #fcfcfb;
+    --page: #f9f9f7;
+    --ink-1: #0b0b0b;
+    --ink-2: #52514e;
+    --ink-muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --series-1: #2a78d6;
+    --seq-250: #86b6ef;
+    --seq-450: #2a78d6;
+    --seq-650: #104281;
+    --good: #0ca30c;
+    --good-text: #006300;
+    --warning: #fab219;
+    --serious: #ec835a;
+    --critical: #d03b3b;
+    --chip-good-bg: rgba(12,163,12,0.12);
+    --chip-warn-bg: rgba(250,178,25,0.16);
+    --chip-crit-bg: rgba(208,59,59,0.12);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --surface-1: #1a1a19;
+      --page: #0d0d0d;
+      --ink-1: #ffffff;
+      --ink-2: #c3c2b7;
+      --ink-muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --series-1: #3987e5;
+      --seq-250: #184f95;
+      --seq-450: #3987e5;
+      --seq-650: #86b6ef;
+      --good-text: #0ca30c;
+      --chip-good-bg: rgba(12,163,12,0.20);
+      --chip-warn-bg: rgba(250,178,25,0.18);
+      --chip-crit-bg: rgba(208,59,59,0.22);
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+    background: var(--page);
+    color: var(--ink-1);
+    line-height: 1.6;
+    padding: 24px 16px 64px;
+  }
+  .wrap { max-width: 1080px; margin: 0 auto; }
+  header h1 { font-size: 1.5rem; font-weight: 700; }
+  header .sub { color: var(--ink-2); font-size: 0.9rem; margin-top: 4px; }
+  .badge {
+    display: inline-block; font-size: 0.75rem; font-weight: 600;
+    border: 1px solid var(--border); border-radius: 999px;
+    padding: 1px 10px; margin-left: 8px; color: var(--ink-2); vertical-align: middle;
+  }
+  section { margin-top: 32px; }
+  h2 { font-size: 1.1rem; font-weight: 700; margin-bottom: 12px; }
+  h2 .note { font-size: 0.8rem; font-weight: 400; color: var(--ink-muted); margin-left: 8px; }
+
+  /* stat tiles */
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-top: 20px; }
+  .tile {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 14px 16px;
+  }
+  .tile .label { font-size: 0.78rem; color: var(--ink-2); }
+  .tile .value { font-size: 1.6rem; font-weight: 700; margin-top: 2px; }
+  .tile .hint { font-size: 0.75rem; color: var(--ink-muted); }
+
+  /* cards & tables */
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px;
+    padding: 18px 20px; margin-bottom: 14px;
+  }
+  .tablebox { overflow-x: auto; background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; }
+  table { border-collapse: collapse; width: 100%; min-width: 760px; font-size: 0.85rem; }
+  th, td { text-align: left; padding: 9px 12px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { color: var(--ink-2); font-weight: 600; font-size: 0.78rem; white-space: nowrap; }
+  tbody tr:last-child td { border-bottom: none; }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  .chip {
+    display: inline-block; font-size: 0.72rem; font-weight: 600; border-radius: 999px;
+    padding: 1px 9px; white-space: nowrap;
+  }
+  .chip.go   { background: var(--chip-good-bg); color: var(--good-text); }
+  .chip.watch{ background: var(--chip-warn-bg); color: var(--ink-1); }
+  .chip.no   { background: var(--chip-crit-bg); color: var(--critical); }
+
+  /* score bar chart */
+  .barchart { background: var(--surface-1); border: 1px solid var(--border); border-radius: 10px; padding: 18px 20px; }
+  .barrow { display: grid; grid-template-columns: 170px 1fr 44px; align-items: center; gap: 10px; margin: 8px 0; }
+  .barrow .name { font-size: 0.83rem; color: var(--ink-1); }
+  .bartrack { position: relative; height: 14px; }
+  .barfill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--series-1); border-radius: 0 4px 4px 0; }
+  .barrow .val { font-size: 0.83rem; font-variant-numeric: tabular-nums; color: var(--ink-2); text-align: right; }
+  .axisnote { font-size: 0.73rem; color: var(--ink-muted); margin-top: 10px; border-top: 1px solid var(--grid); padding-top: 8px; }
+
+  /* candidate detail card */
+  .cand h3 { font-size: 0.98rem; font-weight: 700; }
+  .cand .meta { font-size: 0.8rem; color: var(--ink-2); margin: 4px 0 8px; }
+  .cand ul { margin: 6px 0 0 20px; font-size: 0.86rem; }
+  .cand li { margin: 3px 0; }
+  .cand .risk { color: var(--ink-2); }
+  .cols2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 14px; }
+
+  .small { font-size: 0.8rem; color: var(--ink-2); }
+  .fineprint { font-size: 0.75rem; color: var(--ink-muted); margin-top: 6px; }
+  a { color: var(--series-1); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .kbox { border-left: 3px solid var(--series-1); padding: 8px 14px; background: var(--surface-1); border-radius: 0 8px 8px 0; margin-top: 10px; font-size: 0.86rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <h1>🐾 寵物選品雷達 <span class="badge">v1 · 2026-07-12</span></h1>
+  <div class="sub">中國採購（淘寶/拼多多/1688）→ 台灣 FB 廣告銷售 · 篩選條件：非帶電、無侵權疑慮、進貨單價落於或可組合至 NT$500–1,000、FB 影片可展示</div>
+
+  <div class="tiles">
+    <div class="tile">
+      <div class="label">掃描情報源</div>
+      <div class="value">7</div>
+      <div class="hint">跨境產業報告 + 台灣市場文章 + 蝦皮價格帶</div>
+    </div>
+    <div class="tile">
+      <div class="label">評估品項</div>
+      <div class="value">12</div>
+      <div class="hint">寵物用品類</div>
+    </div>
+    <div class="tile">
+      <div class="label">入選主打</div>
+      <div class="value">3</div>
+      <div class="hint">另 3 項觀察、6 項避開</div>
+    </div>
+    <div class="tile">
+      <div class="label">本期最強候選</div>
+      <div class="value" style="font-size:1.05rem; line-height:1.4; margin-top:8px;">寵物拉桿包<br>（拉桿箱式外出包）</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>綜合評分排行 <span class="note">六維度加總，滿分 30（熱度／價差／FB 適性／法規／物流／藍海度）</span></h2>
+  <div class="barchart">
+    <div class="barrow"><div class="name">寵物拉桿包</div><div class="bartrack"><div class="barfill" style="width:83%"></div></div><div class="val">25</div></div>
+    <div class="barrow"><div class="name">嗅聞墊益智玩具組</div><div class="bartrack"><div class="barfill" style="width:77%"></div></div><div class="val">23</div></div>
+    <div class="barrow"><div class="name">車用寵物安全座椅組</div><div class="bartrack"><div class="barfill" style="width:73%"></div></div><div class="val">22</div></div>
+    <div class="barrow"><div class="name">頂入式/半封閉貓砂盆組</div><div class="bartrack"><div class="barfill" style="width:63%"></div></div><div class="val">19</div></div>
+    <div class="barrow"><div class="name">多功能可拆座艙推車</div><div class="bartrack"><div class="barfill" style="width:60%"></div></div><div class="val">18</div></div>
+    <div class="barrow"><div class="name">寵物外出摺疊圍欄</div><div class="bartrack"><div class="barfill" style="width:57%"></div></div><div class="val">17</div></div>
+    <div class="axisnote">分數為本期人工評估值（每維度 1–5 分）；已排除帶電品與紅海品，見下方避開清單。</div>
+  </div>
+</section>
+
+<section>
+  <h2>入選與觀察品項總表</h2>
+  <div class="tablebox">
+    <table>
+      <thead>
+        <tr>
+          <th>品項</th>
+          <th>判定</th>
+          <th class="num">進貨估價*</th>
+          <th class="num">蝦皮現行售價帶</th>
+          <th class="num">建議 FB 售價</th>
+          <th>優勢</th>
+          <th>主要風險</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>寵物拉桿包</strong>（拉桿箱式外出包，捷運/高鐵規格）</td>
+          <td><span class="chip go">主打</span></td>
+          <td class="num">¥100–180<br>≈ NT$450–810</td>
+          <td class="num">NT$1,280–2,880</td>
+          <td class="num">NT$1,980–2,480</td>
+          <td>2026 台灣媒體聲量高（機車族、三鐵通勤）；客單價高、影片展示力強</td>
+          <td class="risk">重量約 2.5–3.5kg，國際運費要精算；需驗輪子與拉桿品質</td>
+        </tr>
+        <tr>
+          <td><strong>嗅聞墊＋益智藏食玩具組合</strong>（3–4 件組）</td>
+          <td><span class="chip go">主打</span></td>
+          <td class="num">組合 ¥60–110<br>≈ NT$270–500</td>
+          <td class="num">單品 NT$150–799</td>
+          <td class="num">組合 NT$799–999</td>
+          <td>狗玩玩具的影片是 FB 天生爆款素材；輕、運費低；用「組合」避開單品比價</td>
+          <td class="risk">單品可比價，必須綁組合賣；布類需留意品質檢驗</td>
+        </tr>
+        <tr>
+          <td><strong>車用寵物安全座椅＋安全繩組</strong></td>
+          <td><span class="chip go">主打</span></td>
+          <td class="num">組合 ¥70–130<br>≈ NT$320–590</td>
+          <td class="num">NT$490–1,590</td>
+          <td class="num">NT$1,180–1,480</td>
+          <td>開車族剛性痛點，情境廣告好拍；「安全」訴求支撐溢價</td>
+          <td class="risk">廣告文案不可宣稱碰撞防護等未驗證安全功效</td>
+        </tr>
+        <tr>
+          <td>頂入式／半封閉貓砂盆＋鏟＋落砂墊組</td>
+          <td><span class="chip watch">觀察</span></td>
+          <td class="num">組合 ¥60–120<br>≈ NT$270–540</td>
+          <td class="num">NT$390–1,290</td>
+          <td class="num">NT$990–1,290</td>
+          <td>跨境數據顯示中價位有缺口；防噴砂痛點明確</td>
+          <td class="risk">體積大（材積運費高）、塑膠件破損率；蝦皮低價競品多</td>
+        </tr>
+        <tr>
+          <td>多功能可拆座艙寵物推車</td>
+          <td><span class="chip watch">觀察</span></td>
+          <td class="num">¥150–260<br>≈ NT$680–1,170</td>
+          <td class="num">NT$1,690–4,980</td>
+          <td class="num">NT$2,980–3,980</td>
+          <td>客單價最高；「推車＋外出包二合一」是趨勢款</td>
+          <td class="risk">材積與重量最大、退貨處理最痛；品質客訴率高，適合第二階段再上</td>
+        </tr>
+        <tr>
+          <td>寵物外出摺疊圍欄／帳篷</td>
+          <td><span class="chip watch">觀察</span></td>
+          <td class="num">¥50–100<br>≈ NT$230–450</td>
+          <td class="num">NT$490–1,490</td>
+          <td class="num">NT$990–1,290</td>
+          <td>露營風潮延伸；摺疊收納展示效果好</td>
+          <td class="risk">季節性強；下雨天素材難拍；同質品多</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="fineprint">* 進貨估價為 1688/淘寶常見批發區間之估計值（匯率以 1 CNY ≈ 4.5 TWD 計），<strong>下單前務必逐款人工核價＋叫樣品驗貨</strong>。蝦皮售價帶取自 2026 年 7 月蝦皮台灣列表頁實查。</div>
+</section>
+
+<section>
+  <h2>主打品項作戰卡</h2>
+  <div class="cols2">
+    <div class="card cand">
+      <h3>① 寵物拉桿包（首發主打）</h3>
+      <div class="meta">目標客群：機車族、通勤帶寵就醫、高鐵/捷運出遊的貓狗飼主</div>
+      <ul>
+        <li><strong>為什麼是它</strong>：2026 台灣寵物內容圈聲量明確（「機車族三鐵通勤必看」「破解高鐵捷運尺寸規定」都是今年熱文），需求真實且成長中；蝦皮千元以上拉桿款選擇仍少，還沒殺成紅海。</li>
+        <li><strong>廣告切角</strong>：影片實拍「5kg 以上毛孩出門＝手臂酷刑 → 拉桿一拉就走」；強調符合捷運/高鐵攜帶尺寸。</li>
+        <li><strong>差異化</strong>：選有「可拆變背包」或「360° 萬向靜音輪」的款式，避開最低階款。</li>
+        <li class="risk"><strong>驗貨重點</strong>：輪軸強度、拉桿晃動、透氣網車縫、承重標示。</li>
+      </ul>
+    </div>
+    <div class="card cand">
+      <h3>② 嗅聞墊益智玩具組（現金流品）</h3>
+      <div class="meta">目標客群：狗飼主（幼犬家庭、雨天放電需求）、送禮</div>
+      <ul>
+        <li><strong>為什麼是它</strong>：輕、便宜、運費低、幾乎零損壞率，是練 FB 投放手感的最佳入門品；狗狗使用畫面天生高互動素材。</li>
+        <li><strong>廣告切角</strong>：「下雨天出不了門？15 分鐘嗅聞＝1 小時散步的放電量」。</li>
+        <li><strong>差異化</strong>：3–4 件難度分級組合＋教學卡，單價撐到 NT$799–999，避開單品比價。</li>
+        <li class="risk"><strong>注意</strong>：蝦皮已有韓國授權款賣 NT$799，素材與組合設計要做出區隔，不可用他牌授權圖。</li>
+      </ul>
+    </div>
+    <div class="card cand">
+      <h3>③ 車用寵物安全座椅組（利潤品）</h3>
+      <div class="meta">目標客群：開車帶寵出遊的家庭（可對露營、寵物友善景點受眾投放）</div>
+      <ul>
+        <li><strong>為什麼是它</strong>：「毛孩在車上亂跳很危險」是強情緒痛點，FB 影片轉換率通常好；加購安全繩、置物袋容易拉高客單。</li>
+        <li><strong>廣告切角</strong>：行車紀錄器視角「急煞那一秒」對比有/無座椅。</li>
+        <li class="risk"><strong>合規紅線</strong>：文案只能說「輔助固定、減少駕駛分心」，不可宣稱碰撞保護／安全認證，避免廣告不實。</li>
+      </ul>
+    </div>
+    <div class="card cand">
+      <h3>💰 單品損益推演（以拉桿包 NT$2,280 售價為例）</h3>
+      <ul>
+        <li>進貨 NT$650 ＋ 國際運費 NT$180（3kg 海快）＋ 稅費 ~NT$85 → <strong>落地成本 ≈ NT$915</strong></li>
+        <li>台灣端：宅配＋金流 NT$150、棄單/退貨攤提 12% ≈ NT$275</li>
+        <li>FB 廣告 CPA NT$500 → <strong>每件淨利 ≈ NT$440（毛利率 ~19%）</strong></li>
+        <li>損益兩平 CPA ≈ <strong>NT$940</strong>：CPA 低於 600 放量、600–900 優化素材、破 900 停品換款。</li>
+        <li class="risk">嗅聞墊組（落地 ~NT$420、售 NT$899）損益兩平 CPA 約 NT$310 — 便宜但容錯低，適合練手不適合當主利潤。</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>避開清單 <span class="note">本期明確不做</span></h2>
+  <div class="tablebox">
+    <table>
+      <thead>
+        <tr><th>品項</th><th>判定</th><th>原因</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>太空艙貓背包</td><td><span class="chip no">紅海</span></td><td>蝦皮已殺到 NT$198–899、賣家極多，FB 廣告成本蓋不住價差</td></tr>
+        <tr><td>涼感墊／冰絲墊</td><td><span class="chip no">紅海</span></td><td>蝦皮 NT$28 起純殺價品，無溢價空間（可當滿額贈品用）</td></tr>
+        <tr><td>自動飲水機／自動餵食器</td><td><span class="chip no">法規</span></td><td>帶電＝BSMI 檢驗門檻；含 App 連線再加 NCC，首發不碰</td></tr>
+        <tr><td>自動貓砂盆／寵物烘乾箱</td><td><span class="chip no">法規</span></td><td>同上，且高單價高客訴，退貨處理成本極高</td></tr>
+        <tr><td>寵物零食／保健品</td><td><span class="chip no">法規</span></td><td>飼料與食品需輸入查驗登記，且品牌壁壘強</td></tr>
+        <tr><td>卡通圖案／名牌風寵物衣服窩墊</td><td><span class="chip no">侵權</span></td><td>仿版 IP 在 FB 投廣告＝公開留存侵權證據，刑事風險</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>情報來源與方法</h2>
+  <div class="card small">
+    <ul style="margin-left:20px;">
+      <li>中國端品類熱度：雨果網/DNY123「Shopee 熱銷寵物用品盤點」（猫砂盆中價位缺口、飲水機、外出包/推車、爬架為最熱類目）、2026 寵物電器出海報告（智能品年增 19.5%，但帶電＝台灣認證門檻，本雷達排除）。</li>
+      <li>台灣端需求驗證：vocus 2026 寵物用品/推車/拉桿包系列熱文（機車族、高鐵捷運規格為今年明確話題）、蝦皮台灣列表頁實查售價帶（2026-07）。</li>
+      <li>淘寶/拼多多熱銷榜需登入牆，本期以產業報告替代；進貨價為批發常見區間估計，<strong>下單前需人工核價</strong>。</li>
+      <li>評分維度：台灣熱度、價差空間、FB 廣告適性（影片可展示）、法規安全、物流成本、競爭藍海度，各 1–5 分。</li>
+    </ul>
+  </div>
+  <div class="kbox">
+    <strong>建議下一步</strong>：① 淘寶各叫樣 2–3 款拉桿包＋嗅聞墊組（樣品費約 NT$3,000 內）→ ② 實物驗貨拍素材 → ③ 蝦皮/FB 社團試水溫定價 → ④ 通過再談行號登記與批量進貨。雷達可改為每週自動掃描更新。
+  </div>
+</section>
+
+</div>
+</body>
+</html>
