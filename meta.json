@@ -34,7 +34,7 @@
         {
           "file": "weekly_business_progress",
           "icon": "📊",
-          "label": "每週更新",
+          "label": "每週一、四 08:00 更新",
           "name": "業務進度總覽",
           "desc": "全域異動總覽 + 階段變化追蹤"
         }
