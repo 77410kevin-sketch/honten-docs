@@ -60,7 +60,17 @@ export default {
     }
 
     // ---- 其他全部走靜態檔 ----
-    return env.ASSETS.fetch(request);
+    const assetResp = await env.ASSETS.fetch(request);
+    // HTML/JSON 報表頁不快取，避免更新後仍看到舊版（靜態資源如圖片/CSS 維持原快取）
+    const ctype = assetResp.headers.get("content-type") || "";
+    if (ctype.includes("text/html") || ctype.includes("application/json")) {
+      const r = new Response(assetResp.body, assetResp);
+      r.headers.set("Cache-Control", "no-cache, no-store, must-revalidate");
+      r.headers.set("Pragma", "no-cache");
+      r.headers.set("Expires", "0");
+      return r;
+    }
+    return assetResp;
   },
 };
 
